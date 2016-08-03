@@ -40,5 +40,14 @@
     "redux-thunk": "^2.0.1",
     "webpack": "^1.12.14"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-header": "^1.8.7",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  }
 }
