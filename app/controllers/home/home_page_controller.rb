@@ -1,7 +1,6 @@
 class Home::HomePageController < ApplicationController
-
   def index
-    
+
   end
 
   def showStartups
