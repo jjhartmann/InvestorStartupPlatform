@@ -11,6 +11,10 @@ config = {
     'babel-polyfill',
     './app/bundles/HelloWorld/startup/HelloWorldApp',
     './app/bundles/FrontPageHeader/startup/FrontPageHeaderApp',
+    './app/bundles/FrontPageFooter/startup/FrontPageFooterApp',
+    './javascripts/jquery.min',
+    './javascripts/bootstrap.min',
+    './javascripts/agency',
   ],
 
   output: {
@@ -30,6 +34,10 @@ config = {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv),
       },
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     }),
   ],
   module: {
