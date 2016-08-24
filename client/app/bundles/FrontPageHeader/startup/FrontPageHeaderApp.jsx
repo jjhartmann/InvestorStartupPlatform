@@ -3,6 +3,8 @@ import ReactOnRails from 'react-on-rails'
 import Logo from '../containers/LogoContainer'
 import Links from '../containers/LinksContainer'
 import AuthenticationLink from '../containers/AuthenticationLinksContainer'
+require('../../../../javascripts/jquery.easing.min.js');
+
 
 const HeaderApp = (props, _railsContext) => {
   const reactComponent = (

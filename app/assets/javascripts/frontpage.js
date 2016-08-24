@@ -11,8 +11,3 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery.min
-//= require bootstrap.min
-//= require jquery.easing.min
-//= require agency.min

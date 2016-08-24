@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ProjectOctoStartupTime</title>
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    'frontpage', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'frontpage', 'data-turbolinks-track': 'reload' %>
-</head>
+  <head>
+    <title>Project Octo Startup Time</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'frontpage', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'frontpage', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<body id="<%= yield :body_id %>" class='<%= yield :body_class %>'>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <%= render "layouts/frontpage_header" %>
-    <%= yield %>
-  <script src="/assets/jquery.easing.min.js"></script>
-  <script src="/assets/agency.min.js"></script>
-</body>
+  <body id="<%= yield :body_id %>" class='<%= yield :body_class %>'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+      <%= render "layouts/frontpage_header" %>
+      <%= yield %>
+      <%= render "layouts/frontpage_footer" %>
+  </body>
 </html>

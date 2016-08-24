@@ -4,11 +4,9 @@ export default class LinkWidget extends React.Component {
 render()
   {
     return (
-      <div>
-        <li>          
-          <a className="page-scroll" href="#services">{this.props.name}</a>
+        <li>
+          <a className="page-scroll" href={this.props.path}>{this.props.name}</a>
         </li>
-      </div>
     );
   }
 }
