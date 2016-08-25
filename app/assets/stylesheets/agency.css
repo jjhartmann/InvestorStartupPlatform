@@ -197,6 +197,27 @@ fieldset[disabled] .btn-xl.active {
   color: white;
   background-color: #fec503;
 }
+ul.our-background li {
+    color: #fff;
+    list-style: none;
+    float: left;
+    width: 25%;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+ul.our-background {
+    padding-left: 0;
+    float: left;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    padding: 20px 0;
+    margin-bottom: 75px;
+}
+.main-label {
+    color: #fed136;
+    font-size: 16px;
+    font-weight: normal;
+}
 @media (min-width: 768px) {
   .navbar-custom {
     background-color: transparent;
@@ -226,7 +247,7 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 header {
-  background-image: url('/header-bg.jpg');
+  background-image: url('/assets/header-bg.jpg');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -291,7 +312,6 @@ section h3.section-subheading {
   text-transform: none;
   font-style: italic;
   font-weight: 400;
-  margin-bottom: 75px;
 }
 @media (min-width: 768px) {
   section {
@@ -555,7 +575,7 @@ aside.clients img {
 }
 section#contact {
   background-color: #222222;
-  background-image: url('/map-image.png');
+  background-image: url('/assets/map-image.png');
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -743,4 +763,13 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #fed136;
+}
+@media (max-width: 767px) {
+ul.our-background li{
+  width: 50%;
+  margin-bottom: 15px;
+}
+ul.our-background{
+  padding-top:35px;
+}
 }

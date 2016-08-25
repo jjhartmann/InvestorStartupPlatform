@@ -12,6 +12,6 @@
  *
  *= require bootstrap.min
  *= require font-awesome.min
- *= require agency.min
+ *= require agency
  *= require_self
  */

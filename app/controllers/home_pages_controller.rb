@@ -3,7 +3,17 @@ class HomePagesController < ApplicationController
   # GET /home_pages
   # GET /home_pages.json
   def index
-    @hello_world_props = { name: "Stranger" }
+    @contact_form_props = {
+        companyName: "Uni-Inovation",
+        location: "Vancouver, BC",
+        phoneNumber: "123.345.5678",
+        email: "example.@abc.com",
+        companyText: "Comany Name",
+        locationText: "Address",
+        phonetext: "Contact Number",
+        emailText: "Email-Id"
+      }
+
   end
 
   # GET /home_pages/1
@@ -29,7 +39,7 @@ class HomePagesController < ApplicationController
   # PATCH/PUT /home_pages/1
   # PATCH/PUT /home_pages/1.json
   def update
-    
+
   end
 
   # DELETE /home_pages/1
