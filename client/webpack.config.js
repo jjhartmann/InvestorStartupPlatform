@@ -9,9 +9,15 @@ config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
+    //Include all the entry points
     './app/bundles/HelloWorld/startup/HelloWorldApp',
+    // #Header of the main page.
     './app/bundles/FrontPageHeader/startup/FrontPageHeaderApp',
+    // #Footer of the main page.
     './app/bundles/FrontPageFooter/startup/FrontPageFooterApp',
+    // Contact Info
+    './app/bundles/ContactInfo/startup/ContactInfo',
+    //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
