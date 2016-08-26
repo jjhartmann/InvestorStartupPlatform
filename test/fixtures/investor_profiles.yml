@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tagline: MyString
+  funds_to_offer: 1
+  description: MyText
+  user_id: 1
+
+two:
+  tagline: MyString
+  funds_to_offer: 1
+  description: MyText
+  user_id: 1
