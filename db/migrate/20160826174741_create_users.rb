@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :username
       t.string :name
-      t.string :email
       t.string :location
       t.string :introduction
       t.integer :followers_count, :default => 0
@@ -17,7 +16,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
 
     add_index :users, :username,             :unique   => true
     add_index :users, :name
-    add_index :users, :email,                :unique   => true
     add_index :users, :location
     add_index :users, :is_admin
   end
