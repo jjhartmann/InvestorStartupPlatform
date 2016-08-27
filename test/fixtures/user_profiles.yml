@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  industry: MyString
+  profession: MyString
+  skills: MyText
+  something_cool: MyText
+  user_id: 1
+
+two:
+  industry: MyString
+  profession: MyString
+  skills: MyText
+  something_cool: MyText
+  user_id: 1
