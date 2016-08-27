@@ -1,0 +1,19 @@
+class CreateTargetFollowers < ActiveRecord::Migration[5.0]
+  def change
+    create_table :target_followers do |t|
+      t.integer :follower_id
+      t.string :follower_type
+      t.integer :target_id
+      t.string :target_type
+
+      t.timestamps :default => Time.now
+    end
+
+    add_index :target_followers, :follower_id
+    add_index :target_followers, [:follower_type, :follower_id]
+    add_index :target_followers, :target_id
+    add_index :target_followers, [:target_type, :target_id]
+    add_index :target_followers, [:follower_id, :target_type, :target_id], :unique => true, :name => :target_followers_follwer
+    add_index :target_followers, [:follower_type, :follower_id, :target_type, :target_id], :unique => true, :name => :target_followers_follwer_with_type
+  end
+end
