@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enterprise_id: 1
+  user_email: MyString
+  role_identifier: MyString
+  member_title: MyString
+  confirmed: false
+
+two:
+  enterprise_id: 1
+  user_email: MyString
+  role_identifier: MyString
+  member_title: MyString
+  confirmed: false
