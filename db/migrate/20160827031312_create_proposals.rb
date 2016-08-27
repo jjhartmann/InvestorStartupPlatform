@@ -40,7 +40,7 @@ class CreateProposals < ActiveRecord::Migration[5.0]
     end
 
     add_index :proposals, :proposal_stage_identifier
-    add_index :proposals, :startup_id
+    add_index :proposals, :enterprise_id
 
     create_table :proposal_for_investors, :id => false do |t|
       t.integer :proposal_id
