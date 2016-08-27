@@ -1,0 +1,2 @@
+class EnterpriseUser < ApplicationRecord
+end
