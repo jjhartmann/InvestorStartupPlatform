@@ -13,7 +13,7 @@ export default class Contact extends React.Component {
   render() {
     return (
       <div className="col-lg-12">
-        <Information companyName={this.props.data.companyName} companyText={this.props.data.companyText}  location={this.props.data.location} locationText={this.props.data.locationText} phoneNumber={this.props.data.phoneNumber} phonetext={this.props.data.phonetext} email={this.props.data.email} emailText={this.props.data.emailText}/>
+        <Information companyName={this.state.information.companyName} companyText={this.state.information.companyText}  location={this.state.information.location} locationText={this.state.information.locationText} phoneNumber={this.state.information.phoneNumber} phonetext={this.state.information.phonetext} email={this.state.information.email} emailText={this.state.information.emailText}/>
       </div>
     );
   }

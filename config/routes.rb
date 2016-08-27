@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
-  resources :home_pages
+  resources :home_pages do
+    collection do
+      get 'faq'
+    end
+  end
+
   namespace :home do
     get 'home_page/index'
     get 'home_page/features'
