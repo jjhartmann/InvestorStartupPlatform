@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  pitch: MyText
+  funds_to_raise: 1
+  industry: MyString
+  enterprise_stage: MyString
+  stage_identifier: MyString
+  market_identifier: MyString
+  location: MyString
+  description: MyText
+  logo: MyString
+  follower_count: 1
+  followed_count: 1
+  comment_count: 1
+
+two:
+  name: MyString
+  pitch: MyText
+  funds_to_raise: 1
+  industry: MyString
+  enterprise_stage: MyString
+  stage_identifier: MyString
+  market_identifier: MyString
+  location: MyString
+  description: MyText
+  logo: MyString
+  follower_count: 1
+  followed_count: 1
+  comment_count: 1
