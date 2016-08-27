@@ -218,6 +218,49 @@ ul.our-background {
     font-size: 16px;
     font-weight: normal;
 }
+
+/*27*-08-2016*/
+.faq-tab ul li {
+    list-style: none;
+    margin-bottom: 10px;
+    border: 1px solid #222222;
+    border-radius: 3px;
+}
+.faq-tab ul {
+  padding-left: 0;
+  text-decoration: none;
+}
+.faq-tab p {
+    padding: 15px 5px;
+    font-weight: 200;
+    line-height: 20px;
+}
+.faq-tab .btn.btn-info {
+    width: 100%;
+    text-align: left;
+    background: #222222;
+    border: none;
+    color: #fed136;
+    padding: 10px 15px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.faq-tab ul li .collapse1{
+    /*background: #eee;*/
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.faq-tab ul li .collapsing {
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.faq-tab .icon-tab {
+  float: right;
+}
+.faq-tab .icon-tab.fa {
+    font-size: 20px;
+    font-weight: bold;
+}
+.faq-tab {
+    margin-top: 100px;
+}
 @media (min-width: 768px) {
   .navbar-custom {
     background-color: transparent;
@@ -277,6 +320,8 @@ header .intro-text .intro-heading {
   line-height: 50px;
   margin-bottom: 25px;
 }
+
+
 @media (min-width: 768px) {
   header .intro-text {
     padding-top: 300px;

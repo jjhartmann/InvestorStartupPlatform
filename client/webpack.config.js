@@ -15,8 +15,11 @@ config = {
     './app/bundles/FrontPageHeader/startup/FrontPageHeaderApp',
     // #Footer of the main page.
     './app/bundles/FrontPageFooter/startup/FrontPageFooterApp',
-    // Contact Info
+    // #Contact Info
     './app/bundles/ContactInfo/startup/ContactInfo',
+    // #FAQ
+    './app/bundles/FAQ/startup/FAQ',
+
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',

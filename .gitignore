@@ -23,5 +23,7 @@ node_modules
 # Generated js bundles
 /app/assets/webpack/*
 client/.idea/*
+
 client-debug.log*
-npm-debug.log*
+
+.DS_Store
