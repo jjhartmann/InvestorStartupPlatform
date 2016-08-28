@@ -3,8 +3,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :username
       t.string :name
-      t.string :location
-      t.string :introduction
+      t.string :location, :default => ''
+      t.string :introduction, :default => ''
       t.integer :followers_count, :default => 0
       t.integer :followed_count, :default => 0
       t.integer :messages_count, :default => 0
