@@ -218,7 +218,62 @@ ul.our-background {
     font-size: 16px;
     font-weight: normal;
 }
-
+.panel-heading{
+  padding:0;
+}
+.panel-heading a {
+    display: block;
+    height: 40px;
+    padding: 12px 15px;
+    text-decoration: none;
+    background: #222222;
+    border-radius: 3px;
+    color: #fed136;
+    font-weight: 100;
+    font-size: 14px;
+    cursor: pointer;
+}
+.panel-body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.back-image{
+  height: 100px;
+}
+.about ul li {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 10px;
+}
+.video-test {
+    margin-bottom: 30px;
+}
+.video-text-in {
+    min-height: 200px;
+    border: 5px solid #eee;
+}
+.video {
+    height: auto;
+}
+.box-tex {
+    background: #eee;
+    padding: 15px;
+}
+.circle {
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 100%;
+    display: inline-block;
+}
+.video-test h4 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#fed136;
+}
+.video-test p {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .video{
+    overflow: hidden;
+  }
 /*27*-08-2016*/
 .faq-tab ul li {
     list-style: none;
@@ -244,7 +299,7 @@ ul.our-background {
     padding: 10px 15px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.faq-tab ul li .collapse1{
+.faq-tab ul li .collapse{
     /*background: #eee;*/
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -257,9 +312,6 @@ ul.our-background {
 .faq-tab .icon-tab.fa {
     font-size: 20px;
     font-weight: bold;
-}
-.faq-tab {
-    margin-top: 100px;
 }
 @media (min-width: 768px) {
   .navbar-custom {
