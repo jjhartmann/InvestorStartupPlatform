@@ -12,13 +12,17 @@ config = {
     //Include all the entry points
     './app/bundles/HelloWorld/startup/HelloWorldApp',
     // #Header of the main page.
-    './app/bundles/FrontPageHeader/startup/FrontPageHeaderApp',
+    './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Footer of the main page.
-    './app/bundles/FrontPageFooter/startup/FrontPageFooterApp',
-    // #Contact Info
-    './app/bundles/ContactInfo/startup/ContactInfo',
+    './app/bundles/FrontEndPages/startup/FrontPageFooterApp',
     // #FAQ
-    './app/bundles/FAQ/startup/FAQ',
+    './app/bundles/FrontEndPages/startup/FAQ',
+    // #Contact Info
+    './app/bundles/FrontEndPages/startup/ContactInfo',
+    //routes
+    './app/bundles/FrontEndPages/startup/Test1',
+    './app/bundles/FrontEndPages/startup/Test2',
+    './app/bundles/FrontEndPages/startup/Test',
 
     //include javascripts
     './javascripts/jquery.min',
