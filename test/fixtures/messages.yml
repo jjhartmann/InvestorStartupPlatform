@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  is_read: false
+  is_private: false
+  is_archived: false
+  target_id: 1
+  target_type: MyString
+  user_id: 1
+  proposal_id: 1
+  topic_id: 1
+
+two:
+  content: MyText
+  is_read: false
+  is_private: false
+  is_archived: false
+  target_id: 1
+  target_type: MyString
+  user_id: 1
+  proposal_id: 1
+  topic_id: 1
