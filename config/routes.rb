@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :home_pages do
     collection do
       get 'faq'
+      get 'about'
+      get 'test1'
+      get 'services'
     end
   end
 
