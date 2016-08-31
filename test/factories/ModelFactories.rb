@@ -4,28 +4,26 @@ require 'ffaker'
 
 FactoryGirl.define do
   factory :User do
-    u_name = Faker::Name.name
-
-    username            Faker::Internet.user_name(u_name).tr('.', '_')
-    name                u_name
-    email               Faker::Internet.email(u_name)
-    location            Faker::Address.city
-    introduction        Faker::Lorem.sentence
-    password            "password"
+    username            {Faker::Internet.user_name(Faker::Name.name).tr('.', '_')}
+    name                {Faker::Name.name}
+    email               {Faker::Internet.email(Faker::Name.name)}
+    location            {Faker::Address.city}
+    introduction        {Faker::Lorem.sentence}
+    password            {'password'}
   end
 
 
   factory :InvestorProfile do
-    tagline          Faker::Company.catch_phrase
+    tagline          {Faker::Company.catch_phrase}
     funds_to_offer   { rand(2_000_000) }
-    description      Faker::Lorem.paragraphs * "\n\n"
+    description      {Faker::Lorem.paragraphs * "\n\n"}
   end
 
   factory :UserProfile do
-    industry          Faker::Company.catch_phrase
+    industry          {Faker::Company.catch_phrase}
     profession        { Enterprise.roles.keys.sample.to_s }
-    skills            Faker::Lorem.paragraphs * "\n\n"
-    something_cool    Faker::Lorem.paragraph
+    skills            {Faker::Lorem.paragraphs * "\n\n"}
+    something_cool    {Faker::Lorem.paragraph}
   end
 
   factory :Enterprise do
