@@ -12,11 +12,13 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :is_admin, :default => false
 
       ## References for profile
-      t.references :profilable, polymorphic: true, index: true, default: nil
+      t.string  :profilable_type, :default => nil
+      t.integer :profilable_id, :default => nil
 
       t.timestamps null: false
     end
 
+    add_index :users, [:profilable_type, :profilable_id]
     add_index :users, :username,             :unique   => true
     add_index :users, :name
     add_index :users, :location
