@@ -19,15 +19,23 @@ config = {
     './app/bundles/FrontEndPages/startup/FAQ',
     // #Contact Info
     './app/bundles/FrontEndPages/startup/ContactInfo',
-    //routes
     './app/bundles/FrontEndPages/startup/Test1',
     './app/bundles/FrontEndPages/startup/Test2',
     './app/bundles/FrontEndPages/startup/Test',
+    // #About
+    './app/bundles/FrontEndPages/startup/AboutApp',
+    // #Video
+    './app/bundles/FrontEndPages/startup/VideoSection',
+    // #Benefits
+    './app/bundles/FrontEndPages/startup/BenefitsSection',
+    // #Charts
+    './app/bundles/FrontEndPages/startup/ChartSection',
 
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
+    './javascripts/chart',
   ],
 
   output: {
