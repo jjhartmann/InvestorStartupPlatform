@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
-  has_many :startups_followed, :through => :target_followed, :source => :target, :source_type => 'Enterprise'
+  has_many :enterprises_followed, :through => :target_followed, :source => :target, :source_type => 'Enterprise'
 
   validates :username, :presence     => true,
             :uniqueness   => { :case_sensitive => false },
@@ -97,7 +97,7 @@ class User < ApplicationRecord
   end
 
   def is_entrepreneur?
-    startups.present?
+    enterprises.present?
   end
 
   def is_investor?
@@ -164,7 +164,7 @@ class User < ApplicationRecord
   end
 
   def followed
-    users_followed + startups_followed
+    users_followed + enterprises_followed
   end
 
   def followed_micro_posts

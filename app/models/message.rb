@@ -22,7 +22,7 @@ class Message < ApplicationRecord
   scope :without_proposal, -> { where :proposal_id == nil }
   scope :micro_posts,      -> { where :target_id => nil}
   scope :on_users,         -> { where :target_type => 'User'}
-  scope :on_startups,      -> { where :target_type => 'Startup'}
+  scope :on_enterprises,      -> { where :target_type => 'Enterprise'}
 
   def is_public?
     !is_private
