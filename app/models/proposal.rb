@@ -45,8 +45,8 @@ class Proposal < ApplicationRecord
   validates :next_investment_round,                :presence     => true,
             :numericality => true
 
-  scope :draft,     where(:proposal_stage_identifier => 'draft')
-  scope :submitted, where(:proposal_stage_identifier => 'submitted')
+  scope :draft,     -> { where :proposal_stage_identifier => 'draft'}
+  scope :submitted, -> { where :proposal_stage_identifier => 'submitted'}
 
   before_create :default_proposal_stage_identifier
 
