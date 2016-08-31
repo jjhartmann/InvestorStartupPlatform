@@ -7,9 +7,10 @@ class CreateMessages < ActiveRecord::Migration[5.0]
       t.boolean :is_archived, default: false
       t.integer :target_id
       t.string :target_type
-      t.integer :user_id
       t.integer :proposal_id
       t.integer :topic_id
+
+      t.integer :user_id
 
       t.timestamps default: Time.now
     end
