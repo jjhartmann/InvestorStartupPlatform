@@ -18,7 +18,7 @@ group:
     avatar:
       width: 50
       height: 50
-startup:
+enterprise:
   proposal:
     limit: 1
     questions:
