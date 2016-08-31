@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   has_many :messages, -> {order 'created_at DESC'}
 
-  has_one  :investor_profile
+  belongs_to :profilable, :polymorphic => true
 
   has_and_belongs_to_many :proposals, :join_table => :proposal_for_investors
 
@@ -40,6 +40,9 @@ class User < ApplicationRecord
             :format       => { :with => /\A[A-Za-z0-9_]*\z/ }
   validates :name,     :presence     => true,
             :length       => { :within => 4..30 }
+
+  validates :profilable_id, :presence => false
+  validates :profilable_type, :presence => false
 
   scope :new_users,  -> {  joins( [:enterprise_users, :investor_profile] ).where('(enterprise_users.user_email == nil) & (investor_profiles.user_id == nil)')}
   scope :entrepreneurs, -> { joins (:enterprise_users).where('enterprise_users.user_email != nil' ) }
