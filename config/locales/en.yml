@@ -43,7 +43,7 @@ en:
       destroy: 'Delete %{model}'
       message:
         create: Post
-  startup:
+  enterprise:
     stages: Stages
     markets: Markets
     role_identifiers:
