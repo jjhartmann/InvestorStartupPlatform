@@ -178,8 +178,11 @@ class User < ApplicationRecord
   class << self
     def find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
-      login      = conditions.delete(:login)
-      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      if login = conditions.delete(:login)
+        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
     end
 
     def send_reset_password_instructions(attributes={})
