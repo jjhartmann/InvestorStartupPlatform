@@ -37,14 +37,14 @@ class User < ApplicationRecord
 
   validates :username, :presence     => true,
             :uniqueness   => { :case_sensitive => false },
-            :length       => { :within => 4..20 },
+            :length       => { :within => 4..100 },
             :format       => { :with => /\A[A-Za-z0-9_]*\z/ }
   validates :name,     :presence     => true,
-            :length       => { :within => 4..30 }
+            :length       => { :within => 4..100 }
 
   scope :new_users,  -> {  where :profilable => nil }
   scope :entrepreneurs, -> { joins(:enterprise_users).where('enterprise_users.user_email != nil') }
-  scope :investors, ->   { joins (:investor_profile ).where ('investor_profiles.profilable != nil' )}
+  scope :investors, ->   { where :profilable_type => 'InvestorProfile'}
 
   before_save :email_nomarlisation
 
@@ -52,7 +52,7 @@ class User < ApplicationRecord
     comments.private_only.topics
   end
 
-  def outgoing_messagess
+  def outgoing_messages
     messages.on_users.private_only.topics
   end
 
@@ -114,7 +114,7 @@ class User < ApplicationRecord
                          :is_private  => true,
                          :target_id   => target_user.id,
                          :target_type => 'User'
-                     }.merge(extras), :as => :internal) && reload
+                     }.merge(extras)) && reload
   end
 
   def reply_private_message(topic, content, extras = {})
@@ -124,7 +124,7 @@ class User < ApplicationRecord
                          :target_id   => topic.user.id,
                          :target_type => 'User',
                          :topic_id    => topic.id
-                     }.merge(extras), :as => :internal) && reload
+                     }.merge(extras)) && reload
   end
 
   def add_micro_post(content)

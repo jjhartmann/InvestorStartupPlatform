@@ -9,7 +9,7 @@ class Enterprise < ApplicationRecord
 
   has_many :enterprise_users
   has_many :users,      :through => :enterprise_users
-  has_many :members,    -> { where 'enterprise_users.role_identifier' => 'investor' }, :through => :enterprise_users, :source => :user
+  has_many :members,    -> { where 'enterprise_users.role_identifier' => 'member' }, :through => :enterprise_users, :source => :user
   has_many :investors,  -> { where 'enterprise_users.role_identifier' => 'investor' }, :through => :enterprise_users, :source => :user
   has_many :advisors,   -> { where 'enterprise_users.role_identifier' => 'advisor' }, :through => :enterprise_users, :source => :user
   has_many :incubators, -> { where 'enterprise_users.role_identifier' => 'incubator' }, :through => :enterprise_users, :source => :user
