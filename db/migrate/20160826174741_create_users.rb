@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :is_admin, :default => false
 
       ## References for profile
-      t.references :profilable, polymorphic: true, index: true
+      t.references :profilable, polymorphic: true, index: true, default: nil
 
       t.timestamps null: false
     end
