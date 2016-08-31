@@ -51,11 +51,11 @@ class Proposal < ApplicationRecord
   before_create :default_proposal_stage_identifier
 
   def self.stages
-    I18n.t 'startup.proposal_stage_identifiers'
+    I18n.t 'enterprise.proposal_stage_identifiers'
   end
 
   def stage
-    I18n.t "startup.proposal_stage_identifiers.#{proposal_stage_identifier}"
+    I18n.t "enterprise.proposal_stage_identifiers.#{proposal_stage_identifier}"
   end
 
   def submit(investors)
