@@ -1,92 +1,14 @@
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
-<header class="back-image">
+<header class='back-image'>
 
 </header>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>Demo Video</h3>
-      <div class="row video-test">
-        <div class="col-md-4">
-          <div class="video">
-            <iframe width="100%" height="200" src="https://www.youtube.com/embed/PvK7XnEoy9U" frameborder="0" allowfullscreen></iframe>
-          </div>
-       </div>
-        <div class="col-md-8 video-text-in">
-          <h4>loerm ipsum text</h4>
-          <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas. Vivamus non lacinia eros, et tincidunt libero. </p>
-        </div>
-      </div>
+<!-- Videos -->
+<%= react_component('VideoSection') %>
 
-      <div class="row video-test">
-        <div class="col-md-4">
-          <div class="video">
-            <iframe style="border: 5px solid #eee;" width="100%" height="200" src="https://www.youtube.com/embed/PvK7XnEoy9U" frameborder="0" allowfullscreen></iframe>
-          </div>
-       </div>
-        <div class="col-md-8 video-text-in">
-          <h4>loerm ipsum text</h4>
-          <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas. Vivamus non lacinia eros, et tincidunt libero. </p>
-        </div>
-      </div>
+<!-- Benefits -->
+<%= react_component('Benefits') %>
 
-      <div class="row video-test">
-        <div class="col-md-4">
-          <div class="video">
-            <iframe style="border: 5px solid #eee;" width="100%" height="200" src="https://www.youtube.com/embed/PvK7XnEoy9U" frameborder="0" allowfullscreen></iframe>
-          </div>
-       </div>
-        <div class="col-md-8 video-text-in">
-          <h4>loerm ipsum text</h4>
-          <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas. Vivamus non lacinia eros, et tincidunt libero. </p>
-        </div>
-      </div>
-      <div class="row video-test">
-        <div class="col-md-4">
-          <div class="video">
-            <iframe style="border: 5px solid #eee;"  width="100%" height="200" src="https://www.youtube.com/embed/PvK7XnEoy9U" frameborder="0" allowfullscreen></iframe>
-          </div>
-       </div>
-        <div class="col-md-8 video-text-in">
-          <h4>loerm ipsum text</h4>
-          <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas. Vivamus non lacinia eros, et tincidunt libero. </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!--benifits-->
-    <div class="col-xs-12">
-      <h3>Benefits</h3>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="box-tex text-center">
-          <div class="circle"></div>
-          <h3>time saving</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="box-tex text-center">
-          <div class="circle"></div>
-          <h3>time saving</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="box-tex text-center">
-          <div class="circle"></div>
-          <h3>time saving</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ornare hendrerit tempor. Vestibulum porttitor ultricies iaculis. Aenean quis mi sem. Mauris feugiat lobortis feugiat. Nulla eu auctor lorem, id placerat felis. Praesent interdum magna non felis ullamcorper, sit amet feugiat quam egestas.</p>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
+<!-- Charts -->
+<%= react_component('ChartSection') %>

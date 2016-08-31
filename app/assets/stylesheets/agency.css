@@ -263,6 +263,7 @@ ul.our-background {
     background: #fff;
     border-radius: 100%;
     display: inline-block;
+    box-shadow: 0px 0px 5px 3px #ddd;
 }
 .video-test h4 {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -274,6 +275,18 @@ ul.our-background {
   .video{
     overflow: hidden;
   }
+  .circle .fa {
+      color: #fed136;
+      font-size: 50px;
+      padding-top: 33px;
+  }
+  .box-tex p{
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #3c3c3c;
+  }
+  section.modify {
+    padding: 0;
+}
 /*27*-08-2016*/
 .faq-tab ul li {
     list-style: none;
