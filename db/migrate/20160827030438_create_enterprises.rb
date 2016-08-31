@@ -11,7 +11,7 @@ class CreateEnterprises < ActiveRecord::Migration[5.0]
       t.string :location
       t.text :description
       t.string :logo
-      t.integer :follower_count, default: 0
+      t.integer :followers_count, default: 0
       t.integer :followed_count, default: 0
       t.integer :comment_count, default: 0
 
