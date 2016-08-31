@@ -39,12 +39,18 @@ gem 'will_paginate'
 
 # Assest management
 gem 'carrierwave'
+gem 'mini_magick'
+
+# Core Functionality
+gem 'config'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'factory_girl_rails', require: false
+  gem 'ffaker'
   gem 'byebug', platform: :mri
 end
 

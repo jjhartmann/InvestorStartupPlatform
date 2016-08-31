@@ -5,14 +5,14 @@ class Enterprise < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  has_many :photos, :class_name => 'StartupPhoto'
+  has_many :photos, :class_name => 'EnterprisePhoto'
 
   has_many :enterprise_users
   has_many :users,      :through => :enterprise_users
-  has_many :members,    :through => :enterprise_users, :source => :user, :conditions => { 'enterprise_users.role_identifier' => 'member' }
-  has_many :investors,  :through => :enterprise_users, :source => :user, :conditions => { 'enterprise_users.role_identifier' => 'investor' }
-  has_many :advisors,   :through => :enterprise_users, :source => :user, :conditions => { 'enterprise_users.role_identifier' => 'advisor' }
-  has_many :incubators, :through => :enterprise_users, :source => :user, :conditions => { 'enterprise_users.role_identifier' => 'incubator' }
+  has_many :members,    -> { where 'enterprise_users.role_identifier' => 'member' }, :through => :enterprise_users, :source => :user
+  has_many :investors,  -> { where 'enterprise_users.role_identifier' => 'investor' }, :through => :enterprise_users, :source => :user
+  has_many :advisors,   -> { where 'enterprise_users.role_identifier' => 'advisor' }, :through => :enterprise_users, :source => :user
+  has_many :incubators, -> { where 'enterprise_users.role_identifier' => 'incubator' }, :through => :enterprise_users, :source => :user
 
   has_many :proposals
 
@@ -31,8 +31,8 @@ class Enterprise < ApplicationRecord
             :inclusion    => { :in => I18n.t('enterprise.market_identifiers').keys.map(&:to_s) }
   validates :description,       :presence     => true
 
-  scope :involved, where { enterprise_users.role_identifier != 'investor' }
-  scope :invested, where { enterprise_users.role_identifier == 'investor' }
+  scope :involved, -> { where enterprise_users.role_identifier != 'investor' }
+  scope :invested, -> { where enterprise_users.role_identifier == 'investor' }
 
   def self.stages
     I18n.t 'enterprise.stage_identifiers'
