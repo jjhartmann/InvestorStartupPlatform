@@ -42,9 +42,9 @@ class User < ApplicationRecord
   validates :name,     :presence     => true,
             :length       => { :within => 4..30 }
 
-  scope :new_users,  -> {  joins( [:enterprise_users, :investor_profile] ).where('(enterprise_users.user_email == nil) & (investor_profiles.user_id == nil)')}
-  scope :entrepreneurs, -> { joins (:enterprise_users).where('enterprise_users.user_email != nil' ) }
-  scope :investors, ->   { joins (:investor_profile ).where ('investor_profiles.user_id != nil' )}
+  scope :new_users,  -> {  where :profilable => nil }
+  scope :entrepreneurs, -> { joins(:enterprise_users).where('enterprise_users.user_email != nil') }
+  scope :investors, ->   { joins (:investor_profile ).where ('investor_profiles.profilable != nil' )}
 
   before_save :email_nomarlisation
 
