@@ -44,6 +44,10 @@ gem 'mini_magick'
 # Core Functionality
 gem 'config'
 
+# Admin Panel Gems
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

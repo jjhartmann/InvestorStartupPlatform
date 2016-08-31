@@ -23,7 +23,7 @@ p ' > users ...'
 user = FactoryGirl.create(:User, {
                       :username => 'jjhartmann',
                       :name     => 'Jeremy J. Hartmann',
-                      :email    => 'test@example.com',
+                      :email    => 'jeremy.hartmann@gmail.com',
                       :password => 'password'
                   })
 
