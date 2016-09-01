@@ -34,9 +34,9 @@ gem 'activemodel'
 gem 'cancancan'
 
 # Use for rails pagination
-gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
-gem 'will_paginate'
+# gem 'bootstrap-sass'
+# gem 'bootstrap-will_paginate'
+# gem 'will_paginate'
 
 # Assest management
 gem 'carrierwave'
