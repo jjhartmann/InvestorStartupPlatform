@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-class EnterprisePhotoUploader < CarrierWave::Uploader::Base
+class EnterpriseLogoUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or ImageScience support:
-  include CarrierWave::MiniMagick
+  # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::ImageScience
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -19,31 +18,38 @@ class EnterprisePhotoUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
+  #   # For Rails 3.1+ asset pipeline compatibility:
+  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fill => [Settings.group.logo.gallery.width, Settings.group.logo.gallery.height]
-
+  process :resize_to_fill => [Settings.group.logo.full.width, Settings.group.logo.full.height]
+  #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  version :slideshow do
-    process :resize_to_fill => [Settings.group.logo.full.width, Settings.group.logo.full.height]
+  version :thumb do
+    process :resize_to_fill => [Settings.group.logo.thumb.width, Settings.group.logo.thumb.height]
+  end
+
+  version :avatar do
+    process :resize_to_fill => [Settings.group.logo.avatar.width, Settings.group.logo.avatar.height]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg png)
+    %w(jpg jpeg gif png)
   end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "photo.jpg" if original_filename
+    "logo.jpg" if original_filename
   end
 
 end
