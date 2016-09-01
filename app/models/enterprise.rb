@@ -3,8 +3,6 @@ class Enterprise < ApplicationRecord
           Followable,
           Paramable
 
-  include RailsAdmin::EnterpriseAdmin
-
   mount_uploader :logo, LogoUploader
 
   has_many :photos, :class_name => 'EnterprisePhoto'

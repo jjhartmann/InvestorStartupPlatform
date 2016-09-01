@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
 gem 'activemodel'
+gem 'cancancan'
 
 # Use for rails pagination
 gem 'bootstrap-sass'
@@ -47,10 +48,12 @@ gem 'config'
 # Admin Panel Gems
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
-gem 'cancancan'
 gem 'ancestry'
 gem 'rails_admin_nestable', '~> 0.3.2'
 gem 'rails_admin_rollincode', '~> 1.0'
+
+# Forest admin experiment
+gem 'forest_liana'
 
 
 # Use Capistrano for deployment
