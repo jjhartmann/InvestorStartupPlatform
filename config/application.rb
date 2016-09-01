@@ -2,13 +2,12 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# Load CarrierWave Dependencies
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+# Admin_Rails Theme
+ENV['RAILS_ADMIN_THEME'] = 'rollincode'
 
 module ProjectOctoStartupTime
   class Application < Rails::Application

@@ -36,6 +36,7 @@ config = {
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/chart',
+    './javascripts/rails_admin/ui',
   ],
 
   output: {
