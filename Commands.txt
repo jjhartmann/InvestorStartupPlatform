@@ -1,0 +1,37 @@
+Supreme Octo (Jeremy Hartmann)
+
+Commands for React on Rails
+
+1. npm i webpack webpack-dev-server babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
+
+2. npm i react react-dom react-router --save
+
+3. npm install jquery
+
+4. npm install bootstrap@3
+
+5. npm install react-bootstrap
+
+6. npm install react-router
+
+1st September 2016
+
+7. npm install --save chart.js@^1.1.1 react react-dom
+
+8. npm install --save react-chartjs
+
+9. npm install highcharts --save-dev
+
+10. npm install style-loader css-loader --save-dev
+
+11. npm install react-google-charts
+
+12. npm install imports-loader
+
+We faced some issues when we installed the google-charts and the error said that it couldn’t find the appropriate modules. If the error persists for you as well, please try restarting the terminal and the server. This worked for us.
+
+
+Resolve Errors
+
+remove from bootstrap.min.css in assets to resolve bootstrap.min.css.map not found (Log)
+/*# sourceMappingURL=bootstrap.min.css.map */

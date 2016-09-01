@@ -3,8 +3,9 @@ import ReactOnRails from 'react-on-rails'
 import HeaderText from '../components/SectionHeader'
 import Video from '../containers/VideoContainer'
 
-const VideoSection = (props, _railsContext) => {
-  const reactComponent = (
+export default class VideoSection extends React.Component {
+  render() {
+    return (
     <section className="modify">
       <div className="container">
         <div className="row">
@@ -19,7 +20,7 @@ const VideoSection = (props, _railsContext) => {
       </div>
     </section>
   );
-  return reactComponent;
-};
+}
+}
 
 ReactOnRails.register( {VideoSection} );

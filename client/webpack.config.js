@@ -19,24 +19,21 @@ config = {
     './app/bundles/FrontEndPages/startup/FAQ',
     // #Contact Info
     './app/bundles/FrontEndPages/startup/ContactInfo',
-    './app/bundles/FrontEndPages/startup/Test1',
-    './app/bundles/FrontEndPages/startup/Test2',
-    './app/bundles/FrontEndPages/startup/Test',
     // #About
     './app/bundles/FrontEndPages/startup/AboutApp',
-    // #Video
-    './app/bundles/FrontEndPages/startup/VideoSection',
-    // #Benefits
-    './app/bundles/FrontEndPages/startup/BenefitsSection',
-    // #Charts
-    './app/bundles/FrontEndPages/startup/ChartSection',
-
+    // #Services
+    './app/bundles/FrontEndPages/startup/Services',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/chart',
     './javascripts/rails_admin/ui',
+
+    //include stylesheets
+    './stylesheets/bootstrap.min',
+    './stylesheets/agency',
+    './stylesheets/font-awesome.min',
   ],
 
   output: {
@@ -45,7 +42,7 @@ config = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx','.css'],
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
@@ -72,6 +69,7 @@ config = {
         test: /\.jsx?$/, loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
     ],
   },
 };

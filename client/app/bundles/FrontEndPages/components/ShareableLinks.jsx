@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
+import {Link} from 'react-router';
 
 export default class ShareableLinkWidget extends React.Component {
 render()
   {
     return (
-        <li>
-          <a href="#" key={this.props.id}>{this.props.link}</a>
-        </li>
+      <li>
+        <Link to={this.props.id}>{this.props.link}</Link>
+      </li>
     );
   }
 }
