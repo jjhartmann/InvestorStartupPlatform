@@ -1,15 +1,15 @@
 import React from 'react';
 import {Router, Route, browserHistory  } from 'react-router';
-import Test1 from '../startup/Test1';
-import Test1 from '../startup/Test2';
+import Test1 from '../startup/AboutApp';
+import Test1 from '../startup/FAQ';
 
 export default (
   <Router>
     <Route
-      path="test1"
-      component={Test1}/>
+      path="faq"
+      component={FAQApp}/>
     <Route
-      path="test2"
-      component={Test2}/>
+      path="about"
+      component={About}/>
   </Router>
 );
