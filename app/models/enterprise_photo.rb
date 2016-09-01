@@ -3,4 +3,3 @@ class EnterprisePhoto < ApplicationRecord
 
   belongs_to :enterprise
 end
-4

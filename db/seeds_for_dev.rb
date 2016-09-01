@@ -24,7 +24,8 @@ user = FactoryGirl.create(:User, {
                       :username => 'jjhartmann',
                       :name     => 'Jeremy J. Hartmann',
                       :email    => 'jeremy.hartmann@gmail.com',
-                      :password => 'password'
+                      :password => 'password',
+                      :is_admin => true
                   })
 
 # more users
