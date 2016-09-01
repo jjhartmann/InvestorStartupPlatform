@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :users
+resources :enterprises
+resources :enterprise_photos
+resources :enterprise_users
+resources :investor_profiles
+resources :messages
+resources :proposals
+resources :questions
+resources :questionaires
+resources :target_followers
+resources :user_profiles
+
+    root to: "users#index"
+  end
+
   devise_for :users
 
   resources :home_pages do
