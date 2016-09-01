@@ -141,17 +141,21 @@ class User < ApplicationRecord
   end
 
   def follow(target)
-    target.target_followers.create(
+    if !is_following?(target)
+      target.target_followers.create(
         :follower_id   => id,
-        :follower_type => 'User'
-    ) && reload unless target == self || target.nil?
+        :follower_type => self.class.name
+      ) && reload unless target == self || target.nil?
+    end
   end
 
   def unfollow(target)
-    target.target_followers.where(
-        :follower_id   => id,
-        :follower_type => 'User'
-    ).first.try(:destroy) && reload unless target.nil?
+    if is_following?(target)
+      target.target_followers.where(
+          :follower_id   => id,
+          :follower_type => self.class.name
+      ).first.try(:destroy) && reload unless target.nil?
+    end
   end
 
   def is_following?(target)

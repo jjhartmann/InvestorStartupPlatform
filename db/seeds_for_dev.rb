@@ -79,6 +79,13 @@ User.limit(20).each do |u|
   u.follow(user)
 end
 
+p ' > Create Enterprise/Business follows'
+
+User.all.each do |u|
+  u.follow(Enterprise.all.sample)
+end
+
+
 # micro posts
 p ' > micro posts ...'
 
