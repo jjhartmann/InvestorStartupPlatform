@@ -54,7 +54,7 @@ gem 'config'
 
 # Administrate Experiment
 gem 'administrate', github: 'thoughtbot/administrate', branch: 'rails-5'
-gem 'bourbon'
+# gem 'bourbon'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
