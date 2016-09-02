@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
 gem 'activemodel'
+gem 'cancancan'
 
 # Use for rails pagination
 gem 'bootstrap-sass'
@@ -47,7 +48,8 @@ gem 'config'
 # Admin Panel Gems
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
-gem 'cancancan'
+gem 'wysiwyg-rails'
+gem 'icheck-rails'
 gem 'ancestry'
 gem 'rails_admin_nestable', '~> 0.3.2'
 gem 'rails_admin_rollincode', '~> 1.0'
@@ -61,6 +63,7 @@ group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'ffaker'
   gem 'byebug', platform: :mri
+  gem 'better_errors'
 end
 
 group :development do
