@@ -56,7 +56,7 @@ p ' > startup founders and proposals ...'
 
 Enterprise.all.each do |ent|
   u = User.new_users.first
-  ent.attach_user(u, :member, Faker::Lorem.word)
+  ent.attach_user(u, :member, FFaker::Lorem.word)
   ent.confirm_user(u)
 
   if rand(2) == 0
@@ -92,7 +92,7 @@ p ' > micro posts ...'
 
 (3 + rand(3)).times do
   User.order('RAND()').each do |u|
-    u.add_micro_post(Faker::Lorem.sentence)
+    u.add_micro_post(FFaker::Lorem.sentence)
   end
 end
 
@@ -102,11 +102,11 @@ p ' > private messages ...'
 User.all.each do |u|
   3.times do
     target_user = User.order('RAND()').first
-    u.send_private_message(user, Faker::Lorem.sentence) if rand(5) == 0
-    u.send_private_message(target_user, Faker::Lorem.sentence)
+    u.send_private_message(user, FFaker::Lorem.sentence) if rand(5) == 0
+    u.send_private_message(target_user, FFaker::Lorem.sentence)
     (1 + rand(1)).times do
-      rand(2).times { target_user.reply_private_message(Message.topics.last, Faker::Lorem.sentence) }
-      rand(2).times { u.reply_private_message(Message.topics.last, Faker::Lorem.sentence) }
+      rand(2).times { target_user.reply_private_message(Message.topics.last, FFaker::Lorem.sentence) }
+      rand(2).times { u.reply_private_message(Message.topics.last, FFaker::Lorem.sentence) }
     end
   end
 
