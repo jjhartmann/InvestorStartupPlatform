@@ -44,6 +44,7 @@ gem 'mini_magick'
 
 # Core Functionality
 gem 'config'
+gem 'simple_form'
 
 # Admin Panel Gems
 gem 'remotipart', github: 'mshibuya/remotipart'
@@ -64,6 +65,8 @@ group :development, :test do
   gem 'ffaker'
   gem 'byebug', platform: :mri
   gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development do
