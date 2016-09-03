@@ -23,6 +23,8 @@ config = {
     './app/bundles/FrontEndPages/startup/AboutApp',
     // #Services
     './app/bundles/FrontEndPages/startup/Services',
+    // #Login
+    './app/bundles/FrontEndPages/startup/Login',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
