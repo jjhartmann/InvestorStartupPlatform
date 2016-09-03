@@ -368,6 +368,14 @@ html, body {
   background: #fed136;
   color: #222;
 }
+.or-tag {
+    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+    font-size: 28px;
+    color: #fff;
+    text-decoration: underline;
+    text-align: center;
+    text-transform: uppercase;
+}
 
 .wel-com-tag {
     font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
@@ -402,6 +410,7 @@ html, body {
       border-radius: 5px;
       text-decoration: none;
       transition: all 0.4s;
+      margin-top: 22px;
   }
   .social ul li a:hover {
       background: #fed136;
@@ -424,6 +433,10 @@ html, body {
     padding-top: 6px;
     text-align: center;
     margin-right: 20px;
+}
+.registration .log-in.box {
+  width: auto !important;
+  height: 555px;
 }
 
 @media (min-width: 768px) {
@@ -722,9 +735,6 @@ section h3.section-subheading {
     float: right;
     text-align: left;
     padding: 0 30px 20px 20px;
-  }
-  .registration .log-in.box {
-    width: auto !important;
   }
 }
 @media (min-width: 992px) {
