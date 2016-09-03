@@ -25,6 +25,8 @@ config = {
     './app/bundles/FrontEndPages/startup/Services',
     // #Login
     './app/bundles/FrontEndPages/startup/Login',
+    // Register
+    './app/bundles/FrontEndPages/startup/RegisterApp',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
