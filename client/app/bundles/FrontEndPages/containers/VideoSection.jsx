@@ -22,5 +22,3 @@ export default class VideoSection extends React.Component {
   );
 }
 }
-
-ReactOnRails.register( {VideoSection} );
