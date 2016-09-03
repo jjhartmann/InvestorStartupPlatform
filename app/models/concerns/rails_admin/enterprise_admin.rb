@@ -3,9 +3,9 @@ module RailsAdmin::EnterpriseAdmin
 
   included do
     rails_admin do
-      navigation_label 'Enterprises'
-      navigation_icon 'fa fa-pencil-square-o'
-      label_plural 'Contents'
+      navigation_label 'Enterprise'
+      navigation_icon 'fa fa-briefcase fa-3x'
+      label_plural 'Enterprises'
 
       edit do
       end

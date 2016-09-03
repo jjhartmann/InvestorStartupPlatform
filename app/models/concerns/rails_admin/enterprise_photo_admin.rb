@@ -1,11 +1,11 @@
-module RailsAdmin::MessageAdmin
+module RailsAdmin::EnterprisePhotoAdmin
   extend ActiveSupport::Concern
 
   included do
     rails_admin do
-      navigation_label 'Communication'
-      navigation_icon 'fa fa-envelope fa-3x'
-      label_plural 'Messages'
+      navigation_label 'Enterprise'
+      navigation_icon 'fa fa-photo fa-3x'
+      label_plural 'Photos'
 
       edit do
       end

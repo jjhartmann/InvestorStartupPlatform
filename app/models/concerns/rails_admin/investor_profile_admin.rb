@@ -1,11 +1,11 @@
-module RailsAdmin::MessageAdmin
+module RailsAdmin::ProposalAdmin
   extend ActiveSupport::Concern
 
   included do
     rails_admin do
-      navigation_label 'Communication'
-      navigation_icon 'fa fa-envelope fa-3x'
-      label_plural 'Messages'
+      navigation_label 'User'
+      navigation_icon 'fa fa-balance-scale fa-3x'
+      label_plural 'Investors'
 
       edit do
       end
