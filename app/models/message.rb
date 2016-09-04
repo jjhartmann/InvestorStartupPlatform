@@ -1,4 +1,8 @@
 class Message < ApplicationRecord
+  include RailsAdmin::MessageAdmin
+  include RailsAdminCharts
+
+
   belongs_to :proposal, optional: true
   belongs_to :user, :counter_cache => :messages_count
   belongs_to :target, :polymorphic => true, :counter_cache => :comments_count, optional: true

@@ -4,7 +4,7 @@ module RailsAdmin::MessageAdmin
   included do
     rails_admin do
       navigation_label 'Communication'
-      navigation_icon 'fa fa-envelope fa-3x'
+      navigation_icon 'fa fa-envelope'
       label_plural 'Messages'
 
       edit do

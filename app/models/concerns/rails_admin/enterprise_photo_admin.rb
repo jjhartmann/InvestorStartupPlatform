@@ -4,7 +4,7 @@ module RailsAdmin::EnterprisePhotoAdmin
   included do
     rails_admin do
       navigation_label 'Enterprise'
-      navigation_icon 'fa fa-photo fa-3x'
+      navigation_icon 'fa fa-photo'
       label_plural 'Photos'
 
       edit do

@@ -1,10 +1,10 @@
-module RailsAdmin::ProposalAdmin
+module RailsAdmin::InvestorProfileAdmin
   extend ActiveSupport::Concern
 
   included do
     rails_admin do
       navigation_label 'User'
-      navigation_icon 'fa fa-balance-scale fa-3x'
+      navigation_icon 'fa fa-briefcase'
       label_plural 'Investors'
 
       edit do

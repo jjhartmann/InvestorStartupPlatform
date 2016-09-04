@@ -54,6 +54,7 @@ gem 'icheck-rails'
 gem 'ancestry'
 gem 'rails_admin_nestable', '~> 0.3.2'
 gem 'rails_admin_rollincode', '~> 1.0'
+gem 'rails_admin_charts'
 
 
 # Use Capistrano for deployment

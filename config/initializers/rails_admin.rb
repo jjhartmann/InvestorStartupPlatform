@@ -35,6 +35,7 @@ RailsAdmin.config do |config|
     show_in_app
 
     nestable
+    charts
 
     ## With an audit adapter, you can add:
     # history_index

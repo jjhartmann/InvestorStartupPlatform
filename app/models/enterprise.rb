@@ -4,6 +4,7 @@ class Enterprise < ApplicationRecord
           Paramable
 
   include RailsAdmin::EnterpriseAdmin
+  include RailsAdminCharts
 
   mount_uploader :logo, LogoUploader
 

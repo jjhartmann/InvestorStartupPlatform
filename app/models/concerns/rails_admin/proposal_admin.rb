@@ -4,8 +4,8 @@ module RailsAdmin::ProposalAdmin
   included do
     rails_admin do
       navigation_label 'Communication'
-      navigation_icon 'fa fa-envelope fa-3x'
-      label_plural 'Message'
+      navigation_icon 'fa fa-exchange'
+      label_plural 'Proposals'
 
       edit do
       end

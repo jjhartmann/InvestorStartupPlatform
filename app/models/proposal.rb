@@ -1,6 +1,10 @@
 class Proposal < ApplicationRecord
+  include RailsAdmin::ProposalAdmin
+  include RailsAdminCharts
+
   belongs_to              :enterprise
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
+
 
   validates :pitch,                                :presence     => true,
             :length       => { :within => 10..140 }
