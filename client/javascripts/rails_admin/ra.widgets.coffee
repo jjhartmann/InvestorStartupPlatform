@@ -1,9 +1,10 @@
 $(document).on 'rails_admin.dom_ready', (e, content) ->
+
   content = if content then content else $('form')
 
   if content.length # don't waste time otherwise
 
-# colorpicker
+    # colorpicker
 
     content.find('[data-color]').each ->
       that = this
@@ -21,15 +22,15 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
 
     # datetime picker
     $.fn.datetimepicker.defaults.icons =
-      time: 'fa fa-clock-o'
-      date: 'fa fa-calendar'
-      up: 'fa fa-chevron-up'
-      down: 'fa fa-chevron-down'
+      time:     'fa fa-clock-o'
+      date:     'fa fa-calendar'
+      up:       'fa fa-chevron-up'
+      down:     'fa fa-chevron-down'
       previous: 'fa fa-angle-double-left'
-      next: 'fa fa-angle-double-right'
-      today: 'fa fa-dot-circle-o'
-      clear: 'fa fa-trash'
-      close: 'fa fa-times'
+      next:     'fa fa-angle-double-right'
+      today:    'fa fa-dot-circle-o'
+      clear:    'fa fa-trash'
+      close:    'fa fa-times'
 
     content.find('[data-datetimepicker]').each ->
       options = $(this).data('options')
@@ -60,7 +61,7 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
         image_container = $("#" + input.id).parent().prepend($('<img />').addClass('preview').addClass('img-thumbnail')).find('img.preview')
         image_container.parent().find('img:not(.preview)').hide()
       ext = $("#" + input.id).val().split('.').pop().toLowerCase()
-      if input.files and input.files[0] and $.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'bmp']) != -1
+      if input.files and input.files[0] and $.inArray(ext, ['gif','png','jpg','jpeg','bmp']) != -1
         reader = new FileReader()
         reader.onload = (e) ->
           image_container.attr "src", e.target.result
@@ -96,11 +97,11 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
       toggler = field.find('> .controls > .btn-group > .toggler')
       # add each nested field to a tab-pane and reference it in the nav
       tab_content.children('.fields:not(.tab-pane)').addClass('tab-pane').each ->
-        $(this).attr('id', 'unique-id-' + (new Date().getTime()) + Math.floor(Math.random() * 100000)) # some elements are created on the same ms
+        $(this).attr('id', 'unique-id-' + (new Date().getTime()) + Math.floor(Math.random()*100000)) # some elements are created on the same ms
         nav.append('<li><a data-toggle="tab" href="#' + this.id + '">' + $(this).children('.object-infos').data('object-label') + '</a></li>')
       # only if no tab is set to active
       if nav.find("> li.active").length == 0
-# init first tab, toggler and tab_content/tabs visibility
+        # init first tab, toggler and tab_content/tabs visibility
         nav.find("> li > a[data-toggle='tab']:first").tab('show')
       if nav.children().length == 0
         nav.hide()
@@ -124,8 +125,8 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
       tab_content = field.find("> .tab-content")
       toggler = field.find('> .controls > .btn-group > .toggler')
       tab_content.children(".fields:not(.tab-pane)").addClass('tab-pane active').each ->
-# Convert the "add nested field" button to just showing the title of the new model
-        field.find('> .controls .add_nested_fields').removeClass('add_nested_fields').html($(this).children('.object-infos').data('object-label'))
+        # Convert the "add nested field" button to just showing the title of the new model
+        field.find('> .controls .add_nested_fields').removeClass('add_nested_fields').html( $(this).children('.object-infos').data('object-label') )
         nav.append('<li><a data-toggle="tab" href="#' + this.id + '">' + $(this).children('.object-infos').data('object-label') + '</a></li>')
       first_tab = nav.find("> li > a[data-toggle='tab']:first")
       first_tab.tab('show')
@@ -198,7 +199,7 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
         textarea = this
         $.getScript options['locations']['mode'], (script, textStatus, jqXHR) ->
           $('head').append('<link href="' + options['locations']['theme'] + '" rel="stylesheet" media="all" type="text\/css">')
-          CodeMirror.fromTextArea(textarea, options['options'])
+          CodeMirror.fromTextArea(textarea,options['options'])
           $(textarea).addClass('codemirrored')
 
     array = content.find('[data-richtext=codemirror]').not('.codemirrored')
@@ -239,67 +240,67 @@ $(document).on 'rails_admin.dom_ready', (e, content) ->
         options = $(@).data('options')
         config_options = $.parseJSON(options['config_options'])
         if config_options
-          config_options['imageUploadParams'].authenticity_token = $('meta[name=csrf-token]').attr('content');
-          config_options['imageManagerLoadParams'].authenticity_token = $('meta[name=csrf-token]').attr('content');
-          if !config_options['toolbarInline']
-            config_options['toolbarInline'] = false
+          if !config_options['inlineMode']
+            config_options['inlineMode'] = false
         else
-          config_options = {toolbarInline: false}
+          config_options = { inlineMode: false }
 
+        uploadEnabled =
         if config_options['imageUploadURL']
-          uploadEnabled = true;
+          config_options['imageUploadParams'] =
+            authenticity_token: $('meta[name=csrf-token]').attr('content')
 
         $(@).addClass('froala-wysiwyged')
-        $(@).froalaEditor(config_options)
+        $(@).editable(config_options)
         if uploadEnabled
-          $(@).on 'froalaEditor.imageError', (e, editor, error) ->
+          $(@).on 'editable.imageError', (e, editor, error) ->
             alert("error uploading image: " + error.message);
             # Custom error message returned from the server.
             if error.code == 0
 
-# Bad link.
+            # Bad link.
             else if error.code == 1
 
-# No link in upload response.
+            # No link in upload response.
             else if error.code == 2
 
-# Error during image upload.
+            # Error during image upload.
             else if error.code == 3
 
-# Parsing response failed.
+            # Parsing response failed.
             else if error.code == 4
 
-# Image too large.
+            # Image too large.
             else if error.code == 5
 
-# Invalid image type.
+            # Invalid image type.
             else if error.code == 6
 
-# Image can be uploaded only to same domain in IE 8 and IE 9.
+            # Image can be uploaded only to same domain in IE 8 and IE 9.
             else if error.code == 7
 
             else
 
             return
 
-          .on('froalaEditor.image.removed', (e, editor, $img) ->
-# Set the image source to the image delete params.
+          .on('editable.afterRemoveImage', (e, editor, $img) ->
+            # Set the image source to the image delete params.
             editor.options.imageDeleteParams =
               src: $img.attr('src')
               authenticity_token: $('meta[name=csrf-token]').attr('content')
             # Make the delete request.
             editor.deleteImage $img
             return
-          ).on('froalaEditor.imageDeleteSuccess', (e, editor, data) ->
-# handle success
-          ).on 'froalaEditor.imageDeleteError', (e, editor, error) ->
-# handle error
+          ).on('editable.imageDeleteSuccess', (e, editor, data) ->
+            # handle success
+          ).on 'editable.imageDeleteError', (e, editor, error) ->
+            # handle error
             alert("error deleting image: " + error.message);
 
     array = content.find('[data-richtext=froala-wysiwyg]').not('.froala-wysiwyged')
     if array.length
       options = $(array[0]).data('options')
-      if not $.isFunction($.fn.froalaEditor)
+      if not $.isFunction($.fn.editable)
         $('head').append('<link href="' + options['csspath'] + '" rel="stylesheet" media="all" type="text\/css">')
         $.getScript options['jspath'], (script, textStatus, jqXHR) =>
           goFroalaWysiwygs(array)

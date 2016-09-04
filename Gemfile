@@ -54,6 +54,7 @@ gem 'icheck-rails'
 gem 'ancestry'
 gem 'rails_admin_nestable', '~> 0.3.2'
 gem 'rails_admin_rollincode', '~> 1.0'
+gem 'font-awesome-rails'
 
 
 # Use Capistrano for deployment

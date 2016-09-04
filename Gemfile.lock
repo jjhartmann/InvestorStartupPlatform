@@ -300,6 +300,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   ffaker
+  font-awesome-rails
   icheck-rails
   jbuilder (~> 2.5)
   mini_magick
