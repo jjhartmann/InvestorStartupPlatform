@@ -42,6 +42,7 @@ config = {
   RailsAdminBundle: [
     './javascripts/rails_admin/ra.widgets',
     './javascripts/rails_admin/custom/ui',
+    './javascripts/rails_admin/custom/col.scrolling.ui',
   ],
   },
 
