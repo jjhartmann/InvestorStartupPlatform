@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828040415) do
+ActiveRecord::Schema.define(version: 20160904185604) do
 
   create_table "enterprise_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "photo"
@@ -149,6 +149,14 @@ ActiveRecord::Schema.define(version: 20160828040415) do
     t.datetime "updated_at",                    default: '2016-09-02 04:03:37', null: false
     t.index ["category"], name: "index_questions_on_category", using: :btree
     t.index ["questionaire_id"], name: "index_questions_on_questionaire_id", using: :btree
+  end
+
+  create_table "questions_to_ask_investors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "question"
+    t.string   "qtype"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "target_followers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
