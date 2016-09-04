@@ -5,7 +5,8 @@ const devBuild = process.env.NODE_ENV !== 'production';
 const nodeEnv = devBuild ? 'development' : 'production';
 
 config = {
-  entry: [
+  entry:{
+    'webpack-bundle':[
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
@@ -28,24 +29,37 @@ config = {
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/chart',
-    './javascripts/rails_admin/ui',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
     './stylesheets/agency',
     './stylesheets/font-awesome.min',
   ],
+  RailsAdminBundle: [
+    './javascripts/rails_admin/ra.widgets',
+    './javascripts/rails_admin/custom/ui',
+  ],
+  },
 
   output: {
-    filename: 'webpack-bundle.js',
+    filename: '[name].js',
     path: '../app/assets/webpack',
+    publicPath: '../public',
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx','.css'],
+    extensions: ['', '.js', '.jsx','.css', '.coffee', 'woff', 'ttf', 'eot', 'svg' ],
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
+
+      // JQUERY-UI
+      "jquery-ui": "jquery-ui/jquery-ui.js",
+      modules: [
+        path.join(__dirname, "node_modules"),
+        path.join(__dirname, "javascripts"),
+        path.join(__dirname, "stylesheets"),
+      ]
     },
   },
   plugins: [
@@ -56,7 +70,8 @@ config = {
     }),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
     }),
   ],
   module: {
@@ -67,9 +82,21 @@ config = {
       },
       {
         test: /\.jsx?$/, loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /javascripts/,],
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+
+      // Cofee Loaders
+      { test: /\.coffee$/, loader: "coffee-loader" },
+      { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
+
+      // Font Awesome Loaders
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+
+      // Jquery-UI
+      { test: /\.(jpe?g|png|gif)$/i, loader:"file" },
+
     ],
   },
 };

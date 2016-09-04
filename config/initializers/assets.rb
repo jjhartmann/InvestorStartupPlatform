@@ -25,7 +25,7 @@ Rails.application.config.assets.paths << Rails.root.join("app", "assets", "webpa
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile << "server-bundle.js"
 Rails.application.config.assets.precompile += %w( frontpage.css frontpage.js )
-Rails.application.config.assets.precompile += %w( railsadminapp.css )
+Rails.application.config.assets.precompile += %w( railsadminapp.css railsadminapp.js )
 
 
 type = ENV["REACT_ON_RAILS_ENV"] == "HOT" ? "non_webpack" : "static"
