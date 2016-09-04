@@ -1,0 +1,20 @@
+/*
+*= require font-awesome
+*= require_tree .
+*= stub rails_admin/custom/theming.scss
+*= require_self
+*/
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'mixins';
+
+body {
+  height: 100vh;
+  color: #FFF;
+  background: linear-gradient(-20deg, #09b7b9 30%, #1c51a4 100%);
+}
+
+.navbar-brand {
+  padding-top: 12px;
+}
