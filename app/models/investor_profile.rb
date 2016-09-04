@@ -1,4 +1,7 @@
 class InvestorProfile < ApplicationRecord
+  include RailsAdmin::InvestorProfileAdmin
+  include RailsAdminCharts
+
   has_one :user, :as => :profilable
 
   validates :tagline,        :presence     => true,

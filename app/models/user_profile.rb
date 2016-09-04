@@ -1,4 +1,7 @@
 class UserProfile < ApplicationRecord
+  include RailsAdmin::UserProfileAdmin
+  include RailsAdminCharts
+
   has_one :user, :as => :profilable
 
   validates :profession,        :presence     => true,

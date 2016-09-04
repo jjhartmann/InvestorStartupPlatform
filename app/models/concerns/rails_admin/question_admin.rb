@@ -1,11 +1,11 @@
-module RailsAdmin::UserAdmin
+module RailsAdmin::QuestionAdmin
   extend ActiveSupport::Concern
 
   included do
     rails_admin do
-      navigation_label 'User'
-      navigation_icon 'fa fa-users'
-      label_plural 'Users'
+      navigation_label 'Questionnaire'
+      navigation_icon 'fa fa-question-circle'
+      label_plural 'Questions'
 
       edit do
       end

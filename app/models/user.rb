@@ -4,6 +4,9 @@ class User < ApplicationRecord
   include Commentable,
           Followable
 
+  include RailsAdmin::UserAdmin
+  include RailsAdminCharts
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,

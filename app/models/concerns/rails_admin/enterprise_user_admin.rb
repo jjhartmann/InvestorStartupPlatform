@@ -4,7 +4,7 @@ module RailsAdmin::EnterpriseUserAdmin
   included do
     rails_admin do
       navigation_label 'Enterprise'
-      navigation_icon 'fa fa-user fa-3x'
+      navigation_icon 'fa fa-user'
       label_plural 'Employees'
 
       edit do
