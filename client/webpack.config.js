@@ -32,7 +32,6 @@ config = {
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
-    './javascripts/chart',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
