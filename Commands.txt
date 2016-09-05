@@ -30,6 +30,8 @@ Commands for React on Rails
 
 We faced some issues when we installed the google-charts and the error said that it couldn’t find the appropriate modules. If the error persists for you as well, please try restarting the terminal and the server. This worked for us.
 
+#coffee-loader
+13. npm install coffee-loader
 
 Resolve Errors
 
