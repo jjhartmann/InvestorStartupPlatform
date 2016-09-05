@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactOnRails from 'react-on-rails'
-import LoginPageContent from '../components/LoginPageContent'
-
+import LoginForgetPassword from '../components/LoginForgetPassword'
+import TextField from '../components/TextField'
+import SubmitButton from '../components/SubmitButton'
 
 export default class LoginPage extends React.Component {
   render() {
     return (
-    <LoginPageContent />
+        <form role='form' accept-charset="UTF-8" action='/users/sign_in' method='post'>
+          <input type='hidden' name='authenticity_token' value={this.props.data.authenticity_token} />
+          <TextField placeholder="Enter UserName/Email" type="text" name="user[email]"></TextField>
+          <TextField placeholder="Enter your Password" type="password" name="user[password]"></TextField>
+          <LoginForgetPassword />
+          <SubmitButton />
+        </form>
     );
   }
-  }
+}
