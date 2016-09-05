@@ -4,6 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
       t.text :question
       t.text :answer
       t.string :category
+      t.string :file
       t.integer :questionaire_id
 
       t.timestamps default: Time.now
