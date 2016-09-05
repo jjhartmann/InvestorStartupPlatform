@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
   create_table "enterprise_photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "photo"
     t.integer  "enterprise_id"
-    t.datetime "created_at",    default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",    default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",    default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",    default: '2016-09-05 04:03:11', null: false
     t.index ["enterprise_id"], name: "index_enterprise_photos_on_enterprise_id", using: :btree
   end
 
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.string   "role_identifier"
     t.string   "member_title",    default: ""
     t.boolean  "confirmed",       default: false
-    t.datetime "created_at",      default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",      default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",      default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",      default: '2016-09-05 04:03:11', null: false
     t.index ["confirmed"], name: "index_enterprise_users_on_confirmed", using: :btree
     t.index ["enterprise_id", "confirmed"], name: "index_enterprise_users_on_enterprise_id_and_confirmed", using: :btree
     t.index ["enterprise_id", "user_email"], name: "index_enterprise_users_on_enterprise_id_and_user_email", using: :btree
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.integer  "followers_count",                 default: 0
     t.integer  "followed_count",                  default: 0
     t.integer  "comment_count",                   default: 0
-    t.datetime "created_at",                      default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",                      default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",                      default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",                      default: '2016-09-05 04:03:11', null: false
     t.index ["location"], name: "index_enterprises_on_location", using: :btree
     t.index ["market_identifier", "location"], name: "index_enterprises_on_market_identifier_and_location", using: :btree
     t.index ["name"], name: "index_enterprises_on_name", unique: true, using: :btree
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.string   "tagline"
     t.integer  "funds_to_offer"
     t.text     "description",    limit: 65535
-    t.datetime "created_at",                   default: '2016-09-02 04:03:36', null: false
-    t.datetime "updated_at",                   default: '2016-09-02 04:03:36', null: false
+    t.datetime "created_at",                   default: '2016-09-05 04:03:10', null: false
+    t.datetime "updated_at",                   default: '2016-09-05 04:03:10', null: false
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.integer  "proposal_id"
     t.integer  "topic_id"
     t.integer  "user_id"
-    t.datetime "created_at",                default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",                default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",                default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",                default: '2016-09-05 04:03:11', null: false
     t.index ["is_private", "target_type", "target_id"], name: "comments_by_type", using: :btree
     t.index ["is_read", "is_private", "target_type", "target_id"], name: "comments_by_type_by_read", using: :btree
     t.index ["topic_id"], name: "index_messages_on_topic_id", using: :btree
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
   create_table "proposal_for_investors", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "proposal_id"
     t.integer  "user_id"
-    t.datetime "created_at",  default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",  default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",  default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",  default: '2016-09-05 04:03:11', null: false
     t.index ["proposal_id", "user_id"], name: "index_proposal_for_investors_on_proposal_id_and_user_id", using: :btree
     t.index ["proposal_id"], name: "index_proposal_for_investors_on_proposal_id", using: :btree
     t.index ["user_id"], name: "index_proposal_for_investors_on_user_id", using: :btree
@@ -124,19 +124,22 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.text     "spending_plan",                        limit: 65535
     t.integer  "next_investment_round",                              default: 0
     t.integer  "enterprise_id"
-    t.datetime "created_at",                                         default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",                                         default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",                                         default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",                                         default: '2016-09-05 04:03:11', null: false
     t.index ["enterprise_id"], name: "index_proposals_on_enterprise_id", using: :btree
     t.index ["proposal_stage_identifier"], name: "index_proposals_on_proposal_stage_identifier", using: :btree
   end
 
   create_table "questionaires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "instruction",     limit: 65535
-    t.text     "disclaimer",      limit: 65535
+    t.text     "instruction",       limit: 65535
+    t.text     "disclaimer",        limit: 65535
     t.integer  "questions_count"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "questionable_type"
+    t.integer  "questionable_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["questionable_type", "questionable_id"], name: "index_questionaires_on_questionable_type_and_questionable_id", using: :btree
     t.index ["title"], name: "index_questionaires_on_title", using: :btree
   end
 
@@ -144,9 +147,10 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.text     "question",        limit: 65535
     t.text     "answer",          limit: 65535
     t.string   "category"
+    t.string   "file"
     t.integer  "questionaire_id"
-    t.datetime "created_at",                    default: '2016-09-02 04:03:37', null: false
-    t.datetime "updated_at",                    default: '2016-09-02 04:03:37', null: false
+    t.datetime "created_at",                    default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",                    default: '2016-09-05 04:03:11', null: false
     t.index ["category"], name: "index_questions_on_category", using: :btree
     t.index ["questionaire_id"], name: "index_questions_on_questionaire_id", using: :btree
   end
@@ -180,8 +184,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.string   "follower_type"
     t.integer  "target_id"
     t.string   "target_type"
-    t.datetime "created_at",    default: '2016-09-02 04:03:36', null: false
-    t.datetime "updated_at",    default: '2016-09-02 04:03:36', null: false
+    t.datetime "created_at",    default: '2016-09-05 04:03:10', null: false
+    t.datetime "updated_at",    default: '2016-09-05 04:03:10', null: false
     t.index ["follower_id", "target_type", "target_id"], name: "target_followers_follwer", unique: true, using: :btree
     t.index ["follower_id"], name: "index_target_followers_on_follower_id", using: :btree
     t.index ["follower_type", "follower_id", "target_type", "target_id"], name: "target_followers_follwer_with_type", unique: true, using: :btree
@@ -195,8 +199,8 @@ ActiveRecord::Schema.define(version: 20160905012440) do
     t.string   "profession"
     t.text     "skills",         limit: 65535
     t.text     "something_cool", limit: 65535
-    t.datetime "created_at",                   default: '2016-09-02 04:03:36', null: false
-    t.datetime "updated_at",                   default: '2016-09-02 04:03:36', null: false
+    t.datetime "created_at",                   default: '2016-09-05 04:03:11', null: false
+    t.datetime "updated_at",                   default: '2016-09-05 04:03:11', null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

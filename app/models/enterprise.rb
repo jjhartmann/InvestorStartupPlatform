@@ -19,6 +19,8 @@ class Enterprise < ApplicationRecord
 
   has_many :proposals
 
+  has_one :questionaire, :as => :questionable
+
   accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
   validates :name,              :presence     => true,
