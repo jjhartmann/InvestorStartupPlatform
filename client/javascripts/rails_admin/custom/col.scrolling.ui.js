@@ -26,7 +26,7 @@ $(document).on('rails_admin.dom_ready', function(){
         tr.insertBefore(td, tr.children[1]);
     });
 
-    ////
+    //
     // Freeze the left columns.
     // Inspiration from http://stackoverflow.com/questions/1312236/how-do-i-create-an-html-table-with-fixed-frozen-left-column-and-scrollable-body
     ////

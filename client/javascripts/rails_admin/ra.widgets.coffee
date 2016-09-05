@@ -1,4 +1,74 @@
 $(document).on 'rails_admin.dom_ready', (e, content) ->
+  ######################################################
+  # Table style
+  ##################################################### #
+  $table = $('#bulk_form').find('table')
+  table = $table[0]
+# Abort if there's nothing to do. Don't repeat ourselves, either.
+  if !table or $table.hasClass('js-horiz-scroll')
+    return
+# Add our indicator class. Also some enhancements.
+  $table.addClass 'js-horiz-scroll table-hover'
+#//
+# Make the table horizontally scrollable.
+# Inspiration from bootstrap's table-responsive.
+#//
+  tableWrapper = document.createElement('DIV')
+#tableWrapper.className = 'table-responsive';
+#tableWrapper.style.width = '100%';
+  tableWrapper.style.overflowX = 'auto'
+  tableWrapper.style.marginBottom = table.style.marginBottom
+  table.style.marginBottom = '0'
+#tableWrapper.style.overflowY = 'hidden';
+  table.parentElement.insertBefore tableWrapper, table
+  tableWrapper.appendChild table
+  $table.find('th.last,td.last').each (index, td) ->
+    tr = td.parentElement
+    tr.insertBefore td, tr.children[1]
+    return
+
+  # Freeze the left columns.
+  $trs = $table.find('tr')
+  $headerTr = $trs.first()
+  $headerTds = $headerTr.children('th,td')
+  i = undefined
+  $td = undefined
+  pos = undefined
+  offsets = []
+  widths = []
+  i = 0
+  while i < 3
+    $td = $($headerTds[i])
+    pos = $td.position()
+    offsets.push pos.left
+    widths.push $td.outerWidth()
+    i++
+  $trs.each (index, tr) ->
+    i = 0
+    while i < 3
+      tr.children[i].style.position = 'absolute'
+      tr.children[i].style.left = offsets[i] + 'px'
+      tr.children[i].style.width = widths[i] + 'px'
+      i++
+    return
+  $td = $($headerTds[2])
+  margin = $td.position().left + $td.outerWidth() - ($(tableWrapper).position().left)
+  tableWrapper.style.marginLeft = margin + 'px'
+  tableWrapper.style.borderLeft = '1px solid black'
+  # Bottom-align the headers.
+  trHeight = $headerTr.height()
+  i = 0
+  while i < 3
+    $td = $($headerTr[0].children[i])
+    $td.css 'padding-top', trHeight - $td.height() - 4 + 'px'
+    i++
+  # Remove main browser window's horizontal scrollbar.
+  $('body').css 'overflow-x', 'hidden'
+
+
+  ######################################################
+  # Content Style
+  ######################################################
   content = if content then content else $('form')
 
   if content.length # don't waste time otherwise
