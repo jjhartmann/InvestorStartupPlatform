@@ -8,8 +8,8 @@ export default class AuthenticationLink extends React.Component {
     return (
     <div>
         <ul className="nav navbar-nav navbar-right">
-            <LinkWidget name="Login" path="#"/>
-            <LinkWidget name="Join" path="#"/>
+            <LinkWidget name="Login" path="/users/sign_in"/>
+            <LinkWidget name="Join" path="/users/sign_up"/>
         </ul>
       </div>
     );
