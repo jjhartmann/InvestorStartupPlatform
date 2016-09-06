@@ -10,11 +10,11 @@ render()
               <li className="hidden">
                   <a href="#page-top"></a>
               </li>
-              <LinkWidget name="Services" path="services"/>
-              <LinkWidget name="Portfolio" path="portfolio"/>
-              <LinkWidget name="About" path="about"/>
-              <LinkWidget name="Team" path="team"/>
-              <LinkWidget name="Contact" path="contact"/>
+              <LinkWidget name="Services" path="/home_pages/services"/>
+              <LinkWidget name="FAQ" path="/home_pages/faq"/>
+              <LinkWidget name="About" path="/home_pages/about"/>
+              <LinkWidget name="Team" path="/home_pages/team"/>
+              <LinkWidget name="Contact" path="/home_pages/contact"/>
           </ul>
       </div>
     );

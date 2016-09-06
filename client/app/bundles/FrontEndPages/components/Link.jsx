@@ -6,7 +6,7 @@ render()
   {
     return (
       <li>
-        <Link to={this.props.path} className="page-scroll">{this.props.name}</Link>
+        <Link href={this.props.path} to="">{this.props.name}</Link>
       </li>
     );
   }
