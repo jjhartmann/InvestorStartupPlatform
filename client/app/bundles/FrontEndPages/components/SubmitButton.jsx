@@ -5,7 +5,7 @@ export default class SubmitButton extends React.Component{
     return (
       <div className="form-group">
         <div className="submit-btn">
-          <input type="submit" className="btn-default btn"/>
+          <input type="submit" className="btn-default btn" onClick={this.hello}/>
         </div>
       </div>
     );

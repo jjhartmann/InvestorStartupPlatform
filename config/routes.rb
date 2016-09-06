@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'hello_world/test'
+
   namespace :home do
     get 'home_page/index'
     get 'home_page/features'
