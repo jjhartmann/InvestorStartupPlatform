@@ -12,7 +12,7 @@ const Registration = (props, _railsContext) => {
           <div className="col-xs-12 col-sm-6">
             <div className="log-in box">
               <RegisterHeader header={["Join Us", <br/>, "Register Now!!"]}/>
-              <Register/>
+              <Register {...props} />
             </div>
           </div>
             <div className="col-xs-12 col-sm-6">
