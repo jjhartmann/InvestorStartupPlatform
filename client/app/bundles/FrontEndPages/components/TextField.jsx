@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
 
 export default class TextField extends React.Component {
-  handleChange(e) {
-    const name = e.target.value;
-    this.props.name;
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
   }
-render()
+  changeContent(e) {
+      this.setState({value: e.target.value})
+    }
+  render()
   {
     return (
       <div className="form-group">
         <label>{this.props.labeltext}</label>
-        <input name={this.props.name} type={this.props.type} placeholder={this.props.placeholder} className="form-control" onChange={e => this.handleChange(e)} />
+        <input name={this.props.name} type={this.props.type} placeholder={this.props.placeholder} className="form-control" onChange={e => this.handleChange(e)} value={this.value} />
       </div>
     );
   }
