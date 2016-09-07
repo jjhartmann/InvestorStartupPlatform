@@ -3,11 +3,11 @@ import React, { PropTypes } from 'react';
 export default class TextField extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { name: this.props.value };
   }
-  changeContent(e) {
-      this.setState({value: e.target.value})
-    }
+  updateTextBox = (e) => {
+    this.setState({name: e.target.value})
+  }
   render()
   {
     return (

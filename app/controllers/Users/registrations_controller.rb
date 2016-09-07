@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "frontpage"
+  respond_to :json
 
   # allow name as parameter
   before_action :configure_permitted_parameters
@@ -14,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    TestMailer.welcome_email(User.last).deliver
     puts "---------------"
     puts params.inspect
   end
@@ -65,7 +67,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :password, :password_confirmation])
   end
 end
