@@ -1,9 +1,13 @@
-<!-- <div class="container-fluid container-fluid-admin bckg-dark">
+<!-- <header class='back-image'>
+
+</header>
+<div class="container-fluid container-fluid-admin bckg-dark">
   <div class="login-form centered">
     <div class="row">
       <div class="col-sm-12 content bckg-dark-light">
         <h2 class="text-center fix-title-login">Administration</h2>
         <%#= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%#= devise_error_messages! %>
             <div class="input-group">
             <span class="input-group-addon">
               <i class="fa fa-user"></i>
@@ -33,6 +37,5 @@
 </header>
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
-<%= @user.errors.as_json %>
 
 <%= react_component('Login', props: {data: {authenticity_token: form_authenticity_token}}) %>
