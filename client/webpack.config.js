@@ -12,6 +12,8 @@ config = {
     'babel-polyfill',
     //Include all the entry points
     './app/bundles/HelloWorld/startup/HelloWorldApp',
+    // #Index of the main page.
+    './app/bundles/FrontEndPages/startup/Home',
     // #Header of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Footer of the main page.
@@ -32,7 +34,6 @@ config = {
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
-    './javascripts/chart',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
