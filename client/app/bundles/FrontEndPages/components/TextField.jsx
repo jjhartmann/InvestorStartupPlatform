@@ -13,7 +13,7 @@ export default class TextField extends React.Component {
     return (
       <div className="form-group">
         <label>{this.props.labeltext}</label>
-        <input name={this.props.name} type={this.props.type} placeholder={this.props.placeholder} className="form-control" onChange={e => this.handleChange(e)} value={this.value} />
+        <input name={this.props.name} type={this.props.type} placeholder={this.props.placeholder} className="form-control" />
       </div>
     );
   }
