@@ -12,6 +12,7 @@ config = {
     'babel-polyfill',
     //Include all the entry points
     './app/bundles/HelloWorld/startup/HelloWorldApp',
+    './app/bundles/FrontEndPages/startup/Home',
     // #Header of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Footer of the main page.
