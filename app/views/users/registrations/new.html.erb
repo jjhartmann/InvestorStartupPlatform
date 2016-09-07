@@ -31,7 +31,7 @@
 <header class='back-image'>
 
 </header>
-<%= @user.errors.as_json %>
+
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
 <%= react_component('Registration', props: {data: {authenticity_token: form_authenticity_token}}) %>
