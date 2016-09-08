@@ -5,50 +5,53 @@ export default class Register extends React.Component {
   // Get Initial stae in ES5
   constructor(props) {
     super(props);
-    this.state = { authentication: this.props.data.authenticity_token,
-                   fullname: '',
-                   email: '',
-                   username: '',
-                   password: '',
-                   password_confirmation: '',
+    this.state = {  user: {
+                     name: '',
+                     email: '',
+                     username: '',
+                     password: '',
+                     password_confirmation: ''
+                   },
                    errors: {}
                 };
   }
 
 // TextBox's Onchange
-  updateName = (e) => {
-    this.setState({fullname: e.target.value})
+  updateName(e) {
+    var newUser = this.state.user;
+    newUser.name = e.target.value;
+    this.setState({user: newUser});
   }
 
-  updateEmail = (e) => {
-    this.setState({email: e.target.value})
+  updateEmail(e) {
+    var newUser = this.state.user;
+    newUser.email = e.target.value;
+    this.setState({user: newUser});
   }
 
-  updateUserName = (e) => {
-    this.setState({username: e.target.value})
+  updateUserName(e) {
+    var newUser = this.state.user;
+    newUser.username = e.target.value;
+    this.setState({user: newUser});
   }
 
-  updatePassword = (e) => {
-    this.setState({password: e.target.value})
+  updatePassword(e) {
+    var newUser = this.state.user;
+    newUser.password = e.target.value;
+    this.setState({user: newUser});
   }
 
   updateConfirmPassword = (e) => {
-    this.setState({password_confirmation: e.target.value})
+    var newUser = this.state.user;
+    newUser.password_confirmation = e.target.value;
+    this.setState({user: newUser});
   }
 
   // Form Submit
   submit(e){
     e.preventDefault();
-    console.log("this.state");
     var data = {
-      authenticity_token: this.state.authentication,
-      user: {
-        name: this.state.fullname,
-        email: this.state.email,
-        username: this.state.username,
-        password: this.state.password,
-        password_confirmation: this.state.password
-      }
+      user: this.state.user
     }
     console.log(data);
     // Submit form via jQuery/AJAX
@@ -61,21 +64,18 @@ export default class Register extends React.Component {
           // console.log(data);
           console.log(data);
           this.setState({
-            fullname: '',
-            email: '',
-            username: '',
-            password: '',
-            password_confirmation: '',
+            user: {
+              name: '',
+              email: '',
+              username: '',
+              password: '',
+              password_confirmation: ''
+            },
             errors: {}
           });
         },
-        error: (xhr, status, err) => {
-          const v = xhr.responseText;
-          console.log(v);
-          this.setState({
-            errors: {}
-          });
-          alert(this.state.errors);
+        error: (data) => {
+          this.setState({errors: data.responseJSON.errors})
         }
       });
   }
@@ -84,24 +84,28 @@ export default class Register extends React.Component {
       <form onSubmit={this.submit.bind(this)}>
         <div className="form-group">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter your full name" className="form-control" value={this.state.fullname} onChange={this.updateName} />
+          <input type="text" placeholder="Enter your full name" className="form-control" value={this.state.user.name} onChange={this.updateName.bind(this)} />
           <span style={{color: 'red'}}>{this.state.errors.name}</span>
         </div>
         <div className="form-group">
           <label>Email Address</label>
-          <input type="text" placeholder="Enter your Email-Address" className="form-control" value={this.state.email} onChange={this.updateEmail} />
+          <input type="text" placeholder="Enter your Email-Address" className="form-control" value={this.state.user.email} onChange={this.updateEmail.bind(this)} />
+          <span style={{color: 'red'}}>{this.state.errors.email}</span>
         </div>
         <div className="form-group">
           <label>User Name</label>
-          <input type="text" placeholder="Enter your desired user name" className="form-control" value={this.state.username} onChange={this.updateUserName} />
+          <input type="text" placeholder="Enter your desired user name" className="form-control" value={this.state.user.username} onChange={this.updateUserName.bind(this)} />
+          <span style={{color: 'red'}}>{this.state.errors.username}</span>
         </div>
         <div className="form-group">
           <label>Password</label>
-          <input type="password" placeholder="Password" className="form-control" value={this.state.password} onChange={this.updatePassword} />
+          <input type="password" placeholder="Password" className="form-control" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+          <span style={{color: 'red'}}>{this.state.errors.password}</span>
         </div>
         <div className="form-group">
           <label>Confirm Password</label>
-          <input type="password" placeholder="Confirm your Password" className="form-control" value={this.state.password_confirmation} onChange={this.updateConfirmPassword} />
+          <input type="password" placeholder="Confirm your Password" className="form-control" value={this.state.user.password_confirmation} onChange={this.updateConfirmPassword.bind(this)} />
+          <span style={{color: 'red'}}>{this.state.errors.password_confirmation}</span>
         </div>
         <SubmitButton />
       </form>
