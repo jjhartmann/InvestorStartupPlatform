@@ -18,7 +18,7 @@ class User < ApplicationRecord
          :trackable,
          :validatable,
          :lockable,
-         :timeoutable
+         :timeoutable, :authentication_keys => [:login]
 
   attr_readonly :messages_count
 
@@ -232,4 +232,3 @@ class User < ApplicationRecord
     self.email = email.strip.downcase
   end
 end
-
