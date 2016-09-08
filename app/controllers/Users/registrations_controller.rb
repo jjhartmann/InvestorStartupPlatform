@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "frontpage"
+  skip_before_action :verify_authenticity_token
   respond_to :json
 
   # allow name as parameter
@@ -18,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     TestMailer.welcome_email(User.last).deliver
     puts "---------------"
     puts params.inspect
+    puts resource.errors.as_json
   end
 
   # GET /resource/edit
