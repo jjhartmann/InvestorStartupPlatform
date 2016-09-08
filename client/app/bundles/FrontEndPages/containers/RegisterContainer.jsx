@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
-// import TextField from '../components/TextField'
 import SubmitButton from '../components/SubmitButton'
 
-// Simple example of a React "smart" component
 export default class Register extends React.Component {
   // Get Initial stae in ES5
   constructor(props) {
@@ -61,7 +59,7 @@ export default class Register extends React.Component {
         dataType: "json",
         success: (data) => {
           // console.log(data);
-          console.log(data[0]);
+          console.log(data);
           this.setState({
             fullname: '',
             email: '',
@@ -72,7 +70,12 @@ export default class Register extends React.Component {
           });
         },
         error: (xhr, status, err) => {
-          alert(xhr.responseText);
+          const v = xhr.responseText;
+          console.log(v);
+          this.setState({
+            errors: {}
+          });
+          alert(this.state.errors);
         }
       });
   }
@@ -87,22 +90,18 @@ export default class Register extends React.Component {
         <div className="form-group">
           <label>Email Address</label>
           <input type="text" placeholder="Enter your Email-Address" className="form-control" value={this.state.email} onChange={this.updateEmail} />
-          <span style={{color: 'red'}}>{this.state.errors.email}</span>
         </div>
         <div className="form-group">
           <label>User Name</label>
           <input type="text" placeholder="Enter your desired user name" className="form-control" value={this.state.username} onChange={this.updateUserName} />
-          <span style={{color: 'red'}}>{this.state.errors.username}</span>
         </div>
         <div className="form-group">
           <label>Password</label>
           <input type="password" placeholder="Password" className="form-control" value={this.state.password} onChange={this.updatePassword} />
-          <span style={{color: 'red'}}>{this.state.errors.password}</span>
         </div>
         <div className="form-group">
           <label>Confirm Password</label>
           <input type="password" placeholder="Confirm your Password" className="form-control" value={this.state.password_confirmation} onChange={this.updateConfirmPassword} />
-          <span style={{color: 'red'}}>{this.state.errors.confirm_password}</span>
         </div>
         <SubmitButton />
       </form>
