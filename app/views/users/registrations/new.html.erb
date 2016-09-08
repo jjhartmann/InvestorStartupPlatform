@@ -44,11 +44,58 @@
 
 </div>
 </div> -->
-
+  <!-- Material Deisgn -->
+<!--
+<div class="login-set registration">
+  <div class="container">
+    <div class="row">
+      <div class="registration col-xs-12 col-sm-6">
+        <div class="">
+          <form class="register" onSubmit={this.submit.bind(this)}>
+            <h1 class="text-center">Register Now</h1>
+            <div class="form-group">
+              <input type="text" placeholder="Enter your full name" onChange={this.updateName} />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Enter your Email-Address" />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Enter your desired user name" />
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" />
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Confirm your Password" />
+            </div>
+          <div class="form-group"><div class="submit-btn"><input type="submit" class="btn-default btn"></div></div>
+          </form>
+        </div>
+      </div>
+        <div class="social-register col-xs-12 col-sm-6">
+          <div class="">
+            <div class="clearfix">
+              <div class="links">
+              <h1 class="text-center">Join Us <br/> Through</h1>
+                <ul class="social">
+                  <li><a href="#"><span class="fa fa-weixin"></span><span>We Chat</span></a></li>
+                  <li><h6>OR</h6></li>
+                  <li><a href="#"><span class="fa fa-weixin"></span><span>QQ</span></a></li>
+                  <li><h6>OR</h6></li>
+                  <li><a href="#"><span class="fa fa-weixin"></span><span>Facebook</span></a></li>
+                  <li><h6>OR</h6></li>
+                  <li><a href="#"><span class="fa fa-weixin"></span><span>Twitter</span></a></li>
+                </ul>
+            </div>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<%= content_for :body_class, 'index' %>
+<%= content_for :body_id, 'page-top' %>
 <header class='back-image'>
 
 </header>
-
-<%= content_for :body_class, 'index' %>
-<%= content_for :body_id, 'page-top' %>
 <%= react_component('Registration', props: {data: {authenticity_token: form_authenticity_token}}) %>

@@ -9,31 +9,32 @@ const Registration = (props, _railsContext) => {
     <div className="login-set registration">
       <div className="container">
         <div className="row">
-          <div className="col-xs-12 col-sm-6">
-            <div className="log-in box">
-              <RegisterHeader header={["Join Us", <br/>, "Register Now!!"]}/>
+          <div className="registration col-xs-12 col-sm-6">
+            <div className="">
               <Register {...props} />
             </div>
           </div>
-            <div className="col-xs-12 col-sm-6">
-              <div className="log-in box">
+            <div className="registration col-xs-12 col-sm-6">
+              <div className="">
                 <div className="clearfix">
-                  <div className="or-tag">or</div>
-                  <RegisterHeader header={["Join Us", <br/>, "through.."]} />
-                  <div className="social">
-                    <ul>
+                  <div className="links">
+                  <RegisterHeader header={["Join Us with"]}/>
+                    <ul className="social">
                       <RegisterationLinks link_name="Wee Chat" key="we-chat"/>
+                      <li><h6>OR</h6></li>
                       <RegisterationLinks link_name="QQ" key="qq"/>
+                      <li><h6>OR</h6></li>
                       <RegisterationLinks link_name="Gmail" key="gmail"/>
+                      <li><h6>OR</h6></li>
                       <RegisterationLinks link_name="Facebook" key="fb"/>
                     </ul>
                   </div>
-                </div>
-             </div>
+                  </div>
+               </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
   );
   return reactComponent;
 };
