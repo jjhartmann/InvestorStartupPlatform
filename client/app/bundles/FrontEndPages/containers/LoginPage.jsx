@@ -52,6 +52,10 @@ export default class LoginPage extends React.Component {
             },
             errors: {}
           });
+
+          window.location.pathname = "/home_pages";
+          window.location.href = "/home_pages";
+          // location.reload();
         },
         error: (xhr) => {
           var jsonResponse = JSON.parse(xhr.responseText);
