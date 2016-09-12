@@ -1,4 +1,4 @@
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
-<%= current_user %>
+<%= puts  "#{session[:user_id]}&************" %>
 <%= react_component('HomeApp', props: {data: @contact_form_props}) %>

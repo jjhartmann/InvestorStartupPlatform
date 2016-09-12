@@ -1,8 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
   layout "frontpage"
-  before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params
   skip_before_action :verify_authenticity_token
-  respond_to :json
+  respond_to :json, :html
 
 
   # GET /resource/sign_in
@@ -13,13 +13,20 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    puts params.inspect
+    puts "--------hi test"
+    # puts session[:user_id]
+    # puts resource
+
+    # sign_in_and_redirect(resource)
+    # respond_with resource, :location => after_sign_in_path_for(resource)
+    # puts params.inspect
   end
 
   # DELETE /resource/sign_out
   # def destroy
   #   super
   # end
+
 
   protected
 
