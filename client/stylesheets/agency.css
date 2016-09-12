@@ -1152,3 +1152,23 @@ input:focus::-webkit-input-placeholder {
 .social-register{
   margin-bottom:50px;
 }*/
+.snacker {
+  background-color: #f2dede;
+  z-index: 1000;
+  width: 70%;
+  color: #a94442;
+  border: 1px solid #ebccd1;
+  border-radius: 5px;
+  padding-left: 5px;
+  margin-bottom: 10px;
+
+}
+#floating_alert {
+    position: absolute;
+    top: 198px;
+    right: 0px;
+    color: white;
+}
+#floating_alert .snacker a{
+      color: #746f5e;
+}
