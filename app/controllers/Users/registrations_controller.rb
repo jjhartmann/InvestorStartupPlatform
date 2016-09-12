@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    TestMailer.welcome_email(User.last).deliver
+    # TestMailer.welcome_email(User.last).deliver
     puts "---------------"
     puts params.inspect
     puts resource.errors.as_json
