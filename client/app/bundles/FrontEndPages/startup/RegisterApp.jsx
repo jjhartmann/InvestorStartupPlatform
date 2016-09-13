@@ -9,9 +9,9 @@ const Registration = (props, _railsContext) => {
       <div className="container">
         <div className="row">
           <Register {...props} />
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
   );
   return reactComponent;
 };

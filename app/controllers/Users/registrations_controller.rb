@@ -15,11 +15,42 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    # super
     # TestMailer.welcome_email(User.last).deliver
-    puts "---------------"
-    puts params.inspect
-    puts resource.errors.as_json
+    # puts "---------------"
+    # puts params.inspect
+    # puts resource.errors.as_json
+    build_resource(sign_up_params)
+
+
+    if resource.profilable_type == 'UserProfile'
+      user_profile = UserProfile.new
+    elsif resource.profilable_type == "InvestorProfile"
+      user_profile = InvestorProfile.new
+    end
+    user_profile_saved= user_profile.save(validate: false)
+    resource.profilable = user_profile
+
+    resource_saved = resource.save
+    yield resource if block_given?
+    if user_profile_saved && resource_saved
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      @validatable = devise_mapping.validatable?
+      if @validatable
+        @minimum_password_length = resource_class.password_length.min
+      end
+      respond_with resource
+    end
   end
 
   # GET /resource/edit
@@ -71,6 +102,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :profilable_type])
   end
 end

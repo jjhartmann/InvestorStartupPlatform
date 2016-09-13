@@ -354,7 +354,7 @@ const HomeApp = (props, _railsContext) => {
                               <div className="clearfix"></div>
                               <div className="col-lg-12 text-center">
                                   <div id="success"></div>
-                                  <button type="submit" className="btn btn-xl">Send Message</button>
+                                  <a href="#" className="submit-btn default-style">Submit</a>
                               </div>
                           </div>
                       </form>
@@ -531,7 +531,8 @@ const HomeApp = (props, _railsContext) => {
           </div>
       </div>
     </div>
-  );
+
+    );
   return reactComponent;
 };
 

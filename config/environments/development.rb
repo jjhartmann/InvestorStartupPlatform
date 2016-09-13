@@ -34,7 +34,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Perform email deliveries in dev mode == true
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -58,15 +58,15 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
 
-  config.action_mailer.delivery_method = :sparkpost
+  config.action_mailer.delivery_method = :letter_opener
 
 
-  ActionMailer::Base.smtp_settings = {
-      user_name:            'vma',
-      password:             'password123#',
-      address:              'smtp.sparkpostmail.com',
-      port:                  587,
-      enable_starttls_auto:  true,
-      format:               :html
-  }
+  # ActionMailer::Base.smtp_settings = {
+  #     user_name:            'vma',
+  #     password:             'password123#',
+  #     address:              'smtp.sparkpostmail.com',
+  #     port:                  587,
+  #     enable_starttls_auto:  true,
+  #     format:               :html
+  # }
 end

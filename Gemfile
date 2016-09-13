@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+#email preview
+gem "letter_opener", group: :development
 
 gem 'sparkpost_rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

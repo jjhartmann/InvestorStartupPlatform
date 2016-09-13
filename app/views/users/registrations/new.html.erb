@@ -27,7 +27,8 @@
 <%# end %>
 
 <%#= render "users/shared/links" %> -->
-<!-- <header class='back-image'>
+<!--
+<header class='back-image'>
 
 </header>
 <div class="container">
@@ -44,8 +45,12 @@
 
 </div>
 </div> -->
-  <!-- Material Deisgn -->
-<!--
+
+
+<!-- Material Deisgn -->
+<!-- <header class='back-image'>
+
+</header>
 <div class="login-set registration">
   <div class="container">
     <div class="row">
@@ -67,6 +72,14 @@
             </div>
             <div class="form-group">
               <input type="password" placeholder="Confirm your Password" />
+            </div>
+            <div class="form-group radio-item">
+              <div class="radio">
+                <label><input type="radio" name="optradio" checked>Option 1</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="optradio">Option 2</label>
+              </div>
             </div>
           <div class="form-group"><div class="submit-btn"><input type="submit" class="btn-default btn"></div></div>
           </form>
@@ -93,9 +106,9 @@
       </div>
     </div>
   </div> -->
+  
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
 <header class='back-image'>
-
 </header>
 <%= react_component('Registration', props: {data: {authenticity_token: form_authenticity_token}}) %>
