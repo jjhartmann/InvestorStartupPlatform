@@ -2,9 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom';
 import SubmitButton from '../components/SubmitButton'
 import RegisterHeader from '../components/RegisterHeader'
-import Error from '../components/Error'
 import RegisterationLinks from '../components/RegisterableLink'
-import TransitionGroup from 'react-addons-transition-group';
 
 export default class Register extends React.Component {
   // Get Initial stae in ES5

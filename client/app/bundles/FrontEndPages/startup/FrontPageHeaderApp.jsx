@@ -11,7 +11,7 @@ const HeaderApp = (props, _railsContext) => {
           <Logo></Logo>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <Links/>
-            <AuthenticationLink/>
+            <AuthenticationLink {...props}/>
           </div>
         </div>
     </nav>
