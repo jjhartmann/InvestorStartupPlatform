@@ -7,9 +7,6 @@ export default class Error extends React.Component {
     // passing two properties: "data" and "actions".
     error: PropTypes.string.isRequired,
   };
-
-  
-
   render()
   {
     const { error } = this.props;

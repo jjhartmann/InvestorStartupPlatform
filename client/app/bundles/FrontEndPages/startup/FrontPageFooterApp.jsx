@@ -13,15 +13,30 @@ const FooterApp = (props, _railsContext) => {
                 </div>
                 <div className="col-md-4">
                     <ul className="list-inline social-buttons">
-                      <ShareableLinkWidget id="twitter" link={[<i className="fa fa-twitter" key="i-twitter"></i>]} />
-                      <ShareableLinkWidget id="facebook" link={[<i className="fa fa-facebook" key="i-facebook"></i>]} />
-                      <ShareableLinkWidget id="linkedin" link={[<i className="fa fa-linkedin" key="i-linkedin"></i>]} />
+                      <ShareableLinkWidget
+                        id="twitter"
+                        link={[<i className="fa fa-twitter" key="i-twitter"></i>]}
+                      />
+                      <ShareableLinkWidget
+                        id="facebook"
+                        link={[<i className="fa fa-facebook" key="i-facebook"></i>]}
+                      />
+                      <ShareableLinkWidget
+                        id="linkedin"
+                        link={[<i className="fa fa-linkedin" key="i-linkedin"></i>]}
+                      />
                     </ul>
                 </div>
                 <div className="col-md-4">
                     <ul className="list-inline quicklinks">
-                      <LinkWidget name="Privacy Policy" path="#"/>
-                      <LinkWidget name="Terms of Use" path="#"/>
+                      <LinkWidget
+                        name="Privacy Policy"
+                        path="#"
+                      />
+                      <LinkWidget
+                        name="Terms of Use"
+                        path="#"
+                      />
                     </ul>
                 </div>
             </div>

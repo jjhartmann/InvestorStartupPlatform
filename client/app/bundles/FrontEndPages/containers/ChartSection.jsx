@@ -10,7 +10,9 @@ export default class ChartSection extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            <HeaderText about_text="Charts" />
+            <HeaderText
+              about_text="Charts"
+            />
             <ChartWidget></ChartWidget>
           </div>
         </div>

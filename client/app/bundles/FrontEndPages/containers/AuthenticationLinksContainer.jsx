@@ -3,9 +3,6 @@ import LinkWidget from '../components/Link'
 import auth from '../containers/auth'
 import {Router, Route, IndexRoute, Link} from 'react-router'
 
-
-
-// Simple example of a React "smart" component
 export default class AuthenticationLink extends React.Component {
 
     constructor(props)

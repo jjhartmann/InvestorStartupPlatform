@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout "frontpage"
-  skip_before_action :verify_authenticity_token
   respond_to :json
+  skip_before_action :verify_authenticity_token
 
   # allow name as parameter
   before_action :configure_permitted_parameters
@@ -16,24 +16,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-    # TestMailer.welcome_email(User.last).deliver
-    # puts "---------------"
-    # puts params.inspect
-    # puts resource.errors.as_json
+
     build_resource(sign_up_params)
 
-
+    # create profile_type of user
     if resource.profilable_type == 'UserProfile'
       user_profile = UserProfile.new
     elsif resource.profilable_type == "InvestorProfile"
       user_profile = InvestorProfile.new
     end
-    user_profile_saved= user_profile.save(validate: false)
-    resource.profilable = user_profile
 
+    # create new questionaire for the user according to the user_profile
+    questionaire = Questionaire.new
+
+    # assign the questionable polymorophic relation
+    questionaire.questionable = user_profile
+
+    # assign polymorophic relation to profilable
+    resource.profilable = user_profile
     resource_saved = resource.save
+
     yield resource if block_given?
-    if user_profile_saved && resource_saved
+    # if all the three are succesfully created
+
+    if resource_saved
+      # skip validation and save the user_profile for now
+      user_profile_saved= user_profile.save(validate: false)
+      # save the user after the associated user_profile and the initial questionaire is created
+      questionaire_saved = questionaire.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)

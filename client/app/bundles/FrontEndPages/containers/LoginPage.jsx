@@ -70,8 +70,22 @@ export default class LoginPage extends React.Component {
           <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
             <RegisterHeader header={["Login"]}/>
             <span style={{color: 'red'}}>{this.state.errors.error}</span>
-            <input placeholder="Username" type="text" required="" name="user[login]" value={this.state.user.login} onChange={this.updateLogin.bind(this)} />
-            <input placeholder="Password" type="password" required="" name="user[password]" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+            <input
+              placeholder="Username"
+              type="text"
+              required=""
+              name="user[login]"
+              value={this.state.user.login}
+              onChange={this.updateLogin.bind(this)}
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              required=""
+              name="user[password]"
+              value={this.state.user.password}
+              onChange={this.updatePassword.bind(this)}
+            />
             <LoginForgetPassword />
             <SubmitButton/>
           </form>
