@@ -13,10 +13,11 @@ export default class Register extends React.Component {
                      email: '',
                      username: '',
                      password: '',
-                     password_confirmation: ''
+                     password_confirmation: '',
+                     profilable_type: 'UserProfile'
                    },
                    errors: {},
-                   items: []
+                   items: [],
                 };
   }
 
@@ -51,6 +52,12 @@ export default class Register extends React.Component {
     this.setState({user: newUser});
   }
 
+  handleOptionChange = (e) => {
+    var newUser = this.state.user;
+    newUser.profilable_type = e.target.value;
+    this.setState({user: newUser});
+  }
+
   submit(e){
     e.preventDefault();
     var data = {
@@ -75,7 +82,7 @@ export default class Register extends React.Component {
             },
             errors: {}
           });
-          location.reload();
+          window.location="http://localhost:3000";
         },
         error: (data) => {
           this.setState({errors: data.responseJSON.errors})
@@ -115,12 +122,11 @@ export default class Register extends React.Component {
     console.log(this.state.items);
   }
 
-
 // Form Submit
   render() {
     var errors = this.state.items.map(function(item){
       return (
-        <Error error={item}></Error>
+        <Error error={item} key={item}></Error>
       );
     });
     return (
@@ -146,6 +152,18 @@ export default class Register extends React.Component {
               </div>
               <div className="form-group">
                 <input type="password" placeholder="Confirm your Password" value={this.state.user.password_confirmation} onChange={this.updateConfirmPassword.bind(this)} />
+              </div>
+              <div className="radio radio-item">
+                <label>
+                  <input type="radio" value="UserProfile" checked={this.state.user.profilable_type === 'UserProfile'} onChange={this.handleOptionChange.bind(this)} />
+                  Startup
+                </label>
+              </div>
+              <div className="radio radio-item">
+                <label>
+                  <input type="radio" value="InvestorProfile" checked={this.state.user.profilable_type === 'InvestorProfile'} onChange={this.handleOptionChange.bind(this)} />
+                  Investor
+                </label>
               </div>
               <SubmitButton />
             </form>
