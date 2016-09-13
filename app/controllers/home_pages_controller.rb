@@ -3,16 +3,20 @@ class HomePagesController < ApplicationController
   # GET /home_pages
   # GET /home_pages.json
   def index
-    @contact_form_props = {
-        companyName: "Uni-Inovation",
-        location: "Vancouver, BC",
-        phoneNumber: "123.345.5678",
-        email: "example@abc.com",
-        companyText: "Comany Name",
-        locationText: "Address",
-        phonetext: "Contact Number",
-        emailText: "Email-Id"
-      }
+    if user_signed_in?
+      redirect_to user_dashboards_path
+    else
+      @contact_form_props = {
+          companyName: "Uni-Inovation",
+          location: "Vancouver, BC",
+          phoneNumber: "123.345.5678",
+          email: "example@abc.com",
+          companyText: "Comany Name",
+          locationText: "Address",
+          phonetext: "Contact Number",
+          emailText: "Email-Id"
+        }
+    end
   end
 
   # GET /home_pages/1

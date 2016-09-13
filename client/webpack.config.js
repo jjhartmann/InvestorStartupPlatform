@@ -29,6 +29,8 @@ config = {
     './app/bundles/FrontEndPages/startup/Login',
     // Register
     './app/bundles/FrontEndPages/startup/RegisterApp',
+    // Alerts in header
+    './app/bundles/FrontEndPages/startup/AlertMessage',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
@@ -38,6 +40,7 @@ config = {
     './stylesheets/bootstrap.min',
     './stylesheets/agency',
     './stylesheets/font-awesome.min',
+    './stylesheets/style',
   ],
   RailsAdminBundle: [
     './javascripts/rails_admin/ra.widgets',

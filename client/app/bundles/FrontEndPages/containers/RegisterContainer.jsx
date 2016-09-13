@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import SubmitButton from '../components/SubmitButton'
 import RegisterHeader from '../components/RegisterHeader'
 import RegisterationLinks from '../components/RegisterableLink'
+import Error from '../components/Error'
 
 export default class Register extends React.Component {
   // Get Initial stae in ES5
@@ -139,29 +140,63 @@ export default class Register extends React.Component {
             <form onSubmit={this.submit.bind(this)}>
               <RegisterHeader header={["Register Now!!"]}/>
               <div className="form-group">
-                <input type="text" placeholder="Enter your full name" value={this.state.user.name} onChange={this.updateName.bind(this)} />
+                <input
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={this.state.user.name}
+                  onChange={this.updateName.bind(this)}
+                />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Enter your Email-Address" value={this.state.user.email} onChange={this.updateEmail.bind(this)} />
+                <input
+                  type="text"
+                  placeholder="Enter your Email-Address"
+                  value={this.state.user.email}
+                  onChange={this.updateEmail.bind(this)}
+                />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Enter your desired user name" value={this.state.user.username} onChange={this.updateUserName.bind(this)} />
+                <input
+                  type="text"
+                  placeholder="Enter your desired user name"
+                  value={this.state.user.username}
+                  onChange={this.updateUserName.bind(this)}
+                />
               </div>
               <div className="form-group">
-                <input type="password" placeholder="Password" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.user.password}
+                  onChange={this.updatePassword.bind(this)} />
               </div>
               <div className="form-group">
-                <input type="password" placeholder="Confirm your Password" value={this.state.user.password_confirmation} onChange={this.updateConfirmPassword.bind(this)} />
+                <input
+                  type="password"
+                  placeholder="Confirm your Password"
+                  value={this.state.user.password_confirmation}
+                  onChange={this.updateConfirmPassword.bind(this)}
+                />
               </div>
               <div className="radio radio-item">
                 <label>
-                  <input type="radio" value="UserProfile" checked={this.state.user.profilable_type === 'UserProfile'} onChange={this.handleOptionChange.bind(this)} />
+                  <input
+                    type="radio"
+                    value="UserProfile"
+                    checked={this.state.user.profilable_type === 'UserProfile'}
+                    onChange={this.handleOptionChange.bind(this)}
+                  />
                   Startup
                 </label>
               </div>
               <div className="radio radio-item">
                 <label>
-                  <input type="radio" value="InvestorProfile" checked={this.state.user.profilable_type === 'InvestorProfile'} onChange={this.handleOptionChange.bind(this)} />
+                  <input
+                    type="radio"
+                    value="InvestorProfile"
+                    checked={this.state.user.profilable_type === 'InvestorProfile'}
+                    onChange={this.handleOptionChange.bind(this)}
+                  />
                   Investor
                 </label>
               </div>
@@ -176,11 +211,8 @@ export default class Register extends React.Component {
                 <RegisterHeader header={["Join Us with"]}/>
                 <ul className="social">
                   <RegisterationLinks link_name="Wee Chat" key="we-chat"/>
-                  <li><h6>OR</h6></li>
                   <RegisterationLinks link_name="QQ" key="qq"/>
-                  <li><h6>OR</h6></li>
                   <RegisterationLinks link_name="Gmail" key="gmail"/>
-                  <li><h6>OR</h6></li>
                   <RegisterationLinks link_name="Facebook" key="fb"/>
                 </ul>
               </div>
