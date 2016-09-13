@@ -329,7 +329,7 @@ ul.our-background {
 }
 .login-set {
     background: #f1f1f1;
-    height: 100%;
+    /*height: 100%;*/
 }
 .log-in.box .form-control {
     font-size: 12px;
@@ -361,6 +361,7 @@ html, body {
     color: #f1f1f1;
     width: 120px;
     transition: all 0.4s;
+    display: inline-block;
 }
 .submit-btn{
   text-align: center;
@@ -399,10 +400,7 @@ html, body {
     float: left;
     margin-bottom: 0;
     background-color: #333;
-    min-height: 577px;
-
-
-
+    min-height: 639px;
     box-sizing: border-box;
     width: 400px;
     margin: 0px auto 0;
@@ -410,6 +408,7 @@ html, body {
     box-shadow:2px 2px 5px 1px rgba(8,8,10,0.6);
     padding-bottom: 40px;
     border-radius: 3px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
 .social li {
@@ -842,10 +841,34 @@ section#contact .form-group input.form-control {
 }
 section#contact .form-group textarea.form-control {
   height: 236px;
+  margin: 40px 25px;
+  width: 350px;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px #ffc857;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+ -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+ -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+ -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+  background-position: -350px 0;
+  background-size: 350px 100%;
+  background-repeat: no-repeat;
+  color: #ffc857;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 section#contact .form-control:focus {
-  border-color: #fed136;
   box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+section#contact .form-group textarea.form-control:focus{
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
 }
 section#contact ::-webkit-input-placeholder {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1023,6 +1046,13 @@ ul.our-background{
 .log-in.box{
   width: auto;
 }
+.registration form{
+  width: auto !important;
+}
+.registration input{
+  width: 90% !important;
+  margin: 36px 16px !important;
+}
 }
 
 
@@ -1044,7 +1074,7 @@ h1 {
  /* box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);*/
 }
 
-form {
+.registration form {
     box-sizing: border-box;
     width: 400px;
     margin: 100px auto 0;
@@ -1054,12 +1084,46 @@ form {
     border-radius: 3px;
     background-color: #333;
 }
-form h1 {
+#contactForm form {
+    box-sizing: border-box;
+    width: 400px;
+    margin: 100px auto 0;
+   /* box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);*/
+    box-shadow:2px 2px 5px 1px rgba(8,8,10,0.6);
+    padding-bottom: 40px;
+    border-radius: 3px;
+    background-color: #333;
+}
+.registration form h1 {
+  box-sizing: border-box;
+  padding: 20px;
+}
+#contactForm form h1 {
   box-sizing: border-box;
   padding: 20px;
 }
 
-input{
+.registration input{
+    margin: 36px 25px;
+    width: 350px;
+    display: block;
+    border: none;
+    padding: 10px 0;
+    border-bottom: solid 1px #ffc857;
+	  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	 -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+   -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+   -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+    background-position: -350px 0;
+    background-size: 350px 100%;
+    background-repeat: no-repeat;
+    color: #ffc857;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#contactForm input{
     margin: 40px 25px;
     width: 350px;
     display: block;
@@ -1076,7 +1140,8 @@ input{
     background-position: -350px 0;
     background-size: 350px 100%;
     background-repeat: no-repeat;
-    color: #ffc857;;
+    color: #ffc857;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input:focus {
@@ -1171,4 +1236,70 @@ input:focus::-webkit-input-placeholder {
 }
 #floating_alert .snacker a{
       color: #746f5e;
+}
+#contactForm {
+    background: rgba(0,0,0,0.6);
+    padding: 15px;
+}
+.submit-btn.default-style {
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 15px 50px;
+    width: 100px;
+    color: white;
+    /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 3px 6px 0 rgba(255, 200, 87, 0.23);
+    border: 2px solid #fed136;
+    color: #f1f1f1;
+    transition: all 0.4s;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    /* margin-bottom: 30px; */
+    display: block;
+    width: 180px;
+    margin: 0 auto;
+}
+a.submit-btn.default-style{
+  text-decoration: none;
+}
+.submit-btn.default-style:hover{
+  background: #fed136;
+  color: #222;
+  webkit-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+.radio-item input[type="radio"]{
+  margin: 0px 0 0;
+  line-height: normal;
+  width: auto;
+  position: absolute;
+  margin-left: -25px;
+  height: 20px;
+  width: 20px;
+}
+.radio-item .radio{
+  display: inline-block;
+}
+.radio-item .radio:last-child {
+    margin-left: 30px;
+}
+.radio-item{
+  width: 100%;
+  margin-left: 30px !important;
+}
+.radio-item label {
+    color: #fff;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+.question ul li {
+    list-style: none;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
