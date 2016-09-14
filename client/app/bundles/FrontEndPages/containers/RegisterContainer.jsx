@@ -6,7 +6,6 @@ import RegisterationLinks from '../components/RegisterableLink'
 import Error from '../components/Error'
 
 export default class Register extends React.Component {
-  // Get Initial stae in ES5
   constructor(props) {
     super(props);
     this.state = {  user: {
