@@ -5,6 +5,10 @@
     list-style: outside none none;
     background: #eeeeee none repeat scroll 0 0;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    transition: all 0.4s;
+}
+.question ul li:hover {
+    box-shadow:0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .box-sed h2 {
     color: #333333;
@@ -12,7 +16,6 @@
     margin: 8px 0 10px;
 }
 .box-sed {
-    margin-bottom: 50px;
     padding: 20px;
     width: 100%;
     position: relative;
@@ -35,15 +38,15 @@
     text-transform: none;
 }
 .que-set::after {
-    background: rgba(0, 0, 0, 0) -moz-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
-    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
-    background: rgba(0, 0, 0, 0) -ms-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
-    background: rgba(0, 0, 0, 0) linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: -webkit-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: -moz-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: -ms-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
     content: "";
     height: 1px;
     position: absolute;
     width: 100%;
-} 
+}
 .que-set{
   position: relative;
 }
@@ -127,4 +130,18 @@
  [type="checkbox"]:checked + label:after {
   opacity: 1;
   transform: scale(1);
+}
+.question {
+    margin-top: 40px;
+}
+.question .submit-btn .btn.btn-default {
+    width: calc(100% - 50%);
+    background: #222;
+    padding: 12px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: none;
+}
+.question .submit-btn .btn.btn-default:hover {
+    background: #fed136;
+    color: #222;
 }
