@@ -18,22 +18,12 @@ export default class AuthenticationLink extends React.Component {
           type: 'DELETE',
           dataType: "json",
           success: () => {
-            // alert("hello");
+            window.location.pathname = "/home_pages";
+            window.location.href = "/home_pages";
             }
         })
       }
     }
-    // loggedIn: auth.loggedIn()
-    // updateAuth(loggedIn) {
-    //   this.setState({
-    //     loggedIn
-    //   });
-    // }
-    //
-    // componentWillMount() {
-    //   auth.onChange = this.updateAuth.bind(this)
-    //   auth.login()
-    // }
 
   render() {
     return (
@@ -42,12 +32,17 @@ export default class AuthenticationLink extends React.Component {
           <li>
             <Link href={this.state.authenticated.signed_in ? "" : "/users/sign_in"}
                   to="#"
-                  onClick={this.login(this.state.authenticated.signed_in)}>
+                  onClick={this.login.bind(this,this.state.authenticated.signed_in)}
+                  method={this.state.authenticated.signed_in ? "post" : ""}>
 
                   {this.state.authenticated.signed_in == true ? "Logout" : "LogIn"}
             </Link>
 
           </li>
+          <li>
+            {this.state.authenticated.signed_in ? "" : <Link href="/users/sign_up" to="">join</Link> }
+          </li>
+
         </ul>
       </div>
     );

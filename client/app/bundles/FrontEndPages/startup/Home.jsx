@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactOnRails from 'react-on-rails'
 import Contact from '../containers/Contact'
+import test from '../startup/services'
 
 const HomeApp = (props, _railsContext) => {
   const reactComponent = (
