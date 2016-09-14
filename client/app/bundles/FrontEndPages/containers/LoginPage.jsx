@@ -16,10 +16,6 @@ export default class LoginPage extends React.Component {
                   },
                   errors: {},
                   items: [],
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
                 };
   }
 
