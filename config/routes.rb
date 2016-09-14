@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :user_dashboards
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
@@ -8,9 +10,6 @@ Rails.application.routes.draw do
       get 'faq'
       get 'about'
       get 'services'
-      get 'login'
-      get 'registration'
-      get 'questionnaire'
     end
   end
 

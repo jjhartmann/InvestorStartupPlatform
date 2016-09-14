@@ -4,6 +4,7 @@ import LoginForgetPassword from '../components/LoginForgetPassword'
 import TextField from '../components/TextField'
 import RegisterHeader from '../components/RegisterHeader'
 import SubmitButton from '../components/SubmitButton'
+import Error from '../components/Error'
 
 export default class LoginPage extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class LoginPage extends React.Component {
                     login: '',
                     password: ''
                   },
-                  errors: {}
+                  errors: {},
+                  items: [],
                 };
   }
 
@@ -65,31 +67,20 @@ export default class LoginPage extends React.Component {
       });
   }
   render() {
+    var error = <Error error={this.state.errors.error} />
     return (
-        <div className="registration col-xs-12">
-          <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
-            <RegisterHeader header={["Login"]}/>
-            <span style={{color: 'red'}}>{this.state.errors.error}</span>
-            <input
-              placeholder="Username"
-              type="text"
-              required=""
-              name="user[login]"
-              value={this.state.user.login}
-              onChange={this.updateLogin.bind(this)}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              required=""
-              name="user[password]"
-              value={this.state.user.password}
-              onChange={this.updatePassword.bind(this)}
-            />
-            <LoginForgetPassword />
-            <SubmitButton/>
-          </form>
+      <div className="registration col-xs-12">
+        <div id="error">
+          {error}
         </div>
+        <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
+          <RegisterHeader header={["Login"]}/>
+          <input placeholder="Username" type="text" required="" name="user[login]" value={this.state.user.login} onChange={this.updateLogin.bind(this)} />
+          <input placeholder="Password" type="password" required="" name="user[password]" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+          <LoginForgetPassword />
+          <SubmitButton/>
+        </form>
+      </div>
     );
   }
 }

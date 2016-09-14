@@ -30,7 +30,7 @@ config = {
     // Register
     './app/bundles/FrontEndPages/startup/RegisterApp',
     // Alerts in header
-    './app/bundles/FrontEndPages/startup/AlertMessage',
+    './app/bundles/FrontEndPages/startup/Alert',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
