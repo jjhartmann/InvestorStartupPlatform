@@ -73,15 +73,11 @@ export default class LoginPage extends React.Component {
       });
   }
   render() {
-    var errors = this.state.items.map(function(item){
-      return (
-        <Error error={item}></Error>
-      );
-    });
+    var error = <Error error={this.state.errors.error} />
     return (
-      <div>
+      <div className="registration col-xs-12">
         <div id="error">
-          {errors}
+          {error}
         </div>
         <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
           <RegisterHeader header={["Login"]}/>
