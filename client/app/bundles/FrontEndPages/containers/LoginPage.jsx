@@ -16,6 +16,10 @@ export default class LoginPage extends React.Component {
                   },
                   errors: {},
                   items: [],
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 };
   }
 
@@ -30,6 +34,11 @@ export default class LoginPage extends React.Component {
     var newUser = this.state.user;
     newUser.password = e.target.value;
     this.setState({user: newUser});
+  }
+
+  show_error = () => {
+    this.setState({items: this.state.errors.error})
+    console.log(this.state.items);
   }
 
   submitPage(e){
@@ -62,16 +71,21 @@ export default class LoginPage extends React.Component {
         error: (xhr) => {
           var jsonResponse = JSON.parse(xhr.responseText);
           console.log(jsonResponse);
-          this.setState({errors: jsonResponse})
+          this.setState({errors: jsonResponse});
+          this.show_error();
         }
       });
   }
   render() {
-    var error = <Error error={this.state.errors.error} />
+    var errors = this.state.items.map(function(item){
+      return (
+        <Error error={item}></Error>
+      );
+    });
     return (
-      <div className="registration col-xs-12">
+      <div>
         <div id="error">
-          {error}
+          {errors}
         </div>
         <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
           <RegisterHeader header={["Login"]}/>
