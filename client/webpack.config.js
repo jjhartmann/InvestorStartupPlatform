@@ -17,7 +17,6 @@ config = {
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Footer of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageFooterApp',
-    './app/bundles/FrontEndPages/startup/test',
     // #FAQ
     './app/bundles/FrontEndPages/startup/FAQ',
     // #Contact Info
@@ -32,6 +31,8 @@ config = {
     './app/bundles/FrontEndPages/startup/RegisterApp',
     // Alerts in header
     './app/bundles/FrontEndPages/startup/Alert',
+    // Questionaire in header
+    './app/bundles/FrontEndPages/startup/Questionaire',
     //include javascripts
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',

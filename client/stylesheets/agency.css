@@ -1303,3 +1303,25 @@ a.submit-btn.default-style{
     margin-bottom: 15px;
     margin-top: 5px;
 }
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 100px;
+}
+.registration.question-type input {
+    width: calc(100% - 40px);
+    margin: 0;
+    margin-bottom: 20px;
+    margin-left:40px;
+}
+.registration.question-type input:focus {
+    box-shadow: none;
+    outline: none;
+    background-position: 00;
+    background-size: 100%;
+}
