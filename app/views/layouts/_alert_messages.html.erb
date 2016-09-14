@@ -1,0 +1,6 @@
+<% if flash[:notice] %>
+  <%= react_component('Alert', props: {data: { message: flash[:notice], type: 'success' }}) %>
+<% end %>
+<% if flash[:alert] %>
+  <%= react_component('Alert', props: {data: { message: flash[:alert], type: 'warning' }}) %>
+<% end %>
