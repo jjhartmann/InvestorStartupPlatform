@@ -4,6 +4,19 @@ class HomePagesController < ApplicationController
   # GET /home_pages.json
   def index
     if user_signed_in?
+      puts "_______________"
+      puts current_user.profilable.present?
+      puts "_______________"
+      if current_user.confirmed_at.present?
+        # create new questionaire for the user according to the user_profile
+        questionaire = Questionaire.new
+
+        # assign the questionable polymorophic relation
+        questionaire.questionable = current_user.profilable
+        # save the user after the associated user_profile and the initial questionaire is created
+        questionaire_saved = questionaire.save
+        
+      end
       redirect_to user_dashboards_path
     else
       @contact_form_props = {
