@@ -26,12 +26,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user_profile = InvestorProfile.new
     end
 
-    # create new questionaire for the user according to the user_profile
-    questionaire = Questionaire.new
 
-    # assign the questionable polymorophic relation
-    questionaire.questionable = user_profile
 
+    # skip validation and save the user_profile for now
+    user_profile_saved= user_profile.save(validate: false)
     # assign polymorophic relation to profilable
     resource.profilable = user_profile
     resource_saved = resource.save
@@ -40,10 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # if all the three are succesfully created
 
     if resource_saved
-      # skip validation and save the user_profile for now
-      user_profile_saved= user_profile.save(validate: false)
-      # save the user after the associated user_profile and the initial questionaire is created
-      questionaire_saved = questionaire.save
+
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)

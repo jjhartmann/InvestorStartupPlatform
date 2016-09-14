@@ -3,6 +3,9 @@ class UserDashboardsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    unless current_user.profilable.questionaire.questions.present?
+      redirect_to questionaries_path
+    end
   end
 
   def new
