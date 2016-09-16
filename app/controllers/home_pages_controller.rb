@@ -7,7 +7,7 @@ class HomePagesController < ApplicationController
       puts "_______________"
       puts current_user.profilable.present?
       puts "_______________"
-      if current_user.confirmed_at.present?
+      if current_user.profilable.questionaire.nil?
         # create new questionaire for the user according to the user_profile
         questionaire = Questionaire.new
 
@@ -15,7 +15,7 @@ class HomePagesController < ApplicationController
         questionaire.questionable = current_user.profilable
         # save the user after the associated user_profile and the initial questionaire is created
         questionaire_saved = questionaire.save
-        
+
       end
       redirect_to user_dashboards_path
     else
