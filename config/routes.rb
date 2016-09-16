@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :user_dashboards
-  resources :questionaries
+  resources :questionaries do
+    collection do
+      get 'save_questions'
+    end
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
