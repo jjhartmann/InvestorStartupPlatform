@@ -7,6 +7,17 @@ export default class QuestionaireContainer extends React.Component {
     super(props, context);
     this.state = { questions: this.props.data };
   }
+  submit(e){
+    e.preventDefault();
+    alert("hello");
+    $.ajax({
+      type: "GET",
+      url: "/questionaries/save_questions",
+      success: ()=>{
+        alert("hello")
+      }
+    })
+  }
   render() {
     var questionNodes = this.state.questions.map(function(question){
       return (
@@ -15,10 +26,12 @@ export default class QuestionaireContainer extends React.Component {
     });
     return (
       <div className="question">
-        <ul>
-          {questionNodes}
-        </ul>
-        <SubmitButton/>
+        <form onSubmit={this.submit.bind(this)}>
+          <ul>
+            {questionNodes}
+          </ul>
+          <SubmitButton/>
+        </form>
       </div>
     );
   }
