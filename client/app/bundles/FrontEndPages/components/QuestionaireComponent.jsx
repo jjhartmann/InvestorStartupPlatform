@@ -17,7 +17,7 @@ export default class QuestionaireComponent extends React.Component {
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500's, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
           </div>
           <div className="registration question-type">
-            <input type="text" placeholder="Type answer" />
+            <input type="text" placeholder="Type answer" className="input-text" />
           </div>
         </div>
       </li>

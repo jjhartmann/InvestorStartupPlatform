@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import ReactDOM from 'react-dom';
 import SubmitButton from '../components/SubmitButton'
 import QuestionaireComponent from '../components/QuestionaireComponent'
 
@@ -9,7 +10,10 @@ export default class QuestionaireContainer extends React.Component {
   }
   submit(e){
     e.preventDefault();
-    alert("hello");
+    $(".input-text").each(function(){
+    console.log($(this).val());
+    console.log(ReactDOM.findDOMNode(this).parentNode);
+    })
     $.ajax({
       type: "GET",
       url: "/questionaries/save_questions",
