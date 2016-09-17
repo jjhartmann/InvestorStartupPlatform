@@ -1,2 +1,6 @@
 <%#= current_user.present? %>
-<%= react_component("HeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
+<% if user_signed_in? %>
+  <%= react_component("UserHeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
+<% else %>
+  <%= react_component("HeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
+<% end %>
