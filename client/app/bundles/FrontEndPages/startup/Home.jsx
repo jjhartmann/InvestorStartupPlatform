@@ -5,8 +5,8 @@ import Contact from '../containers/Contact'
 const HomeApp = (props, _railsContext) => {
   const reactComponent = (
     <div>
-      <header>
 
+      <header>
           <div className="container">
               <div className="intro-text">
                   <div className="intro-lead-in">Welcome To Our Studio!</div>
@@ -530,11 +530,10 @@ const HomeApp = (props, _railsContext) => {
               </div>
           </div>
       </div>
-    </div>
 
+    </div>
     );
   return reactComponent;
 };
 
-// This is how react_on_rails can see the HelloWorldApp in the browser.
 ReactOnRails.register({ HomeApp });

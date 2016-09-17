@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# for internationalization
+gem 'rails-i18n', '~> 5.0.0' # For Rails 5.0.x
+
 #email preview
 gem "letter_opener", group: :development
 

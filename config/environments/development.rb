@@ -69,4 +69,6 @@ Rails.application.configure do
   #     enable_starttls_auto:  true,
   #     format:               :html
   # }
+
+  config.i18n.default_locale = :'en'
 end
