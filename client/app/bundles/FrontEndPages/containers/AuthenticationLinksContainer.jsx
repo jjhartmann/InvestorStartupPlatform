@@ -25,6 +25,7 @@ export default class AuthenticationLink extends React.Component {
       }
     }
 
+
   render() {
     return (
       <div>
@@ -40,7 +41,7 @@ export default class AuthenticationLink extends React.Component {
 
           </li>
           <li>
-            {this.state.authenticated.signed_in ? "" : <Link href="/users/sign_up" to="">join</Link> }
+            {this.state.authenticated.signed_in ? "" : <Link href="/users/sign_up" to="">Join</Link> }
           </li>
 
         </ul>
