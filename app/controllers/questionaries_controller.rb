@@ -1,6 +1,6 @@
 class QuestionariesController < ApplicationController
   layout 'frontpage'
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   respond_to  :html
 
   def index
@@ -22,10 +22,9 @@ class QuestionariesController < ApplicationController
     @params.each do |question|
       current_user.profilable.questionaire.questions.create(question: @params[question]["question"],answer: @params[question]["answer"])
     end
-    # current_user.profilable.questionaire.questions.create(@params)
     respond_to do |format|
-     format.html #{ render :layout => false }
-     format.json
-   end
+      format.html #{ render :layout => false }
+      format.json
+    end
   end
 end
