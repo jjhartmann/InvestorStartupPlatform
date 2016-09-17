@@ -411,6 +411,9 @@ html, body {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
+.social1 li {
+    list-style: none;
+  }
 .social li {
     list-style: none;
   }
