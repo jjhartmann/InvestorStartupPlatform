@@ -22,12 +22,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me, :login]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
-
+  def ensure_questionnaire_for_user
+    unless current_user.profilable.questionaire
+      redirect_to questionaries_path
+    end
+  end
 end
