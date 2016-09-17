@@ -47,4 +47,14 @@
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
 
-<%= react_component('Login', props: {data: {authenticity_token: form_authenticity_token}}) %>
+<%= react_component('Login', props: {data: {
+                                            authenticity_token: form_authenticity_token,
+                                            translation: {
+                                              login: I18n.t('labels.login'),
+                                              user_name: I18n.t('labels.user_name'),
+                                              password: I18n.t('labels.password'),
+                                              submit: I18n.t('labels.submit'),
+                                              forgot_password: I18n.t('labels.forgot_password'),
+                                              }
+                                            }
+                                          }) %>

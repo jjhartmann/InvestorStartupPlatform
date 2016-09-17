@@ -193,3 +193,11 @@ en:
       carrierwave_download_error: "Couldn't download image."
       extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
       extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+  labels:
+    login: "Login"
+    register: "Join Us"
+    social_media_register: "Join Us through Social Media"
+    password: "Password"
+    user_name: "User Name or Email"
+    submit: "Submit"
+    forgot_password: "Forgot Password"

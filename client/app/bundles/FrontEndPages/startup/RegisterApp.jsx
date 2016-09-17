@@ -7,9 +7,7 @@ const Registration = (props, _railsContext) => {
   const reactComponent = (
     <div className="login-set registration">
       <div className="container">
-        <div className="row">
           <Register {...props} />
-        </div>
       </div>
     </div>
   );
