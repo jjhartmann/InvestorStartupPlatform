@@ -177,27 +177,29 @@ export default class Register extends React.Component {
                   onChange={this.updateConfirmPassword.bind(this)}
                 />
               </div>
-              <div className="radio radio-item">
-                <label>
-                  <input
-                    type="radio"
-                    value="UserProfile"
-                    checked={this.state.user.profilable_type === 'UserProfile'}
-                    onChange={this.handleOptionChange.bind(this)}
-                  />
-                  Startup
-                </label>
-              </div>
-              <div className="radio radio-item">
-                <label>
-                  <input
-                    type="radio"
-                    value="InvestorProfile"
-                    checked={this.state.user.profilable_type === 'InvestorProfile'}
-                    onChange={this.handleOptionChange.bind(this)}
-                  />
-                  Investor
-                </label>
+              <div className="form-group radiocon">
+                <div className="radio radio-item">
+                  <label>
+                    <input
+                      type="radio"
+                      value="UserProfile"
+                      checked={this.state.user.profilable_type === 'UserProfile'}
+                      onChange={this.handleOptionChange.bind(this)}
+                    />
+                    Startup
+                  </label>
+                </div>
+                <div className="radio radio-item">
+                  <label>
+                    <input
+                      type="radio"
+                      value="InvestorProfile"
+                      checked={this.state.user.profilable_type === 'InvestorProfile'}
+                      onChange={this.handleOptionChange.bind(this)}
+                    />
+                    Investor
+                  </label>
+                </div>
               </div>
               <SubmitButton />
             </form>
@@ -208,7 +210,7 @@ export default class Register extends React.Component {
             <div className="clearfix">
               <div className="links">
                 <RegisterHeader header={["Join Us with"]}/>
-                <ul className="social">                  
+                <ul className="social">
                   <RegisterationLinks link_name="Wee Chat" key="we-chat"/>
                   <RegisterationLinks link_name="QQ" key="qq"/>
                   <RegisterationLinks link_name="Gmail" key="gmail"/>
