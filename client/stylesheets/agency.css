@@ -1316,3 +1316,13 @@ a.submit-btn.default-style{
     background-position: 00;
     background-size: 100%;
 }
+.alert.header-alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 100px;
+ }
