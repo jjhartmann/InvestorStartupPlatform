@@ -17,6 +17,7 @@ config = {
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Footer of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageFooterApp',
+    './app/bundles/FrontEndPages/startup/Profile',
     // #FAQ
     './app/bundles/FrontEndPages/startup/FAQ',
     // #Contact Info
