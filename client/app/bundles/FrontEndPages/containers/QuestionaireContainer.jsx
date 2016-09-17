@@ -17,9 +17,11 @@ export default class QuestionaireContainer extends React.Component {
       type: "GET",
       url: "/questionaries/save_questions",
       data: data,
-      dataType: 'JSON',
+      dataType: 'json',
       success: ()=>{
-        alert("hello");
+        window.location.pathname = "/home_pages";
+        window.loaction.href = "http://localhost:3000/home_pages";
+        window.location.reload();
       }
     })
   }
