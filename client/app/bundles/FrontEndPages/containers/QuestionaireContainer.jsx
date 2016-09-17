@@ -18,7 +18,7 @@ export default class QuestionaireContainer extends React.Component {
       type: "GET",
       url: "/questionaries/save_questions",
       success: ()=>{
-        alert("hello")
+        alert("hello");
       }
     })
   }
