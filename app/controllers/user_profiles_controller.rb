@@ -1,6 +1,6 @@
 class UserProfilesController < ApplicationController
   layout 'frontpage'
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_user_profile,only: [:index, :update, :destroy, :show]
 
   def index
