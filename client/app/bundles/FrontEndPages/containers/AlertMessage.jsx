@@ -13,20 +13,20 @@ export default class AlertMessage extends React.Component {
     }, 3500);
   }
 
-  render () {    
+  render () {
         if(this.state.slideUp) {
           return (
-            <div className={`alert alert-message slideup alert-${this.props.data.type}`}>
+            <div className={`alert header-alert alert-message slideup alert-${this.props.data.type}`}>
               {this.props.data.message}
             </div>
           );
         }
         else {
           return (
-            <div className={`alert alert-message alert-${this.props.data.type}`}>
+            <div className={`alert header-alert alert-message alert-${this.props.data.type}`}>
               {this.props.data.message}
             </div>
           );
-        }        
+        }
     }
   }
