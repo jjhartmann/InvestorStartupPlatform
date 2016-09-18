@@ -16,9 +16,9 @@ config = {
     // #Header of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
     // #Profile Page of the user
-    './app/bundles/FrontEndPages/startup/Profile',
+    // './app/bundles/FrontEndPages/startup/Profile',
     // #Header of user after sigin in
-    './app/bundles/FrontEndPages/startup/UserFrontPageHeader',
+    // './app/bundles/FrontEndPages/startup/UserFrontPageHeader',
     // #Footer of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageFooterApp',
     // #FAQ

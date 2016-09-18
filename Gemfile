@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Templating Lang Slim
+gem 'slim'
+
 # Use Devise for authentication
 gem 'devise'
 gem 'omniauth'
