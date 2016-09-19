@@ -3,4 +3,19 @@
   <%= react_component("UserHeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
 <% else %>
   <%= react_component("HeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
+<%= react_component("HeaderApp", props: {data: {
+                                                signed_in: user_signed_in?,
+                                                translation:
+                                                  {
+                                                    services: I18n.t('labels.services'),
+                                                    faq: I18n.t('labels.faq'),
+                                                    about: I18n.t('labels.about'),
+                                                    team: I18n.t('labels.team'),
+                                                    contact: I18n.t('labels.contact'),
+                                                    login: I18n.t('labels.log-in'),
+                                                    signup: I18n.t('labels.sign-up'),
+                                                  }
+                                                }
+                                          }
+                                          ) %>
 <% end %>

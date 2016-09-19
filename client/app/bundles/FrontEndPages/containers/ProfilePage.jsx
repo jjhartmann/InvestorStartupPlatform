@@ -16,9 +16,7 @@ export default class ProfilePage extends React.Component {
       <div>
         <SidebarTab />
         <ProfileDetails {...this.props} />
-     </div>
-
-
-  );
-}
+      </div>
+    );
+  }
 }

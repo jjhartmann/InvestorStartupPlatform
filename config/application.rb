@@ -16,3 +16,5 @@ module ProjectOctoStartupTime
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+I18n.available_locales = [:en, :'zh-CN']

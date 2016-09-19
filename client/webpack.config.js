@@ -21,6 +21,7 @@ config = {
     './app/bundles/FrontEndPages/startup/UserFrontPageHeader',
     // #Footer of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageFooterApp',
+    './app/bundles/FrontEndPages/startup/Profile',
     // #FAQ
     './app/bundles/FrontEndPages/startup/FAQ',
     // #Contact Info
@@ -41,6 +42,7 @@ config = {
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
+    './javascripts/dashboard',
 
     //include stylesheets
     './stylesheets/bootstrap.min',

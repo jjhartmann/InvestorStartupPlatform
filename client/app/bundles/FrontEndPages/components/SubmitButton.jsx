@@ -6,7 +6,7 @@ export default class SubmitButton extends React.Component{
     return (
       <div className="form-group">
         <div className="submit-btn">
-          <input type="submit" className="btn-default btn"/>
+          <input type="submit" className="btn-default btn" value={this.props.submit}/>
         </div>
       </div>
     );
