@@ -8,17 +8,15 @@ export default class ProfilePage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = { profile_details: this.props.data,
-                   profilable: this.props.profilable,
-                 };
+      profilable: this.props.profilable,
+    };
   }
   render() {
     return (
       <div>
         <SidebarTab />
         <ProfileDetails {...this.props} />
-     </div>
-
-
-  );
-}
+      </div>
+    );
+  }
 }

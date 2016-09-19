@@ -20,7 +20,6 @@ render()
           <li><a data-toggle="pill" href="#menu8"><i className="fa fa-calendar" aria-hidden="true"></i><span className="tab-name">meeting schedules</span></a></li>
         </ul>
       </div>
-
     );
   }
 }

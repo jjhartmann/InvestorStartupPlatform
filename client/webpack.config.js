@@ -38,6 +38,7 @@ config = {
     './javascripts/jquery.min',
     './javascripts/bootstrap.min',
     './javascripts/agency',
+    './javascripts/dashboard',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
