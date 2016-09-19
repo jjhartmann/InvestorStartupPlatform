@@ -2,8 +2,7 @@
 <% if user_signed_in? %>
   <%= react_component("UserHeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
 <% else %>
-  <%= react_component("HeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
-<%= react_component("HeaderApp", props: {data: {
+  <%= react_component("HeaderApp", props: {data: {
                                                 signed_in: user_signed_in?,
                                                 translation:
                                                   {
