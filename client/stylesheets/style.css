@@ -373,3 +373,7 @@ html,body{
 .question .submit-btn .btn.btn-default:hover {
   background: #fed136;
 }
+.password-reset {
+  width: 100%;
+  margin: 0 15px;
+}
