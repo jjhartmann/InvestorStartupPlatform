@@ -70,7 +70,7 @@ Rails.application.configure do
   #     format:               :html
   # }
 
-  # config.i18n.default_locale = :'en'
+  config.i18n.default_locale = :'en'
 
-  config.i18n.default_locale = :'zh-CN' #for Chinese
+  # config.i18n.default_locale = :'zh-CN' #for Chinese
 end
