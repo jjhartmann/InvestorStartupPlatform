@@ -111,4 +111,22 @@
 <%= content_for :body_id, 'page-top' %>
 <header class='back-image'>
 </header>
-<%= react_component('Registration', props: {data: {authenticity_token: form_authenticity_token}}) %>
+<% link_to "Forgot Password", new_password_path('user'), :class => "login-link" %>
+
+<%= react_component('Registration', props: {
+                                          data: {
+                                            authenticity_token: form_authenticity_token,
+                                            translation: {
+                                              register: I18n.t('labels.register'),
+                                              full_name: I18n.t('labels.full_name'),
+                                              email_address: I18n.t('labels.email_address'),
+                                              user_name: I18n.t('labels.user_name'),
+                                              password: I18n.t('labels.password'),
+                                              confirm_password: I18n.t('labels.confirm_password'),
+                                              submit: I18n.t('labels.submit'),
+                                              startup: I18n.t('label.startup'),
+                                              investor: I18n.t('label.investor'),
+                                              social_media_register: I18n.t('labels.social_media_register'),
+                                              }
+                                            }
+                                          }) %>

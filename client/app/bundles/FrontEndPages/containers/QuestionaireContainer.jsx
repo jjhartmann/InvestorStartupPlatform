@@ -4,35 +4,38 @@ import SubmitButton from '../components/SubmitButton'
 import QuestionaireComponent from '../components/QuestionaireComponent'
 
 export default class QuestionaireContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { questions: this.props.data };
-  }
+
   submit(e){
     e.preventDefault();
-    $(".input-text").each(function(){
-    console.log($(this).val());
-    console.log(ReactDOM.findDOMNode(this).parentNode);
-    })
+    var data = {
+      questionaires: []
+    }
+    this.props.data.map(map => {
+      data.questionaires.push(this.refs[map.id].state)
+    });
     $.ajax({
       type: "GET",
       url: "/questionaries/save_questions",
+      data: data,
+      dataType: 'json',
       success: ()=>{
-        alert("hello")
+        window.location.pathname = "/home_pages";
+        window.loaction.href = "http://localhost:3000/home_pages";
+        window.location.reload();
       }
     })
   }
   render() {
-    var questionNodes = this.state.questions.map(function(question){
+    var questionNodes = this.props.data.map(questions => {
       return (
-        <QuestionaireComponent key={question.id} question={question.question}/>
+        <QuestionaireComponent question={questions.question} key={questions.id} id = {questions.id} ref={questions.id}/>
       );
     });
     return (
       <div className="question">
         <form onSubmit={this.submit.bind(this)}>
           <ul>
-            {questionNodes}
+          {questionNodes}
           </ul>
           <SubmitButton/>
         </form>

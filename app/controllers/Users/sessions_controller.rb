@@ -13,9 +13,6 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    # sign_in_and_redirect(resource)
-    # respond_with resource, :location => after_sign_in_path_for(resource)
-    # puts params.inspect
   end
 
   # DELETE /resource/sign_out

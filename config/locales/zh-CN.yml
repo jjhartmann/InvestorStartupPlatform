@@ -19,33 +19,33 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+zh-CN:
   site:
     name: Uni-Inovation Venture Capitals
     welcome: Welcome to Uni Corp - the place for connecting entrepreneurs with Chinese investors!
   system:
-    access_denied: Access denied!
+    access_denied: 拒绝访问！
   simple_form:
     labels:
-      login: Username or Email
-      name: Name
-      pitch: Pitch
-      funds_to_raise: Funds to raise
-      stage_identifier: Stage
-      market_identifier: Market
-      description: Description
+      login: 用户名或电子邮件
+      name: 名称
+      pitch: 沥青
+      funds_to_raise: 基金募集
+      stage_identifier: 阶段
+      market_identifier: 市场
+      description: 描述
     hints:
-      pitch: A one sentence pitch to describe your startup.
+      pitch: 用一句话间距来形容你的启动
   helpers:
     submit:
       create: 'Add %{model}'
       update: 'Edit %{model}'
       destroy: 'Delete %{model}'
       message:
-        create: Post
+        create: 岗位
   enterprise:
-    stages: Stages
-    markets: Markets
+    stages: 阶段
+    markets: 市场
     role_identifiers:
       member: Member
       advisor: Advisor
@@ -111,11 +111,11 @@ en:
     resend_confirmation_instructions: Resend confirmation instructions
     resend_unlock_instructions: Resend unlock instructions
     edit_my_profile: Edit my profile
-    startup: Startup
+    startup: 启动
     submitted_by: Submitted by
     submitted_to: Submitted to
     startups: Startups
-    investor: Investor
+    investor: 投资者
     investors: Investors
     entrepreneur: Entrepreneur
     entrepreneurs: Entrepreneurs
@@ -194,21 +194,21 @@ en:
       extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
       extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
   labels:
-    login: "Login"
-    register: "Register Now"
-    social_media_register: "Join Us with"
-    password: "Password"
-    confirm_password: "Confirm your Password"
-    user_name: "User Name or Email"
-    submit: "Submit"
-    forgot_password: "Forgot Password"
-    full_name: "Enter Full Name"
-    email_address: "Enter your Email Address"
-    user_name: "Enter your desired User Name"
-    services: "Services"
-    contact: "Contact"
-    faq: "FAQ"
-    about: "About"
-    team: "Team"
-    log-in: "Login"
-    sign-up: "Join"
+    login: "登录"
+    register: "加入我们"
+    social_media_register: "加入我们"
+    password: "密码"
+    confirm_password: "确认你的密码"
+    user_name: "用户名或电子邮件"
+    submit: "提交"
+    forgot_password: "忘记密码"
+    full_name: "输入全名"
+    email_address: "输入你的电子邮箱地址"
+    user_name: "输入你想要的用户名"
+    services: "服务"
+    contact: "联系"
+    faq: "常问问题"
+    about: "关于"
+    team: "球队"
+    log-in: "登录"
+    sign-up: "加入"
