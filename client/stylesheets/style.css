@@ -373,3 +373,84 @@ html,body{
 .question .submit-btn .btn.btn-default:hover {
   background: #fed136;
 }
+
+/*17-09-2016*/
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
+  background-color: #ffc857;
+  background-image: none;
+  box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dashbord .navbar-nav > li .top-count {
+    height: 20px;
+    padding-top: 0;
+    right: 5px;
+    top: -3px;
+    width: 20px;
+}
+.dashbord .navbar-right .dropdown-menu.user-section {
+    right: 13px;
+}
+.main-body {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+#home {
+    display: none;
+}
+.short-profile{
+    float: left;
+    padding-top: 80px;
+    width: 100%;
+}
+.short-profile ul {
+    float: left;
+    padding-left: 0;
+    width: 100%;
+}
+.short-profile ul li {
+    float: left;
+    list-style: outside none none;
+    width: 25%;
+}
+.main-profile {
+    background: #333333 none repeat scroll 0 0;
+    border-radius: 100%;
+    height: 50px;
+    text-align: center;
+    width: 50px;
+    box-shadow: 0 1px 10px  rgba(255, 200, 87, 0.46);
+    display: inline-block;
+}
+.main-profile .fa{
+  font-size: 22px;
+  color: #ffc857;
+  padding-top: 12px;
+}
+.short-profile ul li a{
+  float: left;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+}
+.user-name-short {
+    color: #5cb85c;
+    font-size: 18px;
+}
+.view {
+    color: #008cff;
+    display: block;
+    font-size: 15px;
+}
+a.view:hover{
+  color: #008cff;
+}
+.tag-count {
+    color: #ffc857;
+    font-size: 16px;
+}
+.tag-name{
+  color: #333;
+  font-size: 15px;
+}
