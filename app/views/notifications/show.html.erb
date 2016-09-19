@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Notificable:</strong>
+  <%= @notification.notificable_id %>
+</p>
+
+<p>
+  <strong>Notificable type:</strong>
+  <%= @notification.notificable_type %>
+</p>
+
+<p>
+  <strong>Notification text:</strong>
+  <%= @notification.notification_text %>
+</p>
+
+<p>
+  <strong>Is viewed:</strong>
+  <%= @notification.is_viewed %>
+</p>
+
+<%= link_to 'Edit', edit_notification_path(@notification) %> |
+<%= link_to 'Back', notifications_path %>
