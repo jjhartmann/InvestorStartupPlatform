@@ -111,11 +111,11 @@ zh-CN:
     resend_confirmation_instructions: Resend confirmation instructions
     resend_unlock_instructions: Resend unlock instructions
     edit_my_profile: Edit my profile
-    startup: Startup
+    startup: 启动
     submitted_by: Submitted by
     submitted_to: Submitted to
     startups: Startups
-    investor: Investor
+    investor: 投资者
     investors: Investors
     entrepreneur: Entrepreneur
     entrepreneurs: Entrepreneurs
@@ -196,8 +196,19 @@ zh-CN:
   labels:
     login: "登录"
     register: "加入我们"
-    social_media_register: "加入我们通过社交媒体"
+    social_media_register: "加入我们"
     password: "密码"
+    confirm_password: "确认你的密码"
     user_name: "用户名或电子邮件"
     submit: "提交"
     forgot_password: "忘记密码"
+    full_name: "输入全名"
+    email_address: "输入你的电子邮箱地址"
+    user_name: "输入你想要的用户名"
+    services: "服务"
+    contact: "联系"
+    faq: "常问问题"
+    about: "关于"
+    team: "球队"
+    log-in: "登录"
+    sign-up: "加入"

@@ -18,6 +18,7 @@ export default class Register extends React.Component {
                    },
                    errors: {},
                    items: [],
+                   translation: this.props.data.translation,
                 };
   }
 
@@ -137,11 +138,11 @@ export default class Register extends React.Component {
         <div className="registration col-xs-12 col-sm-6">
           <div className="">
             <form onSubmit={this.submit.bind(this)}>
-              <RegisterHeader header={["Register Now!!"]}/>
+              <RegisterHeader header={this.state.translation.register}/>
               <div className="form-group">
                 <input
                   type="text"
-                  placeholder="Enter your full name"
+                  placeholder={this.state.translation.full_name}
                   value={this.state.user.name}
                   onChange={this.updateName.bind(this)}
                 />
@@ -149,7 +150,7 @@ export default class Register extends React.Component {
               <div className="form-group">
                 <input
                   type="text"
-                  placeholder="Enter your Email-Address"
+                  placeholder={this.state.translation.email_address}
                   value={this.state.user.email}
                   onChange={this.updateEmail.bind(this)}
                 />
@@ -157,7 +158,7 @@ export default class Register extends React.Component {
               <div className="form-group">
                 <input
                   type="text"
-                  placeholder="Enter your desired user name"
+                  placeholder={this.state.translation.user_name}
                   value={this.state.user.username}
                   onChange={this.updateUserName.bind(this)}
                 />
@@ -165,14 +166,14 @@ export default class Register extends React.Component {
               <div className="form-group">
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder={this.state.translation.password}
                   value={this.state.user.password}
                   onChange={this.updatePassword.bind(this)} />
               </div>
               <div className="form-group">
                 <input
                   type="password"
-                  placeholder="Confirm your Password"
+                  placeholder={this.state.translation.confirm_password}
                   value={this.state.user.password_confirmation}
                   onChange={this.updateConfirmPassword.bind(this)}
                 />
@@ -186,7 +187,7 @@ export default class Register extends React.Component {
                       checked={this.state.user.profilable_type === 'UserProfile'}
                       onChange={this.handleOptionChange.bind(this)}
                     />
-                    Startup
+                  {this.state.translation.startup}
                   </label>
                 </div>
                 <div className="radio radio-item">
@@ -197,11 +198,11 @@ export default class Register extends React.Component {
                       checked={this.state.user.profilable_type === 'InvestorProfile'}
                       onChange={this.handleOptionChange.bind(this)}
                     />
-                    Investor
+                  {this.state.translation.investor}
                   </label>
                 </div>
               </div>
-              <SubmitButton />
+              <SubmitButton submit={this.state.translation.submit}/>
             </form>
           </div>
         </div>
@@ -209,7 +210,7 @@ export default class Register extends React.Component {
           <div className="">
             <div className="clearfix">
               <div className="links">
-                <RegisterHeader header={["Join Us with"]}/>
+                <RegisterHeader header={this.state.translation.social_media_register}/>
                 <ul className="social">
                   <RegisterationLinks link_name="Wee Chat" key="we-chat"/>
                   <RegisterationLinks link_name="QQ" key="qq"/>

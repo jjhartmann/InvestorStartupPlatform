@@ -405,7 +405,6 @@ html, body {
     width: 400px;
     margin: 0px auto 0;
    /* box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);*/
-    box-shadow:2px 2px 5px 1px rgba(8,8,10,0.6);
     padding-bottom: 40px;
     border-radius: 3px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -462,6 +461,23 @@ html, body {
 .registration .log-in.box {
   width: auto !important;
   height: 555px;
+}
+@media (max-width: 991px) {
+    .registration form{
+      width: 330px !important;
+    }
+    .registration input{
+      width: 280px !important;
+    }
+    .links{
+      width: 330px !important;
+    }
+    .social{
+      width: 330px;
+    }
+    #mainNav.navbar-custom .nav li a{
+      padding: 20px 8px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1056,6 +1072,9 @@ ul.our-background{
 .registration input{
   width: 90% !important;
   margin: 36px 16px !important;
+}
+.registration{
+  width: 100%;
 }
 }
 
