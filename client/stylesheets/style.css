@@ -121,7 +121,7 @@
   line-height: 0.8;
   color: #fed136;
   transition: all .2s;
-  font-family: fontawesome;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;;
 }
 [type="checkbox"]:not(:checked) + label:after {
   opacity: 0;
@@ -248,7 +248,7 @@ html,body{
 .box-tab {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     margin-top: 30px;
-    padding: 15px 0;
+    padding: 15px;
     position: relative;
     border: 1px solid #eff4f7;
 }
@@ -345,6 +345,7 @@ html,body{
     background: #eff4f7 none repeat scroll 0 0;
     padding: 10px 0;
     background-image: none;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.2);
 }
 .dashbord .navbar-default .navbar-nav > li > a {
     background: #ffc857 none repeat scroll 0 0;
@@ -359,6 +360,7 @@ html,body{
   background: #333;
   color: #ffc857;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
 }
 .question {
   margin-top: 40px;
@@ -422,17 +424,21 @@ html,body{
     width: 50px;
     box-shadow: 0 1px 10px  rgba(255, 200, 87, 0.46);
     display: inline-block;
+    transition:all 0.4s;
 }
 .main-profile .fa{
   font-size: 22px;
   color: #ffc857;
   padding-top: 12px;
+  transition:all 0.4s;
 }
 .short-profile ul li a{
   float: left;
   width: 100%;
   text-decoration: none;
   text-align: center;
+  padding: 5px;
+  transition:all 0.4s;
 }
 .user-name-short {
     color: #5cb85c;
@@ -457,4 +463,153 @@ a.view:hover{
 .password-reset {
   width: 100%;
   margin: 0 15px;
+}
+/*19-09-2016*/
+
+.short-profile ul li a:hover .main-profile{
+  background-color: #ffc857;
+}
+.short-profile ul li a:hover .main-profile .fa{
+    color:#333333;
+  }
+.short-profile ul li a:hover{
+  background: #eff4f7;
+  padding: 5px;
+  border-radius:5px;
+}
+.header-name {
+    color: #777777;
+    font-size: 18px;
+}
+.main-details h3 {
+    color: #ffc857;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.main-details h3 {
+    color: #ffc857;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.time-date {
+    display: inline-block;
+    float: right;
+}
+.timezone .fa {
+    background: #5cb85c none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #ffffff;
+    margin-right: 5px;
+    padding: 5px;
+}
+.timezone{
+  color:#ffc857;
+}
+.header-type{
+  position: relative;
+  padding-bottom: 12px;
+}
+.header-type::after {
+    background: rgba(0, 0, 0, 0) -moz-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) -webkit-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) -ms-linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(left center , #fff, #fec503, #fff) repeat scroll 0 0;
+    bottom: 0px;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.main-img {
+    height: 400px;
+    overflow: hidden;
+}
+.box {
+  margin-top: 10px;
+  background:#FFF;
+}
+.main-img img{
+  width: 100%;
+}
+/*==================================================
+ * Effect 2
+ * ===============================================*/
+.effect2
+{
+  position: relative;
+}
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+.effect2:after
+{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+.like{
+    background: #5cb85c none repeat scroll 0 0;
+    border-radius: 100%;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.46);
+    color: #ffffff;
+    font-size: 14px;
+    height: 30px;
+    padding-top: 4px;
+    text-align: center;
+    width: 30px;
+    display: block;
+    float: left;
+    cursor: pointer;
+    margin-right: 10px;
+    transition:all 0.4s;
+}
+.unlike{
+  background: #ed4337;
+}
+.like:hover{
+  box-shadow:0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.main-dashbord {
+    padding-left: 0;
+}
+.main-dashbord li {
+    list-style: none;
+}
+/*19-09-2016*/
+@media(max-width: 1199px){
+.time-date {
+    display: block;
+    float: none;
+    margin-top: 5px;
+}
+}
+@media(max-width: 767px){
+.short-profile ul li {
+    float: left;
+    height: 110px;
+    list-style: outside none none;
+    width: 50%;
+}
+.user-name-short{
+  font-size: 15px;
+}
+.view{
+  font-size: 14px;
+}
+.main-img img {
+    height: 100%;
+    width: auto;
+}
 }
