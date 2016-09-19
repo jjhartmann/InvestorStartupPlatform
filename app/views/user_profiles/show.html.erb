@@ -16,7 +16,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse in" aria-expanded="false">
       <ul class="nav navbar-nav">
-        <li class="profile-set"><a href="#">Profile </a></li>
+        <li class="profile-set active"><a href="#">Profile </a></li>
         <li><a href="#">Connections </a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">Company <span class="caret"></span></a>
@@ -33,12 +33,12 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i aria-hidden="true" class="fa fa-user"></i></span></a>
           <ul class="dropdown-menu user-section">
-            <li><a href="#">Shantilal Matariya</a></li>
+            <li><a href="#"><%= current_user.name %></a></li>
             <li class="divider" role="presentation"></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">create company profile</a></li>
             <li><a href="#">Manage connections</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
         <li><a href="#"><i aria-hidden="true" class="fa fa-comments-o"></i></a><div class="top-count">3</div></li>
@@ -76,11 +76,18 @@
               <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
               <h2><i aria-hidden="true" class="fa fa-user"></i><%= current_user.name %></h2>
               <p>Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= current_user.profilable.industry %></div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= current_user.profilable.profession %></div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= current_user.profilable.skills %></div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= current_user.profilable.something_cool %></div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+              <% if current_user.profilable_type == "UserProfile" %>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= current_user.profilable.industry %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= current_user.profilable.profession %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= current_user.profilable.skills %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= current_user.profilable.something_cool %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+              <% else %>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= current_user.profilable.tagline %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= current_user.profilable.funds_to_offer %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= current_user.profilable.description %></div>
+                <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+              <% end %>
               <div class="buttons">
                 <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
                 </a>
