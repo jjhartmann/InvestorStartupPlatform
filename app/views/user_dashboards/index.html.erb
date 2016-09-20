@@ -1,50 +1,4 @@
-
 <%= content_for :body_class, "dashbord" %>
-<nav class="navbar navbar-default  navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-      <ul class="nav navbar-nav">
-        <li class="profile-set"><%= link_to "Profile", user_profile_path(current_user.id) %></li>
-        <li><a href="#">Connections </a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i aria-hidden="true" class="fa fa-user"></i></span></a>
-          <ul class="dropdown-menu user-section">
-            <li><a href="#"><%= current_user.name %></a></li>
-            <li class="divider" role="presentation"></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">create company profile</a></li>
-            <li><a href="#">Manage connections</a></li>
-            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
-        <li><a href="#"><i aria-hidden="true" class="fa fa-comments-o"></i></a><div class="top-count">3</div></li>
-        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a><div class="top-count notes"><%= @notifications.count %></div></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container-fluid -->
-</nav>
-<!--/header-->
 
 <!--profile-->
 <div class="container-fluid">
@@ -101,54 +55,28 @@
           <div id="menu1" class="tab-pane fade in active">
            <div class="tab-title">Dashboard</div>
            <ul class="main-dashbord">
-             <li>
-             <div class="box-tab">
-               <div class="header-type">
-                 <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
-               </div>
-               <div class="box effect2"><div class="main-img"><img src="/assets/img-2.jpg"/></div></div>
-               <div class="main-details">
-                 <h3>Eaque ipsa quae ab illo inventore veritatis.</h3>
-                 <p>loerm ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-                 <div class="likers clearfix">
-                   <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
-                   <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
+             <% @feeds.each do |feed| %>
+               <li>
+                 <div class="box-tab">
+                   <div class="header-type">
+                     <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
+                   </div>
+                   <div class="box effect2">
+                       <div class="main-img">
+                         <%= image_tag feed.photo %>
+                       </div>
+                   </div>
+                   <div class="main-details">
+                     <h3><%= feed.title %></h3>
+                     <p><%= feed.description %></p>
+                     <div class="likers clearfix">
+                       <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
+                       <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
+                     </div>
+                   </div>
                  </div>
-               </div>
-             </div>
-             </li>
-              <li>
-             <div class="box-tab">
-               <div class="header-type">
-                 <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
-               </div>
-               <div class="box effect2"><div class="main-img"><img src="/assets/img-1.png"/></div></div>
-               <div class="main-details">
-                 <h3>Eaque ipsa quae ab illo inventore veritatis.</h3>
-                 <p>loerm ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-                 <div class="likers clearfix">
-                   <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
-                   <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
-                 </div>
-               </div>
-             </div>
-             </li>
-              <li>
-             <div class="box-tab">
-               <div class="header-type">
-                 <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
-               </div>
-               <div class="box effect2"><div class="main-img"><img src="/assets/img-3.png"/></div></div>
-               <div class="main-details">
-                 <h3>Eaque ipsa quae ab illo inventore veritatis.</h3>
-                 <p>loerm ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
-                 <div class="likers clearfix">
-                   <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
-                   <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
-                 </div>
-               </div>
-             </div>
-             </li>
+               </li>
+             <% end %>
              </ul>
           </div>
           <div id="menu2" class="tab-pane fade">
