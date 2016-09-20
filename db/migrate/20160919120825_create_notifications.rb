@@ -10,3 +10,4 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
     end
   end
 end
+Contact GitHub API Training Shop Blog About
