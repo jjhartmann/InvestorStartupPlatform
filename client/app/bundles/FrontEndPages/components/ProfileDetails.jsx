@@ -8,8 +8,9 @@ export default class ProfileDetails extends React.Component {
 
   render()
   {
+    var container_style = { width: 100% }
     return (
-      <div className="container side-deatail">
+      <div className="container side-deatail" style={container_style}>
         <div className="col-xs-12">
           <div className="profile-tabs">
             <div className="tab-content">

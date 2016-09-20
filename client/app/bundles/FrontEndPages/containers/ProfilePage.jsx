@@ -14,7 +14,6 @@ export default class ProfilePage extends React.Component {
   render() {
     return (
       <div>
-        <SidebarTab />
         <ProfileDetails {...this.props} />
       </div>
     );
