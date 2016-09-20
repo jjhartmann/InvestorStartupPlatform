@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
+  before_action :get_notifications
 
   protected
 
@@ -32,5 +32,9 @@ class ApplicationController < ActionController::Base
     unless current_user.profilable.questionaire
       redirect_to questionaries_path
     end
+  end
+
+  def get_notifications
+    @notifications = current_user.profilable.notifications
   end
 end

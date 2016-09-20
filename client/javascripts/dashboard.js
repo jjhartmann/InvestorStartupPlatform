@@ -20,14 +20,14 @@ $(document).ready(function(){
     $(".tab-content").children('div').removeClass("active");
     $(".tabing .nav-pills").children('li').removeClass("active");
   });
-  $(".navbar-brand").click(function(){
-    $(".tabing").show();
-    $("#home").hide();
-    $(".short-profile").show();
-    $(".profile-set").removeClass("active");
-    $(".container.side-deatail").removeAttr("style");
-    $(".profile-tabs").removeAttr("style");
-    $("#menu4").addClass("active");
-    $(".tabing .nav-pills").children('li:first-child').addClass("active");
-  });
+  // $(".navbar-brand").click(function(){
+  //   $(".tabing").show();
+  //   $("#home").hide();
+  //   $(".short-profile").show();
+  //   $(".profile-set").removeClass("active");
+  //   $(".container.side-deatail").removeAttr("style");
+  //   $(".profile-tabs").removeAttr("style");
+  //   $("#menu4").addClass("active");
+  //   $(".tabing .nav-pills").children('li:first-child').addClass("active");
+  // });
 });
