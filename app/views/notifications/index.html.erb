@@ -1,33 +1,54 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_notification_class, "active" %>
 
-<h1>Notifications</h1>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-title">Notification</div>
+          <% if @notifications.present? %>
+          <div class="main-notification">
+            <!-- <div class="all-notification-close">
+            <i aria-hidden="true" class="fa fa-times"></i>
+          </div> -->
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tab-1">All</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade in active">
+              <div class="notification-box">
+                <ul>
+                  <% @notifications.each do |notification| %>
+                  <li data-notification-id="<%= notification.id %>">
+                    <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
+                    <div class="notes-track">
+                      <div class="main-pro-name"><span class="yellow">Vishal Malukani</span> added you as a connection</div>
+                      <p><%= notification.notification_text %></p>
+                      <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i>9 Hours ago</span>
+                    </div>
+                    <div class="all-notification-close">
+                      <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id%>"></i>
+                    </div>
+                    <!-- <div class="btn-yes-no">
+                    <a href="#"><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Dismiss</div></a>
+                    <a href="#"><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div></a>
+                  </div> -->
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Notificable</th>
-      <th>Notificable type</th>
-      <th>Notification text</th>
-      <th>Is viewed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @notifications.each do |notification| %>
-      <tr>
-        <td><%= notification.notificable_id %></td>
-        <td><%= notification.notificable_type %></td>
-        <td><%= notification.notification_text %></td>
-        <td><%= notification.is_viewed %></td>
-        <td><%= link_to 'Show', notification %></td>
-        <td><%= link_to 'Edit', edit_notification_path(notification) %></td>
-        <td><%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Notification', new_notification_path %>
+      <% else %>
+      <p>You have no new notifications.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>

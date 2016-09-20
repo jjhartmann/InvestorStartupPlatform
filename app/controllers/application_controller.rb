@@ -34,6 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notifications
-    @notifications = current_user.profilable.notifications
+    @notifications = current_user.profilable.notifications.where(is_viewed: false)
   end
 end
