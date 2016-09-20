@@ -2,32 +2,22 @@
 <%#= react_component('Profile', props: {data: @user_profile, profilable: @user_profile.profilable}) %>
 
 <%= content_for :body_class, "dashbord" %>
+<%= content_for :profile_active_class, "active" %>
 
 <!--profile-->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="short-profile" style="display:none;">
-        <ul>
-          <li><a href="#"><div class="main-profile"><i class="fa fa-user" aria-hidden="true"></i></div><div class="user-name-short">Shantilal matariya </div><div class="view">View Your Profile</div></a></li>
-          <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div><div class="tag-count">0</div><div class="tag-name">Connections</div></a></li>
-          <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>
-          <li><a href="#"><div class="main-profile"><i class="fa fa-rss" aria-hidden="true"></i></div><div class="tag-count">8 people</div><div class="tag-name">In your network</div> </a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!--/profile-->
 <div class="main-body">
-  <div class="container side-deatail" style="transition: none; width: 100%;">
+  <div class="container side-deatail" style="transition: none; width: 100%; margin-top: 100px">
     <div class="col-xs-12">
       <div class="profile-tabs">
         <div id="home" style="display:block">
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
+              <%= link_to "#" do %>
+                <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
+              <% end %>
               <h2><i aria-hidden="true" class="fa fa-user"></i><%= current_user.name %></h2>
               <p>Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
               <% if current_user.profilable_type == "UserProfile" %>
@@ -43,15 +33,14 @@
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
               <% end %>
               <div class="buttons">
-                <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                </a>
+                <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div></a>
                 <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
   </div>
+</div>
 </div>

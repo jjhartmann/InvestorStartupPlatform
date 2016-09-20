@@ -4,7 +4,6 @@ class UserDashboardsController < ApplicationController
 
   def index
     if current_user.profilable.questionaire.questions.present?
-      @notifications = current_user.profilable.notifications
       @feeds = NewsFeed.all.limit(5)
     else
       redirect_to questionaries_path

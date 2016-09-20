@@ -1,10 +1,14 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  before_action :set_notification, only: [:show, :edit, :update, :destroy, :dismiss]
+  skip_before_action :verify_authenticity_token, only: [:dismiss]
+
+  layout 'frontpage'
+  before_filter :authenticate_user!
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    
   end
 
   # GET /notifications/1
@@ -59,6 +63,12 @@ class NotificationsController < ApplicationController
       format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #dismiss a notification
+  def dismiss
+    puts "bhb"
+    @notification.update(is_viewed: true)
   end
 
   private

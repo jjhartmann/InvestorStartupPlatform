@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :news_feeds
-  resources :notifications
+  resources :notifications do
+    member do
+      post 'dismiss'
+    end
+  end
   resources :user_dashboards
   resources :user_profiles
   resources :questionaries do
