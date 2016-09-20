@@ -1259,8 +1259,8 @@ input:focus::-webkit-input-placeholder {
   width: 295px;
   text-align: left;
 }
-#floating_alert .snacker a{
-      color: #746f5e;
+#floating_alert a{
+      color: 'red';
 }
 #contactForm {
     background: rgba(0,0,0,0.6);
