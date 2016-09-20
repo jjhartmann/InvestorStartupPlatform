@@ -13,9 +13,7 @@ export default class ProfilePage extends React.Component {
   }
   render() {
     return (
-      <div>
         <ProfileDetails {...this.props} />
-      </div>
     );
   }
 }

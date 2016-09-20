@@ -33,24 +33,6 @@
   <div class="container side-deatail">
     <div class="col-xs-12">
       <div class="profile-tabs">
-        <div id="home">
-          <div class="tab-title">Profile</div>
-          <div class="main-start">
-            <div class="box-tab">
-              <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
-              <h2><i aria-hidden="true" class="fa fa-user"></i><%= current_user.name %></h2>
-              <p>Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i>Devloper</div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-map-marker"></i>Gujarat Housing Board</div>
-              <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i>shm@narola.email</div>
-              <div class="buttons">
-                <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                </a>
-                <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="tab-content">
           <div id="menu1" class="tab-pane fade in active">
            <div class="tab-title">Dashboard</div>
@@ -62,9 +44,9 @@
                      <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
                    </div>
                    <div class="box effect2">
-                       <div class="main-img">
-                         <%= image_tag feed.photo %>
-                       </div>
+                     <div class="main-img">
+                       <%= image_tag feed.photo %>
+                     </div>
                    </div>
                    <div class="main-details">
                      <h3><%= feed.title %></h3>
