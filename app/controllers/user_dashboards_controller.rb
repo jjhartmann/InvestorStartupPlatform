@@ -3,10 +3,11 @@ class UserDashboardsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    # unless current_user.profilable.questionaire.questions.present?
-    #   redirect_to questionaries_path
-    # end
-    puts "-----#{current_user.id}"
+    if current_user.profilable.questionaire.questions.present?
+      @notifications = current_user.profilable.notifications
+    else
+      redirect_to questionaries_path
+    end
   end
 
   def new

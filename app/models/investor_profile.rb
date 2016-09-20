@@ -3,7 +3,8 @@ class InvestorProfile < ApplicationRecord
   include RailsAdminCharts
 
   has_one :user, :as => :profilable
-  has_one :questionaire, :as => :questionable
+  has_one :questionaire, :as => :questionable  
+  has_many :notifications, :as => :notificable
 
   validates :tagline,        :presence     => true,
             :length       => { :within => 10..140 }
