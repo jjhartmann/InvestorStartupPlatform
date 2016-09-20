@@ -9,9 +9,10 @@ export default class Error extends React.Component {
   {
     const { error } = this.props;
     return (
-     <div className="alert alert-danger">
-      {error}
-    </div>
+    <div className="alert alert-danger">
+        {error}
+        <a href="#" className="alert-danger" style={{float: 'right'}} data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
     );
   }
 }
