@@ -18,6 +18,7 @@ export default class AlertMessage extends React.Component {
           return (
             <div className={`alert header-alert alert-message slideup alert-${this.props.data.type}`}>
               {this.props.data.message}
+              <a href="#" className={`alert-${this.props.data.type}`} style={{float: 'right'}} data-dismiss="alert" aria-label="close">&times;</a>
             </div>
           );
         }
@@ -25,6 +26,7 @@ export default class AlertMessage extends React.Component {
           return (
             <div className={`alert header-alert alert-message alert-${this.props.data.type}`}>
               {this.props.data.message}
+              <a href="#" className={`alert-${this.props.data.type}`} style={{float: 'right'}} data-dismiss="alert" aria-label="close">&times;</a>
             </div>
           );
         }
