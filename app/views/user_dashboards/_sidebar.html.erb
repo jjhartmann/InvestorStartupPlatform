@@ -1,0 +1,20 @@
+<div class="tabing">
+  <div class="close-open"><i class="fa fa-bars" aria-hidden="true"></i></div>
+  <ul class="nav nav-pills">
+    <li class='<%= yield :sidebar_dashboard_class %>'>
+      <%= link_to user_dashboards_path do %>
+        <i aria-hidden="true" class="fa fa-tachometer"></i><span class="tab-name">Dashboard</span>
+      <% end %>
+    </li>
+    <li class='<%= yield :sidebar_notification_class %>'>
+    <%= link_to notifications_path do %>
+      <i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count %></div>
+    <% end %>
+    </li>
+    <li class='<%= yield :sidebar_message_class %>'><a data-toggle="pill" href="#menu3"><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count">3</div></a></li>
+    <li class='<%= yield :sidebar_proposals_class %>'><a data-toggle="pill" href="#menu4"><i class="fa fa-usd" aria-hidden="true"></i><span class="tab-name">Proposals</span></a></li>
+    <li class='<%= yield :sidebar_offers_class %>'><a data-toggle="pill" href="#menu5"><i aria-hidden="true" class="fa fa-tag"></i><span class="tab-name">Offers</span></a></li>
+    <li class='<%= yield :sidebar_interests_class %>'><a data-toggle="pill" href="#menu6"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i><span class="tab-name">Interests</span></a></li>
+    <li class='<%= yield :sidebar_meeting_schedules_class %>'><a data-toggle="pill" href="#menu7"><i class="fa fa-calendar" aria-hidden="true"></i><span class="tab-name">Meeting Schedules</span></a></li>
+  </ul>
+</div>

@@ -1,0 +1,16 @@
+<!--profile-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="short-profile">
+        <ul>
+          <li><%= link_to user_profile_path(current_user.id), class: "view" do %><div class="main-profile"><i class="fa fa-user" aria-hidden="true"></i></div><div class="user-name-short"><%= current_user.name %></div><div class="view">View Your Profile</div><% end %></li>
+          <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div><div class="tag-count">0</div><div class="tag-name">Connections</div></a></li>
+          <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>
+          <li><a href="#"><div class="main-profile"><i class="fa fa-rss" aria-hidden="true"></i></div><div class="tag-count">8 people</div><div class="tag-name">In your network</div> </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/profile-->
