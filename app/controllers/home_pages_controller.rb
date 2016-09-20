@@ -4,9 +4,6 @@ class HomePagesController < ApplicationController
   # GET /home_pages.json
   def index
     if user_signed_in?
-      puts "_______________"
-      puts current_user.profilable.present?
-      puts "_______________"
       if current_user.profilable.questionaire.nil?
         # create new questionaire for the user according to the user_profile
         questionaire = Questionaire.new
