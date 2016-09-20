@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notifications
   resources :user_dashboards
   resources :user_profiles
   resources :questionaries do

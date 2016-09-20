@@ -3,11 +3,11 @@
 one:
   notificable_id: 1
   notificable_type: MyString
-  notification_text: MyString
-  is_viewed: MyString
+  notification_text: MyText
+  is_viewed: false
 
 two:
   notificable_id: 1
   notificable_type: MyString
-  notification_text: MyString
-  is_viewed: MyString
+  notification_text: MyText
+  is_viewed: false
