@@ -1,7 +1,7 @@
 class UserProfilesController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
-  before_action :set_user_profile,only: [:index, :update, :destroy, :show]
+  before_action :set_user_profile,only: [:index, :update, :destroy, :show, :edit]
 
   def index
     @current_user = current_user
@@ -14,6 +14,10 @@ class UserProfilesController < ApplicationController
     puts "________________"
     puts @user_profile.as_json
     # puts request.original_url
+  end
+
+  def edit
+    @user = current_user
   end
 
   def update

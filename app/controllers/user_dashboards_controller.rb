@@ -1,6 +1,6 @@
 class UserDashboardsController < ApplicationController
   layout 'frontpage'
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     if current_user.profilable.questionaire.questions.present?
@@ -19,7 +19,7 @@ class UserDashboardsController < ApplicationController
   def edit
   end
 
-  def upadte
+  def update
   end
 
   def show

@@ -3,10 +3,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   skip_before_action :verify_authenticity_token
 
-  # allow name as parameter
+  # allow name, username and photo as parameter
   before_action :configure_permitted_parameters
-# before_action :configure_sign_up_params, only: [:create]
-# before_action :configure_account_update_params, only: [:update]
+
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -16,7 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-
     build_resource(sign_up_params)
 
     # create profile_type of user
@@ -25,8 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     elsif resource.profilable_type == "InvestorProfile"
       user_profile = InvestorProfile.new
     end
-
-
 
     # skip validation and save the user_profile for now
     user_profile_saved= user_profile.save(validate: false)
@@ -82,7 +80,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :profilable_type])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:photo, :name, :password, :email])
+  end
+
+  # update profile or user without password
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -91,7 +99,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:photo])
   # end
 
   # The path used after sign up.
@@ -103,10 +111,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :profilable_type])
-  end
 end

@@ -591,8 +591,9 @@ a.view:hover{
 
 .notification-box {
     background: #eff4f7 none repeat scroll 0 0;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     padding: 15px;
+    border: 1px solid #ddd;
+    border-top: none;
     position: relative;
 }
 .main-notification{
@@ -656,7 +657,8 @@ a.view:hover{
     width: 80px;
 }
 .circle-pic img{
-  width: 100%;
+  width: auto;
+  height: 100%;
 }
 .yellow {
     color: #ffc857;
@@ -702,4 +704,7 @@ a .btn.btn-green:hover{
 }
 .main-notification .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
   background:#eff4f7;
+}
+.dashbord {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
