@@ -49,6 +49,7 @@ config = {
     './stylesheets/agency',
     './stylesheets/font-awesome.min',
     './stylesheets/style',
+    './stylesheets/responsive',
   ],
   RailsAdminBundle: [
     './javascripts/rails_admin/ra.widgets',

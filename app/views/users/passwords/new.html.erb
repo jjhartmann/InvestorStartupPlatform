@@ -1,5 +1,11 @@
 <header class="back-image">
 </header>
+<div id="floating_alert">
+  <div class="alert header-alert alert-message alert-danger">
+    <%= resource.errors.full_messages[0] %>
+    <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+  </div>
+</div>
 
 <div class="container">
   <div>

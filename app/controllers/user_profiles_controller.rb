@@ -5,15 +5,9 @@ class UserProfilesController < ApplicationController
 
   def index
     @current_user = current_user
-    puts @current_user.as_json
-    puts @user_profile
   end
 
   def show
-    puts request.referer
-    puts "________________"
-    puts @user_profile.as_json
-    # puts request.original_url
   end
 
   def edit

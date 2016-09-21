@@ -177,6 +177,10 @@ class User < ApplicationRecord
     Message.where(:target_id => nil, :user_id => users_followed_ids + [id]).default_order
   end
 
+  def photo_full
+    photo? ? photo : 'enterprise_460x300.png'
+  end
+
   protected
 
   # Devise's support for login using the :login virtual attribute
