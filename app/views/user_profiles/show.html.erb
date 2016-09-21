@@ -4,9 +4,6 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :profile_active_class, "active" %>
 
-<!--profile-->
-
-<!--/profile-->
 <div class="main-body">
   <div class="container side-deatail" style="transition: none; width: 100%; margin-top: 100px">
     <div class="col-xs-12">
@@ -15,7 +12,7 @@
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%= link_to "#" do %>
+              <%= link_to edit_user_profile_path(params[:id]) do %>
                 <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
               <% end %>
               <h2><i aria-hidden="true" class="fa fa-user"></i><%= current_user.name %></h2>

@@ -40,4 +40,5 @@ $(document).ready(function(){
       }
     });
   });
+  $('.alert.header-alert').delay(2000).fadeOut(500);
 });
