@@ -236,14 +236,17 @@ html,body{
     color: #fff;
 }
 .dashbord .circle {
-    background: #eff4f7  none repeat scroll 0 0;
+    background: #eff4f7 none repeat scroll 0 0;
     border-radius: 100%;
-    height: 150px;
-    margin: 0 auto;
-    width: 150px;
-    text-align: center;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.46);
     display: block;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 150px;
+    transition:all 0.4s;
 }
 .box-tab {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -267,11 +270,13 @@ html,body{
     color: #fed136;
     font-size: 20px;
     margin-right: 10px;
+    width: 20px;
 }
 .user-positon .fa {
     color: #fed136;
     font-size: 18px;
     margin-right: 10px;
+    width: 20px;
 }
 .user-positon {
     font-size: 16px;
@@ -397,9 +402,6 @@ html,body{
     float: left;
     width: 100%;
     height: 100%;
-}
-#home {
-    display: none;
 }
 .short-profile{
     float: left;
@@ -707,4 +709,80 @@ a .btn.btn-green:hover{
 }
 .dashbord {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.edit-mode-enabled .form-control,
+.edit-mode-enabled .address-fields,
+.edit-mode-enabled .edit_contact_form .form-control{
+    display: inline-block;
+    width: 400px;
+}
+.edit-mode-enabled .js-add-gallery,
+.edit-mode-enabled .js-cancel,
+.edit-mode-enabled #defaultSave{
+    display: inline-block;
+}
+.edit-mode-enabled .js-edit-contact,
+.edit-mode-enabled .display-mode-value,
+.edit-mode-enabled .address-display-mode-container{
+    display: none;
+}
+.edit-mode-disabled .form-control,
+.edit-mode-disabled .address-fields,
+.edit-mode-disabled .js-add-gallery,
+.edit-mode-disabled .js-cancel,
+.edit-mode-disabled #defaultSave{
+    display: none;
+}
+.edit-mode-disabled .edit_contact_form .form-control{
+    display: block;
+}
+.edit-mode-disabled .js-edit-contact{
+    display: inline-block;
+}
+.box-tab p .fa {
+    color: #fed136;
+    font-size: 20px;
+    margin-right: 10px;
+    width: 20px;
+}
+.event-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn.btn-default.js-cancel {
+    background: #ed4337 none repeat scroll 0 0;
+    border: medium none;
+    color: #ffffff;
+    font-weight: 400;
+    width: 120px;
+    transition:all 0.4s ease 0s
+}
+.event-btn .btn.btn-primary{
+  background-color: #5cb85c;
+   border: medium none;
+    color: #ffffff;
+    font-weight: 400;
+    width: 120px;
+    background-image: none;
+    transition:all 0.4s ease 0s
+}
+.btn.btn-default.js-cancel:hover {
+  box-shadow:0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.event-btn .btn.btn-primary:hover{
+  box-shadow:0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.edit-mode-enabled .circle:hover{
+  background: #ffc857;
+}
+.circle input {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+.circle img {
+    width: 100%;
 }
