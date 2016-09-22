@@ -7,7 +7,7 @@ class UserProfile < ApplicationRecord
   has_many :notifications, :as => :notificable
 
   validates :profession,        :presence     => true,
-            :length       => { :within => 1..140 }
+            :length       => { :within => 1..140 }, on: :update
   validates :industry, :presence     => true,
-            :length       => { :within => 1..140 }
+            :length       => { :within => 1..140 }, on: :update
 end

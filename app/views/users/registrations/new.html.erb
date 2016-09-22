@@ -56,10 +56,10 @@
     <div class="row">
       <div class="registration col-xs-12 col-sm-6">
         <div class="">
-          <form class="register" onSubmit={this.submit.bind(this)}>
+          <form class="register">
             <h1 class="text-center">Register Now</h1>
             <div class="form-group">
-              <input type="text" placeholder="Enter your full name" onChange={this.updateName} />
+              <input type="text" placeholder="Enter your full name" />
             </div>
             <div class="form-group">
               <input type="text" placeholder="Enter your Email-Address" />
@@ -89,7 +89,7 @@
           <div class="">
             <div class="clearfix">
               <div class="links">
-              <h1 class="text-center">Join Us <br/> Through</h1>
+              <h1 class="text-center">Join Us</h1>
                 <ul class="social">
                   <li><a href="#"><span class="fa fa-weixin"></span><span>We Chat</span></a></li>
                   <li><h6>OR</h6></li>
@@ -109,8 +109,11 @@
 
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
+
 <header class='back-image'>
+
 </header>
+
 <% link_to "Forgot Password", new_password_path('user'), :class => "login-link" %>
 
 <%= react_component('Registration', props: {
