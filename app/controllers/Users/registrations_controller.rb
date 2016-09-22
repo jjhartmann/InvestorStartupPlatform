@@ -30,12 +30,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_profile_saved= user_profile.save(validate: false)
     # assign polymorophic relation to profilable
     resource.profilable = user_profile
-    resource_saved = resource.save
-
+    resource_saved = resource.save(validate: false)
     yield resource if block_given?
     # if all the three are succesfully created
 
-    if resource_saved
+    if resource_saved && user_profile_saved
 
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
@@ -83,14 +82,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :profilable_type])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:photo, :name, :password, :email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :username, :email, :profilable_type, profilable_attributes: []])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:photo, :name, profilable_attributes: [:id, :industry, :profession, :skills, :something_cool, :tagline, :funds_to_offer, :description]])
   end
 
   # update profile or user without password
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+  #
+  # def after_update_path_for(resource)
+  #   user_profile_path(resource)
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
