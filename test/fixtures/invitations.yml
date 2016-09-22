@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enterprise: one
+  user: one
+  email: MyString
+  acceptance_status: false
+
+two:
+  enterprise: two
+  user: two
+  email: MyString
+  acceptance_status: false
