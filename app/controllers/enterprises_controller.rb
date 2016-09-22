@@ -12,6 +12,9 @@ class EnterprisesController < ApplicationController
   # GET /enterprises/1
   # GET /enterprises/1.json
   def show
+    unless @enterprise.questionaire.questions.present?
+      redirect_to questionaries_path(enterprise: @enterprise.id)
+    end
   end
 
   # GET /enterprises/new
@@ -30,9 +33,10 @@ class EnterprisesController < ApplicationController
 
     respond_to do |format|
       if @enterprise.save
-        @enterprise_user = EnterpriseUser.create(enterprise_id: @enterprise.id,role_identifier: "member",member_title: "Founder")
-        format.html { redirect_to @enterprise, notice: 'Enterprise was successfully created.' }
-        format.json { render :show, status: :created, location: @enterprise }
+        @enterprise_user = EnterpriseUser.create(enterprise_id: @enterprise.id, user_email: current_user.email, role_identifier: "member", member_title: "Founder")
+        @enterprise.create_questionaire
+        format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }
+        format.json { render :index, status: :created, location: @enterprise }
       else
         format.html { render :new }
         format.json { render json: @enterprise.errors, status: :unprocessable_entity }
@@ -62,6 +66,25 @@ class EnterprisesController < ApplicationController
       format.html { redirect_to enterprises_url, notice: 'Enterprise was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+
+  def add_member
+    puts params
+    params[:invitee].split(",").each do |invitee|
+      puts invitee
+      @user = User.find_by_email(invitee)
+      if @user.present?
+        @invitation = Invitation.create(enterprise_id: params[:enterprise_id],user_id: @user.id, email: @user.email)
+        InvitationMailer.invitation_mail(@invitation).deliver_now
+      else
+        @invitation = Invitation.create(enterprise_id: params[:enterprise_id], email: invitee)
+        InvitationMailer.invitation_mail(@invitation).deliver_now
+      end
+
+    end
+    redirect_to root_path
   end
 
   private
