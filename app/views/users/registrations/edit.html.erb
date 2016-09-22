@@ -9,12 +9,13 @@
   <div class="container side-deatail" style="transition: none; width: 100%; margin-top: 100px">
     <div class="col-xs-12">
       <div class="profile-tabs">
-        <%= devise_error_messages! %>
+        <% devise_error_messages! %>
         <div id="home" class="editable-contact-info edit-mode-enabled">
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%= form_for(@user, as: @user, url: registration_path(@user), html: { method: :put }) do |f| %>
+              <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: { input_html: { class: 'default_class' } } do |f| %>
+
               <div class="form-group">
                  <div class="circle">
                    <% if @user.photo.present? %>
@@ -22,13 +23,13 @@
                    <% else %>
                     <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
                    <% end %>
-                   <%= f.file_field :photo, class: "form-control" %>
+                   <%= f.input :photo, class: "form-control", as: :file, label: false %>
                  </div>
                </div>
                 <div class="form-group">
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
-                    <%= f.text_field :name, class: "form-control" %>
+                    <%= f.input :name, class: "form-control", label: false, placeholder: "Your Full Name" %>
                     <span class="display-mode-value"><%= @user.name %></span>
                   </h2>
                 </div>
@@ -39,35 +40,35 @@
               <% if @user.profilable_type == "UserProfile" %>
                 <%= f.fields_for :profilable do |profile_fields| %>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.text_field :industry, class: "form-control" %><span class="display-mode-value"></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.input :industry, class: "form-control", label: false, placeholder: "Industry" %><span class="display-mode-value"></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.text_field :profession, class: "form-control" %><span class="display-mode-value"></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.input :profession, class: "form-control", label: false, placeholder: "Profession" %><span class="display-mode-value"></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.text_field :skills, class: "form-control" %><span class="display-mode-value"></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.input :skills, class: "form-control", label: false, placeholder: "Skills" %><span class="display-mode-value"></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.text_field :something_cool, class: "form-control" %><span class="display-mode-value"></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.input :something_cool, class: "form-control", label: false, placeholder: "Something cool about yourself." %><span class="display-mode-value"></span></div>
                   </div>
                 <% end %>
               <% else %>
                 <%= f.fields_for :profilable do |profile_fields| %>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.text_field :tagline, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.input :tagline, class: "form-control", label: false, placeholder: "Tagline" %><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.text_field :funds_to_offer, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.input :funds_to_offer, class: "form-control", label: false, placeholder: "Funds to Offer" %><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.text_field :description, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.input :description, class: "form-control", label: false, placeholder: "Description" %><span class="display-mode-value"><%= @user.profilable.description %></span></div>
                 </div>
                 <% end %>
               <% end %>
               <div class="form-group">
                 <div class="user-positon">
                   <i aria-hidden="true" class="fa fa-envelope"></i>
-                  <%= f.text_field :email, class: "form-control", disabled: true%>
+                  <%= f.input :email, class: "form-control", label: false, disabled: true%>
                   <span class="display-mode-value"><%= @user.email %></span>
                 </div>
               </div>
