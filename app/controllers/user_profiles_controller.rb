@@ -5,8 +5,6 @@ class UserProfilesController < ApplicationController
 
   def index
     @current_user = current_user
-    puts @current_user.as_json
-    puts @user_profile
   end
 
   def show

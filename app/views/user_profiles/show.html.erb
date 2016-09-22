@@ -8,26 +8,46 @@
   <div class="container side-deatail" style="transition: none; width: 100%; margin-top: 100px">
     <div class="col-xs-12">
       <div class="profile-tabs">
-        <div id="home" style="display:block">
+        <div id="home" class="editable-contact-info edit-mode-disabled">
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%= link_to edit_user_profile_path(params[:id]) do %>
-                <div class="circle"><i aria-hidden="true" class="fa fa-user"></i></div>
-              <% end %>
-              <h2><i aria-hidden="true" class="fa fa-user"></i><%= current_user.name %></h2>
-              <p>Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+              <%= form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+              <div class="form-group">
+                 <div class="circle">
+                   <%= image_tag current_user.photo_url, class: "display-mode-value"%>                  
+                   <%= f.file_field :photo, class: "form-control" %>
+                   <i aria-hidden="true" class="fa fa-user"></i>
+                 </div>
+               </div>
+                <div class="form-group">
+                  <h2>
+                    <i aria-hidden="true" class="fa fa-user"></i>
+                    <%= f.text_field :name, class: "form-control" %>
+                    <span class="display-mode-value"><%= current_user.name %></span>
+                  </h2>
+                </div>
+                <div class="form-group">
+                  <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
+                </div>
+
               <% if current_user.profilable_type == "UserProfile" %>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= current_user.profilable.industry %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= current_user.profilable.profession %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= current_user.profilable.skills %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= current_user.profilable.something_cool %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+
               <% else %>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= current_user.profilable.tagline %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= current_user.profilable.funds_to_offer %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= current_user.profilable.description %></div>
                 <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+              <% end %>
+              <div class="event-btn">
+                 <%= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
+                <button type="button" class="btn btn-default js-cancel">Cancel</button>
+              </div>
               <% end %>
               <div class="buttons">
                 <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div></a>

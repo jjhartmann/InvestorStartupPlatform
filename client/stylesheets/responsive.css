@@ -1,0 +1,26 @@
+/*19-09-2016*/
+@media(max-width: 1199px){
+.time-date {
+    display: block;
+    float: none;
+    margin-top: 5px;
+}
+}
+@media(max-width: 767px){
+.short-profile ul li {
+    float: left;
+    height: 110px;
+    list-style: outside none none;
+    width: 50%;
+}
+.user-name-short{
+  font-size: 15px;
+}
+.view{
+  font-size: 14px;
+}
+.main-img img {
+    height: 100%;
+    width: auto;
+}
+}
