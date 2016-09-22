@@ -21,6 +21,9 @@ class Enterprise < ApplicationRecord
 
   has_one :questionaire, :as => :questionable
 
+  #Association for the invitatiions send to respective enterprise
+  has_many :invitations
+
   accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
   validates :name,              :presence     => true,

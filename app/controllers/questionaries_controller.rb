@@ -4,14 +4,18 @@ class QuestionariesController < ApplicationController
   respond_to  :html
 
   def index
-    if current_user.profilable.questionaire.questions.present?
-      redirect_to root_path
+    if params[:enterprise].present?
+      @questions =QuestionsToAskEnterprise.all.as_json
     else
-      @user_type = current_user.profilable_type
-      if @user_type == "UserProfile"
-        @questions = QuestionsToAskEntrepreneur.all.as_json
-      elsif @user_type == "InvestorProfile"
-        @questions = QuestionsToAskInvestor.all.as_json
+      if current_user.profilable.questionaire.questions.present?
+        redirect_to root_path
+      else
+        @user_type = current_user.profilable_type
+        if @user_type == "UserProfile"
+          @questions = QuestionsToAskEntrepreneur.all.as_json
+        elsif @user_type == "InvestorProfile"
+          @questions = QuestionsToAskInvestor.all.as_json
+        end
       end
     end
   end

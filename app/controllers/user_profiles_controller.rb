@@ -10,10 +10,7 @@ class UserProfilesController < ApplicationController
   end
 
   def show
-    puts request.referer
-    puts "________________"
     puts @user_profile.as_json
-    # puts request.original_url
   end
 
   def edit
