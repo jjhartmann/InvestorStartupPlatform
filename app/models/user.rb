@@ -40,6 +40,8 @@ class User < ApplicationRecord
   has_many :target_followed,   :class_name => 'TargetFollower', :as => :follower
   has_many :users_followed,    :through => :target_followed, :source => :target, :source_type => 'User'
   has_many :enterprises_followed, :through => :target_followed, :source => :target, :source_type => 'Enterprise'
+  #Association for the users that have invitations
+  has_many :invitations
 
   validates :username, :presence     => true,
             :uniqueness   => { :case_sensitive => false },

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :enterprises do
+    collection do
+      get 'add_member'
+      post 'add_member'
+    end
+  end
   resources :news_feeds
   resources :notifications do
     member do

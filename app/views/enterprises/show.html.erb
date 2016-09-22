@@ -1,4 +1,73 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 col-md-offset-2">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_enterprise_path(@enterprise) %> |
-<%= link_to 'Back', enterprises_path %>
+  <p>
+    <strong>Name:</strong>
+    <%= @enterprise.name %>
+  </p>
+  <p>
+    <strong>Pitch:</strong>
+    <%= @enterprise.pitch %>
+  </p>
+  <p>
+    <strong>Funds To Raise:</strong>
+    <%= @enterprise.funds_to_raise %>
+  </p>
+  <p>
+    <strong>Industry:</strong>
+    <%= @enterprise.industry %>
+  </p>
+  <p>
+    <strong>Enterprise Stage:</strong>
+    <%= @enterprise.enterprise_stage %>
+  </p>
+  <p>
+    <strong>Stage Identifiers:</strong>
+    <%= @enterprise.stage_identifier %>
+  </p>
+  <p>
+    <strong>Market Identifiers:</strong>
+    <%= @enterprise.market_identifier %>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= @enterprise.location %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @enterprise.description %>
+  </p>
+<!-- followers_count -->
+<!-- followed_count -->
+<!-- comment_count -->
+
+  <%= link_to 'Edit', edit_enterprise_path(@enterprise) %> |
+  <%= link_to 'Back', enterprises_path %>
+  <%= link_to "Add Members","#add_member",'data-toggle': "modal" %>
+</div>
+
+
+<!-- Invitation Modal -->
+<div id="add_member" class="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <%= form_tag add_member_enterprises_path do |f|%>
+      <div class="modal-body">
+        <%= hidden_field_tag 'enterprise_id', params[:id].to_i %>
+        <%= text_field_tag "invitee","",class: "form-control",placeholder: "Enter email id of Invitee..."%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag "Submit" %>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
