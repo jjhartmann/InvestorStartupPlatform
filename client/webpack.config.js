@@ -43,6 +43,7 @@ config = {
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/dashboard',
+    './javascripts/all_users',
 
     //include stylesheets
     './stylesheets/bootstrap.min',

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
       post 'dismiss'
     end
   end
-  resources :user_dashboards
+  resources :user_dashboards do
+    collection do
+      get 'all_users'
+      get 'follow_unfollow_user'
+    end
+  end
   resources :user_profiles
   resources :questionaries do
     collection do
