@@ -1,7 +1,6 @@
 <%= content_for :all_user_class, 'active'%>
-<%= @all_users.as_json %>
 
-<table class="table">
+<table class="table test">
   <thead>
     <th>Name</th>
     <th></th>
@@ -9,8 +8,8 @@
   <tbody>
     <% @all_users.each do |user| %>
     <tr>
-      <td><%= user.name %></td>
-      <td><%= link_to "Follow","#",class: "btn btn-primary follow","data-id": "#{user.id}" %></td>
+      <td><%=link_to user.name, suggested_profile_user_dashboards_path(profile_id: user.id) %></td>
+      <td><%= link_to current_user.is_following?(user) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{user.id}" %></td>
     </tr>
     <% end %>
   </tbody>

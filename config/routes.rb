@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'all_users'
       get 'follow_unfollow_user'
+      get 'suggested_profile'
     end
   end
   resources :user_profiles
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'    
+    get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
   resources :home_pages do

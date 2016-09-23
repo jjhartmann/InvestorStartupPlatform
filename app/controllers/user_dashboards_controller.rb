@@ -36,9 +36,21 @@ class UserDashboardsController < ApplicationController
   def follow_unfollow_user
     puts params
     @user = User.find(params[:target_id])
-    puts @user.id
-    puts @user.profilable_type
-    current_user.follow(@user)
+    # puts @user.id
+    # puts @user.profilable_type
+    # puts current_user.is_following?(@user)
+    if current_user.is_following?(@user)
+      # puts "*****************"
+      current_user.unfollow(@user)
+    else
+      # puts "___________________"
+      current_user.follow(@user)
+    end
     redirect_to root_path
+  end
+
+  def suggested_profile
+    puts params
+    @suggested_user = User.find(params[:profile_id])
   end
 end
