@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Proposals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        <%= "proposal_stage_identifier" %>
+      </th>
+      <th>
+        <%= "new_business_model" %>
+      </th>
+      <th>
+        <%= "new_product" %>
+      </th>
+      <th>
+        <%= "pitch" %>
+      </th>
+      <th>
+        <%= "introduction" %>
+      </th>
+      <th>
+        <%= "competitors_details" %>
+      </th>
+      <th>
+        <%= "competitive_edges" %>
+      </th>
+      <th>
+        <%= "competing_strategy" %>
+      </th>
+      <th>
+        <%= "investment_amount" %>
+      </th>
+      <th>
+        <%= "investment_currency" %>
+      </th>
+      <th>
+        <%= "equity_percentage" %>
+      </th>
+      <th>
+        <%= "spending_plan" %>
+      </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <td>
+          <%=h truncate(proposal.proposal_stage_identifier, length: 10) %>
+        </td>
+        <td>
+          <%=proposal.new_business_model %>
+        </td>
+        <td>
+          <%=proposal.new_product %>
+        </td>
+        <td>
+          <%=h truncate(proposal.pitch, length: 10) %>
+        </td>
+        <td>
+          <%=h truncate(proposal.introduction, length: 10) %>
+        </td>
+        <td>
+          <%=h truncate(proposal.competitors_details, length: 10) %>
+        </td>
+        <td>
+          <%=h truncate(proposal.competitive_edges, length: 10) %>
+        </td>
+        <td>
+          <%=h truncate(proposal.competing_strategy, length: 10) %>
+        </td>
+        <td>
+          <%=proposal.investment_amount %>
+        </td>
+        <td>
+          <%=h truncate(proposal.investment_currency, length: 10) %>
+        </td>
+        <td>
+          <%= proposal.equity_percentage %>
+        </td>
+        <td>
+          <%=h truncate(proposal.spending_plan, length: 10) %>
+        </td>
+        <td><%= link_to 'Show', proposal %></td>
+        <td><%= link_to "Make an offer", new_offer_path %></td>
+        <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
+        <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Proposal', new_proposal_path %>
