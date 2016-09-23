@@ -12,45 +12,72 @@
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%= form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+              <%= form_for(@user, as: @user, url: registration_path(@user), html: { method: :put }) do |f| %>
               <div class="form-group">
                  <div class="circle">
-                   <%= image_tag current_user.photo_url, class: "display-mode-value"%>                  
+                   <% if @user.photo.present? %>
+                    <%= image_tag @user.photo_url, class: "display-mode-value"%>
+                   <% else %>
+                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
+                   <% end %>
                    <%= f.file_field :photo, class: "form-control" %>
-                   <i aria-hidden="true" class="fa fa-user"></i>
                  </div>
                </div>
                 <div class="form-group">
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
                     <%= f.text_field :name, class: "form-control" %>
-                    <span class="display-mode-value"><%= current_user.name %></span>
+                    <span class="display-mode-value"><%= @user.name %></span>
                   </h2>
                 </div>
                 <div class="form-group">
                   <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
                 </div>
 
-              <% if current_user.profilable_type == "UserProfile" %>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= current_user.profilable.industry %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= current_user.profilable.profession %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= current_user.profilable.skills %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= current_user.profilable.something_cool %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
-
+              <% if @user.profilable_type == "UserProfile" %>
+                <%= f.fields_for :profilable do |profile_fields| %>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.text_field :industry, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.industry %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.text_field :profession, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.profession %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.text_field :skills, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.skills %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.text_field :something_cool, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
+                  </div>
+                <% end %>
               <% else %>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= current_user.profilable.tagline %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= current_user.profilable.funds_to_offer %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= current_user.profilable.description %></div>
-                <div class="user-positon"><i aria-hidden="true" class="fa fa-envelope"></i><%= current_user.email %></div>
+                <%= f.fields_for :profilable do |profile_fields| %>
+                <div class="form-group">
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.text_field :tagline, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                </div>
+                <div class="form-group">
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.text_field :funds_to_offer, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                </div>
+                <div class="form-group">
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.text_field :description, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                </div>
+                <% end %>
               <% end %>
+              <div class="form-group">
+                <div class="user-positon">
+                  <i aria-hidden="true" class="fa fa-envelope"></i>
+                  <%= f.text_field :email, class: "form-control", disabled: true%>
+                  <span class="display-mode-value"><%= @user.email %></span>
+                </div>
+              </div>
               <div class="event-btn">
                  <%= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
                 <button type="button" class="btn btn-default js-cancel">Cancel</button>
               </div>
               <% end %>
               <div class="buttons">
-                <a href="#"><div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div></a>
+                <%= link_to edit_user_registration_path(@user) do %>
+                  <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                <% end %>
                 <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
               </div>
             </div>

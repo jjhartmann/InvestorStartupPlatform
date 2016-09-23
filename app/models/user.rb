@@ -30,7 +30,7 @@ class User < ApplicationRecord
   has_many :messages, -> {order 'created_at DESC'}
 
   # Polymopic Profile Association
-  belongs_to :profilable, polymorphic: true, optional: true
+  belongs_to :profilable, polymorphic: true, optional: true, :dependent => :destroy
 
   has_and_belongs_to_many :proposals, :join_table => :proposal_for_investors
 
@@ -42,6 +42,8 @@ class User < ApplicationRecord
   has_many :enterprises_followed, :through => :target_followed, :source => :target, :source_type => 'Enterprise'
   #Association for the users that have invitations
   has_many :invitations
+
+  accepts_nested_attributes_for :profilable
 
   validates :username, :presence     => true,
             :uniqueness   => { :case_sensitive => false },
