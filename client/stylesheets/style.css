@@ -243,7 +243,7 @@ html,body{
     height: 150px;
     margin: 0 auto;
     overflow: hidden;
-    position: relative;
+    position: relative !important;
     text-align: center;
     width: 150px;
     transition:all 0.4s;
@@ -782,6 +782,7 @@ a .btn.btn-green:hover{
     opacity: 0;
     position: absolute;
     cursor: pointer;
+    top: 0;
 }
 .circle img {
     width: 100%;

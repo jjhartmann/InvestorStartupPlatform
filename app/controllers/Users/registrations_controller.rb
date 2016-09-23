@@ -34,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     # if all the three are succesfully created
 
-    if resource_saved && user_profile_saved
+    if resource_saved
 
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
