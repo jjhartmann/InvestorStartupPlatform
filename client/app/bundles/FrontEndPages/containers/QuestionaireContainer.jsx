@@ -8,11 +8,13 @@ export default class QuestionaireContainer extends React.Component {
   submit(e){
     e.preventDefault();
     var data = {
-      questionaires: []
+      questionaires: [],
+      enterprise: this.props.data.params
     }
-    this.props.data.map(map => {
+    this.props.data.question.map(map => {
       data.questionaires.push(this.refs[map.id].state)
     });
+    console.log(this.props.data.params);
     var flag = 0;
     $('input[type="text"]').each(function(){
       if ($(this).val() == ''){
@@ -31,15 +33,22 @@ export default class QuestionaireContainer extends React.Component {
         data: data,
         dataType: 'json',
         success: ()=>{
-          window.location.pathname = "/home_pages";
-          window.loaction.href = "http://localhost:3000/home_pages";
-          window.location.reload();
+          console.log(this.props.data.params);
+          if (this.props.data.params == ''){
+            window.location.pathname = "/home_pages";
+            window.loaction.href = "http://localhost:3000/home_pages";
+            window.location.reload();
+          }else{
+            window.location.pathname = "/enterprises/"+data.enterprise;
+            window.loaction.href = "http://localhost:3000/enterprises";
+            window.location.reload();
+          }
         }
       })
     }
   }
   render() {
-    var questionNodes = this.props.data.map(questions => {
+    var questionNodes = this.props.data.question.map(questions => {
       return (
         <QuestionaireComponent question={questions.question} key={questions.id} id = {questions.id} ref={questions.id}/>
       );

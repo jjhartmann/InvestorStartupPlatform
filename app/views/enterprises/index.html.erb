@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Enterprises</h1>
-
-<table>
+<h1>
+    Enterprises
+  <div class="text-right col-xs-6" style="float: right">
+    <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
+  </div>
+</h1>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,7 +16,7 @@
   <tbody>
     <% @enterprises.each do |enterprise| %>
       <tr>
-        <td><%= enterprise.name %></td>
+        <td><%= link_to enterprise.name, enterprise_path(enterprise.id) %></td>
         <td><%= link_to 'Show', enterprise %></td>
         <td><%= link_to 'Edit', edit_enterprise_path(enterprise) %></td>
         <td><%= link_to 'Destroy', enterprise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,5 +26,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Enterprise', new_enterprise_path %>

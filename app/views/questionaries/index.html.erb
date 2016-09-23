@@ -2,7 +2,7 @@
 
 </header>
 
-<%= react_component('Questionaire', props: {data: @questions}) %>
+<%= react_component('Questionaire', props: {data: {question:  @questions, params: params[:enterprise]}}) %>
 
 <!-- <div class="container">
   <div class="col-xs-12">
