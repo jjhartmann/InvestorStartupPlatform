@@ -4,7 +4,7 @@ class Proposal < ApplicationRecord
 
   belongs_to              :enterprise
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
-
+  has_many                :offers
 
   validates :pitch,                                :presence     => true,
             :length       => { :within => 10..140 }
@@ -71,4 +71,5 @@ class Proposal < ApplicationRecord
   def default_proposal_stage_identifier
     self.proposal_stage_identifier = 'draft'
   end
+
 end
