@@ -15,6 +15,12 @@ export default class QuestionaireComponent extends React.Component {
     this.setState({answer: e.target.value})
   }
   render() {
+    var styles = {
+                  base: {
+                    color: 'red',
+                    display: "none"
+                  }
+                }
     return (
       <li>
         <div className="box-sed">
@@ -27,6 +33,7 @@ export default class QuestionaireComponent extends React.Component {
           </div>
           <div className="registration question-type">
             <input type="text" placeholder="Type answer" className="input-text" value={this.state.answer} onChange={this.updateTextBox} />
+            <span style={styles.base}>Please answer the question.</span>
           </div>
         </div>
       </li>
