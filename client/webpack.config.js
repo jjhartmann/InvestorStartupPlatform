@@ -9,6 +9,7 @@ config = {
     'webpack-bundle':[
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
+    'jquery-ujs',
     'babel-polyfill',
     //Include all the entry points
     './app/bundles/HelloWorld/startup/HelloWorldApp',

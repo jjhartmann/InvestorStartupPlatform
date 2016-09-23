@@ -33,6 +33,9 @@ We faced some issues when we installed the google-charts and the error said that
 #coffee-loader
 13. npm install coffee-loader
 
+#Load Jquery_ujs in webpack
+14. npm install jquery-ujs
+
 Resolve Errors
 
 remove from bootstrap.min.css in assets to resolve bootstrap.min.css.map not found (Log)

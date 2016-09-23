@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :offers
+
+  resources :proposals
   resources :enterprises do
     collection do
       get 'add_member'

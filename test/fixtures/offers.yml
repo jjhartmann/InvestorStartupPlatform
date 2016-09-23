@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  offer_title: MyString
+  text: MyString
+  description: MyText
+  amount_to_offer: 1
+  proposal: one
+
+two:
+  offer_title: MyString
+  text: MyString
+  description: MyText
+  amount_to_offer: 1
+  proposal: two

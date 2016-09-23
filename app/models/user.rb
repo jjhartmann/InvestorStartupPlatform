@@ -43,6 +43,8 @@ class User < ApplicationRecord
   #Association for the users that have invitations
   has_many :invitations
 
+  has_many :offers
+
   accepts_nested_attributes_for :profilable
 
   validates :username, :presence     => true,
