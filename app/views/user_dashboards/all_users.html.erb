@@ -1,0 +1,17 @@
+<%= content_for :all_user_class, 'active'%>
+<%= @all_users.as_json %>
+
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @all_users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= link_to "Follow","#",class: "btn btn-primary follow","data-id": "#{user.id}" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
