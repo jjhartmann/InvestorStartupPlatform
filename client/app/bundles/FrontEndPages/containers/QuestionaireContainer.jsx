@@ -13,17 +13,30 @@ export default class QuestionaireContainer extends React.Component {
     this.props.data.map(map => {
       data.questionaires.push(this.refs[map.id].state)
     });
-    $.ajax({
-      type: "GET",
-      url: "/questionaries/save_questions",
-      data: data,
-      dataType: 'json',
-      success: ()=>{
-        window.location.pathname = "/home_pages";
-        window.loaction.href = "http://localhost:3000/home_pages";
-        window.location.reload();
+    var flag = 0;
+    $('input[type="text"]').each(function(){
+      if ($(this).val() == ''){
+        flag = 1;
+        $(this).parent().find('span').css("display","block");
+      }else{
+        $(this).parent().find('span').css("display","none");
       }
     })
+    if (flag == 1){
+      // alert("Answers cannot be blank!!!");
+    }else{
+      $.ajax({
+        type: "GET",
+        url: "/questionaries/save_questions",
+        data: data,
+        dataType: 'json',
+        success: ()=>{
+          window.location.pathname = "/home_pages";
+          window.loaction.href = "http://localhost:3000/home_pages";
+          window.location.reload();
+        }
+      })
+    }
   }
   render() {
     var questionNodes = this.props.data.map(questions => {

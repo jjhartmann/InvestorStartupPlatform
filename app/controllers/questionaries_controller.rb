@@ -24,7 +24,11 @@ class QuestionariesController < ApplicationController
     @params =  params["questionaires"]
     puts @params.class
     @params.each do |question|
-      current_user.profilable.questionaire.questions.create(question: @params[question]["question"],answer: @params[question]["answer"])
+      if current_user.profilable.questionaire.questions.create!(question: @params[question]["question"],answer: @params[question]["answer"])
+        puts "Done"
+      else
+        puts "not done"
+      end
     end
     respond_to do |format|
       format.html #{ render :layout => false }
