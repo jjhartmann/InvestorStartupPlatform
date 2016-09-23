@@ -19,9 +19,9 @@
               <div class="form-group">
                  <div class="circle">
                    <% if @user.photo.present? %>
-                    <%= image_tag @user.photo_url, class: "display-mode-value"%>
+                    <%= image_tag @user.photo_url%>
                    <% else %>
-                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
+                    <%= image_tag "/assets/Icon-user.png"%>
                    <% end %>
                    <%= f.input :photo, class: "form-control", as: :file, label: false %>
                  </div>
