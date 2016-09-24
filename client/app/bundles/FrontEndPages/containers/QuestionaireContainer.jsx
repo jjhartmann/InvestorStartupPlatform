@@ -4,6 +4,11 @@ import SubmitButton from '../components/SubmitButton'
 import QuestionaireComponent from '../components/QuestionaireComponent'
 
 export default class QuestionaireContainer extends React.Component {
+  removeURLParameter(url) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts= url.split('?');
+    return urlparts[0];
+}
 
   submit(e){
     e.preventDefault();
@@ -35,6 +40,7 @@ export default class QuestionaireContainer extends React.Component {
         success: ()=>{
           console.log(this.props.data.params);
           if (this.props.data.params == ''){
+            console.log(removeURLParameter(window.location));
             window.location.pathname = "/home_pages";
             window.loaction.href = "http://localhost:3000/home_pages";
             window.location.reload();
