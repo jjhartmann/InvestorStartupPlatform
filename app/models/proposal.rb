@@ -6,6 +6,9 @@ class Proposal < ApplicationRecord
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
   has_many                :offers
 
+  #Upload Document using the carrierwave
+  mount_uploader :document, DocumentUploader
+
   validates :pitch,                                :presence     => true,
             :length       => { :within => 10..140 }
   validates :introduction,                         :presence     => true,

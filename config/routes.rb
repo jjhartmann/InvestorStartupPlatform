@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :offers
 
+  get 'proposals/download'
+
   resources :proposals
   resources :enterprises do
     collection do

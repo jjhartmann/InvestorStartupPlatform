@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [:show, :edit, :update, :destroy]
+  before_action :set_proposal, only: [:show, :edit, :update, :destroy, :download]
 
   # layout 'frontpage'
   before_filter :authenticate_user!
@@ -7,7 +7,12 @@ class ProposalsController < ApplicationController
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.all
+    @user = current_user
+    if @user.profilable_type == "InvestorProfile"
+      @proposals = Proposal.all
+    else
+      @proposals =  @user.proposals
+    end
   end
 
   # GET /proposals/1
@@ -17,7 +22,12 @@ class ProposalsController < ApplicationController
 
   # GET /proposals/new
   def new
-    @proposal = Proposal.new
+    @user = current_user
+    if @user.profilable_type == "InvestorProfile"
+      redirect_to root_path
+    else
+      @proposal = Proposal.new
+    end
   end
 
   # GET /proposals/1/edit
@@ -64,6 +74,19 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def download
+    #This will decrpyt the file first
+
+    Carrierwave::EncrypterDecrypter::Downloader.decrypt(@proposal,mounted_as: :document)
+
+    file_path = @proposal.document.path
+      File.open(file_path, 'r') do |f|
+        send_data f.read, type: MIME::Types.type_for(file_path).first.content_type,disposition: :inline,:filename => File.basename(file_path)
+    end
+      #This is to remove the decrypted file after transfer
+      File.unlink(file_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal
@@ -72,7 +95,8 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.fetch(:proposal, {})
+      params.require(:proposal).permit!
+      # params.fetch(:proposal, {})
       # params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round)
     end
 end

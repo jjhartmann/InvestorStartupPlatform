@@ -85,7 +85,12 @@
           <%=h truncate(proposal.spending_plan, length: 10) %>
         </td>
         <td><%= link_to 'Show', proposal %></td>
-        <td><%= link_to "Make an offer", new_offer_path %></td>
+        <% if @user.profilable_type == "InvestorProfile" %>
+          <td><%= link_to "Make an offer", new_offer_path %></td>
+        <% end %>
+        <% if proposal.document_url %>
+          <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
+        <% end %>
         <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
         <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

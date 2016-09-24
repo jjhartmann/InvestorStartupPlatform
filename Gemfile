@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+#encrypt documents uploaded in proposals
+gem "carrierwave_encrypter_decrypter" 
 # for internationalization
 gem 'rails-i18n', '~> 5.0.0' # For Rails 5.0.x
 
