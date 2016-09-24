@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :user_profiles
   resources :questionaries do
     collection do
-      get 'save_questions'
+      post 'save_questions'
     end
   end
 
