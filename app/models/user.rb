@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   attr_accessor   :login
 
-  #Uplaod Photo using the carrierwave
+  #Upload Photo using the carrierwave
   mount_uploader :photo, PhotoUploader
 
   has_many :messages, -> {order 'created_at DESC'}
