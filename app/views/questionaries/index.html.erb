@@ -9,6 +9,7 @@
     <div class="question">
       <ul>
         <%= form_tag save_questions_questionaries_path do %>
+          <%= hidden_field_tag "enterprise",params[:enterprise]%>
           <% @questions.each do |question| %>
             <li>
               <div class="box-sed">

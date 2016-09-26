@@ -29,9 +29,19 @@ class QuestionariesController < ApplicationController
     puts params.inspect
     puts params[:enterprise]
     @hash_array = []
-    @questions = QuestionsToAskEnterprise.all
+    puts params[:answers].to_a
     unless params[:enterprise].present?
-      @questions.zip(params[:answer].to_a).each do |q,a|
+
+      # Fetching questions according to profile type of the user
+      if current_user.profilable_type == "UserProfile"
+        @questions = QuestionsToAskEntrepreneur.all
+      else
+        @questions = QuestionsToAskInvestor.all
+      end
+      puts "************"
+
+      #Save the questions and the answers of the questionaire for the current user
+      @questions.zip(params[:answers].to_a).each do |q,a|
         current_user.profilable.questionaire.questions.create!(question: q.question,answer: a)
       end
       respond_to do |format|
@@ -39,21 +49,19 @@ class QuestionariesController < ApplicationController
         format.json
       end
     else
-      @enterprise = Enterprise.find(params[:enterprise])
-      @questions.zip(params[:answer].to_a).each do |q,a|
-        puts "______#{q.question}_________*#{a}_______"
-        if @enterprise.questionaire.questions.create(question: q.question,answer: a)
-        else
 
-        end
+      # Fetching questions for the enterprise
+      @questions = QuestionsToAskEnterprise.all
+      @enterprise = Enterprise.find(params[:enterprise])
+      #Save the questions and the answers of the questionaire for the current user
+      @questions.zip(params[:answers].to_a).each do |q,a|
+        puts "______#{q.question}_________*#{a}_______"
+        @enterprise.questionaire.questions.create(question: q.question,answer: a)
       end
       respond_to do |format|
         format.html { redirect_to enterprise_path(@enterprise.id) }
         format.json
       end
     end
-
-
   end
-
 end
