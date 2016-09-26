@@ -1,13 +1,19 @@
 class UserProfilesController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
-  before_action :set_user_profile, only: [:index, :update, :destroy, :show, :edit]
+  before_action :set_user_profile, only: [:index, :update, :destroy, :show, :edit] if :connection_profile
   before_action :user, only: [:index, :show, :edit]
 
   def index
   end
 
   def show
+    puts "___________________"
+    puts params[:connection_profile]
+    if params[:connection_profile].present?
+      puts "___________________"
+      @user_profile = User.find(params[:connection_profile])
+    end
   end
 
   def edit
@@ -39,6 +45,9 @@ class UserProfilesController < ApplicationController
       # redirect_to(url_for(:back))
       # redirect_back(fallback_location: request.referer)
     end
+  end
+  def connection_profile
+    return params[:connection_profile].nil?
   end
 
   def user
