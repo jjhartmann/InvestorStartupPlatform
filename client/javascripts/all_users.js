@@ -6,6 +6,7 @@ $(document).ready(function(){
       type: "get",
       data: {target_id: $(this).data('id')},
       success: function(){
+        console.log("success");
         if (link.text() == "follow"){
           link.text("following");
         }else{

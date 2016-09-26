@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'all_users'
       get 'follow_unfollow_user'
       get 'suggested_profile'
+      get 'connections'
     end
   end
   resources :user_profiles

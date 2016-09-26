@@ -30,7 +30,7 @@ class UserDashboardsController < ApplicationController
 
   def all_users
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_users = User.where('profilable_type NOT IN(?)',['InvestorProfile'])
+    @all_users = User.where('profilable_type NOT IN(?)',['InvestorProfile']).where.not(id: current_user.id)
   end
 
   def follow_unfollow_user
@@ -52,5 +52,11 @@ class UserDashboardsController < ApplicationController
   def suggested_profile
     puts params
     @suggested_user = User.find(params[:profile_id])
+  end
+
+  def connections
+    puts current_user.as_json
+    puts current_user.target_followed.as_json
+    @connections = current_user.target_followed
   end
 end
