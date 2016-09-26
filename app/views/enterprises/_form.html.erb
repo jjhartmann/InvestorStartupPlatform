@@ -1,44 +1,5 @@
 <%= simple_form_for(@enterprise) do |f| %>
   <%= f.error_notification %>
-  <table class="table table-inversed" style="border-style:none">
-    <tr>
-      <!-- <td>Name:</td> -->
-      <td><%= f.input :name%></td>
-    </tr>
-    <tr>
-      <!-- <td>Pitch:</td> -->
-      <td><%= f.input :pitch%></td>
-    </tr>
-    <tr>
-      <!-- <td>Funds To Raise:</td> -->
-      <td><%= f.input :funds_to_raise%></td>
-    </tr>
-    <tr>
-      <!-- <td>Industry:</td> -->
-      <td><%= f.input :industry%></td>
-    </tr>
-    <tr>
-      <!-- <td>Enterprise Stage:</td> -->
-      <td><%= f.input :enterprise_stage%></td>
-    </tr>
-    <tr>
-      <!-- <td>Location:</td> -->
-      <td><%= f.input :location%></td>
-    </tr>
-    <tr>
-      <!-- <td>Stage Identifier:</td> -->
-      <td><%= f.input :stage_identifier%></td>
-    </tr>
-    <tr>
-      <!-- <td>Market Identifier:</td> -->
-      <td><%= f.input :market_identifier %></td>
-    </tr>
-    <tr>
-      <!-- <td>Descrtiption:</td> -->
-      <td><%= f.input :description%></td>
-    </tr>
-  </table>
-  <br><br>
 
   <div class="form-actions text-center">
     <%= f.button :submit %>

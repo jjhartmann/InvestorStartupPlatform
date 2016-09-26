@@ -72,7 +72,6 @@ export default class Register extends React.Component {
         data: data,
         dataType: "json",
         success: (data) => {
-          console.log(data);
           this.setState({
             user: {
               name: '',
@@ -87,6 +86,7 @@ export default class Register extends React.Component {
         },
         error: (data) => {
           this.setState({errors: data.responseJSON.errors})
+          console.log(data.responseJSON.errors)
           this.show_error()
         }
       });
