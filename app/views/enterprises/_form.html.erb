@@ -1,9 +1,9 @@
 <%= simple_form_for(@enterprise) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-actions text-center">
-    <%= f.button :submit %>
-  </div>
+  <!-- <div class="form-actions text-center">
+    <%#= f.button :submit %>
+  </div> -->
   <div class='box-tab prepend-type'>
     <div class='all-notification-close'><i class='fa fa-times' aria-hidden='true'></i></div>
     <div class='form-group'><h2><span class='name notes'><i class='fa fa-user' aria-hidden='true'></i>Name</span><%= f.input :name%></h2></div>
@@ -16,15 +16,16 @@
     <div class='form-group'><div class='user-positon'><span class='name notes'><i class='fa fa-plane' aria-hidden='true'></i>market identifer</span><%= f.input :market_identifier %></div></div>
     <div class='form-group'><div class='set-view-deatils'><p><span class='name notes'><i class='fa fa-eye' aria-hidden='true'></i>Description</span><%= f.input :description%></p></div></div>
     <div class='event-btn'>
-      <button class='btn btn-primary' id='defaultSave' type='button'>Save</button>
+      <%= f.button :submit, "Save", class: "btn btn-primary" %>
+      <!-- <button class='btn btn-primary' id='defaultSave' type='button'>Save</button> -->
       <button class='btn btn-default js-cancel' type='button'>Cancel</button>
     </div>
-    <div class='add-form'>
+    <!-- <div class='add-form'>
       <div class='btn-yes-no'>
         <a href='#'>
           <div class='btn btn-green'>Add enterprse</div>
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
 <% end %>

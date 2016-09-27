@@ -4,7 +4,7 @@ $(document).ready(function(){
     $.ajax({
       url: "/user_dashboards/follow_unfollow_user",
       type: "get",
-      data: {target_id: $(this).data('id')},
+      data: {target_id: $(this).data('id'), target_type: $(this).data('type')},
       success: function(){
         console.log("success");
         if (link.text() == "follow"){

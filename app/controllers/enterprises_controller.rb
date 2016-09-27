@@ -3,31 +3,24 @@ class EnterprisesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enterprise, only: [:show, :edit, :update, :destroy]
 
-  # GET /enterprises
-  # GET /enterprises.json
   def index
-    @enterprises = current_user.enterprises
+    @user = current_user
+    @enterprises = @user.enterprises
   end
 
-  # GET /enterprises/1
-  # GET /enterprises/1.json
   def show
     unless @enterprise.questionaire.questions.present?
       redirect_to questionaries_path(enterprise: @enterprise.id)
     end
   end
 
-  # GET /enterprises/new
   def new
     @enterprise = Enterprise.new
   end
 
-  # GET /enterprises/1/edit
   def edit
   end
 
-  # POST /enterprises
-  # POST /enterprises.json
   def create
     @enterprise = Enterprise.new(enterprise_params)
 
@@ -44,8 +37,6 @@ class EnterprisesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /enterprises/1
-  # PATCH/PUT /enterprises/1.json
   def update
     respond_to do |format|
       if @enterprise.update(enterprise_params)
@@ -58,8 +49,6 @@ class EnterprisesController < ApplicationController
     end
   end
 
-  # DELETE /enterprises/1
-  # DELETE /enterprises/1.json
   def destroy
     @enterprise.destroy
     respond_to do |format|
@@ -68,13 +57,11 @@ class EnterprisesController < ApplicationController
     end
   end
 
-
-
   def add_member
     puts params
     params[:invitee].split(",").each do |invitee|
       puts invitee
-      @user = User.find_by_email(invitee)
+      @user = User.find_by(email: invitee)
       if @user.present?
         @invitation = Invitation.create(enterprise_id: params[:enterprise_id],user_id: @user.id, email: @user.email)
         InvitationMailer.invitation_mail(@invitation).deliver_now

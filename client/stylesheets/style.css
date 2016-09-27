@@ -243,7 +243,7 @@ html,body{
     height: 150px;
     margin: 0 auto;
     overflow: hidden;
-    position: relative !important;
+    position: relative;
     text-align: center;
     width: 150px;
     transition:all 0.4s;
@@ -781,18 +781,15 @@ a .btn.btn-green:hover{
     left: 0;
     opacity: 0;
     position: absolute;
+    top:0;
     cursor: pointer;
-    top: 0;
 }
-.circle img {
-    width: 100%;
+  .circle img {
+    width: 150px;
+    height: 150px;
 }
-.test {
-    margin-top: 55px;
-}
-.follow{
-  width: 115px;
-}
+
+/*22-09-2016*/
 .notes-alert {
     margin-top: 20%;
     text-align: center;
@@ -845,6 +842,143 @@ a .btn.btn-green:hover{
     color: #ed4337;
     margin-right: 5px;
 }
+
+/*24-09-2016*/
+/*form styles*/
+#msform {
+  width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#msform fieldset {
+    background: #ffffff none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px 30px;
+    position: absolute;
+    width: 100%;
+    overflow-y:auto;
+    height: 400px;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+    counter-reset: step;
+    margin-bottom: 30px;
+    overflow: hidden;
+    padding: 0;
+    padding: 10px 0;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 25%;
+  float: left;
+  position: relative;
+}
+#progressbar li::before {
+    background: #eff4f7 none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #333333;
+    content: counter(step, decimal);
+    counter-increment: step;
+    display: block;
+    font-size: 12px;
+    line-height: 50px;
+    margin: 0 auto 5px;
+    width: 50px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.46);
+}
+/*progressbar connectors*/
+#progressbar li::after {
+    background: #eff4f7 none repeat scroll 0 0;
+    content: "";
+    height: 4px;
+    left: -50%;
+    position: absolute;
+    top: 23px;
+    width: 100%;
+    z-index: -1;
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #ffc857;
+  color: white;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+#progressbar > li {
+    color: #333333;
+    font-size: 12px;
+}
+.previous.action-button {
+    background: #ed4337  none repeat scroll 0 0 !important;
+}
+
+#msform .action-button{
+  transition:all 0.4s;
+  box-shadow: 0 17px 10px -10px rgba(0, 0, 0, 0.4);
+}
+
+#msform .action-button:hover{
+    box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+    transform: translate(0px, -3px) scale(1.05);
+}
+
+/*26-09-2016*/
 .form-header {
     color: #777777;
     float: left;

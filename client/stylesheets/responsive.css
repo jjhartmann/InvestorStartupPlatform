@@ -9,9 +9,19 @@
 @media(max-width: 767px){
 .short-profile ul li {
     float: left;
-    height: 110px;
+    height: 125px;
     list-style: outside none none;
     width: 50%;
+}
+#msform{
+    width: 100%;
+}
+#progressbar li::before {
+    line-height: 35px;
+    width: 35px;
+}
+#progressbar li::after{
+    top: 16px;
 }
 .user-name-short{
   font-size: 15px;
@@ -21,6 +31,35 @@
 }
 .main-img img {
     height: 100%;
-    width: auto;
+}
+.main-img{
+    height: auto;
+}
+.dashbord .navbar-default .navbar-nav > li > a{
+    margin-left: 15px;
+}
+.tabing {
+    float: left;
+    width: 60px;
+}
+.tabing .close-open .fa {
+    margin-right: 6px;
+}
+.tabing .nav > li > a .fa {
+    margin-right: 0;
+}
+.tabing .tab-name {
+    display: none;
+    opacity: 0;
+}
+.tabing .nav > li > a {
+    text-align: center;
+}
+.tabing ul {
+    padding: 15px 5px;
+}
+.container.side-deatail {
+    float: left;
+    width: calc(100% - 60px);
 }
 }

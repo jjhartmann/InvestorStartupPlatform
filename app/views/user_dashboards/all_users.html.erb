@@ -8,8 +8,14 @@
   <tbody>
     <% @all_users.each do |user| %>
     <tr>
-      <td><%=link_to user.name, suggested_profile_user_dashboards_path(profile_id: user.id) %></td>
-      <td><%= link_to current_user.is_following?(user) ? "Following" : "Follow", "", class: "btn btn-primary follow", "data-id": "#{user.id}" %></td>
+      <td><%= link_to user.name, suggested_profile_user_dashboards_path(profile_id: user.id) %></td>
+      <td><%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}" %></td>
+    </tr>
+    <% end %>
+    <% @enterprises.each do |enterprise| %>
+    <tr>
+      <td><%= enterprise.name %></td>
+      <td><%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}" %></td>
     </tr>
     <% end %>
   </tbody>
