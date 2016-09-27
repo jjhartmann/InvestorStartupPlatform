@@ -38,15 +38,9 @@ $(document).ready(function(){
       else{
         $(".checkbox").removeClass('checked-box');
       }
-    });
-    $('.edit').click(function(){
-      $('.editable-contact-info').addClass('edit-mode-enabled');
-      $('.editable-contact-info').removeClass('edit-mode-disabled');
-      $('.info-tab-editable-values').addClass('edit-mode-enabled');
-      $('.info-tab-editable-values').removeClass('edit-mode-disabled');
-    });
+    });    
   });
-  
+
   $('.all-notification-close').click(function(){
     var data_id = $(this).find('i').data('id');
     $.ajax({

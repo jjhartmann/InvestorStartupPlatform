@@ -45,6 +45,7 @@ config = {
     './javascripts/agency',
     './javascripts/dashboard',
     './javascripts/all_users',
+    './javascripts/jquery.mCustomScrollbar.concat.min',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
@@ -52,6 +53,7 @@ config = {
     './stylesheets/font-awesome.min',
     './stylesheets/style',
     './stylesheets/responsive',
+    './stylesheets/jquery.mCustomScrollbar.min'
   ],
   RailsAdminBundle: [
     './javascripts/rails_admin/ra.widgets',

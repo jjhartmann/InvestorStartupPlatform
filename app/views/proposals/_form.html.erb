@@ -6,10 +6,10 @@
     <%= f.input :proposal_stage_identifier%>
   </div>
   <div class="form-inputs">
-    <%= f.input :new_business_model%>
+    <%= f.input :new_business_model, as: :boolean%>
   </div>
   <div class="form-inputs">
-    <%= f.input :new_product%>
+    <%= f.input :new_product, as: :boolean%>
   </div>
   <div class="form-inputs">
     <%= f.input :pitch%>
@@ -82,6 +82,9 @@
   </div>
   <div class="form-inputs">
     <%= f.input :document, as: :file%>
+  </div>
+  <div class="form-actions">
+    <%= f.input :enterprise_id, collection: @enterprises.map {|u| [u.name, u.id]} %>
   </div>
   <div class="form-actions">
     <%= f.button :submit %>

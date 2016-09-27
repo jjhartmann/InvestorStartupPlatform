@@ -4,7 +4,7 @@ class Proposal < ApplicationRecord
 
   belongs_to              :enterprise
   has_and_belongs_to_many :investors, :join_table => :proposal_for_investors, :class_name => 'User'
-  has_many                :offers
+  has_many                :offers, dependent: :destroy
 
   #Upload Document using the carrierwave
   mount_uploader :document, DocumentUploader
@@ -32,7 +32,8 @@ class Proposal < ApplicationRecord
             :numericality => true
   validates :five_year_penetration_rate,           :presence     => true,
             :numericality => { :less_than_or_equal_to  => 100 }
-  validates :five_year_marketing_strategy,         :length       => { :within => 10..400 }
+  validates :five_year_marketing_strategy,         :presence     => true,
+            :length       => { :within => 10..400 }
   validates :five_year_gross_profit_margin,        :presence     => true,
             :numericality => true
   validates :competitors_details,                  :presence     => true,
@@ -51,6 +52,7 @@ class Proposal < ApplicationRecord
             :length       => { :within => 10..400 }
   validates :next_investment_round,                :presence     => true,
             :numericality => true
+  validates :enterprise_id,                        :presence     => true
 
   scope :draft,     -> { where :proposal_stage_identifier => 'draft'}
   scope :submitted, -> { where :proposal_stage_identifier => 'submitted'}
@@ -67,6 +69,12 @@ class Proposal < ApplicationRecord
 
   def submit(investors)
     self.investors = [investors].flatten
+  end
+
+  def self.get_proposals(user)
+    @user = user
+    @following_enterprises = @user.enterprises_followed
+    @proposals = self.where("proposals.enterprise_id IN(?)", @following_enterprises.ids)
   end
 
   private

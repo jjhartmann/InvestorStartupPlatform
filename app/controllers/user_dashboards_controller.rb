@@ -29,21 +29,21 @@ class UserDashboardsController < ApplicationController
   end
 
   def all_users
+    @user = current_user
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
     @all_users = User.where('profilable_type NOT IN(?)',['InvestorProfile']).where.not(id: current_user.id)
+    @enterprises = Enterprise.all
   end
 
   def follow_unfollow_user
-    puts params
-    @user = User.find(params[:target_id])
-    # puts @user.id
-    # puts @user.profilable_type
-    # puts current_user.is_following?(@user)
+    if params[:target_type] == "Enterprise"
+      @user = Enterprise.find(params[:target_id])
+    else
+      @user = User.find(params[:target_id])
+    end
     if current_user.is_following?(@user)
-      # puts "*****************"
       current_user.unfollow(@user)
     else
-      # puts "___________________"
       current_user.follow(@user)
     end
     redirect_to root_path

@@ -17,7 +17,7 @@ class Enterprise < ApplicationRecord
   has_many :advisors,   -> { where 'enterprise_users.role_identifier' => 'advisor' }, :through => :enterprise_users, :source => :user
   has_many :incubators, -> { where 'enterprise_users.role_identifier' => 'incubator' }, :through => :enterprise_users, :source => :user
 
-  has_many :proposals
+  has_many :proposals, dependent: :destroy
 
   has_one :questionaire, :as => :questionable
 
