@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :messages do
+    collection do
+      get 'inbox'
+    end
+  end
   resources :offers
 
   get 'proposals/download'
