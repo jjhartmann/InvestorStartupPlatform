@@ -1070,3 +1070,6 @@ a .btn.btn-green:hover{
   color: #ed4337;
   font-size: 18px;
 }
+.edit .fa {
+    color: #fff;
+}
