@@ -1,0 +1,35 @@
+<%= current_user.as_json %>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :enterprise_class, 'active' %>
+<%= render partial: "user_dashboards/sidebar" %>
+<p id="notice"><%= notice %></p>
+
+<%#= link_to 'New Message', new_message_path %>
+
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs test">
+        <div class="tab-content">
+          <div  class="tab-pane fade active in">
+            <div class="tab-title">Messages</div>
+            <div class="message">
+              <ul>
+                <% @conversations.each do |conversation| %>
+                  <%= link_to inbox_messages_path(id: conversation.id) do %>
+                    <li>
+                      <div class="pro-message">
+                        <div class="circle-pic"><% if conversation.photo.url %><%= image_tag conversation.photo.url %><% end %></div>
+                      </div>
+                      <div class="on-off <%= current_user.messages.where(target_id: conversation.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                      <div class="top-count"><%= current_user.messages.where(target_id: conversation.id, is_read: false).count %></div>
+                      <div class="sr-name"><%= conversation.name %></div>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
