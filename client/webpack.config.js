@@ -45,6 +45,7 @@ config = {
     './javascripts/agency',
     './javascripts/dashboard',
     './javascripts/all_users',
+    './javascripts/connections',
     // './javascripts/jquery.mCustomScrollbar.concat.min',
 
     //include stylesheets

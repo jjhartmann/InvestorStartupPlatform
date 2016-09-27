@@ -11,7 +11,7 @@
       <i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count %></div>
     <% end %>
     </li>
-    <li class='<%= yield :sidebar_message_class %>'><a data-toggle="pill" href="#menu3"><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count">3</div></a></li>
+    <li class='<%= yield :sidebar_message_class %>'><%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count"><%= current_user.messages.where(is_read: false).count %></div><% end %></li>
     <li class='<%= yield :sidebar_proposals_class %>'><%= link_to proposals_path do %><i class="fa fa-usd" aria-hidden="true"></i><span class="tab-name">Proposals</span><% end %></li>
     <li class='<%= yield :sidebar_offers_class %>'><%= link_to offers_path do %><i aria-hidden="true" class="fa fa-tag"></i><span class="tab-name">Offers</span><% end %></li>
     <li class='<%= yield :sidebar_interests_class %>'><a data-toggle="pill" href="#menu6"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i><span class="tab-name">Interests</span></a></li>

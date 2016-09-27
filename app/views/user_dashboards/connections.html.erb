@@ -15,16 +15,16 @@
           <ul class="full-details clearfix">
             <li><div class="name-enetrprise head-box">Name</div><div class="destory head-box">Destory</div></li>
             <% @connections.each do |connection| %>
-              <li>
+              <li id="<%= connection.target.id%>">
                 <div class="name-enetrprise">
-                  <%= link_to connection.target.name,  user_profile_path(id: current_user.id,connection_profile: connection.target_id) %>
+                  <%= link_to connection.target.name,  user_profile_path(id: current_user.id,connection_profile: connection.target_id), 'data-id': "#{connection.target.id}" %>
                 </div>
                 <div class="destory">
                   <a href="#">
                     <i aria-hidden="true" class="fa fa-trash"></i>
                   </a>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#" %>
+                  <%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal", 'data-toggle': "modal" %>
                 </div>
               </li>
             <% end %>
@@ -32,5 +32,39 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="messageModal" class="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <%= form_for @message,url: messages_path do |f|%>
+      <div class="modal-body">
+        <%= f.hidden_field :target_id %>
+        <%= f.hidden_field :user_id,value: current_user.id %>
+        <p>Some text in the modal.</p>
+        <div class="form-inputs">
+          <%= f.text_field :content %>
+        </div>
+        <div class="form-actions">
+        </div>
+
+        <%#= render partial: "messages/form" %>
+      </div>
+      <div class="modal-footer">
+        <%= f.button :submit,value: "Send" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      <% end %>
+    </div>
+
   </div>
 </div>
