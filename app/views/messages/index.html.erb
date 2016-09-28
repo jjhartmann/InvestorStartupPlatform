@@ -6,6 +6,7 @@
 
 <%#= link_to 'New Message', new_message_path %>
 
+
   <div class="container side-deatail">
     <div class="col-xs-12">
       <div class="profile-tabs test">
@@ -14,15 +15,15 @@
             <div class="tab-title">Messages</div>
             <div class="message">
               <ul>
-                <% @conversations.each do |conversation| %>
-                  <%= link_to inbox_messages_path(id: conversation.id) do %>
+                <% @message_thread.each do |thread| %>
+                  <%= link_to inbox_messages_path(id: thread.id) do %>
                     <li>
                       <div class="pro-message">
-                        <div class="circle-pic"><% if conversation.photo.url %><%= image_tag conversation.photo.url %><% end %></div>
+                        <div class="circle-pic"><%# if thread.photo.url %><%#= image_tag thread.photo.url %><%# end %></div>
                       </div>
-                      <div class="on-off <%= current_user.messages.where(target_id: conversation.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
-                      <div class="top-count"><%= current_user.messages.where(target_id: conversation.id, is_read: false).count %></div>
-                      <div class="sr-name"><%= conversation.name %></div>
+                      <div class="on-off <%= current_user.messages.where(target_id: thread.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                      <div class="top-count"><%= current_user.messages.where(target_id: thread.id, is_read: false).count %></div>
+                      <div class="sr-name"><% if thread.target_id == current_user.id %><%= thread.user.name %><% else %><%= thread.target.name %><% end %></div>
                     </li>
                   <% end %>
                 <% end %>

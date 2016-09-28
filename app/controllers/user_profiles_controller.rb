@@ -8,6 +8,7 @@ class UserProfilesController < ApplicationController
   end
 
   def show
+    @message = Message.new
     puts "___________________"
     puts params[:connection_profile]
     if params[:connection_profile].present?

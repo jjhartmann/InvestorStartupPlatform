@@ -56,6 +56,16 @@ class UserDashboardsController < ApplicationController
 
   def connections
     @connections = current_user.target_followed
+    puts @connections.pluck(:target_id)
+    @connection_id_array = []
+    @connections.pluck(:target_id).each do |target_id|
+      if User.find(target_id).is_following?(current_user)
+        puts User.find(target_id).is_following?(current_user)
+        @connection_id_array << target_id
+      end
+    end
+    @connected_users = User.where(id: @connection_id_array)
+
     @message = Message.new
   end
 end
