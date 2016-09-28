@@ -1,15 +1,14 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
+  layout 'frontpage'
+  before_filter :authenticate_user!
+
   # GET /offers
   # GET /offers.json
   def index
     @user = current_user
-    if @user.profilable_type == "InvestorProfile"
-      @offers = current_user.offers
-    else
-      redirect_to root_path
-    end
+    @offers = current_user.offers
   end
 
   # GET /offers/1
@@ -19,17 +18,26 @@ class OffersController < ApplicationController
 
   # GET /offers/new
   def new
-    @offer = current_user.offers.new()
+    if @user.profilable_type == "UserProfile"
+      respond_to do |format|
+        format.html { redirect_to offers_path, alert: "You cannot create or edit an offer."}
+      end
+    else
+      @offer = current_user.offers.new()
+      @proposals = Proposal.get_proposals(@user)
+    end
   end
 
   # GET /offers/1/edit
   def edit
+      @proposals = Proposal.get_proposals(@user)
   end
 
   # POST /offers
   # POST /offers.json
   def create
     @offer = current_user.offers.new(offer_params)
+    @proposals = Proposal.get_proposals(@user)
     respond_to do |format|
       if @offer.save
         format.html { redirect_to @offer, notice: 'Offer was successfully created.' }
@@ -68,11 +76,26 @@ class OffersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
-      @offer = Offer.find(params[:id])
+      @offers = @user.offers
+      if @offers.present?
+        @offer = @offers.find_by(id: params[:id])
+        if @offer.nil?
+          respond_to do |format|
+            format.html{ redirect_to offers_path, alert: "You cannot access this offer."}
+          end
+        else
+          @offer
+        end
+      else
+        respond_to do |format|
+          format.html{ redirect_to offers_path, alert: "You cannot access this offer."}
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
       params.require(:offer).permit(:offer_title, :text, :description, :amount_to_offer, :proposal_id)
     end
+
 end

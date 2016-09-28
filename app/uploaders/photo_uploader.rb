@@ -31,10 +31,19 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  process :resize_to_fill => [Settings.group.logo.full.width, Settings.group.logo.full.height]
+
   version :thumb do
-    process :resize_to_fit => [150, 150]
+    process :resize_to_fill => [Settings.group.logo.thumb.width, Settings.group.logo.thumb.height]
   end
 
+  version :avatar do
+    process :resize_to_fill => [Settings.group.logo.avatar.width, Settings.group.logo.avatar.height]
+  end
+
+  version :profile do
+    process :resize_to_fill => [50, 40]
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list

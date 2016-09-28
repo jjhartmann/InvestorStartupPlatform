@@ -4,8 +4,8 @@
     <div class="col-xs-12">
       <div class="short-profile">
         <ul>
-          <li><%= link_to user_profile_path(current_user.id), class: "view" do %><div class="main-profile"><i class="fa fa-user" aria-hidden="true"></i></div><div class="user-name-short"><%= current_user.name %></div><div class="view">View Your Profile</div><% end %></li>
-          <li><%= link_to connections_user_dashboards_path do %><div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div><div class="tag-count"><%= current_user.connection_counts(current_user.target_followed.pluck(:target_id),current_user) %></div><div class="tag-name"><%= "Connection".pluralize(current_user.connection_counts(current_user.target_followed.pluck(:target_id),current_user)) %></div><% end %></li>
+          <li><%= link_to user_profile_path(current_user.id), class: "view" do %><div class="main-profile"><%= image_tag current_user.photo_profile %></div><div class="user-name-short"><%= current_user.name %></div><div class="view">View Your Profile</div><% end %></li>
+          <li><%= link_to connections_user_dashboards_path do %><div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div><div class="tag-count"><%= current_user.target_followed.count %></div><div class="tag-name"><%= "Connection".pluralize(current_user.connection_counts(current_user.target_followed.pluck(:target_id),current_user)) %></div><% end %></li>
           <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>
           <li><%= link_to "" do %><div class="main-profile"><i class="fa fa-rss" aria-hidden="true"></i></div><div class="tag-count"><%= current_user.target_followed.count %> &nbsp; <%= "Person".pluralize(current_user.target_followed.count) %></div><div class="tag-name">In your network</div><% end %></li>
         </ul>
