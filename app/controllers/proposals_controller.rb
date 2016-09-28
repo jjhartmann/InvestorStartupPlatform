@@ -2,7 +2,7 @@ class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :update, :destroy, :download]
   before_action :user, only: [:index, :new, :edit, :create, :download]
 
-  # layout 'frontpage'
+  layout 'frontpage'
   before_filter :authenticate_user!
 
   # GET /proposals
@@ -11,7 +11,7 @@ class ProposalsController < ApplicationController
     if @user.profilable_type == "InvestorProfile"
       @proposals = Proposal.get_proposals(@user)
     else
-      @proposals =  @user.proposals
+      @proposals =  Proposal.where("enterprise_id IN(?)", @user.enterprises.ids)
     end
   end
 
@@ -38,17 +38,8 @@ class ProposalsController < ApplicationController
   # POST /proposals
   # POST /proposals.json
   def create
-    @proposal = Proposal.new(proposal_params)
-    @enterprises = @user.enterprises
-    respond_to do |format|
-      if @proposal.save
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
-        format.json { render :show, status: :created, location: @proposal }
-      else
-        format.html { render :new }
-        format.json { render json: @proposal.errors, status: :unprocessable_entity }
-      end
-    end
+    @enterprise = Enterprise.find(params[:proposal][:enterprise_id])
+    @enterprise.create_proposal([],proposal_params)
   end
 
   # PATCH/PUT /proposals/1
@@ -96,12 +87,13 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit!
+      # params.require(:proposal).permit!
       # params.fetch(:proposal, {})
-      # params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round)
+      params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round)
     end
 
     def user
       @user = current_user
     end
 end
+#
