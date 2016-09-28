@@ -25,7 +25,7 @@
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
                     <%#= f.text_field :name, class: "form-control" %>
-                    <span class="display-mode-value"><%= @user_profile.name %></span>
+                    <span class="display-mode-value"><%= @user_profile.name %><%= hidden_field_tag :target_id1,@user_profile.id %></span>
                   </h2>
                 </div>
                 <div class="form-group">
@@ -74,7 +74,7 @@
               <%# end %>
               <div class="buttons">
                 <% if params[:connection_profile].present? %>
-                  <div class="edit"><i class="fa fa-comments" aria-hidden="true"></i></div>
+                  <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
                 <% else %>
                   <%= link_to edit_user_registration_path do %>
                     <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
@@ -89,4 +89,41 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Modal -->
+<div id="messageModal1" class="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= @user_profile.id %></h4>
+      </div>
+      <%= form_for @message,url: messages_path do |f|%>
+      <div class="modal-body">
+        <%= f.hidden_field :target_id,value:  @user_profile.id %>
+        <%= f.hidden_field :user_id,value: current_user.id %>
+        <div class="message-tab">
+          <div class="head-tab">Shantilal matariya</div>
+        </div>
+        <div class="form-inputs">
+          <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
+        </div>
+
+        <%#= render partial: "messages/form" %>
+      </div>
+      <div class="modal-footer">
+        <div class="terminals">
+          <div class="btn-yes-no">
+            <%= f.submit "Send",class: "remodal-confirm btn btn-green" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
 </div>
