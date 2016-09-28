@@ -1,22 +1,40 @@
-<%= content_for :all_user_class, 'active'%>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_all_users_class, "active" %>
 
-<table class="table test">
-  <thead>
-    <th>Name</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <% @all_users.each do |user| %>
-    <tr>
-      <td><%= link_to user.name, suggested_profile_user_dashboards_path(profile_id: user.id) %></td>
-      <td><%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}" %></td>
-    </tr>
-    <% end %>
-    <% @enterprises.each do |enterprise| %>
-    <tr>
-      <td><%= enterprise.name %></td>
-      <td><%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}" %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">All Users</div>
+            <ul class="main-dashbord">
+              <table class="table test">
+                <thead>
+                  <th>Name</th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <% @all_users.each do |user| %>
+                  <tr>
+                    <td><%= link_to user.name, suggested_profile_user_dashboards_path(profile_id: user.id) %></td>
+                    <td><%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}" %></td>
+                  </tr>
+                  <% end %>
+                  <% @enterprises.each do |enterprise| %>
+                  <tr>
+                    <td><%= enterprise.name %></td>
+                    <td><%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}" %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

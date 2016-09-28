@@ -14,11 +14,7 @@
               <%##= form_for(@user, as: @user, url: registration_path(@user), html: { method: :put }) do |f| %>
               <div class="form-group">
                  <div class="circle">
-                   <% if @user.photo.present? %>
-                    <%= image_tag @user.photo_url, class: "display-mode-value"%>
-                   <% else %>
-                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
-                   <% end %>
+                  <%= image_tag @user.photo_thumb, class: "display-mode-value"%>                   
                  </div>
                </div>
                 <div class="form-group">

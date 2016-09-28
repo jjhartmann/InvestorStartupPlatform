@@ -1,6 +1,21 @@
-<h1>Editing Offer</h1>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_offers_class, "active" %>
 
-<%= render 'form', offer: @offer %>
-
-<%= link_to 'Show', @offer %> |
-<%= link_to 'Back', offers_path %>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Editing Offers</div>
+            <ul class="main-dashbord">
+              <%= render 'form', offer: @offer %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

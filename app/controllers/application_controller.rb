@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # configured params now handled in the users/registreration_controller.rb
   # before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :get_notifications, if: :user_signed_in?
+  before_action :get_notifications, :get_user, if: :user_signed_in?
 
   protected
 
@@ -36,5 +36,9 @@ class ApplicationController < ActionController::Base
 
   def get_notifications
     @notifications = current_user.profilable.notifications.where(is_viewed: false)
+  end
+
+  def get_user
+    @user = current_user
   end
 end

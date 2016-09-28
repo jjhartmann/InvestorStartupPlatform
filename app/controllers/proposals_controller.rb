@@ -23,7 +23,9 @@ class ProposalsController < ApplicationController
   # GET /proposals/new
   def new
     if @user.profilable_type == "InvestorProfile"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: "You cannot create a proposal."}
+      end
     else
       @enterprises = @user.enterprises
       @proposal = Proposal.new
@@ -38,8 +40,17 @@ class ProposalsController < ApplicationController
   # POST /proposals
   # POST /proposals.json
   def create
-    @enterprise = Enterprise.find(params[:proposal][:enterprise_id])
-    @enterprise.create_proposal([],proposal_params)
+    @enterprises = @user.enterprises
+    @proposal = Proposal.new(proposal_params)
+    respond_to do |format|
+      if @proposal.save
+        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+        format.json { render :show, status: :created, location: @proposal }
+      else
+        format.html { render :new }
+        format.json { render json: @proposal.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /proposals/1
@@ -82,18 +93,31 @@ class ProposalsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal
-      @proposal = Proposal.find(params[:id])
+      @proposals = @user.proposals
+      if @proposals.present?
+        @proposal = @proposals.find_by(id: params[:id])
+        if @proposal.nil?
+          respond_to do |format|
+            format.html{ redirect_to proposals_path, alert: "You cannot access this proposal."}
+          end
+        else
+          @proposal
+        end
+      else
+        respond_to do |format|
+          format.html{ redirect_to proposals_path, alert: "You cannot access this proposal."}
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
       # params.require(:proposal).permit!
       # params.fetch(:proposal, {})
-      params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round)
+      params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round, :document, :enterprise_id)
     end
 
     def user
       @user = current_user
     end
 end
-#

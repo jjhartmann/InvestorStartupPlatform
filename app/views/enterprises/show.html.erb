@@ -1,4 +1,5 @@
-<%= content_for  :body_class, "dashbord" %>
+<%= content_for :body_class, "dashbord" %>
+
 <div class="tab-pane test fade editable-contact-info edit-mode-disabled active in">
   <div class="tab-title">Enterprise</div>
   <div class="enterprise-deatils">
@@ -9,7 +10,13 @@
       <div class="all-notification-close">
         <i aria-hidden="true" class="fa fa-times"></i>
       </div>
-
+      <div class="form-group">
+         <% if @enterprise.logo.present? %>
+          <%= image_tag @enterprise.logo_thumb %>
+         <% else %>
+          <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
+         <% end %>
+       </div>
       <div class="form-group">
         <h2><span class="name notes"><i aria-hidden="true" class="fa fa-user"></i>Name</span><span class="display-mode-value"><%= @enterprise.name %></span></h2>
       </div>
