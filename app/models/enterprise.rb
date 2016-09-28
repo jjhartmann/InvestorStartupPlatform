@@ -123,12 +123,14 @@ class Enterprise < ApplicationRecord
   end
 
   def create_proposal(investors = [], attributes = {}, stage = 'draft', private_message = I18n.t('text.default_text_for_proposal_review'))
+    puts "blah"
     raise Exceptions::NotAllowed if proposals.count >= Settings.enterprise.proposal.limit
 
+    puts attributes
     attributes['created_at'] = Time.now
     attributes['updated_at'] = Time.now
 
-    proposal = proposals.create(attributes)
+    proposal = proposals.create!(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
     send_private_message_to_investors(proposal, investors, private_message) if stage == 'submitted'
     proposal

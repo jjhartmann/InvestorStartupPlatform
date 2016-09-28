@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     end
   end
   resources :offers
+  resources :proposal_steps
+
 
   get 'proposals/download'
 

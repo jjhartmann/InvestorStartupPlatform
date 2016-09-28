@@ -55,8 +55,6 @@ class UserDashboardsController < ApplicationController
   end
 
   def connections
-    puts current_user.as_json
-    puts current_user.target_followed.as_json
     @connections = current_user.target_followed
     @message = Message.new
   end
