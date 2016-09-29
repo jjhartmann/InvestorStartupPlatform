@@ -7,7 +7,8 @@ $(document).ready(function(){
       data: {target_id: $(this).data('id'), target_type: $(this).data('type')},
       success: function(){
         console.log("success");
-        if (link.text() == "follow"){
+        console.log(link.text());
+        if (link.text() == "Follow"){
           link.text("following");
         }else{
           link.text("follow");

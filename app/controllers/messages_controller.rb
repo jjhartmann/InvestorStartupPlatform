@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   layout 'frontpage'
+  before_action :authenticate_user!
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
@@ -7,11 +8,6 @@ class MessagesController < ApplicationController
   def index
     @current_user_received_messages = Message.where(target_id: current_user.id, topic_id: nil)
     @messages = current_user.messages.where(topic_id: nil)
-    puts "__________________"
-    puts @messages.as_json
-    puts "__________________"
-    puts @current_user_received_messages.as_json
-    puts "__________________"
     @message_thread = @messages | @current_user_received_messages
     @conversations = User.where(id: current_user.messages.pluck(:target_id))
   end
@@ -88,7 +84,6 @@ class MessagesController < ApplicationController
   end
 
   def inbox
-    # @conversation = User.find(params[:id])
     @first_message = Message.where(id: params[:id])
     # @first_message.first.update(is_read: true)
     # @read_status = Message.where(topic_id: @first_message.first.id).update_all(is_read: true)
