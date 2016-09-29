@@ -55,7 +55,7 @@ class UserDashboardsController < ApplicationController
   end
 
   def connections
-    @connections = current_user.target_followed
+    @connections = current_user.target_followed.where(target_type: "User")
     puts @connections.pluck(:target_id)
     @connection_id_array = []
     @connections.pluck(:target_id).each do |target_id|

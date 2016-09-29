@@ -26,6 +26,7 @@ class EnterprisesController < ApplicationController
 
     respond_to do |format|
       if @enterprise.save
+        current_user.follow(@enterprise)
         @enterprise_user = EnterpriseUser.create(enterprise_id: @enterprise.id, user_email: current_user.email, role_identifier: "member", member_title: "Founder")
         @enterprise.create_questionaire
         format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }

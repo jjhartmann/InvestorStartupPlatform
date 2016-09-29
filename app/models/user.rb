@@ -157,18 +157,20 @@ class User < ApplicationRecord
       target.target_followers.create(
         :follower_id   => id,
         :follower_type => self.class.name
-      ) &&
-      # create notification for following
-      target.profilable.notifications.create(
-      :notification_text => "#{self.name} is now following #{target.name}."
-      ) && reload unless target == self || target.nil?
-
-      # check if the user is following the target. if yes, create a connection and notification
-        if is_connection?(target, self)
-          puts "connection"
-          target.profilable.notifications.create(
-          :notification_text => "#{self.name} is now #{target.name}'s connection.",
+      )
+      if target.class == "Enterprise"
+        # create notification for following
+        target.profilable.notifications.create(
+        :notification_text => "#{self.name} is now following #{target.name}."
         ) && reload unless target == self || target.nil?
+
+        # check if the user is following the target. if yes, create a connection and notification
+          if is_connection?(target, self)
+            puts "connection"
+            target.profilable.notifications.create(
+            :notification_text => "#{self.name} is now #{target.name}'s connection.",
+          ) && reload unless target == self || target.nil?
+        end
       end
     end
   end
