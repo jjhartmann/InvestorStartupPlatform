@@ -1,6 +1,21 @@
-<h1>Editing Proposal</h1>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_proposals_class, "active" %>
 
-<%= render 'form', proposal: @proposal %>
-
-<%= link_to 'Show', @proposal %> |
-<%= link_to 'Back', proposals_path %>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Editing Proposals</div>
+            <ul class="main-dashbord">
+              <%= render 'form', proposal: @proposal %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

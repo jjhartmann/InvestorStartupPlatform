@@ -1,22 +1,46 @@
 <%= content_for :body_class, "dashbord" %>
-<%= content_for :enterprise_class, 'active' %>
-<%= render partial: "user_dashboards/sidebar" %>
-<p id="notice"><%= notice %></p>
-<div class="container side-deatail">
-  <div class="col-xs-12">
-    <div class="profile-tabs test">
-      <div class="tab-pane fade editable-contact-info edit-mode-disabled active in">
-        <div class="tab-title">Enterprise</div>
-        <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
-          <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
-        </div>
-        <div class="enterprise-deatils box-tab">
-          <ul class="full-details clearfix">
-            <li><div class="name-enetrprise head-box">Name</div><div class="destory head-box">Destory</div></li>
-            <% @enterprises.each do |enterprise| %>
-              <li><div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise.id) %></div><div class="destory"><a href="#"><i aria-hidden="true" class="fa fa-trash"></i></a></div></li>
+<%= content_for :sidebar_enterprises_class, 'active' %>
+
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Enterprises</div>
+            <% if @user.profilable_type == "InvestorProfile" %>
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  You are not following any <strong>enterprises</strong> yet.
+                </div>
+              </div>
+            <% else %>
+              <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
+                <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
+              </div>
+              <% if @enterprises.present? %>
+                <div class="enterprise-deatils box-tab">
+                  <ul class="full-details clearfix">
+                    <li><div class="name-enetrprise head-box">Name</div><div class="destory head-box">Destory</div></li>
+                    <% @enterprises.each do |enterprise| %>
+                    <li>
+                      <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise.id) %></div>
+                      <div class="destory"><%= link_to enterprise, method: :delete do %><i aria-hidden="true" class="fa fa-trash"></i><% end %></div>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% else %>
+                <div class="notes-alert">
+                  <div class="alert alert-warning">
+                    You have not created any <strong>Enterprises</strong> yet.
+                  </div>
+                </div>
+              <% end %>
             <% end %>
-          </ul>
+          </div>
         </div>
       </div>
     </div>

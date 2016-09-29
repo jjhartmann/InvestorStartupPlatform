@@ -1,5 +1,5 @@
 <%= content_for :body_class, "dashbord" %>
-<%= content_for :sidebar_dashboard_class, "active" %>
+<%= content_for :sidebar_proposals_class, "active" %>
 
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
@@ -16,18 +16,14 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th><%= "proposal_stage_identifier" %></th>
-                      <th><%= "new_business_model" %></th>
-                      <th><%= "new_product" %></th>
-                      <th><%= "pitch" %></th>
-                      <th><%= "introduction" %></th>
-                      <th><%= "competitors_details" %></th>
-                      <th><%= "competitive_edges" %></th>
-                      <th><%= "competing_strategy" %></th>
-                      <th><%= "investment_amount" %></th>
-                      <th><%= "investment_currency" %></th>
-                      <th><%= "equity_percentage" %></th>
-                      <th><%= "spending_plan" %></th>
+                      <th><%= "Stage" %></th>
+                      <th><%= "New model?" %></th>
+                      <th><%= "New Product?" %></th>
+                      <th><%= "Pitch" %></th>
+                      <th><%= "Dompetitiors Details" %></th>
+                      <th><%= "Investment Amount" %></th>
+                      <th><%= "Equity Percentage" %></th>
+                      <th><%= "Spending Plan" %></th>
                       <th colspan="3"></th>
                     </tr>
                   </thead>
@@ -39,23 +35,23 @@
                       <td><%=proposal.new_business_model %></td>
                       <td><%=proposal.new_product %></td>
                       <td><%=h truncate(proposal.pitch, length: 10) %></td>
-                      <td><%=h truncate(proposal.introduction, length: 10) %></td>
-                      <td><%=h truncate(proposal.competitors_details, length: 10) %></td>
-                      <td><%=h truncate(proposal.competitive_edges, length: 10) %></td>
-                      <td><%=h truncate(proposal.competing_strategy, length: 10) %></td>
-                      <td><%=proposal.investment_amount %></td>
-                      <td><%=h truncate(proposal.investment_currency, length: 10) %></td>
+                      <td><%=h truncate(proposal.competitors_details, length: 20) %></td>
+                      <td><%=proposal.investment_amount %> <%=proposal.investment_currency %></td>
                       <td><%= proposal.equity_percentage %></td>
-                      <td><%=h truncate(proposal.spending_plan, length: 10) %></td>
-                      <td><%= link_to 'Show', proposal %></td>
+                      <td><%=h truncate(proposal.spending_plan, length: 20) %></td>
                       <% if @user.profilable_type == "InvestorProfile" %>
                       <td><%= link_to "Make an offer", new_offer_path %></td>
-                      <% end %>
+                        <% if proposal.document_url %>
+                        <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
+                        <% end %>
+                      <% else %>
+                      <td><%= link_to 'Show', proposal %></td>
                       <% if proposal.document_url %>
                       <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
                       <% end %>
                       <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
                       <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% end %>
                     </tr>
                     <% end %>
                   </tbody>
@@ -63,9 +59,23 @@
               </div>
               <br>
               <% else %>
-              You do not have any proposal yet.
+                <% if @user.profilable_type == "InvestorProfile" %>
+                  <div class="notes-alert">
+                    <div class="alert alert-warning">
+                      There are no proposlas for you yet. Maybe you are not following any enterprises. Check here.
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="notes-alert">
+                    <div class="alert alert-warning">
+                      You have not created any <strong>Proposal</strong> yet.
+                    </div>
+                  </div>
+                  <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
+                    <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
+                  </div>
+                <% end %>
               <% end %>
-              <%= link_to 'New Proposal', new_proposal_path %>
             </ul>
           </div>
         </div>

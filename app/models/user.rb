@@ -198,9 +198,20 @@ class User < ApplicationRecord
   end
 
   def photo_full
-    photo? ? photo : 'enterprise_460x300.png'
+    photo? ? photo : '/assets/Icon-user.png'
   end
 
+  def photo_thumb
+    photo? ? photo.thumb : '/assets/Icon-user.png'
+  end
+
+  def photo_avatar
+    photo? ? photo.avatar : '/assets/Icon-user.png'
+  end
+
+  def photo_profile
+    photo? ? photo.profile : '/assets/Icon-user.png'
+  end
 
   # This function is created to count the total number of connection of the logged in user.
   # This function takes two parameters. (array of target_id, logged in user).

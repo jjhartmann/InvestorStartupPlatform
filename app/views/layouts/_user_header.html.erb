@@ -13,23 +13,32 @@
       <ul class="nav navbar-nav">
         <li class="profile-set <%= yield :profile_active_class %> "><%= link_to "Profile", user_profile_path(current_user.id) %></li>
         <li><a href="#">Connections </a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-          </ul>
-        </li>
+        <!-- show companies only when user is startup -->
+        <% if @user.profilable_type == "UserProfile" %>
+        <% @enterprise = @user.enterprises %>
+          <% if @enterprise.present? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% @user.enterprises.each do |enterprise| %>
+                  <li><a href="#"><%= enterprise.name %></a></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i aria-hidden="true" class="fa fa-user"></i></span></a>
           <ul class="dropdown-menu user-section">
-            <li><a href="#"><%= current_user.name %></a></li>
+            <li><%= link_to user_profile_path(@user) do %><%= current_user.name %><% end %></li>
             <li class="divider" role="presentation"></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">create company profile</a></li>
-            <li><a href="#">Manage connections</a></li>
+            <% unless @user.profilable_type == "InvestorProfile" %>
+            <li><%= link_to new_enterprise_path do %>Create Company Profile<% end %></li>
+            <% end %>
+            <li><%= link_to connections_user_dashboards_path do %>Manage connections<% end %></li>
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
