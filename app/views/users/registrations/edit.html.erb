@@ -17,8 +17,11 @@
               <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: { input_html: { class: 'default_class' } } do |f| %>
               <div class="form-group">
                  <div class="circle">
-                    <%= image_tag @user.photo_thumb %>
-                   <%= f.input :photo, class: "form-control", as: :file, label: false %>
+                   <div class="go-top">
+                     <%= f.input :photo, as: :file, label: false %>
+                     <a href="#"><i class="fa fa-camera" aria-hidden="true"></i></a>
+                   </div>
+                   <%= image_tag @user.photo_thumb %>
                  </div>
                </div>
                 <div class="form-group">

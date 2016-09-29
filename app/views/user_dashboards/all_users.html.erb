@@ -24,7 +24,7 @@
                   <% end %>
                   <% @enterprises.each do |enterprise| %>
                   <tr>
-                    <td><%= enterprise.name %></td>
+                    <td><%= link_to enterprise.name, enterprise_path(enterprise) %></td>
                     <td><%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}" %></td>
                   </tr>
                   <% end %>

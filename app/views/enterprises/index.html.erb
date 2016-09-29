@@ -11,11 +11,23 @@
           <div class="tab-pane fade in active">
             <div class="tab-title">Enterprises</div>
             <% if @user.profilable_type == "InvestorProfile" %>
-              <div class="notes-alert">
-                <div class="alert alert-warning">
-                  You are not following any <strong>enterprises</strong> yet.
+              <% if %>
+                <div class="enterprise-deatils box-tab">
+                  <ul class="full-details clearfix">
+                    <% @enterprises.each do |enterprise| %>
+                    <li>
+                      <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise, enterprise: enterprise.id) %></div>
+                    </li>
+                    <% end %>
+                  </ul>
                 </div>
-              </div>
+              <% else %>
+                <div class="notes-alert">
+                  <div class="alert alert-warning">
+                    You are not following any <strong>enterprises</strong> yet.
+                  </div>
+                </div>
+              <% end %>
             <% else %>
               <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
                 <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
@@ -26,7 +38,7 @@
                     <li><div class="name-enetrprise head-box">Name</div><div class="destory head-box">Destory</div></li>
                     <% @enterprises.each do |enterprise| %>
                     <li>
-                      <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise.id) %></div>
+                      <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise) %></div>
                       <div class="destory"><%= link_to enterprise, method: :delete do %><i aria-hidden="true" class="fa fa-trash"></i><% end %></div>
                     </li>
                     <% end %>

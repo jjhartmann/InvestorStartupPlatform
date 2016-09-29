@@ -1,7 +1,7 @@
 class EnterprisesController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
-  before_action :set_enterprise, only: [:show, :edit, :update, :destroy]
+  before_action :set_enterprise, only: [:edit, :update, :destroy]
 
   def index
     @user = current_user
@@ -13,9 +13,25 @@ class EnterprisesController < ApplicationController
   end
 
   def show
-    unless @enterprise.questionaire.questions.present?
-      redirect_to questionaries_path(enterprise: @enterprise.id)
+    @enterprise = Enterprise.find_by(id: params[:id])
+    if @enterprise.nil?
+      respond_to do |format|
+        format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+      end
+    else
+      unless @enterprise.questionaire.questions.present?
+        redirect_to questionaries_path(enterprise: @enterprise.id)
+      end
+      if params[:enterprise].present?
+        @enterprise = Enterprise.find_by(params[:enterprise])
+        if @enterprise.nil?
+          respond_to do |format|
+            format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+          end
+        end
+      end
     end
+
   end
 
   def new

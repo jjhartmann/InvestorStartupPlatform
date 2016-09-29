@@ -428,6 +428,7 @@ html,body{
     display: inline-block;
     transition:all 0.4s;
     overflow: hidden;
+    position: relative;
 }
 .main-profile .fa{
   font-size: 22px;
@@ -778,9 +779,9 @@ a.view:hover{
 .event-btn .btn.btn-primary:hover{
   box-shadow:0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-.edit-mode-enabled .circle:hover{
+/*.edit-mode-enabled .circle:hover{
   background: #ffc857;
-}
+}*/
 .circle input {
     height: 100%;
     left: 0;
@@ -1398,4 +1399,64 @@ top:0;
 .btn-yes-no input[type=submit]:hover{
   box-shadow: none;
   transform:inherit;
+}
+
+/*29/06/2016*/
+/*hover on profile pic effect*/
+
+.go-top {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    color: #ffffff;
+    font-family: FontAwesome;
+    font-size: 18px;
+    height: 150px;
+    overflow: hidden;
+    padding-top: 28px;
+    position: absolute;
+    text-align: center;
+    top: -150px;
+    transition: all 0.3s ease 0s;
+    width:150px;
+}
+.circle:hover > .go-top {
+    top: 0;
+}
+
+.circle input[type="file"] {
+    display: block;
+    float: left;
+    height: 150px;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    border-radius: 100%;
+    z-index: 5;
+}
+.go-top a .fa {
+    color: #fff;
+    padding-top: 28px;
+    opacity: 0.8;
+    font-size: 36px;
+}
+.go-top .form-group{
+  margin-bottom: 0;
+}
+.go-top-tag {
+    background-color: rgba(255, 200, 87, 0.6);
+    border-radius: 100%;
+    color: #ffffff;
+    font-family: FontAwesome;
+    font-size: 18px;
+    height: 50px;
+    overflow: hidden;
+    padding-top: 28px;
+    position: absolute;
+    text-align: center;
+    top: -50px;
+    width:50px;
+}
+
+.short-profile ul li a:hover .main-profile > .go-top-tag {
+  top:0;
 }

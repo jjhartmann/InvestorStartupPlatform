@@ -1,69 +1,81 @@
 <%= content_for :body_class, "dashbord" %>
 
-<div class="tab-pane test fade editable-contact-info edit-mode-disabled active in">
-  <div class="tab-title">Enterprise</div>
-  <div class="enterprise-deatils">
-    <div class="box-tab">
-      <div class="buttons">
-        <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
-      </div>
-      <div class="all-notification-close">
-        <i aria-hidden="true" class="fa fa-times"></i>
-      </div>
-      <div class="form-group">
-         <% if @enterprise.logo.present? %>
-          <%= image_tag @enterprise.logo_thumb %>
-         <% else %>
-          <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
-         <% end %>
-       </div>
-      <div class="form-group">
-        <h2><span class="name notes"><i aria-hidden="true" class="fa fa-user"></i>Name</span><span class="display-mode-value"><%= @enterprise.name %></span></h2>
-      </div>
-      <div class="form-group">
-        <div class="set-view-deatils">
-          <p><span class="name notes"><i class="fa fa-bank" aria-hidden="true"></i>Pitch</span><span class="display-mode-value"><%= @enterprise.pitch %></span></p>
+<div class="main-body">
+  <div class="container side-deatail" style="transition: none; width: 100%; margin-top: 100px">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div id="home" class="editable-contact-info edit-mode-disabled">
+          <div class="tab-title">Enterprise</div>
+          <div class="enterprise-deatils">
+            <div class="box-tab">
+              <% unless params[:enterprise].present? %>
+                <div class="buttons">
+                  <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
+                </div>
+              <% end %>
+              <div class="all-notification-close">
+                <%= link_to enterprises_path do %>
+                  <i aria-hidden="true" class="fa fa-times"></i>
+                <% end %>
+              </div>
+              <div class="form-group">
+                <div class="circle">
+                  <% if @enterprise.logo.present? %>
+                    <%= image_tag @enterprise.logo_avatar %>
+                  <% else %>
+                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group">
+                <h2><span class="name notes"><i aria-hidden="true" class="fa fa-user"></i>Name</span><span class="display-mode-value"><%= @enterprise.name %></span></h2>
+              </div>
+              <div class="form-group">
+                <div class="set-view-deatils">
+                  <p><span class="name notes"><i class="fa fa-bank" aria-hidden="true"></i>Pitch</span><span class="display-mode-value"><%= @enterprise.pitch %></span></p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-money"></i>Funds to raise</span><span class="display-mode-value"><%= @enterprise.funds_to_raise %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-industry"></i>Industry</span><span class="display-mode-value"><%= @enterprise.industry %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-star-half-o"></i>Enterprise stage</span><span class="display-mode-value"><%= @enterprise.enterprise_stage %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-map-marker"></i>Location</span><span class="display-mode-value"><%= @enterprise.location %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>Stage identifer</span><span class="display-mode-value"><%= @enterprise.stage_identifier %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-plane"></i>market identifer</span><span class="display-mode-value"><%= @enterprise.market_identifier %></span></div>
+              </div>
+              <div class="form-group">
+                <div class="set-view-deatils">
+                  <p>
+                    <span class="name notes"><i aria-hidden="true" class="fa fa-eye"></i>Description</span><%= @enterprise.description %></span>
+                  </p>
+                </div>
+              </div>
+              <% unless params[:enterprise].present? %>
+                <div class="add-form">
+                  <div class="btn-yes-no">
+                    <%= link_to new_enterprise_path, class: "btn btn-green" do %><div class="btn btn-green">Add Enterprise</div><% end %>
+                    <%= link_to "Add Members","#add_member",'data-toggle': "modal",class: "btn btn-primary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-money"></i>Funds to raise</span><span class="display-mode-value"><%= @enterprise.funds_to_raise %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-industry"></i>Industry</span><span class="display-mode-value"><%= @enterprise.industry %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-star-half-o"></i>Enterprise stage</span><span class="display-mode-value"><%= @enterprise.enterprise_stage %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-map-marker"></i>Location</span><span class="display-mode-value"><%= @enterprise.location %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>Stage identifer</span><span class="display-mode-value"><%= @enterprise.stage_identifier %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-plane"></i>market identifer</span><span class="display-mode-value"><%= @enterprise.market_identifier %></span></div>
-      </div>
-      <div class="form-group">
-        <div class="set-view-deatils">
-          <p>
-            <span class="name notes"><i aria-hidden="true" class="fa fa-eye"></i>Description</span><%= @enterprise.description %></span>
-          </p>
-        </div>
-      </div>
-      <div class="event-btn">
-        <button class="btn btn-primary" id="defaultSave" type="button">Save</button>
-        <button class="btn btn-default js-cancel" type="button">Cancel</button>
-      </div>
-      <div class="add-form">
-        <div class="btn-yes-no">
-          <%= link_to new_enterprise_path, class: "btn btn-green" do %><div class="btn btn-green">Add Enterprise</div><% end %>
-          <%= link_to "Add Members","#add_member",'data-toggle': "modal",class: "btn btn-primary" %>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>
-
 
 <!-- Invitation Modal -->
 <div id="add_member" class="modal" role="dialog">
