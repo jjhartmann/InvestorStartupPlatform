@@ -1,7 +1,21 @@
-<h1>Editing Enterprise</h1>
-<div class="col-md-8 col-md-offset-2">
-  <%= render 'form', enterprise: @enterprise %>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_enterprises_class, "active" %>
 
-  <%= link_to 'Show', @enterprise %> |
-  <%= link_to 'Back', enterprises_path %>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Editing Proposals</div>
+            <ul class="main-dashbord">
+              <%= render 'form', enterprise: @enterprise %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

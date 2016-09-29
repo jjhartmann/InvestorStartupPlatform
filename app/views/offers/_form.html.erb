@@ -6,7 +6,7 @@
     <%= f.input :text %>
     <%= f.input :description %>
     <%= f.input :amount_to_offer %>
-    <%= f.association :proposal, label_method: :pitch, prompt: "Choose a Proposal"  %>
+    <%= f.input :proposal_id, collection: @proposals.map {|u| [u.pitch, u.id]}, prompt: "Choose a Proposal" %>
   </div>
 
   <div class="form-actions">

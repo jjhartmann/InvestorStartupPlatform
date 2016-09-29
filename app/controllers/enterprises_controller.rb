@@ -5,7 +5,11 @@ class EnterprisesController < ApplicationController
 
   def index
     @user = current_user
-    @enterprises = @user.enterprises
+    if @user.profilable_type == "InvestorProfile"
+      @enterprises = @user.enterprises_followed
+    else
+      @enterprises = @user.enterprises
+    end
   end
 
   def show
@@ -23,7 +27,6 @@ class EnterprisesController < ApplicationController
 
   def create
     @enterprise = Enterprise.new(enterprise_params)
-
     respond_to do |format|
       if @enterprise.save
         current_user.follow(@enterprise)
@@ -78,12 +81,27 @@ class EnterprisesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enterprise
-      @enterprise = Enterprise.find(params[:id])
+      @enterprises = @user.enterprises
+      puts @enterprises
+      if @enterprises.nil?
+        respond_to do |format|
+          format.html { redirect_to user_dashboards_path, alert: "You don't have any enterprises yet." }
+        end
+      else
+        @enterprise = @enterprises.find_by(id: params[:id])
+        if @enterprise.present?
+          return @enterprise
+        else
+          respond_to do |format|
+            format.html { redirect_to user_dashboards_path, alert: "You don't have access to this enterprise." }
+          end
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enterprise_params
-      params.require(:enterprise).permit(:name, :pitch, :funds_to_raise, :industry, :enterprise_stage, :stage_identifier, :market_identifier, :location, :description, :logo, :followers_count, :followed_count, :comment_count)
+      params.require(:enterprise).permit(:name, :pitch, :funds_to_raise, :industry, :enterprise_stage, :stage_identifier, :market_identifier, :location, :description, :logo, :followers_count, :followed_count, :comment_count, :logo)
       # params.fetch(:enterprise, {})
     end
 end

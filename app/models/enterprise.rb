@@ -6,7 +6,8 @@ class Enterprise < ApplicationRecord
   include RailsAdmin::EnterpriseAdmin
   include RailsAdminCharts
 
-  mount_uploader :logo, LogoUploader
+  # mount_uploader :logo, LogoUploader
+  mount_uploader :logo, EnterpriseLogoUploader
 
   has_many :photos, :class_name => 'EnterprisePhoto'
 
@@ -130,7 +131,7 @@ class Enterprise < ApplicationRecord
     attributes['created_at'] = Time.now
     attributes['updated_at'] = Time.now
 
-    proposal = proposals.create!(attributes)
+    proposal = proposals.create(attributes)
     update_and_submit_proposal(proposal, investors, attributes, stage)
     send_private_message_to_investors(proposal, investors, private_message) if stage == 'submitted'
     proposal

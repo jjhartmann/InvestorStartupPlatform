@@ -17,11 +17,7 @@
               <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: { input_html: { class: 'default_class' } } do |f| %>
               <div class="form-group">
                  <div class="circle">
-                   <% if @user.photo.present? %>
-                    <%= image_tag @user.photo.thumb.url%>
-                   <% else %>
-                    <%= image_tag "/assets/Icon-user.png"%>
-                   <% end %>
+                    <%= image_tag @user.photo_thumb %>
                    <%= f.input :photo, class: "form-control", as: :file, label: false %>
                  </div>
                </div>
