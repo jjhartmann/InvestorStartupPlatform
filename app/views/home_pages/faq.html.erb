@@ -1,3 +1,5 @@
 <%= content_for :body_class, 'index' %>
 <%= content_for :body_id, 'page-top' %>
+<%= content_for :header_manage_class, 'header_manage' %>
+
 <%= react_component('FAQApp',props: {data: @faq}, prerender: false) %>

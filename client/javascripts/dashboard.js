@@ -38,7 +38,7 @@ $(document).ready(function(){
       else{
         $(".checkbox").removeClass('checked-box');
       }
-    });    
+    });
   });
 
   $('.all-notification-close').click(function(){

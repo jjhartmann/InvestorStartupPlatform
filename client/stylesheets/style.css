@@ -405,7 +405,6 @@ html,body{
 }
 .short-profile{
     float: left;
-    padding-top: 80px;
     width: 100%;
 }
 .short-profile ul {
@@ -1694,4 +1693,24 @@ top:0;
 }
 .optional [type="checkbox"]:not(:checked), [type="checkbox"]:checked{
   left: auto !important;
+}
+
+.edit-proposal .destory {
+    width: 11.11% !important;
+}
+.edit-proposal .name-enetrprise{
+    width: 11.11% !important;
+}
+.dashbord .alert.header-alert{
+    padding: 15px;
+    border: 1px solid transparent;
+    margin-top: -5px;
+    margin-bottom: 3px;
+    position: inherit;
+}
+.manage-header {
+    height: 80px;
+}
+.manage-header.header_manage {
+    height: 0;
 }
