@@ -1,29 +1,54 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :side_bar_offres_active_class, "active" %>
 
-<p>
-  <strong>Offer title:</strong>
-  <%= @offer.offer_title %>
-</p>
 
-<p>
-  <strong>Text:</strong>
-  <%= @offer.text %>
-</p>
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <%= render "/user_dashboards/sidebar" %>
+  <div class="container side-deatail">
+    <div class="col-xs-12">
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Offer</div>
+            <ul class="main-dashbord">
+              <div class="box-tab">
+                <div class="buttons">
+                  <%= link_to edit_offer_path(@offer) do %>
+                    <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                  <% end %>
+                </div>
+                <div class="all-notification-close">
+                  <%= link_to offers_path do %>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  <% end %>
+                </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @offer.description %>
-</p>
+                <div class="form-group">
+                  <h2><span class="name notes"><i class="fa fa-tags" aria-hidden="true"></i>Offer Title</span><span class="display-mode-value"><%= @offer.offer_title %></span></h2>
+                </div>
+                <div class="form-group">
+                  <div class="set-view-deatils">
+                    <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Text</span><span class="display-mode-value"><%= @offer.text %></span></p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="set-view-deatils">
+                    <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Description</span>
+                      <span class="display-mode-value"><%= @offer.description %></span></p>
+                    </div>
+                  </div>
 
-<p>
-  <strong>Amount to offer:</strong>
-  <%= @offer.amount_to_offer %>
-</p>
-
-<p>
-  <strong>Proposal:</strong>
-  <%= @offer.proposal.pitch %>
-</p>
-
-<%= link_to 'Edit', edit_offer_path(@offer) %> |
-<%= link_to 'Back', offers_path %>
+                  <div class="form-group">
+                    <div class="user-positon"><span class="name notes"><i class="fa fa-money" aria-hidden="true"></i>Amount To offer</span><span class="display-mode-value"><%= @offer.amount_to_offer %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><span class="name notes"><i class="fa fa-usd" aria-hidden="true"></i>proposal</span><span class="display-mode-value"><%= @offer.proposal.pitch %></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

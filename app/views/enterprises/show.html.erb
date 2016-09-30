@@ -8,11 +8,9 @@
           <div class="tab-title">Enterprise</div>
           <div class="enterprise-deatils">
             <div class="box-tab">
-              <% unless params[:enterprise].present? %>
-                <div class="buttons">
-                  <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
-                </div>
-              <% end %>
+              <div class="buttons">
+                <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
+              </div>
               <div class="all-notification-close">
                 <%= link_to enterprises_path do %>
                   <i aria-hidden="true" class="fa fa-times"></i>
@@ -20,11 +18,7 @@
               </div>
               <div class="form-group">
                 <div class="circle">
-                  <% if @enterprise.logo.present? %>
-                    <%= image_tag @enterprise.logo_avatar %>
-                  <% else %>
-                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
-                  <% end %>
+                  <%= image_tag @enterprise.logo_avatar %>                  
                 </div>
               </div>
               <div class="form-group">
@@ -60,14 +54,12 @@
                   </p>
                 </div>
               </div>
-              <% unless params[:enterprise].present? %>
-                <div class="add-form">
-                  <div class="btn-yes-no">
-                    <%= link_to new_enterprise_path, class: "btn btn-green" do %><div class="btn btn-green">Add Enterprise</div><% end %>
-                    <%= link_to "Add Members","#add_member",'data-toggle': "modal",class: "btn btn-primary" %>
-                  </div>
+              <div class="add-form">
+                <div class="btn-yes-no">
+                  <%= link_to new_enterprise_path, class: "btn btn-green" do %><div class="btn btn-green">Add Enterprise</div><% end %>
+                  <%= link_to "Add Members","#add_member",'data-toggle': "modal",class: "btn btn-primary" %>
                 </div>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -98,7 +90,6 @@
       </div>
       <% end %>
     </div>
-
   </div>
 </div>
 </div>

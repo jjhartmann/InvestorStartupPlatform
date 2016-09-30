@@ -6,16 +6,18 @@ Rails.application.routes.draw do
     end
   end
   resources :offers
-  resources :proposal_steps
-
 
   get 'proposals/download'
 
-  resources :proposals
+  resources :proposals do
+    get 'view_proposal'
+  end
+  
   resources :enterprises do
     collection do
       get 'add_member'
       post 'add_member'
+      get 'public_profile'
     end
   end
   resources :news_feeds

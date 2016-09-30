@@ -39,18 +39,16 @@
                       <td><%=proposal.investment_amount %> <%=proposal.investment_currency %></td>
                       <td><%= proposal.equity_percentage %></td>
                       <td><%=h truncate(proposal.spending_plan, length: 20) %></td>
-                      <% if @user.profilable_type == "InvestorProfile" %>
-                      <td><%= link_to "Make an offer", new_offer_path %></td>
-                        <% if proposal.document_url %>
-                        <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
-                        <% end %>
-                      <% else %>
-                      <td><%= link_to 'Show', proposal %></td>
                       <% if proposal.document_url %>
-                      <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
+                        <td><%= link_to "Download document", proposals_download_path(id: proposal.id) %></td>
                       <% end %>
-                      <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-                      <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% if @user.profilable_type == "InvestorProfile" %>
+                        <td><%= link_to 'Show', proposal_view_proposal_path(proposal_id: proposal.id) %></td>
+                        <td><%= link_to "Make an offer", new_offer_path %></td>
+                      <% else %>
+                        <td><%= link_to 'Show', proposal %></td>
+                        <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
+                        <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       <% end %>
                     </tr>
                     <% end %>
