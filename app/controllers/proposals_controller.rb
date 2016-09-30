@@ -39,17 +39,44 @@ class ProposalsController < ApplicationController
   # POST /proposals
   # POST /proposals.json
   def create
+    @proposal = Proposal.new
     @enterprises = @user.enterprises
-    @proposal = Proposal.new(proposal_params)
+    @enterprise = Enterprise.find_by(id: params[:proposal][:enterprise_id])
     respond_to do |format|
-      if @proposal.save
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
-        format.json { render :show, status: :created, location: @proposal }
-      else
+      if @enterprise.nil?
+        @proposal.errors.add(:enterprise_id, :blank, message: "cannot be blank")
         format.html { render :new }
-        format.json { render json: @proposal.errors, status: :unprocessable_entity }
+      elsif @enterprise.proposals.count >= Settings.enterprise.proposal.limit
+        @proposal.errors.add(:enterprise_id, :blank, message: "This enterprise is already in use. Please use a different one.")
+        format.html { render :new }
+        puts "here count"
+      else
+        puts "njhn"
+        @proposal = @enterprise.proposals.new(proposal_params)
+        puts "proposal.save nope"
+        puts @proposal
+        if @proposal.save
+          format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+          format.json { render :show, status: :created, location: @proposal }
+        else
+          puts "proposal.error"
+          puts @proposal.errors.as_json
+          format.html { render :new }
+          format.json { render json: @proposal.errors, status: :unprocessable_entity }
+        end
       end
     end
+    # @enterprises = @user.enterprises
+    # @proposal = Proposal.new(proposal_params)
+    # respond_to do |format|
+    #   if @proposal.save
+    #     format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+    #     format.json { render :show, status: :created, location: @proposal }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @proposal.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /proposals/1
@@ -91,9 +118,7 @@ class ProposalsController < ApplicationController
 
   def view_proposal
     @proposals = Proposal.get_proposals(@user)
-    puts @proposals.as_json
     @proposal = @proposals.find_by(id: params[:proposal_id])
-    puts @proposal.as_json
     if @proposal.present?
       @proposal
     else
@@ -104,9 +129,15 @@ class ProposalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_proposal
-      @proposals = @user.proposals
+      if @user.profilable_type == "InvestorProfile"
+        @enterprises = @user.enterprises_followed
+        @proposals = Proposal.get_proposals(@user)
+      else
+        @enterprises = @user.enterprises
+        @proposals = Proposal.get_users_proposals(@user)        
+      end
       if @proposals.present?
         @proposal = @proposals.find_by(id: params[:id])
         if @proposal.nil?

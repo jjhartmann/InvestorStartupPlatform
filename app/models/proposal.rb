@@ -77,6 +77,12 @@ class Proposal < ApplicationRecord
     @proposals = self.where("proposals.enterprise_id IN(?)", @following_enterprises.ids)
   end
 
+  def self.get_users_proposals(user)
+    @user = user
+    @enterprises = @user.enterprises
+    @proposals = self.where("enterprise_id IN(?)", @enterprises.ids)
+  end
+
   private
 
   def default_proposal_stage_identifier

@@ -1,6 +1,5 @@
 <%= content_for :body_class, "dashbord" %>
-<%= content_for :sidebar_offers_class, "active" %>
-
+<%= content_for :sidebar_proposals_class, "active" %>
 
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
@@ -116,7 +115,7 @@
                         </li>
                         <li>
                           <label>Five Year Gross Income</label>
-                           <div class="names-filed"><%= @proposal.five_year_gross_profit_margin %></div>
+                          <div class="names-filed"><%= @proposal.five_year_gross_profit_margin %></div>
                         </li>
                       </ul>
                     </li>
@@ -149,7 +148,7 @@
                         </li>
                         <li>
                           <label>Next Investment Round</label>
-                           <div class="names-filed"><%= @proposal.next_investment_round %></div>
+                          <div class="names-filed"><%= @proposal.next_investment_round %></div>
                         </li>
                       </ul>
                     </li>
@@ -158,9 +157,9 @@
               </div>
 
 
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
