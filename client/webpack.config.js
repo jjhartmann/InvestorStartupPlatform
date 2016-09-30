@@ -41,6 +41,7 @@ config = {
     './app/bundles/FrontEndPages/startup/Questionaire',
     //include javascripts
     './javascripts/jquery.min',
+    './../app/assets/javascripts/application',
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/dashboard',
@@ -73,6 +74,7 @@ config = {
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
+      jquery: "jquery/src/jquery",
 
       // JQUERY-UI
       "jquery-ui": "jquery-ui/jquery-ui.js",
@@ -94,6 +96,10 @@ config = {
       jQuery: "jquery",
       "window.jQuery": "jquery",
     }),
+    new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery"
+       }),
   ],
   module: {
     loaders: [

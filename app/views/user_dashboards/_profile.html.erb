@@ -25,7 +25,7 @@
             <div class="main-profile">
               <i class="fa fa-rss" aria-hidden="true"></i>
             </div>
-            <div class="tag-count">
+            <div class="tag-count network">
               <%= current_user.network_counts(current_user.target_followed.pluck(:target_id),current_user) %> &nbsp; <%= "Person".pluralize(current_user.network_counts(current_user.target_followed.pluck(:target_id),current_user)) %>
             </div>
             <div class="tag-name">In your network</div>

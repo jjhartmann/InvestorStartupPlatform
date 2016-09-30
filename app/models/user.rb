@@ -237,6 +237,10 @@ class User < ApplicationRecord
     current_user.is_following?(user) && user.is_following?(current_user)
   end
 
+  # This function is created to count the total number of people in network of the logged in user.
+  # This function takes two parameters. (array of target_id, logged in user).
+  # array of target_id is obtained as follows:- current_user.target_followed.pluck(:target_id).
+  # current_user is the logged in user, and it is used to check is the user logged in has a connection with target user.
   def network_counts(array,current_user)
     @count = 0
     array.each do |array_id|
@@ -248,6 +252,10 @@ class User < ApplicationRecord
     return @count
   end
 
+  # This function is created to verify if the user is in newtork of any user or not.
+  # This function takes two parameters. (target user, logged in user).
+  # target user is the user with whom the network is to be checked.
+  # current_user is the logged in user, and it is used to check is the user logged in is following the target user.
   def is_network?(user,current_user)
     current_user.is_following?(user) && !user.is_following?(current_user)
   end
