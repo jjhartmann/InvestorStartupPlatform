@@ -90,6 +90,20 @@ class ProposalsController < ApplicationController
       File.unlink(file_path)
   end
 
+  def view_proposal
+    @proposals = Proposal.get_proposals(@user)
+    puts @proposals.as_json
+    @proposal = @proposals.find_by(id: params[:proposal_id])
+    puts @proposal.as_json
+    if @proposal.present?
+      @proposal
+    else
+      respond_to do |format|
+        format.html { redirect_to proposals_path, alert: "You cannot access this proposal." }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_proposal

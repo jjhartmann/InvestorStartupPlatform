@@ -1,7 +1,7 @@
 class EnterprisesController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
-  before_action :set_enterprise, only: [:edit, :update, :destroy]
+  before_action :set_enterprise, only: [:edit, :update, :destroy, :show]
 
   def index
     @user = current_user
@@ -13,25 +13,24 @@ class EnterprisesController < ApplicationController
   end
 
   def show
-    @enterprise = Enterprise.find_by(id: params[:id])
-    if @enterprise.nil?
-      respond_to do |format|
-        format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
-      end
-    else
-      unless @enterprise.questionaire.questions.present?
-        redirect_to questionaries_path(enterprise: @enterprise.id)
-      end
-      if params[:enterprise].present?
-        @enterprise = Enterprise.find_by(params[:enterprise])
-        if @enterprise.nil?
-          respond_to do |format|
-            format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
-          end
-        end
-      end
-    end
-
+    # @enterprise = Enterprise.find_by(id: params[:id])
+    # if @enterprise.nil?
+    #   respond_to do |format|
+    #     format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+    #   end
+    # else
+    #   unless @enterprise.questionaire.questions.present?
+    #     redirect_to questionaries_path(enterprise: @enterprise.id)
+    #   end
+    #   if params[:enterprise].present?
+    #     @enterprise = Enterprise.find_by(id: params[:enterprise])
+    #     if @enterprise.nil?
+    #       respond_to do |format|
+    #         format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+    #       end
+    #     end
+    #   end
+    # end
   end
 
   def new
@@ -89,9 +88,12 @@ class EnterprisesController < ApplicationController
         @invitation = Invitation.create(enterprise_id: params[:enterprise_id], email: invitee)
         InvitationMailer.invitation_mail(@invitation).deliver_now
       end
-
     end
     redirect_to root_path
+  end
+
+  def public_profile
+    @enterprise = Enterprise.find_by(id: params[:enterprise])
   end
 
   private
@@ -101,7 +103,7 @@ class EnterprisesController < ApplicationController
       puts @enterprises
       if @enterprises.nil?
         respond_to do |format|
-          format.html { redirect_to user_dashboards_path, alert: "You don't have any enterprises yet." }
+          format.html { redirect_to enterprises_path, alert: "You don't have any enterprises yet." }
         end
       else
         @enterprise = @enterprises.find_by(id: params[:id])
@@ -109,7 +111,7 @@ class EnterprisesController < ApplicationController
           return @enterprise
         else
           respond_to do |format|
-            format.html { redirect_to user_dashboards_path, alert: "You don't have access to this enterprise." }
+            format.html { redirect_to enterprises_path, alert: "You don't have access to this enterprise." }
           end
         end
       end

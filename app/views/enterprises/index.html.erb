@@ -16,7 +16,7 @@
                   <ul class="full-details clearfix">
                     <% @enterprises.each do |enterprise| %>
                     <li>
-                      <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise, enterprise: enterprise.id) %></div>
+                      <div class="name-enetrprise"><%= link_to enterprise.name, public_profile_enterprises_path(enterprise: enterprise) %></div>
                     </li>
                     <% end %>
                   </ul>

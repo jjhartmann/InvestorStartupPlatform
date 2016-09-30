@@ -64,15 +64,17 @@ class Enterprise < ApplicationRecord
   end
 
   def logo_full
-    logo? ? logo : 'enterprise_460x300.png'
+    logo? ? logo : '/assets/user_500.jpg'
   end
 
   def logo_thumb
-    logo? ? logo.thumb : 'enterprise_153x100.png'
+    logo? ? logo.thumb : '/assets/user_150.jpg'
+    # logo? ? logo.thumb : 'enterprise_153x100.png'
   end
 
   def logo_avatar
-    logo? ? logo.avatar : 'enterprise_50x50.png'
+    logo? ? logo.avatar : '/assets/user_50.jpg'
+    # logo? ? logo.avatar : 'enterprise_50x50.png'
   end
 
   def invite_or_attach_user(role_identifier, attributes)
