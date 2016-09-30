@@ -11,63 +11,53 @@
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%##= form_for(@user, as: @user, url: registration_path(@user), html: { method: :put }) do |f| %>
               <div class="form-group">
                  <div class="circle">
-                  <%= image_tag @user.photo_thumb, class: "display-mode-value"%>                   
+                  <%= image_tag @user.photo_thumb, class: "display-mode-value"%>
                  </div>
                </div>
                 <div class="form-group">
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
-                    <%#= f.text_field :name, class: "form-control" %>
                     <span class="display-mode-value"><%= @user_profile.name %><%= hidden_field_tag :target_id1,@user_profile.id %></span>
                   </h2>
                 </div>
                 <div class="form-group">
                   <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
                 </div>
-
               <% if @user.profilable_type == "UserProfile" %>
-                <%#= f.fields_for :profilable do |profile_fields| %>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%#= profile_fields.text_field :industry, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.industry %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><span class="display-mode-value"><%= @user.profilable.industry %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%#= profile_fields.text_field :profession, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.profession %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><span class="display-mode-value"><%= @user.profilable.profession %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%#= profile_fields.text_field :skills, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.skills %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><span class="display-mode-value"><%= @user.profilable.skills %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%#= profile_fields.text_field :something_cool, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
                   </div>
-                <%# end %>
               <% else %>
-                <%#= f.fields_for :profilable do |profile_fields| %>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%#= profile_fields.text_field :tagline, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%#= profile_fields.text_field :funds_to_offer, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%#= profile_fields.text_field :description, class: "form-control" %><span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><span class="display-mode-value"><%= @user.profilable.description %></span></div>
                 </div>
-                <%# end %>
               <% end %>
               <div class="form-group">
                 <div class="user-positon">
                   <i aria-hidden="true" class="fa fa-envelope"></i>
-                  <%#= f.text_field :email, class: "form-control", disabled: true%>
                   <span class="display-mode-value"><%= @user_profile.email %></span>
                 </div>
               </div>
               <div class="event-btn">
-                 <%#= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
                 <button type="button" class="btn btn-default js-cancel">Cancel</button>
               </div>
-              <%# end %>
               <div class="buttons">
                 <% if params[:connection_profile].present? %>
                   <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
@@ -90,8 +80,6 @@
 <!-- Modal -->
 <div id="messageModal1" class="modal" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -107,8 +95,6 @@
         <div class="form-inputs">
           <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
         </div>
-
-        <%#= render partial: "messages/form" %>
       </div>
       <div class="modal-footer">
         <div class="terminals">
@@ -120,6 +106,5 @@
       </div>
       <% end %>
     </div>
-
   </div>
 </div>

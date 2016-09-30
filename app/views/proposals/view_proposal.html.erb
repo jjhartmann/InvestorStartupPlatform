@@ -1,6 +1,7 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :sidebar_offers_class, "active" %>
 
+
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
   <%= render "/user_dashboards/sidebar" %>
@@ -8,76 +9,81 @@
     <div class="col-xs-12">
       <div class="profile-tabs">
         <div class="tab-content">
-          <div class="tab-pane fade editable-contact-info active in edit-mode-enabled">
+          <div class="tab-pane fade in active">
+            <div class="tab-title">Proposal</div>
             <div class="main-proposal">
               <div class="main-view-propsals">
                 <div class="all-notification-close">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </div>
-                <div class="buttons">
-                <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
+                  <%= link_to proposals_path do %><i class="fa fa-times" aria-hidden="true"></i><% end %>
                 </div>
                 <div class="details">
                   <div class="pro-view">
-                    <div class="circle"><img src="images/pro-1.jpg" class="display-mode-value"></div>
-                    <h3>Shantilal   Matariya</h3>
+                    <div class="circle"><%= image_tag @proposal.enterprise.logo_thumb, class: "display-mode-value" %></div>
+                    <h3><%= @proposal.enterprise.name %></h3>
                   </div>
                   <ul>
                     <li>
                       <div class="title">Basic Details </div>
                       <ul class="tap-style">
                         <li>
-                          <label>proposal stage identifier</label>
-                          <div class="names-filed">string</div>
+                          <label>Proposal sgtage Identifier</label>
+                          <div class="names-filed"><%= @proposal.proposal_stage_identifier %></div>
                         </li>
                         <li>
-                          <label>new business model</label>
-                          <div class="names-filed">boolean</div>
+                          <label>New Buisiness Model</label>
+                          <div class="names-filed"><%= @proposal.new_business_model %></div>
                         </li>
                         <li>
-                          <label>new product</label>
-                          <div class="names-filed">boolean</div>
+                          <label>New Product</label>
+                          <div class="names-filed"><%= @proposal.new_product %></div>
                         </li>
                         <li>
-                          <label>pitch</label>
-                          <div class="names-filed">text</div>
+                          <label>Pitch</label>
+                          <div class="names-filed"><%= @proposal.pitch %></div>
                         </li>
                         <li>
-                          <label>introduction</label>
-                          <div class="name-files">text</div>
+                          <label>Introduction</label>
+                          <div class="name-files"><%= @proposal.introduction %></div>
                         </li>
+                        <% if @proposal.document_url %>
+                        <li>
+                          <label><%= link_to "Download document", proposals_download_path(id: @proposal.id), target: "_blank" %></label>
+                          <div class="name-files"><%= @proposal.document %></div>
+                        </li>
+                        <% end %>
+
                       </ul>
                     </li>
                     <li>
                       <div class="title">Yearly</div>
                       <ul class="tap-style">
                         <li>
-                          <label>one year target audience</label>
-                          <div class="names-filed">text</div>
+                          <label>One Year Target Audience</label>
+                          <div class="names-filed"><%= @proposal.one_year_target_audience %></div>
                         </li>
                         <li>
-                          <label>one year per capita annual spending</label>
-                          <div class="names-filed">integer</div>
+                          <label>One Year per Capita Annual Spending</label>
+                          <div class="names-filed"><%= @proposal.one_year_per_capita_annual_spending %></div>
                         </li>
                         <li>
-                          <label>one year number of users</label>
-                          <div class="names-filed">integer</div>
+                          <label>One Year Number of Users</label>
+                          <div class="names-filed"><%= @proposal.one_year_number_of_users %></div>
                         </li>
                         <li>
-                          <label>one year market cap</label>
-                          <div class="names-filed">integer</div>
+                          <label>One Year Market Cap</label>
+                          <div class="names-filed"><%= @proposal.one_year_market_cap %></div>
                         </li>
                         <li>
-                          <label>one year penetration rate</label>
-                          <div class="names-filed">integer</div>
+                          <label>One Year Penetration Rate</label>
+                          <div class="names-filed"><%= @proposal.one_year_penetration_rate %></div>
                         </li>
                         <li>
-                          <label>one year marketing strategy</label>
-                          <div class="names-filed">text</div>
+                          <label>One Year Marketing Strategy</label>
+                          <div class="names-filed"><%= @proposal.one_year_marketing_strategy %></div>
                         </li>
                         <li>
-                          <label>one year gross profit margin</label>
-                          <div class="names-filed">integer</div>
+                          <label>One Year Gross Profit Margin</label>
+                          <div class="names-filed"><%= @proposal.one_year_gross_profit_margin %></div>
                         </li>
                       </ul>
                     </li>
@@ -85,32 +91,32 @@
                       <div class="title">Five year plan</div>
                       <ul class="tap-style">
                         <li>
-                          <label>five year target audience</label>
-                          <div class="names-filed">text</div>
+                          <label>fFive Year Target Audience</label>
+                          <div class="names-filed"><%= @proposal.five_year_target_audience %></div>
                         </li>
                         <li>
-                          <label>five year per capita annual spending</label>
-                          <div class="names-filed">integer</div>
+                          <label>Five YEar per Capita Annual Spending</label>
+                          <div class="names-filed"><%= @proposal.five_year_per_capita_annual_spending %></div>
                         </li>
                         <li>
-                          <label>five year number of users</label>
-                          <div class="names-filed">integer</div>
+                          <label>Number of users in Five years</label>
+                          <div class="names-filed"><%= @proposal.five_year_number_of_users %></div>
                         </li>
                         <li>
-                          <label>five year market cap</label>
-                          <div class="names-filed">integer</div>
+                          <label>Five Year Market Cap</label>
+                          <div class="names-filed"><%= @proposal.five_year_market_cap %></div>
                         </li>
                         <li>
-                          <label>five year penetration rate</label>
-                          <div class="names-filed">integer</div>
+                          <label>Five Year Penetration Rate</label>
+                          <div class="names-filed"><%= @proposal.five_year_penetration_rate %></div>
                         </li>
                         <li>
-                          <label>five year marketing strategy</label>
-                          <div class="names-filed">integer</div>
+                          <label>Five Year Marketing Startegy</label>
+                          <div class="names-filed"><%= @proposal.five_year_marketing_strategy %></div>
                         </li>
                         <li>
-                          <label>five year gross profit margin</label>
-                           <div class="names-filed">integer</div>
+                          <label>Five Year Gross Income</label>
+                           <div class="names-filed"><%= @proposal.five_year_gross_profit_margin %></div>
                         </li>
                       </ul>
                     </li>
@@ -118,42 +124,41 @@
                       <ul class="tap-style">
                         <div class="title">Competetive Strategy</div>
                         <li>
-                          <label>competitors details</label>
-                          <div class="names-filed">text</div>
+                          <label>Competitors Details</label>
+                          <div class="names-filed"><%= @proposal.competitors_details %></div>
                         </li>
                         <li>
-                          <label>competitive  edges</label>
-                          <div class="names-filed">text</div>
+                          <label>Competitive Edges</label>
+                          <div class="names-filed"><%= @proposal.competitive_edges %></div>
                         </li>
                         <li>
-                          <label>competing strategy</label>
-                          <div class="names-filed">text</div>
+                          <label>Competing Strategy</label>
+                          <div class="names-filed"><%= @proposal.competing_strategy %></div>
                         </li>
                         <li>
-                          <label>investment amount</label>
-                          <div class="names-filed">integer</div>
+                          <label>Investment Amount</label>
+                          <div class="names-filed"><%= @proposal.investment_currency %> <%= @proposal.investment_amount %></div>
                         </li>
                         <li>
-                          <label>iinvestment currency</label>
-                          <div class="names-filed">string</div>
+                          <label>Equity Percentage</label>
+                          <div class="names-filed"><%= @proposal.equity_percentage %></div>
                         </li>
                         <li>
-                          <label>iequity percentage</label>
-                          <div class="names-filed">integer</div>
+                          <label>Spending Plan</label>
+                          <div class="names-filed"><%= @proposal.spending_plan %></div>
                         </li>
                         <li>
-                          <label>spending plan</label>
-                          <div class="names-filed">text</div>
-                        </li>
-                        <li>
-                          <label>next investment round</label>
-                           <div class="names-filed">integer</div>
+                          <label>Next Investment Round</label>
+                           <div class="names-filed"><%= @proposal.next_investment_round %></div>
                         </li>
                       </ul>
                     </li>
                   </ul>
                 </div>
               </div>
+
+
+          </div>
         </div>
       </div>
     </div>
