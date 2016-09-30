@@ -13,13 +13,14 @@
         <div class="tab-content">
           <div  class="tab-pane fade active in">
             <div class="tab-title">Messages</div>
+
             <div class="message">
               <ul>
                 <% @message_thread.each do |thread| %>
                   <%= link_to inbox_messages_path(id: thread.id) do %>
                     <li>
                       <div class="pro-message">
-                        <div class="circle-pic"><%# if thread.photo.url %><%#= image_tag thread.photo.url %><%# end %></div>
+                        <div class="circle-pic"><%= image_tag thread.user.photo_avatar %></div>
                       </div>
                       <div class="on-off <%= current_user.messages.where(target_id: thread.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
                       <div class="top-count"><%= current_user.messages.where(target_id: thread.id, is_read: false).count %></div>

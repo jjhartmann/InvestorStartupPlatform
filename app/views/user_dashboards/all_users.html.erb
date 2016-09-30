@@ -9,28 +9,58 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="tab-title">All Users</div>
-            <ul class="main-dashbord">
-              <table class="table test">
-                <thead>
-                  <th>Name</th>
-                  <th></th>
-                </thead>
-                <tbody>
-                  <% @all_users.each do |user| %>
-                  <tr>
-                    <td><%= link_to user.name, suggested_profile_user_dashboards_path(profile_id: user) %></td>
-                    <td><%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}" %></td>
-                  </tr>
-                  <% end %>
-                  <% @enterprises.each do |enterprise| %>
-                  <tr>
-                    <td><%= link_to enterprise.name, public_profile_enterprises_path(enterprise: enterprise) %></td>
-                    <td><%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "btn btn-primary follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}" %></td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </ul>
+            <% @all_users.each do |user| %>
+              <div class="user-follow">
+                <ul class="clearfix">
+                  <li id="user_<%= user.id %>">
+                    <div class="tag-1">
+                      <div class="follow-pro">
+                        <div class="pic-user"><%= image_tag user.photo_avatar %></div>
+                      </div>
+                    </div>
+                    <div class="tag-2">
+                      <h2><%= user.name %></h2>
+                      <div class="tag-line-pro">Developer, Gujarat Housing Board</div>
+                    </div>
+                    <div class="tag-3">
+                      <div class="action-tag">
+                        <ul class="menu cf">
+                          <li>
+                            <%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}", remote: true %>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
+            <% @enterprises.each do |enterprise| %>
+              <div class="user-follow">
+                <ul class="clearfix">
+                  <li>
+                    <div class="tag-1">
+                      <div class="follow-pro">
+                        <div class="pic-user"><%= image_tag enterprise.logo_avatar %></div>
+                      </div>
+                    </div>
+                    <div class="tag-2">
+                      <h2><%= enterprise.name %></h2>
+                      <div class="tag-line-pro">Enterprise, Gujarat Housing Board</div>
+                    </div>
+                    <div class="tag-3">
+                      <div class="action-tag">
+                        <ul class="menu cf">
+                          <li>
+                            <%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", public_profile_enterprises_path(enterprise: enterprise), class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

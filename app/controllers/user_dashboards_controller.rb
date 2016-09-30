@@ -46,7 +46,9 @@ class UserDashboardsController < ApplicationController
     else
       current_user.follow(@user)
     end
-    redirect_to root_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def suggested_profile

@@ -42,7 +42,7 @@
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
-        <li><a href="#"><i aria-hidden="true" class="fa fa-comments-o"></i></a><div class="top-count"><%= current_user.messages.where(is_read: false).count %></div></li>
+        <li><a href="#"><i aria-hidden="true" class="fa fa-comments-o"></i></a><div class="top-count"><%= current_user.messages.where(target_id: current_user.id,is_read: false).count %></div></li>
         <li><%= link_to notifications_path do %><i class="fa fa-bell" aria-hidden="true"></i><% end %><div class="top-count notes"><%= @notifications.count %></div></li>
       </ul>
     </div>

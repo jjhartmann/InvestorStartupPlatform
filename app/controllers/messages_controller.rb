@@ -86,7 +86,7 @@ class MessagesController < ApplicationController
   def inbox
     @first_message = Message.where(id: params[:id])
     # @first_message.first.update(is_read: true)
-    # @read_status = Message.where(topic_id: @first_message.first.id).update_all(is_read: true)
+    @read_status = Message.where(topic_id: @first_message.first.id,target_id: current_user.id).update_all(is_read: true)
     puts @first_message.first.user_id
     if @first_message.first.target_id == current_user.id
       @user = User.find(@first_message.first.user_id)

@@ -12,18 +12,15 @@
         <div class="tab-content">
           <div  class="tab-pane fade active in">
             <div class="tab-title">Messages</div>
-            <%#= current_user.messages.where(target_id: @user.id).as_json %>
             <div class="message-box">
               <div class="message-header"><%= @user.name %></div>
               <div class="message-body">
                 <ul>
-                  <%#= @message_thread.as_json %>
                   <% @message_thread.each do |thread| %>
-                    <%#= thread.as_json %>
                     <% if thread.user_id != current_user.id %>
-                      <li><div class="circle-message"><img src="images/pro-1.jpg"></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer">2 hour ago</span></div></div></li>
+                      <li><div class="circle-message"><%=image_tag thread.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer">2 hour ago</span></div></div></li>
                     <% else %>
-                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer">2 hour ago</span></div></div><div class="circle-message"><img src="images/sec.jpg"></div></li>
+                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer">2 hour ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -31,15 +28,15 @@
               <%= form_for @message,url: messages_path do |f|%>
                 <%= f.hidden_field :topic_id,value: params[:id] %>
                 <div class="sender-box">
-                  <div class="circle-message"><img src="images/sec.jpg"></div>
+                  <div class="circle-message"><%=image_tag current_user.photo_avatar %></div>
                   <div class="form-group">
                     <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
-                    <!-- <input type="text" class="form-group" placeholder="Type a Message.."/> -->
                   </div>
                   <span>
                     <button class='btn btn-primary' style='width:40px;'>
-                      <i aria-hidden="true" class="fa fa-paper-plane"></i></a></span>
+                      <i aria-hidden="true" class="fa fa-paper-plane"></i>
                     </button>
+                  </span>
                 </div>
               <% end %>
             </div>
