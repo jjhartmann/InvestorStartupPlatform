@@ -146,7 +146,7 @@ class Enterprise < ApplicationRecord
 
   def all_users
     members + investors + advisors + incubators
-  end
+  end  
 
   private
 

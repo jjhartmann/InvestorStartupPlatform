@@ -7,8 +7,17 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @user = current_user
-    @offers = current_user.offers
+    if @user.profilable_type == "InvestorProfile"
+      @offers = current_user.offers
+      puts "offer"
+    else
+      @proposals = Proposal.get_users_proposals(@user)
+      puts @proposals.as_json
+
+      @offers = Offer.where("proposal_id IN(?)",@proposals.ids)
+      puts "proposal"
+
+    end
   end
 
   # GET /offers/1

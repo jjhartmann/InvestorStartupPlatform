@@ -12,7 +12,7 @@
             <div class="tab-title">Proposals</div>
             <ul class="main-dashbord">
               <% if @proposals.present? %>
-              <div class="enterprise-deatils box-tab  edit-offer">
+              <div class="enterprise-deatils box-tab edit-proposal">
                 <ul class="full-details clearfix">
                   <li>
                     <div class="name-enetrprise head-box"><%= "Stage" %></div>
@@ -20,6 +20,7 @@
                     <div class="destory head-box"><%= "New Product?" %></div>
                     <div class="destory head-box"><%= "Pitch" %></div>
                     <div class="destory head-box"><%= "Competitiors Details" %></div>
+                    <div class="destory head-box"><%= "Investment" %></div>
                     <div class="destory head-box"><%= "Equity Percentage" %></div>
                     <div class="destory head-box"><%= "Spending Plan" %></div>
                     <div class="destory head-box">Action</div>
@@ -41,12 +42,12 @@
                         <% end %>
                         <% if @user.profilable_type == "InvestorProfile" %>
                             <%= link_to proposal_view_proposal_path(proposal_id: proposal.id) do %><div class="edit share"><i aria-hidden="true" class="fa fa-eye"></i></div><% end %>
-                            <%= link_to "Make an offer", new_offer_path %>
+                            <%= link_to new_offer_path do %><div class="edit share"><i aria-hidden="true" class="fa fa-tags"></i></div><% end %>
                         <% else %>
                             <%= link_to proposal do %><div class="edit share"><i aria-hidden="true" class="fa fa-eye"></i></div><% end %>
-                            <%= link_to 'Edit', edit_proposal_path(proposal) %>
+                            <%= link_to edit_proposal_path(proposal) do %><div class="edit share"><i aria-hidden="true" class="fa fa-pencil"></i></div><% end %>
                             <%= link_to proposal, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
-                        <% end %>                        
+                        <% end %>
                       </div>
                     </div>
                   </li>
