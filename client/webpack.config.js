@@ -46,7 +46,6 @@ config = {
     './javascripts/dashboard',
     './javascripts/all_users',
     './javascripts/connections',
-    '../app/views/user_dashboards/follow_unfollow_user.js.erb',
     // './javascripts/jquery.mCustomScrollbar.concat.min',
 
     //include stylesheets
@@ -111,7 +110,7 @@ config = {
       // Cofee Loaders
       { test: /\.coffee$/, loader: "coffee-loader" },
       { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
-
+      
       // Font Awesome Loaders
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },

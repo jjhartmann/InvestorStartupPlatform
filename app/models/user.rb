@@ -237,6 +237,21 @@ class User < ApplicationRecord
     current_user.is_following?(user) && user.is_following?(current_user)
   end
 
+  def network_counts(array,current_user)
+    @count = 0
+    array.each do |array_id|
+      @user = User.find(array_id)
+      if is_network?(@user,current_user)
+        @count = @count + 1
+      end
+    end
+    return @count
+  end
+
+  def is_network?(user,current_user)
+    current_user.is_following?(user) && !user.is_following?(current_user)
+  end
+
   protected
 
   # Devise's support for login using the :login virtual attribute
