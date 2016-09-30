@@ -202,7 +202,7 @@ class User < ApplicationRecord
   end
 
   def photo_thumb
-    photo? ? photo.thumb : '/assets/user_510.jpg'
+    photo? ? photo.thumb : '/assets/user_500.jpg'
   end
 
   def photo_avatar

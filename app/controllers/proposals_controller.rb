@@ -1,6 +1,5 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :update, :destroy, :download]
-  before_action :user, only: [:index, :new, :edit, :create, :download]
 
   layout 'frontpage'
   before_filter :authenticate_user!
@@ -129,9 +128,5 @@ class ProposalsController < ApplicationController
       # params.require(:proposal).permit!
       # params.fetch(:proposal, {})
       params.require(:proposal).permit(:proposal_stage_identifier, :new_business_model, :new_product, :pitch, :introduction, :one_year_target_audience, :one_year_per_capita_annual_spending, :one_year_number_of_users, :one_year_penetration_rate, :one_year_marketing_strategy, :one_year_gross_profit_margin, :five_year_target_audience, :five_year_per_capita_annual_spending, :five_year_number_of_users, :five_year_market_cap, :five_year_penetration_rate, :five_year_marketing_strategy, :five_year_gross_profit_margin, :competitors_details, :competitive_edges, :competing_strategy, :investment_amount, :investment_currency, :equity_percentage, :spending_plan, :next_investment_round, :document, :enterprise_id)
-    end
-
-    def user
-      @user = current_user
     end
 end

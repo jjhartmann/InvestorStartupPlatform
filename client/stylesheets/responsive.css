@@ -6,6 +6,14 @@
     margin-top: 5px;
 }
 }
+@media(max-width: 991px){
+.tag-2 {
+    width: calc(100% - 100px);
+}
+.tag-3 {
+    width: 100%;
+}
+}
 @media(max-width: 767px){
 .short-profile ul li {
     float: left;
@@ -61,5 +69,26 @@
 .container.side-deatail {
     float: left;
     width: calc(100% - 60px);
+}
+.details ul li{
+    width: 100%;
+}
+.details ul li{
+    padding-right: 0;
+}
+}
+@media(max-width: 515px){
+.tag-1 {
+    width: 100%;
+}
+.tag-2 {
+    width: calc(100%);
+    text-align: center;
+}
+.pic-user{
+    display: inline-block;
+}
+.follow-pro{
+    text-align: center;
 }
 }

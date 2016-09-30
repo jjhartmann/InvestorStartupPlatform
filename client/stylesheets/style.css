@@ -1093,9 +1093,9 @@ a.view:hover{
 }
 .details ul li{
     list-style: none;
-    width: 25%;
+    width: 50%;
     float: left;
-
+    padding-right: 15px;
 }
 .sr-name {
     float: left;
@@ -1659,4 +1659,39 @@ top:0;
 
 .short-profile ul li a:hover .main-profile > .go-top-tag {
   top:0;
+}
+
+/*30-09-2016*/
+
+.edit-offer .name-enetrprise
+{
+    width: 20% !important;
+}
+.edit-offer .head-box,
+.edit-offer .destory
+{
+    width: 16%;
+
+}
+.destory .buttons {
+    display: inline-block;
+    position: unset;
+}
+.destory .edit {
+    height: 25px;
+    width: 25px;
+    padding-top: 2px;
+}
+.destory .edit .fa{
+  color: #ffffff;
+  font-size: 12px;
+}
+.edit.share.destroy-btn {
+    background: #ed4337 none repeat scroll 0 0;
+}
+.all-notification-close .fa {
+    color: #fff;
+}
+.optional [type="checkbox"]:not(:checked), [type="checkbox"]:checked{
+  left: auto !important;
 }
