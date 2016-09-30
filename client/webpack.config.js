@@ -46,6 +46,7 @@ config = {
     './javascripts/dashboard',
     './javascripts/all_users',
     './javascripts/connections',
+    '../app/views/user_dashboards/follow_unfollow_user.js.erb',
     // './javascripts/jquery.mCustomScrollbar.concat.min',
 
     //include stylesheets

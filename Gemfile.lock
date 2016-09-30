@@ -324,6 +324,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   ffaker
+  foreman
   icheck-rails
   jbuilder (~> 2.5)
   letter_opener

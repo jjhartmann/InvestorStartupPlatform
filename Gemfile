@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 # multi-step form
 gem 'wicked'
 #encrypt documents uploaded in proposals
@@ -89,3 +90,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'therubyracer', platforms: :ruby
+
+gem 'foreman'

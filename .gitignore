@@ -20,6 +20,8 @@
 npm-debug.log
 node_modules
 
+./.gitignore
+
 # Generated js bundles
 /app/assets/webpack/*
 client/.idea/*
@@ -31,3 +33,6 @@ client-debug.log*
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+# Added by webpack-rails
+/node_modules
+/public/webpack
