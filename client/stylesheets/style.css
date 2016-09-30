@@ -1293,12 +1293,6 @@ top:0;
 .user-follow ul {
     padding-left: 0;
 }
-.user-follow ul li {
-    float: left;
-    list-style: outside none none;
-    width: 100%;
-    position: relative;
-}
 .tag-1 {
     width: 100px;
     float: left;
@@ -1487,14 +1481,6 @@ top:0;
   font-size: 14px;
 }
 
-.user-follow ul li {
-    border-bottom: 1px solid #dddddd;
-    float: left;
-    padding: 40px 0px;
-    list-style: outside none none;
-    margin-bottom: 50px;
-    width: 100%;
-}
 .menu li {
     padding: 4px 0px  !important;
     margin-bottom: 0 !important;
@@ -1527,14 +1513,6 @@ top:0;
   font-size: 14px;
 }
 
-.user-follow ul li {
-    border-bottom: 1px solid #dddddd;
-    float: left;
-    padding: 40px 0px;
-    list-style: outside none none;
-    margin-bottom: 50px;
-    width: 100%;
-}
 .menu li {
     padding: 4px 0px  !important;
     margin-bottom: 0 !important;

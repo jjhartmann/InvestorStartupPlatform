@@ -14,6 +14,9 @@ class UserProfilesController < ApplicationController
     if params[:connection_profile].present?
       puts "___________________"
       @user_profile = User.find(params[:connection_profile])
+    elsif params[:suggested_profile].present?
+      puts "___________________"
+      @user_profile = User.find(params[:suggested_profile])
     end
   end
 
@@ -48,7 +51,7 @@ class UserProfilesController < ApplicationController
     end
   end
   def connection_profile
-    return params[:connection_profile].nil?
+    return params[:connection_profile].nil? || params[:suggested_profile]
   end
 
   def user
