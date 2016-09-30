@@ -20,7 +20,17 @@
             <% end %>
           </li>
           <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>
-          <li><%= link_to "" do %><div class="main-profile"><i class="fa fa-rss" aria-hidden="true"></i></div><div class="tag-count"><%= current_user.target_followed.count %> &nbsp; <%= "Person".pluralize(current_user.target_followed.count) %></div><div class="tag-name">In your network</div><% end %></li>
+          <li>
+            <%= link_to "" do %>
+            <div class="main-profile">
+              <i class="fa fa-rss" aria-hidden="true"></i>
+            </div>
+            <div class="tag-count network">
+              <%= current_user.network_counts(current_user.target_followed.pluck(:target_id),current_user) %> &nbsp; <%= "Person".pluralize(current_user.network_counts(current_user.target_followed.pluck(:target_id),current_user)) %>
+            </div>
+            <div class="tag-name">In your network</div>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>

@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
     if params[:message][:topic_id].present?
       @topic = Message.find(params[:message][:topic_id])
       @content = params[:message][:content]
-
+      puts "_______________"
       respond_to do |format|
         if current_user.reply_private_message(@topic, @content, {})
           format.html { redirect_to :back, notice: 'Message was successfully created.' }
@@ -43,6 +43,7 @@ class MessagesController < ApplicationController
         end
       end
     else
+      puts "**************"
       @message = Message.new(message_params)
       @target_user = User.find(params[:message][:target_id])
       @content = params[:message][:content]
