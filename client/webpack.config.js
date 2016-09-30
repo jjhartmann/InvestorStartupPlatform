@@ -41,12 +41,12 @@ config = {
     './app/bundles/FrontEndPages/startup/Questionaire',
     //include javascripts
     './javascripts/jquery.min',
+    './../app/assets/javascripts/application',
     './javascripts/bootstrap.min',
     './javascripts/agency',
     './javascripts/dashboard',
     './javascripts/all_users',
     './javascripts/connections',
-    // '../app/views/user_dashboards/follow_unfollow_user.js.erb',
     // './javascripts/jquery.mCustomScrollbar.concat.min',
 
     //include stylesheets
@@ -74,6 +74,7 @@ config = {
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
+      jquery: "jquery/src/jquery",
 
       // JQUERY-UI
       "jquery-ui": "jquery-ui/jquery-ui.js",
@@ -95,6 +96,10 @@ config = {
       jQuery: "jquery",
       "window.jQuery": "jquery",
     }),
+    new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery"
+       }),
   ],
   module: {
     loaders: [

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'webpack-rails', '~> 0.9.5'
 # multi-step form
 gem 'wicked'
 #encrypt documents uploaded in proposals
