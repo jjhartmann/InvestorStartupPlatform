@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :proposals do
     get 'view_proposal'
   end
-  
+
   resources :enterprises do
     collection do
       get 'add_member'
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'follow_unfollow_user'
       get 'suggested_profile'
       get 'connections'
+      get 'network'
     end
   end
   resources :user_profiles

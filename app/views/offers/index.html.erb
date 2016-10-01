@@ -24,11 +24,11 @@
                       </li>
                       <% @offers.each do |offer| %>
                       <li>
-                        <div class="name-enetrprise">names-5258</div>
-                        <div class="destory">Loerm ipsum....</div>
-                        <div class="destory">Loerm ipsum....</div>
-                        <div class="destory">Abc</div>
-                        <div class="destory">Abc</div>
+                        <div class="name-enetrprise"><%= offer.offer_title %></div>
+                        <div class="destory"><%= offer.text %></div>
+                        <div class="destory"><%= h truncate(offer.description, length: 30) %></div>
+                        <div class="destory"><%= offer.amount_to_offer %></div>
+                        <div class="destory"><%= h truncate(offer.proposal.pitch, length: 60) %></div>
                         <div class="destory">
                           <div class="buttons">
                             <%= link_to edit_offer_path(offer) do %><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div><% end %>
