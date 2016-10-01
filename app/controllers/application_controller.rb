@@ -35,7 +35,11 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notifications
-    @notifications = current_user.profilable.notifications.where(is_viewed: false)
+    @user = current_user
+    @user_notifications = @user.profilable.notifications.where(is_viewed: false)
+    @enterprises = @user.enterprises
+    @enterprise_notifications = Notification.where('notificable_id IN(?) and notificable_type = ? and is_viewed = ?', @enterprises.ids, "Enterprise", false)
+    @notifications = @user_notifications + @enterprise_notifications
   end
 
   def get_user

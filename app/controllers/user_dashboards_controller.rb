@@ -71,4 +71,9 @@ class UserDashboardsController < ApplicationController
 
     @message = Message.new
   end
+
+  def network
+    @followers = @user.followers
+  end
+
 end

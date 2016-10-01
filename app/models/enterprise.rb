@@ -25,6 +25,8 @@ class Enterprise < ApplicationRecord
   #Association for the invitatiions send to respective enterprise
   has_many :invitations
 
+  has_many :notifications, :as => :notificable
+
   accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
   validates :name,              :presence     => true,
@@ -146,7 +148,7 @@ class Enterprise < ApplicationRecord
 
   def all_users
     members + investors + advisors + incubators
-  end  
+  end
 
   private
 
