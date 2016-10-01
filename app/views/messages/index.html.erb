@@ -17,6 +17,7 @@
             <div class="message">
               <ul>
                 <% @message_thread.each do |thread| %>
+                <%= puts  thread.as_json %>
                   <%= link_to inbox_messages_path(id: thread.id) do %>
                     <li>
                       <div class="pro-message">

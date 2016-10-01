@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     @current_user_received_messages = Message.where(target_id: current_user.id, topic_id: nil)
     @messages = current_user.messages.where(topic_id: nil)
     @message_thread = @messages | @current_user_received_messages
+    puts @message_thread.as_json
     @conversations = User.where(id: current_user.messages.pluck(:target_id))
   end
 

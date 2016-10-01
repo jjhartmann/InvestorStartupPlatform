@@ -27,7 +27,7 @@
                         <div class="action-tag">
                           <ul class="menu cf">
                             <li>
-                              <%= link_to @user.is_following?(user) ? "Following" : "Follow", follow_unfollow_user_user_dashboards_path(target_id: user.id), class: "follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}", remote: true %>
+                              <%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}", remote: true %>
                             </li>
                           </ul>
                         </div>
