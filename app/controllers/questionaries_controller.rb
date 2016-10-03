@@ -1,7 +1,7 @@
 class QuestionariesController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
-  respond_to  :html
+  respond_to :html
 
   def index
     if params[:enterprise].present?
@@ -38,7 +38,6 @@ class QuestionariesController < ApplicationController
       else
         @questions = QuestionsToAskInvestor.all
       end
-      puts "************"
 
       #Save the questions and the answers of the questionaire for the current user
       @questions.zip(params[:answers].to_a).each do |q,a|

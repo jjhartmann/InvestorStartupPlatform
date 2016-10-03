@@ -7,30 +7,30 @@
     <div class="question">
       <ul>
         <%= form_tag save_questions_questionaries_path do %>
-          <%= hidden_field_tag "enterprise",params[:enterprise]%>
-          <% @questions.each do |question| %>
-            <li>
-              <div class="box-sed">
-              <div class="que-set">
+        <%= hidden_field_tag "enterprise",params[:enterprise]%>
+        <% @questions.each do |question| %>
+        <li>
+          <div class="box-sed">
+            <div class="que-set">
               <span class="icon-ahead">
-                  <i aria-hidden="true" class="fa fa-question-circle"></i>
-                </span>
-                <h2><%= question["question"] %></h2>
-                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              </div>
-              <div class="registration question-type">
-                <%= text_field_tag "answers[]" %>
-              </div>
+                <i aria-hidden="true" class="fa fa-question-circle"></i>
+              </span>
+              <h2><%= question["question"] %></h2>
+              <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             </div>
-              <div class="answer">
-                  <div class="type-ans">
-                  </div>
-              </div>
-            </li>
-          <% end %>
-          <div class="text-center">
-            <%= submit_tag "Submit" %>
+            <div class="registration question-type">
+              <%= text_field_tag "answers[]" %>
+            </div>
           </div>
+          <div class="answer">
+            <div class="type-ans">
+            </div>
+          </div>
+        </li>
+        <% end %>
+        <div class="text-center">
+          <%= submit_tag "Submit" %>
+        </div>
         <% end %>
       </ul>
     </div>
