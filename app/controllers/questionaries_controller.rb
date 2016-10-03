@@ -45,7 +45,7 @@ class QuestionariesController < ApplicationController
         current_user.profilable.questionaire.questions.create!(question: q.question,answer: a)
       end
       respond_to do |format|
-        format.html #{ render :layout => false }
+        format.html {redirect_to root_path}#{ render :layout => false }
         format.json
       end
     else
