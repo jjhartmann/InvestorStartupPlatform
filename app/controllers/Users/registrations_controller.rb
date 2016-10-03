@@ -96,10 +96,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_changed
-    resource.target_followed.pluck(:target_id).each do |target_id|
-      @target = User.find(target_id)
-      @target.profilable.notifications.create(
-      :notification_text => "#{@target.name} have updated his profile."
+    resource.target_followers.pluck(:follower_id).each do |follower_id|
+      @follower = User.find(follower_id)
+      @follower.profilable.notifications.create(
+      :notification_text => "#{resource.name} have updated his profile."
       )
     end
   end

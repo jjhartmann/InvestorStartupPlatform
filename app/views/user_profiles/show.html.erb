@@ -37,7 +37,7 @@
                     <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><span class="display-mode-value"><%= @user.profilable.skills %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
                   </div>
               <% else %>
                 <div class="form-group">
@@ -62,7 +62,9 @@
               <div class="buttons">
                 <% if params[:connection_profile].present? %>
                   <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
+                  <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
                 <% elsif params[:suggested_profile].present? %>
+                <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
                 <% else %>
                   <%= link_to edit_user_registration_path do %>
                     <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
@@ -85,7 +87,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><%= @user_profile.id %></h4>
+        <h4 class="modal-title"><%= @user_profile.name %></h4>
       </div>
       <%= form_for @message,url: messages_path do |f|%>
       <div class="modal-body">
@@ -106,6 +108,39 @@
           </div>
         </div>
       </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="meetingModal1" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Meeting Request<%#= @user_profile.name %></h4>
+      </div>
+      <%= form_tag meeting_request_user_profiles_path(requested_client_id: @user_profile.id) do  %>
+        <div class="modal-body">
+          <p>Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
+          <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+          <%= text_field_tag "topic",'',class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <div class="terminals">
+            <div class="btn-yes-no">
+              <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
   resources :messages do
     collection do
       get 'inbox'
@@ -35,7 +36,11 @@ Rails.application.routes.draw do
       get 'network'
     end
   end
-  resources :user_profiles
+  resources :user_profiles do
+    collection do
+      post 'meeting_request'
+    end
+  end
   resources :questionaries do
     collection do
       post 'save_questions'
