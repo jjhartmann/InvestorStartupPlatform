@@ -67,6 +67,10 @@ class Proposal < ApplicationRecord
     I18n.t "enterprise.proposal_stage_identifiers.#{proposal_stage_identifier}"
   end
 
+  def self.currencies
+    Settings.currencies
+  end
+
   def submit(investors)
     self.investors = [investors].flatten
   end
@@ -82,6 +86,7 @@ class Proposal < ApplicationRecord
     @enterprises = @user.enterprises
     @proposals = self.where("enterprise_id IN(?)", @enterprises.ids)
   end
+
 
   private
 

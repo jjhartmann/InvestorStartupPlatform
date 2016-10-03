@@ -9,7 +9,9 @@
           <div class="enterprise-deatils">
             <div class="box-tab">
               <div class="buttons">
-                <a href="#"><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div></a>
+                <%= link_to edit_enterprise_path(@enterprise) do %>
+                  <div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div>
+                <% end %>
               </div>
               <div class="all-notification-close">
                 <%= link_to enterprises_path do %>
@@ -18,7 +20,7 @@
               </div>
               <div class="form-group">
                 <div class="circle">
-                  <%= image_tag @enterprise.logo_avatar %>                  
+                  <%= image_tag @enterprise.logo_avatar %>
                 </div>
               </div>
               <div class="form-group">
