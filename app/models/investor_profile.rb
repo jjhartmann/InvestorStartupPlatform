@@ -5,6 +5,7 @@ class InvestorProfile < ApplicationRecord
   has_one :user, :as => :profilable
   has_one :questionaire, :as => :questionable
   has_many :notifications, :as => :notificable
+  has_many :meeting_members, :as => :memberable
 
   validates :tagline,        :presence     => true,
             :length       => { :within => 10..140 }

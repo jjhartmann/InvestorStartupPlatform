@@ -12,4 +12,5 @@
 // about supported directives.
 //
 //= require webpack-bundle
+//= require datetimepicker
 //= require_tree .

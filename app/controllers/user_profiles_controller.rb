@@ -36,6 +36,15 @@ class UserProfilesController < ApplicationController
   def destroy
   end
 
+  def meeting_request
+    puts "******************"
+    puts params.inspect
+    puts "******************"
+    @meeting = Meeting.create(topic: params[:topic],start_time: Time.now, end_time: Time.now+1.hour, user_id: current_user.id)
+    @meeting_member = @meeting.meeting_members.build(memberable: User.find(params[:requested_client_id])).save
+    redirect_to :back
+  end
+
   private
 
   def set_user_profile
