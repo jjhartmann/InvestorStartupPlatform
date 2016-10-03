@@ -1,8 +1,2 @@
-// document.write(require("./webpack-bundle.js"));
-console.log("<%= @user.id %>");
-// if ($("#user_<%= @user.id %>").find(".tag-3 a.follow").text() == "Follow" ){
-//   $("#user_<%= @user.id %>").find(".tag-3 a.follow").text("Following");
-// }else{
-//   $("#user_<%= @user.id %>").find(".tag-3 a.follow").text("Follow");
-// }
 $(".network").html("<%= @network_count %> <%= 'Person'.pluralize(@network_count)%>");
+$(".connection").html("<%= @connection_count %>");
