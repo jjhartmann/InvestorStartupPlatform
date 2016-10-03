@@ -51,11 +51,42 @@
                     <%= link_to 'New Offer', new_offer_path, class: "btn btn-primary" %>
                   </div>
                 <% else %>
-                  <div class="notes-alert">
-                    <div class="alert alert-warning">
-                      You have no <strong>offers</strong> yet.
+                  <% if @offers.present? %>
+                    <div class="enterprise-deatils box-tab  edit-offer">
+                      <ul class="full-details clearfix">
+                        <li>
+                          <div class="name-enetrprise head-box">Offer</div>
+                          <div class="destory head-box">Text</div>
+                          <div class="destory head-box">Description</div>
+                          <div class="destory head-box">Amount To offer</div>
+                          <div class="destory head-box">Proposal</div>
+                          <div class="destory head-box">Action</div>
+                        </li>
+                        <% @offers.each do |offer| %>
+                        <li>
+                          <div class="name-enetrprise"><%= offer.offer_title %></div>
+                          <div class="destory"><%= offer.text %></div>
+                          <div class="destory"><%= h truncate(offer.description, length: 30) %></div>
+                          <div class="destory"><%= offer.amount_to_offer %></div>
+                          <div class="destory"><%= h truncate(offer.proposal.pitch, length: 60) %></div>
+                          <div class="destory">
+                            <div class="buttons">
+                              <%= link_to edit_offer_path(offer) do %><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div><% end %>
+                              <%= link_to offer do %><div class="edit share"><i aria-hidden="true" class="fa fa-eye"></i></div><% end %>
+                              <%= link_to offer, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
+                            </div>
+                          </div>
+                        </li>
+                        <% end %>
+                      </ul>
                     </div>
-                  </div>
+                  <% else %>
+                    <div class="notes-alert">
+                      <div class="alert alert-warning">
+                        You have no <strong>offers</strong> yet.
+                      </div>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

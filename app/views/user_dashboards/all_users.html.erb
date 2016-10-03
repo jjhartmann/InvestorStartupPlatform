@@ -36,7 +36,7 @@
                   <% end %>
                   <% end %>
                   <% @enterprises.each do |enterprise| %>
-                  <%= link_to suggested_profile_user_dashboards_path(profile_id: enterprise.id) do %>
+                  <%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>
                     <li>
                       <div class="tag-1">
                         <div class="follow-pro">
