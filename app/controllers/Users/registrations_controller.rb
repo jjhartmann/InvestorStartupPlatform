@@ -61,9 +61,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super && self.user_changed
+  end
 
   # DELETE /resource
   # def destroy
@@ -93,6 +93,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #
   def after_update_path_for(resource)
     user_profile_path(resource)
+  end
+
+  def user_changed
+    resource.target_followed.pluck(:target_id).each do |target_id|
+      @target = User.find(target_id)
+      @target.profilable.notifications.create(
+      :notification_text => "#{@target.name} have updated his profile."
+      )
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
