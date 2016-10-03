@@ -35,7 +35,7 @@ class Enterprise < ApplicationRecord
   validates :pitch,             :presence     => true,
             :length       => { :within => 10..140 }
   validates :funds_to_raise,    :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :stage_identifier,  :presence     => true,
             :inclusion    => { :in => I18n.t('enterprise.stage_identifiers').keys.map(&:to_s) }
   validates :market_identifier, :presence     => true,

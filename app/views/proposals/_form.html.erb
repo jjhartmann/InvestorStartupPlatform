@@ -85,7 +85,7 @@
   </div>
   <div class="form-actions">
     <%#= f.association :enterprise, label_method: :name, prompt: "Choose a Proposal"  %>
-    <%= f.input :enterprise_id, collection: @enterprises.map {|u| [u.name, u.id]} %>
+    <%= f.input :enterprise_id, collection: @enterprises.map {|u| [u.name, u.id]}, prompt: "Choose and enterprise" %>
   </div>
   <div class="form-inputs">
     <%= f.input :document, as: :file%>

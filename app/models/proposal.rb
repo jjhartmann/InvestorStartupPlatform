@@ -15,27 +15,28 @@ class Proposal < ApplicationRecord
             :length       => { :within => 10..300 }
   validates :one_year_target_audience,             :presence     => true,
             :length       => { :within => 10..300 }
-  validates :one_year_per_capita_annual_spending,  :numericality => true
-  validates :one_year_number_of_users,             :numericality => true
+  # validates :one_year_per_capita_annual_spending,  :numericality => { :greater_than_or_equal_to => 0 }
+  validates :one_year_per_capita_annual_spending,  :numericality => { :greater_than_or_equal_to => 0 }
+  validates :one_year_number_of_users,             :numericality => { :greater_than_or_equal_to => 0 }
   validates :one_year_market_cap,                  :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :one_year_penetration_rate,            :presence     => true,
             :numericality => { :less_than_or_equal_to  => 100 }
   validates :one_year_marketing_strategy,          :length       => { :within => 10..400 }
   validates :one_year_gross_profit_margin,         :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :five_year_target_audience,            :presence     => true,
             :length       => { :within => 10..300 }
-  validates :five_year_per_capita_annual_spending, :numericality => true
-  validates :five_year_number_of_users,            :numericality => true
+  validates :five_year_per_capita_annual_spending, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :five_year_number_of_users,            :numericality => { :greater_than_or_equal_to => 0 }
   validates :five_year_market_cap,                 :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :five_year_penetration_rate,           :presence     => true,
             :numericality => { :less_than_or_equal_to  => 100 }
   validates :five_year_marketing_strategy,         :presence     => true,
             :length       => { :within => 10..400 }
   validates :five_year_gross_profit_margin,        :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :competitors_details,                  :presence     => true,
             :length       => { :within => 10..400 }
   validates :competitive_edges,                    :presence     => true,
@@ -43,7 +44,7 @@ class Proposal < ApplicationRecord
   validates :competing_strategy,                   :presence     => true,
             :length       => { :within => 10..400 }
   validates :investment_amount,                    :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :investment_currency,                  :presence     => true,
             :inclusion    => { :in => Settings.currencies }
   validates :equity_percentage,                    :presence     => true,
@@ -51,7 +52,7 @@ class Proposal < ApplicationRecord
   validates :spending_plan,                        :presence     => true,
             :length       => { :within => 10..400 }
   validates :next_investment_round,                :presence     => true,
-            :numericality => true
+            :numericality => { :greater_than_or_equal_to => 0 }
   validates :enterprise_id,                        :presence     => true
 
   scope :draft,     -> { where :proposal_stage_identifier => 'draft'}
