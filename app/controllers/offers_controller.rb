@@ -12,7 +12,6 @@ class OffersController < ApplicationController
     else
       @proposals = Proposal.get_users_proposals(@user)
       @offers = Offer.where("proposal_id IN(?)",@proposals.ids)
-      puts @offers.as_json
     end
   end
 
