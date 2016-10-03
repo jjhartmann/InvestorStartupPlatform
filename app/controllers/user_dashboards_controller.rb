@@ -54,7 +54,6 @@ class UserDashboardsController < ApplicationController
   end
 
   def suggested_profile
-    puts params
     @suggested_user = User.find(params[:profile_id])
   end
 

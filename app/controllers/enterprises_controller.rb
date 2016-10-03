@@ -13,24 +13,24 @@ class EnterprisesController < ApplicationController
   end
 
   def show
-    # @enterprise = Enterprise.find_by(id: params[:id])
-    # if @enterprise.nil?
-    #   respond_to do |format|
-    #     format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
-    #   end
-    # else
-    #   unless @enterprise.questionaire.questions.present?
-    #     redirect_to questionaries_path(enterprise: @enterprise.id)
-    #   end
-    #   if params[:enterprise].present?
-    #     @enterprise = Enterprise.find_by(id: params[:enterprise])
-    #     if @enterprise.nil?
-    #       respond_to do |format|
-    #         format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
-    #       end
-    #     end
-    #   end
-    # end
+    @enterprise = Enterprise.find_by(id: params[:id])
+    if @enterprise.nil?
+      respond_to do |format|
+        format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+      end
+    else
+      unless @enterprise.questionaire.questions.present?
+        redirect_to questionaries_path(enterprise: @enterprise.id)
+      end
+      if params[:enterprise].present?
+        @enterprise = Enterprise.find_by(id: params[:enterprise])
+        if @enterprise.nil?
+          respond_to do |format|
+            format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
+          end
+        end
+      end
+    end
   end
 
   def new
@@ -59,6 +59,8 @@ class EnterprisesController < ApplicationController
   def update
     respond_to do |format|
       if @enterprise.update(enterprise_params)
+        send_notifications = @enterprise.send_notification
+        puts "--------------#{send_notifications.as_json}-------------"
         format.html { redirect_to @enterprise, notice: 'Enterprise was successfully updated.' }
         format.json { render :show, status: :ok, location: @enterprise }
       else
@@ -94,13 +96,13 @@ class EnterprisesController < ApplicationController
 
   def public_profile
     @enterprise = Enterprise.find_by(id: params[:enterprise])
+    Notification.create_notification(@enterprise.id, "Enterprise", "#{@user.name} viewed your profile.")
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enterprise
       @enterprises = @user.enterprises
-      puts @enterprises
       if @enterprises.nil?
         respond_to do |format|
           format.html { redirect_to enterprises_path, alert: "You don't have any enterprises yet." }

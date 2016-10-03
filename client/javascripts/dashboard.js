@@ -41,7 +41,7 @@ $(document).ready(function(){
     });
   });
 
-  $('.all-notification-close').click(function(){
+  $('.all-notification-close.dismiss-notification').click(function(){
     var data_id = $(this).find('i').data('id');
     $.ajax({
       type: "POST",

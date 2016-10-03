@@ -158,19 +158,17 @@ class User < ApplicationRecord
         :follower_id   => id,
         :follower_type => self.class.name
       )
-      if target.class == "Enterprise"
-        # create notification for following
-        target.profilable.notifications.create(
-        :notification_text => "#{self.name} is now following #{target.name}."
-        ) && reload unless target == self || target.nil?
 
-        # check if the user is following the target. if yes, create a connection and notification
-          if is_connection?(target, self)
-            puts "connection"
-            target.profilable.notifications.create(
-            :notification_text => "#{self.name} is now #{target.name}'s connection.",
-          ) && reload unless target == self || target.nil?
-        end
+      target_id = target.class.to_s == "Enterprise" ? target.id : target.profilable.id
+
+      target_type = target.class.to_s == "Enterprise" ? "Enterprise" : target.profilable.class
+
+      #create notification when a user is follwed.
+      Notification.create_notification(target_id, target_type, text = "#{self.name} is now following #{target.name}.") && reload unless target == self || target.nil?
+
+      # check if the user is following the target. if yes, create a connection and notification
+      if is_connection?(target, self)
+        Notification.create_notification(target_id, target_type, text = "#{self.name} is now #{target.name}'s connection.") && reload unless target == self || target.nil?
       end
     end
   end
@@ -232,8 +230,10 @@ class User < ApplicationRecord
   # This function takes two parameters. (target user, logged in user).
   # target user is the user with whom the connection is to be checked.
   # current_user is the logged in user, and it is used to check is the user logged in is following the target user.
+
+  #it will return false whenever the user being followed is an enterprise
   def is_connection?(user,current_user)
-    return false if user.nil?
+    return false if user.nil? || user.class != "Enterprise"
     current_user.is_following?(user) && user.is_following?(current_user)
   end
 

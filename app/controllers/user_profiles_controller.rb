@@ -9,14 +9,12 @@ class UserProfilesController < ApplicationController
 
   def show
     @message = Message.new
-    puts "___________________"
-    puts params[:connection_profile]
     if params[:connection_profile].present?
-      puts "___________________"
       @user_profile = User.find(params[:connection_profile])
+      Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed your profile.")
     elsif params[:suggested_profile].present?
-      puts "___________________"
       @user_profile = User.find(params[:suggested_profile])
+      Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed your profile.")
     end
   end
 
