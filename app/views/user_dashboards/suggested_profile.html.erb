@@ -10,21 +10,14 @@
           <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
-              <%#= form_for(@suggested_user, as: @suggested_user, url: registration_path(@suggested_user), html: { method: :put }) do |f| %>
               <div class="form-group">
                  <div class="circle">
-                   <% if @suggested_user.photo.present? %>
                     <%= image_tag @suggested_user.photo_url, class: "display-mode-value"%>
-                   <% else %>
-                    <%= image_tag "/assets/Icon-user.png", class: "display-mode-value"%>
-                   <% end %>
-                   <%#= f.file_field :photo, class: "form-control" %>
                  </div>
                </div>
                 <div class="form-group">
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
-                    <%#= f.text_field :name, class: "form-control" %>
                     <span class="display-mode-value"><%= @suggested_user.name %></span>
                   </h2>
                 </div>
@@ -33,49 +26,39 @@
                 </div>
 
               <% if @suggested_user.profilable_type == "UserProfile" %>
-                <%#= f.fields_for :profilable do |profile_fields| %>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%#= profile_fields.text_field :industry, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.industry %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><span class="display-mode-value"><%= @suggested_user.profilable.industry %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%#= profile_fields.text_field :profession, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.profession %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><span class="display-mode-value"><%= @suggested_user.profilable.profession %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%#= profile_fields.text_field :skills, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.skills %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><span class="display-mode-value"><%= @suggested_user.profilable.skills %></span></div>
                   </div>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%#= profile_fields.text_field :something_cool, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.something_cool %></span></div>
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><span class="display-mode-value"><%= @suggested_user.profilable.something_cool %></span></div>
                   </div>
-                <%# end %>
               <% else %>
-                <%#= f.fields_for :profilable do |profile_fields| %>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%#= profile_fields.text_field :tagline, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.tagline %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @suggested_user.profilable.tagline %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%#= profile_fields.text_field :funds_to_offer, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.funds_to_offer %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><span class="display-mode-value"><%= @suggested_user.profilable.funds_to_offer %></span></div>
                 </div>
                 <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%#= profile_fields.text_field :description, class: "form-control" %><span class="display-mode-value"><%= @suggested_user.profilable.description %></span></div>
+                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><span class="display-mode-value"><%= @suggested_user.profilable.description %></span></div>
                 </div>
-                <%# end %>
               <% end %>
               <div class="form-group">
                 <div class="user-positon">
                   <i aria-hidden="true" class="fa fa-envelope"></i>
-                  <%#= f.text_field :email, class: "form-control", disabled: true%>
                   <span class="display-mode-value"><%= @suggested_user.email %></span>
                 </div>
               </div>
               <div class="event-btn">
-                 <%#= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
                 <button type="button" class="btn btn-default js-cancel">Cancel</button>
               </div>
-              <%# end %>
               <div class="buttons">
-                <%#= link_to edit_user_registration_path do %>
-                  <!-- <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div> -->
-                <%# end %>
                 <%= link_to "#" do %>
                   <div class="edit"><i class="fa fa-comments" aria-hidden="true"></i></div>
                 <% end %>
