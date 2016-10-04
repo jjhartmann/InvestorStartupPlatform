@@ -168,8 +168,11 @@ class User < ApplicationRecord
       Notification.create_notification(target_id, target_type, text = "#{self.name} is now following #{target.name}.") && reload unless target == self || target.nil?
 
       # check if the user is following the target. if yes, create a connection and notification
-      if is_connection?(target, self)
-        Notification.create_notification(target_id, target_type, text = "#{self.name} is now #{target.name}'s connection.") && reload unless target == self || target.nil?
+      unless target_type == "Enterprise"
+        if is_connection?(target, self)
+          puts "yay, connection-------***********************"
+          Notification.create_notification(target_id, target_type, text = "#{self.name} is now #{target.name}'s connection.") && reload unless target == self || target.nil?
+        end
       end
     end
   end
@@ -234,7 +237,7 @@ class User < ApplicationRecord
 
   #it will return false whenever the user being followed is an enterprise
   def is_connection?(user,current_user)
-    return false if user.nil? || user.class == "Enterprise"
+    return false if user.nil?
     current_user.is_following?(user) && user.is_following?(current_user)
   end
 
