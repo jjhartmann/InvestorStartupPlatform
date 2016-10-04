@@ -13,10 +13,10 @@
           </li>
           <li>
             <%= link_to connections_user_dashboards_path do %>
-            <div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div>
-            <div class="tag-count connection"><%= current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user) %></div>
-            <div class="tag-name"><%= "Connection".pluralize(current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)) %>
-            </div>
+              <div class="main-profile"><i aria-hidden="true" class="fa fa-plug"></i></div>
+              <div class="tag-count connection"><%= current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user) %></div>
+              <div class="tag-name"><%= "Connection".pluralize(current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)) %>
+              </div>
             <% end %>
           </li>
           <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>

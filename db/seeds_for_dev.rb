@@ -115,4 +115,3 @@ User.all.each do |u|
 end
 
 p 'Finished creating seeds data for development.'
-
