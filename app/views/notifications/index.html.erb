@@ -26,7 +26,7 @@
                     <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
                     <div class="notes-track">
                       <div class="main-pro-name"><span class="yellow"><%= notification.user.name if notification.user.present? %></span> added you as a connection</div>
-                      <p><%= notification.notification_text %></p>
+                      <p><%=raw notification.notification_text %></p>
                       <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
                     </div>
                     <div class="all-notification-close dismiss-notification">

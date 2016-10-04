@@ -25,6 +25,7 @@ class QuestionariesController < ApplicationController
   end
 
   def save_questions
+    @flag = true
     @params =  params["questionaires"]
     puts params.inspect
     puts params[:enterprise]
@@ -41,12 +42,36 @@ class QuestionariesController < ApplicationController
 
       #Save the questions and the answers of the questionaire for the current user
       @questions.zip(params[:answers].to_a).each do |q,a|
-        current_user.profilable.questionaire.questions.create!(question: q.question,answer: a)
+        @question = current_user.profilable.questionaire.questions.new(question: q.question,answer: a)
+        if @question.valid?
+          @flag = true
+        else
+          @flag = false
+        end
       end
+
       respond_to do |format|
-        format.html {redirect_to root_path}#{ render :layout => false }
-        format.json
+        if @flag == true
+          @questions.zip(params[:answers].to_a).each do |q,a|
+            @question = current_user.profilable.questionaire.questions.create(question: q.question,answer: a)
+          end
+
+          if @user.profilable_type == "InvestorProfile"
+            @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?").answer
+            @enterprises = Enterprise.where(stage_identifier: @answer)
+            @enterprises.each do |enterprise|
+              Notification.create_notification(enterprise.id, enterprise.class, "An Investor <a href='#'>#{@user.name}</a> is available for #{enterprise.name}. ")
+              Notification.create_notification(@user.profilable_id, @user.profilable_type, "You might get interested in #{enterprise.name}")
+            end
+          end
+          format.html {redirect_to user_dashboards_path, notice: "Great! now, please fll up your profile to let us help you more."}
+          format.json
+        else
+          format.html {redirect_to questionaries_path, alert: "Please answer all the questions."}#{ render :layout => false }
+          format.json
+        end
       end
+
     else
 
       # Fetching questions for the enterprise
@@ -55,11 +80,34 @@ class QuestionariesController < ApplicationController
       #Save the questions and the answers of the questionaire for the current user
       @questions.zip(params[:answers].to_a).each do |q,a|
         puts "______#{q.question}_________*#{a}_______"
-        @enterprise.questionaire.questions.create(question: q.question,answer: a)
+        @question = @enterprise.questionaire.questions.new(question: q.question,answer: a)
+        if @question.valid?
+          @flag = true
+        else
+          @flag = false
+        end
       end
+
       respond_to do |format|
-        format.html { redirect_to enterprise_path(@enterprise.id) }
-        format.json
+        if @flag == true
+          @questions.zip(params[:answers].to_a).each do |q,a|
+            @question = @enterprise.questionaire.questions.create(question: q.question,answer: a)
+          end
+
+          @answer = @enterprise.stage_identifier
+          @questions = Question.where("question = ? and answer = ?", "What startup type are you looking for?",@answer).pluck(:questionaire_id)
+          @questionaire = Questionaire.where("id IN(?)", @questions)
+
+          @questionaire.each do |questionaire|
+            Notification.create_notification(questionaire.questionable_id, questionaire.questionable_type, "A new enterprise #{@enterprise.name} is created.")
+          end
+
+          format.html {redirect_to enterprises_path, notice: "Great! now, please fll up your profile to let us help you more."}
+          format.json
+        else
+          format.html {redirect_to questionaries_path, alert: "Please answer all the questions."}#{ render :layout => false }
+          format.json
+        end
       end
     end
   end
