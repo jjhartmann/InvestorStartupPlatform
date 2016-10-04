@@ -2,7 +2,8 @@ require 'digest/md5'
 
 class User < ApplicationRecord
   include Commentable,
-          Followable
+          Followable,
+          Timming
 
   include RailsAdmin::UserAdmin
   include RailsAdminCharts

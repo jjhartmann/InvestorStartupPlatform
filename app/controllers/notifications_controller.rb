@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    
+
   end
 
   # GET /notifications/1
@@ -79,6 +79,6 @@ class NotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:notificable_id, :notificable_type, :notification_text, :is_viewed)
+      params.require(:notification).permit(:notificable_id, :notificable_type, :notification_text, :is_viewed, :user_id)
     end
 end

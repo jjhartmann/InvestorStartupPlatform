@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   include RailsAdmin::MessageAdmin
   include RailsAdminCharts
-  include ActionView::Helpers::DateHelper
+  include Timming
 
 
   belongs_to :proposal, optional: true
@@ -43,10 +43,6 @@ class Message < ApplicationRecord
 
   def is_without_proposal?
     !proposal_id
-  end
-
-  def message_time
-    time_ago_in_words(created_at)
   end
 
   def method_missing(symbol, *args)

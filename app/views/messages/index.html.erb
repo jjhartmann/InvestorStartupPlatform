@@ -1,15 +1,13 @@
-<%= current_user.as_json %>
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :enterprise_class, 'active' %>
+<%= render "user_dashboards/profile" %>
 <%= render partial: "user_dashboards/sidebar" %>
-<p id="notice"><%= notice %></p>
 
 <%#= link_to 'New Message', new_message_path %>
 
-
   <div class="container side-deatail">
     <div class="col-xs-12">
-      <div class="profile-tabs test">
+      <div class="profile-tabs">
         <div class="tab-content">
           <div  class="tab-pane fade active in">
             <div class="tab-title">Messages</div>
@@ -17,15 +15,27 @@
             <div class="message">
               <ul>
                 <% @message_thread.each do |thread| %>
-                <%= puts  thread.as_json %>
+                <%#= puts  thread.as_json %>
                   <%= link_to inbox_messages_path(id: thread.id) do %>
                     <li>
                       <div class="pro-message">
-                        <div class="circle-pic"><%= image_tag thread.user.photo_avatar %></div>
+                        <div class="circle-pic">
+                          <% if thread.target_id == current_user.id %>
+                            <%= image_tag thread.user.photo_avatar %>
+                          <% else %>
+                            <%= image_tag thread.target.photo_avatar %>
+                          <% end %>
+                        </div>
                       </div>
                       <div class="on-off <%= current_user.messages.where(target_id: thread.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
                       <div class="top-count"><%= current_user.messages.where(target_id: thread.id, is_read: false).count %></div>
-                      <div class="sr-name"><% if thread.target_id == current_user.id %><%= thread.user.name %><% else %><%= thread.target.name %><% end %></div>
+                      <div class="sr-name">
+                        <% if thread.target_id == current_user.id %>
+                          <%= thread.user.name %>
+                        <% else %>
+                          <%= thread.target.name %>
+                        <% end %>
+                      </div>
                     </li>
                   <% end %>
                 <% end %>
