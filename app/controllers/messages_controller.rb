@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
       puts "_______________"
       respond_to do |format|
         if current_user.reply_private_message(@topic, @content, {})
-          format.html { redirect_to :back, notice: 'Message was successfully created.' }
+          format.html { redirect_to :back, notice: 'Message was successfully sent.' }
           format.json { render :show, status: :created, location: @message }
         else
           format.html { render :new }

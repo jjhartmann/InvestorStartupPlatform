@@ -15,7 +15,7 @@
             <div class="message">
               <ul>
                 <% @message_thread.each do |thread| %>
-                <%#= puts  thread.as_json %>
+                <%=  thread.id %>
                   <%= link_to inbox_messages_path(id: thread.id) do %>
                     <li>
                       <div class="pro-message">
@@ -28,7 +28,7 @@
                         </div>
                       </div>
                       <div class="on-off <%= current_user.messages.where(target_id: thread.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
-                      <div class="top-count"><%= current_user.messages.where(target_id: thread.id, is_read: false).count %></div>
+                      <div class="top-count"><%= thread.target_id == current_user.id ? Message.where(target_id: current_user.id,is_read: false).pluck(:topic_id).uniq.count : current_user.messages.where(topic_id: thread.id, is_read: false).count %></div>
                       <div class="sr-name">
                         <% if thread.target_id == current_user.id %>
                           <%= thread.user.name %>
