@@ -2,11 +2,15 @@
 <%= content_for :connection_class, "active" %>
 <%= render "user_dashboards/profile" %>
 <%= render partial: "user_dashboards/sidebar" %>
-<p id="notice"><%= notice %></p>
+
 <div class="container side-deatail">
   <div class="col-xs-12">
-    <div class="profile-tabs test">
-      <div class="tab-pane fade editable-contact-info edit-mode-disabled active in">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div  class="tab-pane fade active in">
+
+
+
         <div class="tab-title">Connections</div>
         <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
           <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
@@ -90,4 +94,5 @@
     </div>
 
   </div>
+</div>
 </div>

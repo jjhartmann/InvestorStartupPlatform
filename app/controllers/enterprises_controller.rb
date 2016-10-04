@@ -97,7 +97,7 @@ class EnterprisesController < ApplicationController
   def public_profile
     @enterprise = Enterprise.find_by(id: params[:enterprise])
     if @enterprise.questionaire.questions.present?
-      Notification.create_notification(@enterprise.id, "Enterprise", "#{@user.name} viewed #{@enterprise}'s profile.")
+      Notification.create_notification(@enterprise.id, "Enterprise", "#{@user.name} viewed #{@enterprise.name}'s profile.")
     else
       respond_to do |format|
         format.html { redirect_to enterprises_path, alert: "This enterprise is not available right now." }
