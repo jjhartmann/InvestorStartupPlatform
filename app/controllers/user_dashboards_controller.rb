@@ -46,8 +46,8 @@ class UserDashboardsController < ApplicationController
     else
       current_user.follow(@user)
     end
-    @network_count = current_user.network_counts(current_user.target_followed.pluck(:target_id),current_user)
-    @connection_count = current_user.connection_counts(current_user.target_followed.pluck(:target_id),current_user)
+    @network_count = current_user.network_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)
+    @connection_count = current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)
     respond_to do |format|
       format.js
     end

@@ -18,9 +18,15 @@
               <h2><%= question["question"] %></h2>
               <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             </div>
-            <div class="registration question-type">
-              <%= text_field_tag "answers[]" %>
-            </div>
+            <% if question['qtype'] == "dropdown" %>
+              <div class="registration question-type">
+                <%= select_tag "answers[]", options_for_select(Enterprise.stages.map {|identfier| [identfier[1], identfier[0]]}), prompt: "Select something" %>
+              </div>
+            <% else %>
+              <div class="registration question-type">
+                <%= text_field_tag "answers[]" %>
+              </div>
+            <% end %>
           </div>
           <div class="answer">
             <div class="type-ans">
