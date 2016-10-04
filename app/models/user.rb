@@ -234,7 +234,7 @@ class User < ApplicationRecord
 
   #it will return false whenever the user being followed is an enterprise
   def is_connection?(user,current_user)
-    return false if user.nil? || user.class != "Enterprise"
+    return false if user.nil? || user.class == "Enterprise"
     current_user.is_following?(user) && user.is_following?(current_user)
   end
 

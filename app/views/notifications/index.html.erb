@@ -22,22 +22,22 @@
               <div class="notification-box">
                 <ul>
                   <% @notifications.each do |notification| %>
-                  <li data-notification-id="<%= notification.id %>">
-                    <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
-                    <div class="notes-track">
-                      <div class="main-pro-name"><span class="yellow"><%= notification.user.name if notification.user.present? %></span> added you as a connection</div>
-                      <p><%=raw notification.notification_text %></p>
-                      <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
-                    </div>
-                    <div class="all-notification-close dismiss-notification">
-                      <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id%>"></i>
-                    </div>
-                    <!-- <div class="btn-yes-no">
-                    <a href="#"><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Dismiss</div></a>
-                    <a href="#"><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div></a>
-                  </div> -->
-                </li>
-                <% end %>
+                    <li data-notification-id="<%= notification.id %>">
+                      <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
+                      <div class="notes-track">
+                        <div class="main-pro-name"><span class="yellow"><%= notification.user.name if notification.user.present? %></span> added you as a connection</div>
+                        <p><%=raw notification.notification_text %></p>
+                        <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
+                      </div>
+                      <div class="all-notification-close dismiss-notification">
+                        <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id%>"></i>
+                      </div>
+                      <!-- <div class="btn-yes-no">
+                        <a href="#"><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Dismiss</div></a>
+                        <a href="#"><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div></a>
+                      </div> -->
+                    </li>
+                  <% end %>
               </ul>
             </div>
           </div>
