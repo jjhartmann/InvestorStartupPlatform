@@ -18,9 +18,9 @@
                 <ul>
                   <% @message_thread.each do |thread| %>
                     <% if thread.user_id != current_user.id %>
-                      <li><div class="circle-message"><%=image_tag thread.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.message_time %> ago</span></div></div></li>
+                      <li><div class="circle-message"><%=image_tag thread.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div></li>
                     <% else %>
-                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.message_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
+                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
                     <% end %>
                   <% end %>
                 </ul>

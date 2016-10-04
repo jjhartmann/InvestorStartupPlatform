@@ -12,7 +12,7 @@
     <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
       <ul class="nav navbar-nav">
         <li class="profile-set <%= yield :profile_active_class %> "><%= link_to "Profile", user_profile_path(current_user.id) %></li>
-        <li><a href="#">Connections </a></li>
+        <li class=" <%= yield :connection_class %> "><%= link_to "Connections",connections_user_dashboards_path %></li>
         <!-- show companies only when user is startup -->
         <% if @user.profilable_type == "UserProfile" %>
         <% @enterprise = @user.enterprises %>
@@ -42,7 +42,7 @@
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
-        <li><a href="#"><i aria-hidden="true" class="fa fa-comments-o"></i></a><div class="top-count"><%= current_user.messages.where(target_id: current_user.id,is_read: false).count %></div></li>
+        <li><%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments-o"></i><% end %><div class="top-count"><%= current_user.messages.where(target_id: current_user.id,is_read: false).count %></div></li>
         <li><%= link_to notifications_path do %><i class="fa fa-bell" aria-hidden="true"></i><% end %><div class="top-count notes"><%= @notifications.count %></div></li>
       </ul>
     </div>

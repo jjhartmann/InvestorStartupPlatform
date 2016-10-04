@@ -13,7 +13,7 @@
                   <div class="enterprise-deatils box-tab  edit-offer">
                     <ul class="full-details clearfix">
                       <% @followers.each do |follower| %>
-                        <%= link_to user_profile_path(id: current_user.id,follower_profile: follower.id), 'data-id': "#{follower.id}" do %>
+                        <%= link_to user_profile_path(id: current_user.id, follower_profile: follower.id), 'data-id': "#{follower.id}" do %>
                           <li>
                             <div class="tag-1">
                               <div class="follow-pro">
