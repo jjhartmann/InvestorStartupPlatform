@@ -72,9 +72,8 @@ class QuestionariesController < ApplicationController
       @questions = QuestionsToAskEnterprise.all
       @enterprise = Enterprise.find(params[:enterprise])
       #Save the questions and the answers of the questionaire for the current user
-      @questions.zip(params[:answers].to_a).each do |q,a|
-        puts "______#{q.question}_________*#{a}_______"
-        @question = @enterprise.questionaire.questions.new(question: q.question,answer: a)
+      @questions.zip(params[:answers].to_a).each do |question,answer|
+        @question = @enterprise.questionaire.questions.new(question: question.question,answer: answer)
         @flag = @question.valid? ? true : false
         if @flag == false
           break;
@@ -83,8 +82,8 @@ class QuestionariesController < ApplicationController
 
       respond_to do |format|
         if @flag == true
-          @questions.zip(params[:answers].to_a).each do |q,a|
-            @question = @enterprise.questionaire.questions.create(question: q.question,answer: a)
+          @questions.zip(params[:answers].to_a).each do |question,answer|
+            @question = @enterprise.questionaire.questions.create(question: question.question,answer: answer)
           end
 
           @answer = @enterprise.stage_identifier

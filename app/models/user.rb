@@ -170,7 +170,6 @@ class User < ApplicationRecord
       # check if the user is following the target. if yes, create a connection and notification
       unless target_type == "Enterprise"
         if is_connection?(target, self)
-          puts "yay, connection-------***********************"
           Notification.create_notification(target_id, target_type, text = "#{self.name} is now #{target.name}'s connection.") && reload unless target == self || target.nil?
         end
       end

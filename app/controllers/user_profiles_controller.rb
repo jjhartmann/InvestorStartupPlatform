@@ -37,9 +37,6 @@ class UserProfilesController < ApplicationController
   end
 
   def meeting_request
-    puts "******************"
-    puts params.inspect
-    puts "******************"
     @target_user = User.find(params[:requested_client_id])
     @meeting = Meeting.create(topic: params[:topic],start_time: Time.now, end_time: Time.now+1.hour, user_id: current_user.id)
     @meeting_member = @meeting.meeting_members.build(memberable: @target_user).save

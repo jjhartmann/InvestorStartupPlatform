@@ -154,7 +154,6 @@ class Enterprise < ApplicationRecord
   def send_notification
     self.target_followers.each do |target_follower|
       @user = User.find(target_follower.follower_id)
-      puts @user.inspect
       Notification.create_notification(@user.profilable_id, @user.profilable_type, text = "#{self.name} updated his/her profile") && reload unless target_follower == self || target_follower.nil?
     end
   end

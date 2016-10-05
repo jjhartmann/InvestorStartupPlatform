@@ -7,13 +7,11 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create
     super
-    puts "confirmation create"
   end
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     super
-    puts "confirmation show"
   end
 
   # protected

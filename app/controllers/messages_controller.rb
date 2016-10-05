@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
     @current_user_received_messages = Message.where(target_id: current_user.id, topic_id: nil)
     @messages = current_user.messages.where(topic_id: nil)
     @message_thread = @messages | @current_user_received_messages
-    puts @message_thread.as_json
     @conversations = User.where(id: current_user.messages.pluck(:target_id))
   end
 
@@ -33,7 +32,6 @@ class MessagesController < ApplicationController
     if params[:message][:topic_id].present?
       @topic = Message.find(params[:message][:topic_id])
       @content = params[:message][:content]
-      puts "_______________"
       respond_to do |format|
         if current_user.reply_private_message(@topic, @content, {})
           format.html { redirect_to :back, notice: 'Message was successfully sent.' }
@@ -44,7 +42,6 @@ class MessagesController < ApplicationController
         end
       end
     else
-      puts "**************"
       @message = Message.new(message_params)
       @target_user = User.find(params[:message][:target_id])
       @content = params[:message][:content]
@@ -87,17 +84,13 @@ class MessagesController < ApplicationController
 
   def inbox
     @first_message = Message.where(id: params[:id])
-    # @first_message.first.update(is_read: true)
     @read_status = Message.where(topic_id: @first_message.first.id,target_id: current_user.id).update_all(is_read: true)
-    puts @first_message.first.user_id
     if @first_message.first.target_id == current_user.id
       @user = User.find(@first_message.first.user_id)
     else
       @user = User.find(@first_message.first.target_id)
     end
     @following_messages = Message.where(topic_id: @first_message.first.id)
-    puts @following_messages.as_json
-    puts "_________"
     @message_thread = @first_message | @following_messages
     @message = Message.new
   end

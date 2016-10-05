@@ -49,18 +49,12 @@ class ProposalsController < ApplicationController
       elsif @enterprise.proposals.count >= Settings.enterprise.proposal.limit
         @proposal.errors.add(:enterprise_id, :blank, message: "This enterprise is already in use. Please use a different one.")
         format.html { render :new }
-        puts "here count"
       else
-        puts "njhn"
         @proposal = @enterprise.proposals.new(proposal_params)
-        puts "proposal.save nope"
-        puts @proposal
         if @proposal.save
           format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
           format.json { render :show, status: :created, location: @proposal }
         else
-          puts "proposal.error"
-          puts @proposal.errors.as_json
           format.html { render :new }
           format.json { render json: @proposal.errors, status: :unprocessable_entity }
         end
@@ -136,7 +130,7 @@ class ProposalsController < ApplicationController
         @proposals = Proposal.get_proposals(@user)
       else
         @enterprises = @user.enterprises
-        @proposals = Proposal.get_users_proposals(@user)        
+        @proposals = Proposal.get_users_proposals(@user)
       end
       if @proposals.present?
         @proposal = @proposals.find_by(id: params[:id])
