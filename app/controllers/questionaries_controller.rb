@@ -25,12 +25,7 @@ class QuestionariesController < ApplicationController
   end
 
   def save_questions
-    @flag = true
-    @params =  params["questionaires"]
-    puts params.inspect
-    puts params[:enterprise]
-    @hash_array = []
-    puts params[:answers].to_a
+    @flag = false
     unless params[:enterprise].present?
 
       # Fetching questions according to profile type of the user
@@ -43,10 +38,9 @@ class QuestionariesController < ApplicationController
       #Save the questions and the answers of the questionaire for the current user
       @questions.zip(params[:answers].to_a).each do |q,a|
         @question = current_user.profilable.questionaire.questions.new(question: q.question,answer: a)
-        if @question.valid?
-          @flag = true
-        else
-          @flag = false
+        @flag = @question.valid? ? true : false
+        if @flag == false
+          break;
         end
       end
 
@@ -81,11 +75,11 @@ class QuestionariesController < ApplicationController
       @questions.zip(params[:answers].to_a).each do |q,a|
         puts "______#{q.question}_________*#{a}_______"
         @question = @enterprise.questionaire.questions.new(question: q.question,answer: a)
-        if @question.valid?
-          @flag = true
-        else
-          @flag = false
+        @flag = @question.valid? ? true : false
+        if @flag == false
+          break;
         end
+
       end
 
       respond_to do |format|
