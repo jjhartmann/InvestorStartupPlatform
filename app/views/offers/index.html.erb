@@ -11,8 +11,11 @@
               <div class="tab-pane fade in active">
                 <div class="tab-title">Offers</div>
                 <% if @user.profilable_type == "InvestorProfile" %>
-                  <% if @offers.present? %>
-                  <div class="enterprise-deatils box-tab  edit-offer">
+                <div class="pull-right new-button">
+                  <%= link_to 'New Offer', new_offer_path, class: "btn btn-primary" %>
+                </div>
+                <% if @offers.present? %>
+                <div class="enterprise-deatils box-tab  edit-offer">
                     <ul class="full-details clearfix">
                       <li>
                         <div class="name-enetrprise head-box">Offer</div>
@@ -41,15 +44,13 @@
                     </ul>
                   </div>
                   <% else %>
-                  <div class="notes-alert">
-                    <div class="alert alert-warning">
-                      You have not created any <strong>Offer</strong> yet.
+                    <div class="notes-alert">
+                      <div class="alert alert-warning">
+                        You have not created any <strong>Offer</strong> yet.
+                      </div>
                     </div>
-                  </div>
                   <% end %>
-                  <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
-                    <%= link_to 'New Offer', new_offer_path, class: "btn btn-primary" %>
-                  </div>
+
                 <% else %>
                   <% if @offers.present? %>
                     <div class="enterprise-deatils box-tab  edit-offer">

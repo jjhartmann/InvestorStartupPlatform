@@ -1,19 +1,21 @@
 <%= content_for :header_manage_class, 'header_manage' %>
 <header class="back-image">
 </header>
-<div id="floating_alert">
-  <div class="alert header-alert alert-message alert-danger">
-    <%= resource.errors.full_messages[0] %>
-    <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+<% if resource.errors.present? %>
+  <div id="floating_alert">
+    <div class="alert header-alert alert-message alert-danger">
+      <%= resource.errors.full_messages[0] %>
+      <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="container">
   <div>
     <div class="registration col-xs-12">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <h1 class="text-center">Forgot Password</h1>
-        <%= f.email_field :login, autofocus: true %>
+        <%= f.email_field :email, autofocus: true %>
         <div class="form-group">
           <div class="submit-btn">
             <%= f.submit "Send Email", class: "btn-default btn password-reset" %>

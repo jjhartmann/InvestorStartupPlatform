@@ -401,7 +401,7 @@ html,body{
 .main-body {
     float: left;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 .short-profile{
     float: left;
@@ -1220,10 +1220,10 @@ top:0;
 }
 .sender-box .form-group {
     border: medium none;
-    height: 50px;
+    height: 40px;
     margin-bottom: 0;
     padding: 0 15px;
-    width:calc(100% - 80px);
+    width:calc(100% - 55px);
     float: left;
 }
 .sender-box .form-group textarea {
@@ -1265,8 +1265,13 @@ top:0;
   position: initial;
 }
 .btn-yes-no .remodal-confirm{
+<<<<<<< HEAD
     padding: 10px;
     text-align: center;
+=======
+  padding: 7px;
+  text-align: center;
+>>>>>>> 8f761090bb73026ca07a158bb9025c6d109d4ef0
 }
 .btn-yes-no .remodal-cancel{
     padding: 10px;
@@ -1293,6 +1298,12 @@ top:0;
 .user-follow ul {
     padding-left: 0;
 }
+.user-follow ul li {
+    float: left;
+    list-style: outside none none;
+    width: 100%;
+    position: relative;
+}
 .tag-1 {
     width: 100px;
     float: left;
@@ -1303,8 +1314,8 @@ top:0;
    padding-left: 15px;
 }
 .tag-3 {
-    width: 200px;
-    float: left;
+  width: 200px;
+   float: left;
 }
 
 .menu {
@@ -1317,17 +1328,16 @@ top:0;
 }
 .menu > li {
   background: #ffc857;
-  float: left;
+  .float: left;
   position: relative;
   -webkit-transform: skewX(25deg);
-  -moz-transform: skewX(25deg);
-  transform: skewX(25deg);
-  transition:all 0.4s;
 }
 .menu a {
   display: block;
   color: #fff;
+  text-transform: uppercase;
   text-decoration: none;
+  font-family: Arial, Helvetica;
   font-size: 14px;
 }
 .menu li:hover {
@@ -1692,4 +1702,111 @@ top:0;
 }
 .manage-header.header_manage {
     height: 0;
+}
+
+/*03-10-2016*/
+
+#menu9 .name-enetrprise .pro-view {
+    border-radius: 100%;
+    height: 60px;
+    overflow: hidden;
+    width: 60px;
+    margin-bottom: 0;
+}
+#menu9 .name-enetrprise .pro-view img {
+  width: 100%;
+}
+#menu9 .img-tag {
+    display: inline-block;
+}
+#menu9 .destory > a {
+    line-height: 65px;
+}
+
+/*04-10-2016*/
+.dtp-header
+ {
+    background: #222222 !important;
+}
+.dtp-date,
+.dtp table.dtp-picker-days tr > td > a.selected,
+{
+    fill: #ffc857 !important;
+    background: #ffc857 !important;
+}
+.dtp .p10 > a{
+     color: #222222 !important;
+}
+.hour-hand{
+  stroke:#ffc857 !important;
+}
+/*05-10-2016*/
+
+.fc-body {
+    background: #ffc857;
+}
+.fc-head,
+.fc-unthemed .fc-today
+{
+  background: #222 !important;
+}
+.fc-view > table {
+    color: #ffffff;
+}
+.fc-content {
+    background: #222222 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 2px;
+    padding: 3px 15px;
+}
+.fc-day-number {
+    color: #fff;
+}
+.fc-button {
+    background: #ffc857 none repeat scroll 0 0 !important;
+    border: medium none !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+    outline: none !important;
+}
+.fc-state-down, .fc-state-active{
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+}
+.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable {
+    border: medium none !important;
+}
+.fc-widget-header {
+    background: rgb(34, 34, 34) none repeat scroll 0 0 !important;
+}
+.fc-event-dot {
+    background: rgb(92, 184, 92) none repeat scroll 0 0 !important;
+}
+.fc-divider.fc-widget-header {
+    background: rgb(238, 238, 238) none repeat scroll 0 0 !important;
+}
+.fc-event, .fc-event:hover, .ui-widget .fc-event{
+  color: #ffc857 !important;
+}
+#menu8 .box-tab {
+    background: #eff4f7;
+    margin-top: 0;
+}
+.fc-view.fc-month-view.fc-basic-view{
+  display: block;
+}
+.dashbord input:focus::-webkit-input-placeholder {
+  color: #898989;
+  font-size: 14px;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  visibility: visible !important;
+}
+.new-button{
+  margin: 3px 0px;
+}
+.optional-tips label {
+    display: none;
 }

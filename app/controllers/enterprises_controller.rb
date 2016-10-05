@@ -60,7 +60,6 @@ class EnterprisesController < ApplicationController
     respond_to do |format|
       if @enterprise.update(enterprise_params)
         send_notifications = @enterprise.send_notification
-        puts "--------------#{send_notifications.as_json}-------------"
         format.html { redirect_to @enterprise, notice: 'Enterprise was successfully updated.' }
         format.json { render :show, status: :ok, location: @enterprise }
       else
@@ -79,9 +78,7 @@ class EnterprisesController < ApplicationController
   end
 
   def add_member
-    puts params
     params[:invitee].split(",").each do |invitee|
-      puts invitee
       @user = User.find_by(email: invitee)
       if @user.present?
         @invitation = Invitation.create(enterprise_id: params[:enterprise_id],user_id: @user.id, email: @user.email)

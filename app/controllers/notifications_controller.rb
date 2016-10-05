@@ -67,7 +67,6 @@ class NotificationsController < ApplicationController
 
   #dismiss a notification
   def dismiss
-    puts "bhb"
     @notification.update(is_viewed: true)
   end
 

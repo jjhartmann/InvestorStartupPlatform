@@ -19,9 +19,13 @@
               </div>
             <% end %>
           </li>
-          <li><a href="#"><div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div></a></li>
           <li>
-            <%= link_to network_user_dashboards_path do %>
+            <%= link_to profile_visitors_user_dashboards_path do%>
+              <div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "#" do %>
             <div class="main-profile">
               <i class="fa fa-rss" aria-hidden="true"></i>
             </div>

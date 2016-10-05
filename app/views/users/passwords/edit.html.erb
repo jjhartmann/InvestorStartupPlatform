@@ -1,25 +1,29 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
+<%= content_for :header_manage_class, 'header_manage' %>
+<header class="back-image">
+</header>
+<% if resource.errors.present? %>
+  <div id="floating_alert">
+    <div class="alert header-alert alert-message alert-danger">
+      <%= resource.errors.full_messages[0] %>
+      <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+    </div>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div class="container">
+  <div>
+    <div class="registration col-xs-12">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <h1 class="text-center">Change your password</h1>
+        <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password" %>
+        <div class="form-group">
+          <div class="submit-btn">
+            <%= f.submit "Change my password", class: "btn-default btn password-reset" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
