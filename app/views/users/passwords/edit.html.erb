@@ -1,12 +1,14 @@
 <%= content_for :header_manage_class, 'header_manage' %>
 <header class="back-image">
 </header>
-<div id="floating_alert">
-  <div class="alert header-alert alert-message alert-danger">
-    <%= resource.errors.full_messages[0] %>
-    <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+<% if resource.errors.present? %>
+  <div id="floating_alert">
+    <div class="alert header-alert alert-message alert-danger">
+      <%= resource.errors.full_messages[0] %>
+      <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="container">
   <div>
@@ -15,9 +17,6 @@
         <%= f.hidden_field :reset_password_token %>
         <h1 class="text-center">Change your password</h1>
         <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Password" %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-        <% end %>
         <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password" %>
         <div class="form-group">
           <div class="submit-btn">
