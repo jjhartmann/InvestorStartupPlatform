@@ -70,7 +70,7 @@ class UserDashboardsController < ApplicationController
     @message = Message.new
   end
 
-  def network
+  def profile_visitors
     @followers = @user.followers
   end
 
