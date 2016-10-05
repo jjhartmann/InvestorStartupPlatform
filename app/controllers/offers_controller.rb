@@ -56,6 +56,7 @@ class OffersController < ApplicationController
   # PATCH/PUT /offers/1
   # PATCH/PUT /offers/1.json
   def update
+    @proposals = Proposal.get_proposals(@user)
     respond_to do |format|
       if @offer.update(offer_params)
         format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }

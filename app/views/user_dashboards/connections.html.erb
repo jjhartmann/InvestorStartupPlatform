@@ -8,15 +8,12 @@
     <div class="profile-tabs">
       <div class="tab-content">
         <div  class="tab-pane fade active in">
-
-
-
         <div class="tab-title">Connections</div>
         <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
           <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
         </div>
-        <div class="enterprise-deatils box-tab">
           <% if @connected_users.count != 0 %>
+          <div class="enterprise-deatils box-tab">
               <div class="user-follow">
                 <ul class="clearfix">
                   <% @connected_users.each do |connection| %>
@@ -49,10 +46,14 @@
                   <% end %>
                 </ul>
               </div>
+            </div>
           <% else %>
-            Sorry!!! You have no connection.
+          <div class="notes-alert">
+            <div class="alert alert-warning">
+              Sorry, you have no <strong>connections</strong>.
+            </div>
+          </div>
           <% end %>
-        </div>
       </div>
     </div>
   </div>

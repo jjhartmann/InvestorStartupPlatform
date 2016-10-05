@@ -181,7 +181,6 @@ class User < ApplicationRecord
       # check if the user is following the target. if yes, create a connection and notification
       unless target_type == "Enterprise"
         if is_connection?(target, self)
-          puts "yay, connection-------***********************"
           Notification.create_notification(target_id, target_type, text = "#{self.name} is now #{target.name}'s connection.") && reload unless target == self || target.nil?
         end
       end
@@ -244,7 +243,7 @@ class User < ApplicationRecord
   # This function is created to verify if the user is connected to any user or not.
   # This function takes two parameters. (target user, logged in user).
   # target user is the user with whom the connection is to be checked.
-  # current_user is the logged in user, and it is used to check is the user logged in is following the target user.
+  # current_user is the logged in user, and it is used to check if the user logged in is following the target user.
 
   #it will return false whenever the user being followed is an enterprise
   def is_connection?(user,current_user)
@@ -255,7 +254,7 @@ class User < ApplicationRecord
   # This function is created to count the total number of people in network of the logged in user.
   # This function takes two parameters. (array of target_id, logged in user).
   # array of target_id is obtained as follows:- current_user.target_followed.pluck(:target_id).
-  # current_user is the logged in user, and it is used to check is the user logged in has a connection with target user.
+  # current_user is the logged in user, and it is used to check if the user logged in has a connection with target user.
   def network_counts(array,current_user)
     @count = 0
     array.each do |array_id|
