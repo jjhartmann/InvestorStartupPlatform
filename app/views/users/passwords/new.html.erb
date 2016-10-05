@@ -1,12 +1,14 @@
 <%= content_for :header_manage_class, 'header_manage' %>
 <header class="back-image">
 </header>
-<div id="floating_alert">
-  <div class="alert header-alert alert-message alert-danger">
-    <%= resource.errors.full_messages[0] %>
-    <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+<% if resource.errors.present? %>
+  <div id="floating_alert">
+    <div class="alert header-alert alert-message alert-danger">
+      <%= resource.errors.full_messages[0] %>
+      <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="container">
   <div>
