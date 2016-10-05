@@ -6,11 +6,23 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @current_user_received_messages = Message.where(target_id: current_user.id, topic_id: nil)
-    @messages = current_user.messages.where(topic_id: nil)
-    @message_thread = @messages | @current_user_received_messages
+    # all the messages received by the current_user and are new conversations
+    @current_user_received_messages = Message.where(target_id: current_user.id).topics
+
+    # all the messages send by the current_user and are new conversations
+    @messages = current_user.messages.topics
+    @unsorted_message_thread = @messages | @current_user_received_messages
+    puts "_____________________"
+    puts @unsorted_message_thread.as_json
+    puts "_____________________"
+    @unsorted_message_thread1 = @unsorted_message_thread.sort! { |a,b| a.replies.unread.count <=> b.replies.unread.count }
+    puts "_____________________"
+    puts @unsorted_message_thread1.as_json
+    puts "_____________________"
+    @message_thread = @unsorted_message_thread1.sort! { |a,b| a.updated_at <=> b.updated_at }.reverse!
+    puts "_________________________"
     puts @message_thread.as_json
-    @conversations = User.where(id: current_user.messages.pluck(:target_id))
+    puts "_________________________"
   end
 
   # GET /messages/1
@@ -35,7 +47,7 @@ class MessagesController < ApplicationController
       @content = params[:message][:content]
       puts "_______________"
       respond_to do |format|
-        if current_user.reply_private_message(@topic, @content, {})
+        if @topic.user.id == current_user.id ? current_user.new_reply_private_message(@topic, @content) : current_user.reply_private_message(@topic, @content)
           format.html { redirect_to :back, notice: 'Message was successfully sent.' }
           format.json { render :show, status: :created, location: @message }
         else
@@ -50,7 +62,7 @@ class MessagesController < ApplicationController
       @content = params[:message][:content]
 
       respond_to do |format|
-        if current_user.send_private_message(@target_user, @content, {})
+        if current_user.send_private_message(@target_user, @content)
           format.html { redirect_to :back, notice: 'Message was successfully created.' }
           format.json { render :show, status: :created, location: @message }
         else
@@ -86,19 +98,29 @@ class MessagesController < ApplicationController
   end
 
   def inbox
-    @first_message = Message.where(id: params[:id])
+    @first_message = Message.find(params[:id])
     # @first_message.first.update(is_read: true)
-    @read_status = Message.where(topic_id: @first_message.first.id,target_id: current_user.id).update_all(is_read: true)
-    puts @first_message.first.user_id
-    if @first_message.first.target_id == current_user.id
-      @user = User.find(@first_message.first.user_id)
-    else
-      @user = User.find(@first_message.first.target_id)
+    # @read_status = Message.where(topic_id: @first_message.first.id,target_id: current_user.id).update_all(is_read: true)
+    @read_status = Message.where(topic_id: @first_message.id,target_id: current_user.id)
+    puts "&&&&&&&&&&&&&&&&&&&&&"
+    puts @read_status.as_json
+    @first_message.update(is_read: true) if @first_message.target_id == current_user.id
+    @read_status.each do |read_message|
+      read_message.update(is_read: true)
     end
-    @following_messages = Message.where(topic_id: @first_message.first.id)
+    puts @first_message.user_id
+    if @first_message.target_id == current_user.id
+      @user = User.find(@first_message.user_id)
+    else
+      @user = User.find(@first_message.target_id)
+    end
+    @following_messages = Message.where(topic_id: @first_message.id)
+    # @following_messages = @first_message.replies
     puts @following_messages.as_json
     puts "_________"
-    @message_thread = @first_message | @following_messages
+    @message_thread = Array.new
+    @message_thread.push(@first_message)
+    @message_thread =  @message_thread | @following_messages
     @message = Message.new
   end
 

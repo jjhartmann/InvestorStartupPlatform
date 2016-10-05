@@ -42,7 +42,7 @@
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
-        <li><%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments-o"></i><% end %><div class="top-count"><%= Message.where(target_id: current_user.id,is_read: false).pluck(:topic_id).uniq.count %></div></li>
+        <li><%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments-o"></i><% end %><div class="top-count"><%= Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count %></div></li>
         <li><%= link_to notifications_path do %><i class="fa fa-bell" aria-hidden="true"></i><% end %><div class="top-count notes"><%= @notifications.count %></div></li>
       </ul>
     </div>
