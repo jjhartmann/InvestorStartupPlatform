@@ -10,6 +10,11 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="tab-title">Proposals</div>
+            <% unless @user.profilable_type == "InvestorProfile" %>
+              <div class="pull-right new-button">
+                <%= link_to 'New Proposal', new_proposal_path, class: "btn btn-primary" %>
+              </div>
+            <% end %>
             <ul class="main-dashbord">
               <% if @proposals.present? %>
               <div class="enterprise-deatils box-tab edit-proposal">
@@ -66,9 +71,6 @@
                     <div class="alert alert-warning">
                       You have not created any <strong>Proposal</strong> yet.
                     </div>
-                  </div>
-                  <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
-                    <%= link_to 'New Proposal', new_proposal_path, class: "btn btn-primary" %>
                   </div>
                 <% end %>
               <% end %>
