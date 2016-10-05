@@ -11,7 +11,7 @@
           <div class="tab-pane fade in active">
             <div class="tab-title">Enterprises</div>
             <% if @user.profilable_type == "InvestorProfile" %>
-              <% if %>
+              <% if @enterprises.present? %>
                 <div class="enterprise-deatils box-tab">
                   <ul class="full-details clearfix">
                     <% @enterprises.each do |enterprise| %>
