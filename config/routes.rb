@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get 'follow_unfollow_user'
       get 'suggested_profile'
       get 'connections'
-      get 'network'
+      get 'profile_visitors'
     end
   end
   resources :user_profiles do
