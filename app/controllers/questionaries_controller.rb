@@ -79,7 +79,6 @@ class QuestionariesController < ApplicationController
         if @flag == false
           break;
         end
-
       end
 
       respond_to do |format|
