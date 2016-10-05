@@ -8,10 +8,11 @@ class Notification < ApplicationRecord
   protected
 
   class << self
-    def create_notification(target_id, target_type, text)
+    def create_notification(target_id, target_type, text, type)
       self.create(:notificable_id => target_id,
                   :notificable_type => target_type,
-                  :notification_text => text
+                  :notification_text => text,
+                  :notification_type => type
                   )
     end
   end

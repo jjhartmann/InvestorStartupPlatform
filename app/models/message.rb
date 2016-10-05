@@ -15,8 +15,8 @@ class Message < ApplicationRecord
             :length   => { :maximum => 140 }
 
   scope :default_order,    -> { order 'created_at DESC'}
-  scope :topics,           -> { where :topic_id == nil }
-  scope :replies,          -> { where :topic_id != nil }
+  scope :topics,           -> { where :topic_id =>  nil } #Syntax changed
+  scope :replies,          -> { where :topic_id => !nil } #Syntax changed
   scope :public_only,      -> { where :is_private => false}
   scope :private_only,     -> { where :is_private => true}
   scope :read,             -> { where :is_read => true}
@@ -54,5 +54,11 @@ class Message < ApplicationRecord
       else
         super
     end
+  end
+
+
+
+  def unread_messages(current_user)
+    is_read == false ? (self.replies.unread.count + 1) : self.replies.unread.count
   end
 end

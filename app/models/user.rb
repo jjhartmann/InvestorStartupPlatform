@@ -140,6 +140,17 @@ class User < ApplicationRecord
                      }.merge(extras)) && reload
   end
 
+  #function to send reply for message to the other user
+  def new_reply_private_message(topic, content, extras = {})
+    messages.create!({
+                         :content     => content,
+                         :is_private  => true,
+                         :target_id   => topic.target.id,
+                         :target_type => 'User',
+                         :topic_id    => topic.id
+                     }.merge(extras)) && reload
+  end
+
   def add_micro_post(content)
     unless content.blank?
       messages.create(:content => content) && reload
