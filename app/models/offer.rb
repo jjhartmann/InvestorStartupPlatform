@@ -12,7 +12,7 @@ class Offer < ApplicationRecord
   validates :description,                          :presence     => true,
             :length       => { :within => 10..140 }
   validates :amount_to_offer,                      :presence     => true,
-            :numericality => { :greater_than_or_equal_to => 0 }
+            :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 1000000000 }
   validates :proposal_id,                          :presence => true
 
 end
