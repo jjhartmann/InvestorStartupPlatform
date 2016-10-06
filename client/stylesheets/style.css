@@ -1265,13 +1265,8 @@ top:0;
   position: initial;
 }
 .btn-yes-no .remodal-confirm{
-<<<<<<< HEAD
     padding: 10px;
     text-align: center;
-=======
-  padding: 7px;
-  text-align: center;
->>>>>>> 8f761090bb73026ca07a158bb9025c6d109d4ef0
 }
 .btn-yes-no .remodal-cancel{
     padding: 10px;
@@ -1809,4 +1804,34 @@ top:0;
 }
 .optional-tips label {
     display: none;
+}
+.alert-success-note{
+  background: #b0eeb0 !important;
+}
+.alert-success-note .time-des{
+  color: #43ba43;
+}
+.alert-success-note .time-des .fa{
+  color: #5cb85c;
+}
+
+
+.dtp-header
+ {
+    background: #222222 !important;
+}
+.dtp-date,
+.dtp table.dtp-picker-days tr > td > a.selected,
+{
+    fill: #ffc857 !important;
+    background: #ffc857 !important;
+}
+.dtp .p10 > a{
+     color: #222222 !important;
+}
+.hour-hand{
+  stroke:#ffc857 !important;
+}
+.svg-clock circle{
+
 }

@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+
     # all the messages received by the current_user and are new conversations
     @current_user_received_messages = Message.where(target_id: current_user.id).topics
 
