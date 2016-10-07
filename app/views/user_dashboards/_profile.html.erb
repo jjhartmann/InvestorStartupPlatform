@@ -21,7 +21,7 @@
           </li>
           <li>
             <%= link_to profile_visitors_user_dashboards_path do%>
-              <div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count">5 People</div><div class="tag-name">Visited your profile</div>
+              <div class="main-profile"><i aria-hidden="true" class="fa fa-eye"></i></div><div class="tag-count"><%= current_user.visitee.count %> People</div><div class="tag-name">Visited your profile</div>
             <% end %>
           </li>
           <li>
