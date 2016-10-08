@@ -8,22 +8,22 @@
   <%= f.error_notification %>
    <div class="form-group optional-tips">
      <div class="set-view-deatils">
-     <p><span class="name notes"><i aria-hidden="true" class="fa fa-tags"></i>Offer Title</span> <%= f.input :offer_title, placeholder: "offer_title" %></p>
+     <p><span class="name notes"><i aria-hidden="true" class="fa fa-tags"></i>Offer Title</span> <%= f.input :offer_title, placeholder: "Offer Title" %></p>
      </div>
     </div>
     <div class="form-group optional-tips">
       <div class="set-view-deatils">
-      <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Text</span> <%= f.input :text %></p>
+      <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Text</span> <%= f.input :text, placeholder: "Text" %></p>
       </div>
     </div>
     <div class="form-group optional-tips">
       <div class="set-view-deatils">
-      <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Description</span> <%= f.input :description %></p>
+      <p><span class="name notes"><i aria-hidden="true" class="fa fa-bank"></i>Description</span> <%= f.input :description, placeholder: "Description" %></p>
       </div>
     </div>
 
     <div class="form-group optional-tips">
-     <div class="user-positon"><span class="name notes"><i class="fa fa-money" aria-hidden="true"></i>Amount To offer</span><%= f.input :amount_to_offer %></div>
+     <div class="user-positon"><span class="name notes"><i class="fa fa-money" aria-hidden="true"></i>Amount To offer</span><%= f.input :amount_to_offer, placeholder: "Amount To Offer" %></div>
    </div>
     <div class="form-group optional-tips">
       <div class="user-positon"><span class="name notes"><i class="fa fa-usd" aria-hidden="true"></i>proposal</span><%= f.input :proposal_id, collection: @proposals.map {|u| [u.pitch, u.id]}, prompt: "Choose a Proposal" %></div>

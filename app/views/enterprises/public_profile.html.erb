@@ -76,6 +76,12 @@
           <p>Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
           <%= text_field_tag "topic",'',class: "form-control", placeholder: "Enter the Topic of Meeting" %>
           <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+          <%= text_field_tag "topic",'',class: "form-control" %>
+          <div class="well">
+            <div class="form-control-wrapper">
+              <input type="text" id="date-format" class="form-control" placeholder="Date & Time"/>
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">

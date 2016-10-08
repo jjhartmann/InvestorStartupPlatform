@@ -47,7 +47,7 @@ config = {
     './javascripts/dashboard',
     './javascripts/all_users',
     './javascripts/connections',
-    // './javascripts/jquery.mCustomScrollbar.concat.min',
+    // './javascripts/bootstrap-material-datetimepicker',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
