@@ -1332,7 +1332,7 @@ top:0;
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
-  font-family: Arial, Helvetica;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 .menu li:hover {
