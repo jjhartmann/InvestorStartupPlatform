@@ -1815,7 +1815,7 @@ top:0;
   color: #5cb85c;
 }
 
-
+/*04-10-2016*/
 .dtp-header
  {
     background: #222222 !important;
@@ -1834,4 +1834,16 @@ top:0;
 }
 .svg-clock circle{
 
+}
+/*07-10-2016*/
+#tab-1 .btn-yes-no{
+  bottom: 20px;
+  right: 50px;
+}
+ul.menu.cf li {
+    min-width: 100px;
+    text-align: center;
+}
+.destory > a{
+  display: inline-block;
 }
