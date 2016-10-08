@@ -10,13 +10,13 @@
       <div class="profile-tabs">
         <div id="home" class="editable-contact-info edit-mode-disabled">
           <div class="tab-title">Profile</div>
-          <div class="main-start">
-            <div class="box-tab">
-              <div class="form-group">
-                 <div class="circle">
-                  <%= image_tag @user_profile.photo_thumb, class: "display-mode-value"%>
-                 </div>
-               </div>
+            <div class="main-start">
+              <div class="box-tab">
+                <div class="form-group">
+                   <div class="circle">
+                    <%= image_tag @user_profile.photo_thumb, class: "display-mode-value"%>
+                   </div>
+                </div>
                 <div class="form-group">
                   <h2>
                     <i aria-hidden="true" class="fa fa-user"></i>
@@ -26,7 +26,7 @@
                 <div class="form-group">
                   <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
                 </div>
-              <% if @user.profilable_type == "UserProfile" %>
+                <% if @user.profilable_type == "UserProfile" %>
                   <div class="form-group">
                     <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><span class="display-mode-value"><%= @user.profilable.industry %></span></div>
                   </div>
@@ -39,38 +39,39 @@
                   <div class="form-group">
                     <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
                   </div>
-              <% else %>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
-                </div>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
-                </div>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><span class="display-mode-value"><%= @user.profilable.description %></span></div>
-                </div>
-              <% end %>
-              <div class="form-group">
-                <div class="user-positon">
-                  <i aria-hidden="true" class="fa fa-envelope"></i>
-                  <span class="display-mode-value"><%= @user_profile.email %></span>
-                </div>
-              </div>
-              <div class="event-btn">
-                <button type="button" class="btn btn-default js-cancel">Cancel</button>
-              </div>
-              <div class="buttons">
-                <% if params[:connection_profile].present? %>
-                  <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
-                  <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
-                <% elsif params[:suggested_profile].present? %>
-                  <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
                 <% else %>
-                  <%= link_to edit_user_registration_path do %>
-                    <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                  <% end %>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                  </div>
                 <% end %>
-                <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
+                <div class="form-group">
+                  <div class="user-positon">
+                    <i aria-hidden="true" class="fa fa-envelope"></i>
+                    <span class="display-mode-value"><%= @user_profile.email %></span>
+                  </div>
+                </div>
+                <div class="event-btn">
+                  <button type="button" class="btn btn-default js-cancel">Cancel</button>
+                </div>
+                <div class="buttons">
+                  <% if params[:connection_profile].present? %>
+                    <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
+                    <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
+                  <% elsif params[:suggested_profile].present? %>
+                    <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
+                  <% else %>
+                    <%= link_to edit_user_registration_path do %>
+                      <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                    <% end %>
+                  <% end %>
+                  <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
+                </div>
               </div>
             </div>
           </div>
@@ -78,7 +79,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- Modal -->
@@ -90,24 +90,24 @@
         <h4 class="modal-title"><%= @user_profile.name %></h4>
       </div>
       <%= form_for @message,url: messages_path do |f|%>
-      <div class="modal-body">
-        <%= f.hidden_field :target_id,value:  @user_profile.id %>
-        <%= f.hidden_field :user_id,value: current_user.id %>
-        <div class="message-tab">
-          <div class="head-tab">Shantilal matariya</div>
-        </div>
-        <div class="form-inputs">
-          <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="terminals">
-          <div class="btn-yes-no">
-            <%= f.submit "Send",class: "remodal-confirm btn btn-green" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="modal-body">
+          <%= f.hidden_field :target_id,value:  @user_profile.id %>
+          <%= f.hidden_field :user_id,value: current_user.id %>
+          <div class="message-tab">
+            <div class="head-tab">Shantilal matariya</div>
+          </div>
+          <div class="form-inputs">
+            <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
           </div>
         </div>
-      </div>
+        <div class="modal-footer">
+          <div class="terminals">
+            <div class="btn-yes-no">
+              <%= f.submit "Send",class: "remodal-confirm btn btn-green" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -127,7 +127,6 @@
           <p>Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
           <%= text_field_tag "topic",'',class: "form-control" %>
         </div>
-
         <div class="modal-footer">
           <div class="terminals">
             <div class="btn-yes-no">

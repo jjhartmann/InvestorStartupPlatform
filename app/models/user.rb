@@ -46,6 +46,9 @@ class User < ApplicationRecord
 
   has_many :offers
 
+  has_many :visitee, :class_name => "ProfileVisitor", :foreign_key => :visitee_id
+  has_many :visitors, :class_name => "ProfileVisitor", :foreign_key => :visitor_id
+
   accepts_nested_attributes_for :profilable
 
   validates :username, :presence     => true,
@@ -58,6 +61,7 @@ class User < ApplicationRecord
   scope :new_users,  -> {  where :profilable => nil }
   scope :entrepreneurs, -> { joins(:enterprise_users).where('enterprise_users.user_email != nil') }
   scope :investors, ->   { where :profilable_type => 'InvestorProfile'}
+  # scope :visitor, -> { includes(:profile_visitors).where('profile_visitors.visitee = ?', self)  }
 
   before_save :email_nomarlisation
 
@@ -272,6 +276,23 @@ class User < ApplicationRecord
   # current_user is the logged in user, and it is used to check is the user logged in is following the target user.
   def is_network?(user,current_user)
     current_user.is_following?(user) && !user.is_following?(current_user)
+  end
+
+  def all_visitors
+    ProfileVisitor.where(visitee_id: self.id)
+  end
+
+  def is_a_visitor?(user)
+    return false if user == self || user.nil?
+    self.visitee.where(visitor_id: user.id).first ? false : true
+  end
+
+  def add_visitor(user)
+    if is_a_visitor?(user)
+      ProfileVisitor.create(visitee_id: self.id,
+                            visitor_id: user.id
+                            )
+    end
   end
 
   protected

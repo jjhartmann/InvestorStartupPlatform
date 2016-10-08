@@ -80,7 +80,7 @@ class UserDashboardsController < ApplicationController
   end
 
   def profile_visitors
-    @followers = @user.followers
+    @visitors = @user.visitee
   end
 
 end

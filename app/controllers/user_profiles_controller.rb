@@ -11,10 +11,14 @@ class UserProfilesController < ApplicationController
     @message = Message.new
     if params[:connection_profile].present?
       @user_profile = User.find(params[:connection_profile])
-      Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed #{@user_profile.name}'s profile.","Other")
+      if @user_profile.add_visitor(@user)
+        Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed #{@user_profile.name}'s profile.","Other")
+      end
     elsif params[:suggested_profile].present?
       @user_profile = User.find(params[:suggested_profile])
-      Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed #{@user_profile.name}'s profile.","Other")
+      if @user_profile.add_visitor(@user)
+        Notification.create_notification(@user_profile.profilable_id, @user.profilable_type, "#{@user.name} viewed #{@user_profile.name}'s profile.","Other")
+      end
     end
   end
 
