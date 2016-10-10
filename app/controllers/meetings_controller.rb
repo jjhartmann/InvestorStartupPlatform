@@ -81,7 +81,7 @@ class MeetingsController < ApplicationController
 
   def accept_request
     puts params
-    @meeting_request = Notification.find(params[:notification_id]).meeting.meeting_members.update_all(is_accepted: true)
+    @meeting_request = Notification.find(params[:notification_id]).meeting.meeting_members.update_all(acceptance_status: "accepted")
     redirect_to :back
   end
 

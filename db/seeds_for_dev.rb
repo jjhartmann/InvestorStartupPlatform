@@ -114,4 +114,12 @@ User.all.each do |u|
   u.sent_messages.order('RAND()').limit(3).each { |msg| msg.mark_as_archived! }
 end
 
+p ' > Admin Meeting Schedule'
+
+User.where(profilable_type: "InvestorProfile").each do |a|
+ 2.times do
+   AdminMeetingSchedule.create!(user_id: a.id,day: Date::DAYNAMES.sample)
+ end
+end
+
 p 'Finished creating seeds data for development.'

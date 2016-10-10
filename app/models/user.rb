@@ -49,6 +49,8 @@ class User < ApplicationRecord
   has_many :visitee, :class_name => "ProfileVisitor", :foreign_key => :visitee_id
   has_many :visitors, :class_name => "ProfileVisitor", :foreign_key => :visitor_id
 
+  has_many :admin_meeting_schedules
+
   accepts_nested_attributes_for :profilable
 
   validates :username, :presence     => true,
