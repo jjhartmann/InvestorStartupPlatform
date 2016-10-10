@@ -15,7 +15,7 @@
           <% if @connected_users.count != 0 %>
           <div class="enterprise-deatils box-tab">
               <div class="user-follow">
-                <ul class="clearfix">
+                <ul class="clearfix" id="connections_list">
                   <% @connected_users.each do |connection| %>
                     <%= link_to user_profile_path(id: current_user.id,connection_profile: connection.id), 'data-id': "#{connection.id}" do %>
                       <li>
@@ -34,7 +34,7 @@
                               <li>
                                 <a href="#">More Action <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
                                 <ul class="submenu">
-                                  <li><%= link_to @user.is_following?(connection) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
+                                  <li><%= link_to @user.is_following?(connection) ? "Following" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
                                   <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>
                                 </ul>
                               </li>
