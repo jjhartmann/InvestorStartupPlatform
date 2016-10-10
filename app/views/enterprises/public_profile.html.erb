@@ -10,7 +10,7 @@
             <div class="box-tab">
               <div class="all-notification-close">
                 <%= link_to enterprises_path do %>
-                  <i aria-hidden="true" class="fa fa-times"></i>
+                <i aria-hidden="true" class="fa fa-times"></i>
                 <% end %>
               </div>
               <div class="buttons">
@@ -72,26 +72,31 @@
         <h4 class="modal-title">Meeting Request</h4>
       </div>
       <%= form_tag meeting_request_meetings_path(requested_client_id: @enterprise.id) do  %>
-        <div class="modal-body">
-          <p>Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
-          <%= text_field_tag "topic",'',class: "form-control", placeholder: "Enter the Topic of Meeting" %>
-          <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
-          <%= text_field_tag "topic",'',class: "form-control" %>
-          <div class="well">
-            <div class="form-control-wrapper">
-              <input type="text" id="date-format" class="form-control" placeholder="Date & Time"/>
-            </div>
+      <div class="modal-body">
+        <p>Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
+        <div class="well">
+          <div class="form-control-wrapper">
+            <%= text_field_tag "topic",'',class: "form-control", placeholder: "Enter the Topic of Meeting" %>
+            <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+            <%= text_field_tag "topic",'',class: "form-control", placeholder: "Topic" %>
+            <p id="datepairExample">
+              <input type="text" class="date start form-control" placeholder="Date" />
+              <input type="text" class="time start" placeholder="Starting Time" /> to
+              <input type="text" class="time end" placeholder="Ending Time"/>
+            </p>
           </div>
         </div>
+      </div>
 
-        <div class="modal-footer">
-          <div class="terminals">
-            <div class="btn-yes-no">
-              <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary", id: "message_send" %>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+
+      <div class="modal-footer">
+        <div class="terminals">
+          <div class="btn-yes-no">
+            <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary", id: "message_send" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
+      </div>
       <% end %>
     </div>
   </div>
@@ -99,11 +104,33 @@
 
 
 <script>
-  $("#message_send").click(function(e){
-    if ($("#topic").val() == ''){
-      e.preventDefault();
-      $("#message_error").css("display","block");
-      $("#topic").css("border","red solid 1px");
-    }
-  })
+$("#message_send").click(function(e){
+  if ($("#topic").val() == ''){
+    e.preventDefault();
+    $("#message_error").css("display","block");
+    $("#topic").css("border","red solid 1px");
+  }
+});
+
+$(document).ready(function(){
+  // initialize input widgets first
+  $('#datepairExample .time.start').timepicker({
+    'showDuration': true,
+    'timeFormat': 'G:i',
+    'minTime': '2:00'
+  });
+
+  $('#datepairExample .time.end').timepicker({
+    'showDuration': true,
+    'timeFormat': 'G:i'
+  });
+
+  $('#datepairExample .date').datepicker({
+    'format': 'yyyy-m-d',
+    'autoclose': true
+  });
+
+  // initialize datepair
+  $('#datepairExample').datepair();
+});
 </script>
