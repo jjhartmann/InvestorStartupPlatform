@@ -23,7 +23,6 @@
                   <ul>
                     <% @notifications.each do |notification| %>
                     <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) ?  'alert-success-note' : '' %>">
-                      <%#= notification.id %>
                       <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
                       <div class="notes-track">
                         <!-- <div class="main-pro-name"><span class="yellow"><% notification.user.name if notification.user.present? %></span> added you as a connection</div> -->

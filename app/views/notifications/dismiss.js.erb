@@ -1,0 +1,5 @@
+$('li[data-notification-id= <%= @notification.id %>]').remove();
+$('.top-count.notes').each(function(){
+  var v = parseInt($(this).text()) - 1;
+  $(this).text(v);
+});

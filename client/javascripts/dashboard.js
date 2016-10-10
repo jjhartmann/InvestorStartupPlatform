@@ -46,12 +46,7 @@ $(document).ready(function(){
     $.ajax({
       type: "POST",
       url: '/notifications/' + data_id + '/dismiss',
-      success: function(data){
-        $('li[data-notification-id='+ data_id +']').remove();
-        $('.top-count.notes').each(function(){
-          var v = parseInt($(this).text()) - 1;
-          $(this).text(v);
-        });
+      success: function(data){        
       }
     });
   });
