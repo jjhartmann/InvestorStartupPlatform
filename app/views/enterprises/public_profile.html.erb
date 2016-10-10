@@ -87,8 +87,6 @@
           </div>
         </div>
       </div>
-
-
       <div class="modal-footer">
         <div class="terminals">
           <div class="btn-yes-no">
@@ -104,15 +102,14 @@
 
 
 <script>
-$("#message_send").click(function(e){
-  if ($("#topic").val() == ''){
-    e.preventDefault();
-    $("#message_error").css("display","block");
-    $("#topic").css("border","red solid 1px");
-  }
-});
-
 $(document).ready(function(){
+  $("#message_send").click(function(e){
+    if ($("#topic").val() == ''){
+      e.preventDefault();
+      $("#message_error").css("display","block");
+      $("#topic").css("border","red solid 1px");
+    }
+  });
   // initialize input widgets first
   $('#datepairExample .time.start').timepicker({
     'showDuration': true,
