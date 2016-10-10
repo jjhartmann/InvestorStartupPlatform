@@ -27,7 +27,7 @@
                           <% end %>
                         </div>
                       </div>
-                      <div class="on-off <%= current_user.messages.where(target_id: thread.id, is_read: false).present? ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                      <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
                       <%= puts thread.unread_messages(current_user) %>
                       <div class="top-count"><%= thread.unread_messages(current_user) %></div>
                       <div class="sr-name">

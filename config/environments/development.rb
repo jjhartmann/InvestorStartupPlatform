@@ -73,4 +73,7 @@ Rails.application.configure do
   config.i18n.default_locale = :'en'
 
   # config.i18n.default_locale = :'zh-CN' #for Chinese
+
+  config.active_record.time_zone_aware_types = [:datetime, :time]
+  config.time_zone = "Mumbai"
 end
