@@ -98,12 +98,13 @@
           </div>
           <div class="form-inputs">
             <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
+            <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
           </div>
         </div>
         <div class="modal-footer">
           <div class="terminals">
             <div class="btn-yes-no">
-              <%= f.submit "Send",class: "remodal-confirm btn btn-green" %>
+              <%= f.submit "Send",class: "remodal-confirm btn btn-green", id: "message_send" %>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -139,3 +140,14 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  $("#message_send").click(function(e){
+    if ($("#message_content").val() == ''){
+      e.preventDefault();
+      $("#message_error").css("display","block");
+      $("#message_content").css("border","red solid 1px");
+    }
+  })
+</script>

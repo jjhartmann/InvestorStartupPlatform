@@ -18,5 +18,3 @@ module ProjectOctoStartupTime
 end
 
 I18n.available_locales = [:en, :'zh-CN']
-
-config.active_record.time_zone_aware_types = [:datetime, :time]
