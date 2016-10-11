@@ -1,0 +1,1 @@
+json.partial! "meeting_room_messages/meeting_room_message", meeting_room_message: @meeting_room_message

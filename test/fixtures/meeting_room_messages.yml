@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meeting_room: one
+  meeting_member: one
+  message: one
+
+two:
+  meeting_room: two
+  meeting_member: two
+  message: two
