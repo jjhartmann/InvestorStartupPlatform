@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meeting: one
+  meetable_id: MyString
+  integer: MyString
+  meetable_type: MyString
+  string: MyString
+
+two:
+  meeting: two
+  meetable_id: MyString
+  integer: MyString
+  meetable_type: MyString
+  string: MyString
