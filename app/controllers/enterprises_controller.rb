@@ -9,6 +9,7 @@ class EnterprisesController < ApplicationController
       @enterprises = @user.enterprises_followed
     else
       @enterprises = @user.enterprises
+      puts @enterprises.as_json
     end
   end
 
@@ -46,7 +47,12 @@ class EnterprisesController < ApplicationController
       if @enterprise.save
         current_user.follow(@enterprise)
         @enterprise_user = EnterpriseUser.create(enterprise_id: @enterprise.id, user_email: current_user.email, role_identifier: "member", member_title: "Founder")
+        puts @user.enterprises.as_json
         @enterprise.create_questionaire
+        puts "----------------------"
+        puts @user.enterprises.as_json
+        puts "----------------------"
+        
         format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }
         format.json { render :index, status: :created, location: @enterprise }
       else

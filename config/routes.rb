@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :meeting_room_messages
+  resources :meeting_rooms
   resources :meetings do
     collection do
       post 'meeting_request'

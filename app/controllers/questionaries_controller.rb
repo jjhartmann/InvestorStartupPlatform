@@ -91,7 +91,7 @@ class QuestionariesController < ApplicationController
           @questionaire = Questionaire.where("id IN(?)", @questions)
 
           @questionaire.each do |questionaire|
-            Notification.create_notification(questionaire.questionable_id, questionaire.questionable_type, "A new enterprise #{@enterprise.name} is created.")
+            Notification.create_notification(questionaire.questionable_id, questionaire.questionable_type, "A new enterprise #{@enterprise.name} is created.", "Other")
           end
 
           format.html {redirect_to enterprises_path, notice: "Great! now, please fll up your profile to let us help you more."}

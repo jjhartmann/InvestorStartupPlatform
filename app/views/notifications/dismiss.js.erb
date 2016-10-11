@@ -1,5 +1,22 @@
 $('li[data-notification-id= <%= @notification.id %>]').remove();
+var notification_count = parseInt($('.top-count.notes').text());
 $('.top-count.notes').each(function(){
   var v = parseInt($(this).text()) - 1;
-  $(this).text(v);
+  if(v <= 0){
+    $(this).text(0);
+    notification_count = 0;
+  }
+  else{
+    $(this).text(v);
+    notification_count = v;
+  }
 });
+alert(notification_count);
+if(notification_count <= 0){
+  $(".tab-content").find('.main-notification').remove();
+  $(".tab-content").append('<div class="notes-alert">' +
+      '<div class="alert alert-warning">' +
+        '<strong>No Notification</strong> found.' +
+      '</div>' +
+  '</div>');
+}
