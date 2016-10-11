@@ -27,7 +27,7 @@ class Message < ApplicationRecord
   scope :without_proposal, -> { where :proposal_id == nil }
   scope :micro_posts,      -> { where :target_id => nil}
   scope :on_users,         -> { where :target_type => 'User'}
-  scope :on_enterprises,      -> { where :target_type => 'Enterprise'}
+  scope :on_enterprises,   -> { where :target_type => 'Enterprise'}
 
   def is_public?
     !is_private
@@ -55,8 +55,6 @@ class Message < ApplicationRecord
         super
     end
   end
-
-
 
   def unread_messages(current_user)
     is_read == false ? (self.replies.unread.count + 1) : self.replies.unread.count

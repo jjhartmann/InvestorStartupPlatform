@@ -3,4 +3,5 @@ class Meeting < ApplicationRecord
   belongs_to :user
   has_many :meeting_members
   has_many :notifications, :as => :notificable
+  has_many :meeting_rooms
 end

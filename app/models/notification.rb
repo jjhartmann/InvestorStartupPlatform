@@ -13,7 +13,6 @@ class Notification < ApplicationRecord
     meeting.meeting_members.find_by(memberable: current_user).is_accepted if meeting_id.present?
   end
 
-
   protected
 
   class << self
