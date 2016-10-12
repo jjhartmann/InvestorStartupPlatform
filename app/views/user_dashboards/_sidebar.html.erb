@@ -2,22 +2,32 @@
   <div class="close-open"><i class="fa fa-bars" aria-hidden="true"></i></div>
   <ul class="nav nav-pills">
     <li class='<%= yield :sidebar_dashboard_class %>'>
-      <%= link_to user_dashboards_path do %>
-        <i aria-hidden="true" class="fa fa-tachometer"></i><span class="tab-name">Dashboard</span>
-      <% end %>
+      <%= link_to user_dashboards_path do %><i aria-hidden="true" class="fa fa-tachometer"></i><span class="tab-name">Dashboard</span><% end %>
     </li>
     <li class='<%= yield :sidebar_notification_class %>'>
-    <%= link_to notifications_path do %>
-      <i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count %></div>
-    <% end %>
+      <%= link_to notifications_path do %><i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count %></div><% end %>
     </li>
-    <li class='<%= yield :sidebar_message_class %>'><%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count"><%= Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count %></div><% end %></li>
-    <li class='<%= yield :sidebar_proposals_class %>'><%= link_to proposals_path do %><i class="fa fa-usd" aria-hidden="true"></i><span class="tab-name">Proposals</span><% end %></li>
-    <li class='<%= yield :sidebar_offers_class %>'><%= link_to offers_path do %><i aria-hidden="true" class="fa fa-tag"></i><span class="tab-name">Offers</span><% end %></li>
-    <li class='<%= yield :sidebar_interests_class %>'><a data-toggle="pill" href="#menu6"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i><span class="tab-name">Interests</span></a></li>
-    <li class='<%= yield :sidebar_meeting_schedules_class %>'><a data-toggle="pill" href="#menu7"><i class="fa fa-calendar" aria-hidden="true"></i><span class="tab-name">Meeting Schedules</span></a></li>
-    <li class='<%= yield :sidebar_all_users_class %>'><%= link_to '<i class="fa fa-users" aria-hidden="true"></i><span class="tab-name">All Users</span>'.html_safe, all_users_user_dashboards_path(id: current_user.id) %></li>
-    <li class='<%= yield :sidebar_enterprises_class %>'><%= link_to '<i class="fa fa-cubes" aria-hidden="true"></i><span class="tab-name">Enterprise</span>'.html_safe, enterprises_path %></li>
-
+    <li class='<%= yield :sidebar_message_class %>'>
+      <%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count"><%= Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count %></div><% end %>
+    </li>
+    <li class='<%= yield :sidebar_proposals_class %>'>
+      <%= link_to proposals_path do %><i class="fa fa-usd" aria-hidden="true"></i><span class="tab-name">Proposals</span><% end %>
+    </li>
+    <li class='<%= yield :sidebar_offers_class %>'>
+      <%= link_to offers_path do %><i aria-hidden="true" class="fa fa-tag"></i><span class="tab-name">Offers</span><% end %>
+    </li>
+    <li class='<%= yield :sidebar_interests_class %>'>
+      <a data-toggle="pill" href="#menu6"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i><span class="tab-name">Interests</span></a>
+    </li>
+    <li class='<%= yield :sidebar_meeting_schedules_class %>'>
+      <a data-toggle="pill" href="#menu7"><i class="fa fa-calendar" aria-hidden="true"></i><span class="tab-name">Meeting Schedules</span></a>
+    </li>
+    <li class='<%= yield :sidebar_all_users_class %>'>
+      <%= link_to '<i class="fa fa-users" aria-hidden="true"></i><span class="tab-name">All Users</span>'.html_safe, all_users_user_dashboards_path(id: current_user.id) %></li>
+    <li class='<%= yield :sidebar_enterprises_class %>'>
+      <%= link_to '<i class="fa fa-cubes" aria-hidden="true"></i><span class="tab-name">Enterprise</span>'.html_safe, enterprises_path %></li>
+    <li class='<%= yield :sidebar_meeting_rooms_class %>'>
+      <%= link_to meeting_rooms_path do %><i class="fa fa-users" aria-hidden="true"></i><span class="tab-name">Meeting Rooms</span><% end %>
+    </li>
   </ul>
 </div>
