@@ -63,7 +63,10 @@
                   <% if params[:connection_profile].present? %>
                     <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
                     <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
-                  <% elsif params[:suggested_profile].present? %>
+                  <% elsif params[:suggested_profile].present?  %>
+                    <% if current_user.is_connection?(@user_profile,current_user) %>
+                      <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
+                    <% end %>
                     <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
                   <% else %>
                     <%= link_to edit_user_registration_path do %>
@@ -125,7 +128,7 @@
       </div>
       <%= form_tag meeting_request_meetings_path(requested_client_id: @user_profile.id) do  %>
         <div class="modal-body">
-          <p>Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
+          <p class="title-modal">Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
           <%= text_field_tag "topic",'',class: "form-control" %>
         </div>
         <div class="modal-footer">

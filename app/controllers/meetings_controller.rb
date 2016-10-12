@@ -65,7 +65,7 @@ class MeetingsController < ApplicationController
   def meeting_request
     # @target_user = User.find(params[:requested_client_id])
     @enterprise = Enterprise.find(params[:requested_client_id])
-    @meeting = Meeting.create(topic: params[:topic],start_time: Time.now, end_time: Time.now+1.hour, investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id)
+    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], end_time: params[:meeting_end_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id)
     puts @enterprise.followers.where(id: @enterprise.followers.pluck(:id).delete(current_user.id)).as_json
     @enterprise.followers.where(id: @enterprise.followers.pluck(:id) - [current_user.id]).each do |follower|
       puts "______________"
@@ -81,7 +81,7 @@ class MeetingsController < ApplicationController
 
   def accept_request
     puts params
-    @meeting_request = Notification.find(params[:notification_id]).meeting.meeting_members.update_all(acceptance_status: "accepted")
+    @meeting_request = Notification.find(params[:notification_id]).meeting.update(acceptance_status: "accepted")
     redirect_to :back
   end
 
