@@ -1,0 +1,18 @@
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_meeting_rooms_class, 'active' %>
+<%= render "user_dashboards/profile" %>
+<%= render partial: "user_dashboards/sidebar" %>
+<div class="container side-deatail">
+  <div class="col-xs-12">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div  class="tab-pane fade active in">
+          <div class="tab-title">Meeting Rooms</div>
+          <div class="message">
+            chat room
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
