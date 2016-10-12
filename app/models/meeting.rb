@@ -4,4 +4,5 @@ class Meeting < ApplicationRecord
   has_many :meeting_members
   has_many :notifications, :as => :notificable
   has_many :meeting_rooms
+
 end
