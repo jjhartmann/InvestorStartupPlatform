@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-datetimepicker'
-end
 gem "simple_calendar", "~> 2.0"
 # Gem for webpack
 gem 'webpack-rails', '~> 0.9.5'

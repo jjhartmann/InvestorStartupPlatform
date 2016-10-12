@@ -1223,7 +1223,7 @@ top:0;
     height: 40px;
     margin-bottom: 0;
     padding: 0 15px;
-    width:calc(100% - 55px);
+    width:calc(100% - 80px);
     float: left;
 }
 .sender-box .form-group textarea {
@@ -1846,4 +1846,23 @@ ul.menu.cf li {
 }
 .destory > a{
   display: inline-block;
+}
+#meetingModal1 #topic{
+  margin-top:10px;
+}
+#meetingModal1 .date.start.form-control{
+  margin-top: 10px;
+}
+#meetingModal1 .time.start{
+  margin-top: 10px;
+  width: 48% !important;
+}
+#meetingModal1 .time.end{
+  width:47%;
+}
+#meetingModal1 .modal-body p.title-modal{
+  padding: 10px;
+  border-bottom: 1px solid #ffc857;
+  margin-bottom: 20px !important;
+  font-size: 16px;
 }
