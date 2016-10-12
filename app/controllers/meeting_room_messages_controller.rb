@@ -1,4 +1,6 @@
 class MeetingRoomMessagesController < ApplicationController
+  layout 'frontpage'
+  before_action :authenticate_user!
   before_action :set_meeting_room_message, only: [:show, :edit, :update, :destroy]
 
   # GET /meeting_room_messages
@@ -59,6 +61,17 @@ class MeetingRoomMessagesController < ApplicationController
       format.html { redirect_to meeting_room_messages_url, notice: 'Meeting room message was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def chatroom
+    if @user.profilable.meeting_room_members.where(meeting_room_id: params[:meeting_room_message_id]).present?
+    else
+      @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_message_id])
+    end
+  end
+
+  def send_message
+
   end
 
   private
