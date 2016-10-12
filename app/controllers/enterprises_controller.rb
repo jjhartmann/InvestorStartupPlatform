@@ -52,7 +52,7 @@ class EnterprisesController < ApplicationController
         puts "----------------------"
         puts @user.enterprises.as_json
         puts "----------------------"
-        
+
         format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }
         format.json { render :index, status: :created, location: @enterprise }
       else
@@ -106,6 +106,17 @@ class EnterprisesController < ApplicationController
         format.html { redirect_to enterprises_path, alert: "This enterprise is not available right now." }
       end
     end
+  end
+
+  def invitation_status
+    @invitation = Invitation.find(params[:id])
+    if params[:status] == "1"
+      @invitation.update(acceptance_status: "accepted")
+      EnterpriseUser.create(enterprise_id: @invitation.enterprise_id, user_email: @invitation.email, role_identifier: "member", member_title: "Founder")
+    else
+      @invitation.update(acceptance_status: "rejected")
+    end
+    redirect_to :back
   end
 
   private

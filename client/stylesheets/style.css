@@ -1866,3 +1866,7 @@ ul.menu.cf li {
   margin-bottom: 20px !important;
   font-size: 16px;
 }
+
+.alert-failure-note{
+  background: #f07777 !important;
+}

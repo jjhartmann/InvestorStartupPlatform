@@ -65,14 +65,14 @@ class MeetingsController < ApplicationController
   def meeting_request
     # @target_user = User.find(params[:requested_client_id])
     @enterprise = Enterprise.find(params[:requested_client_id])
-    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], end_time: params[:meeting_end_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id)
+    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], end_time: params[:meeting_end_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
     puts @enterprise.followers.where(id: @enterprise.followers.pluck(:id).delete(current_user.id)).as_json
-    @enterprise.followers.where(id: @enterprise.followers.pluck(:id) - [current_user.id]).each do |follower|
+    @enterprise.enterprise_users.each do |follower|
       puts "______________"
       puts follower.class
       puts "______________"
       @meeting_member = @meeting.meeting_members.build(memberable: follower).save
-      @meeting.notifications.create_notification(follower.profilable_id, follower.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]}.", @meeting.class,{meeting_id: @meeting.id})
+      @meeting.notifications.create_notification(follower.user.profilable_id, follower.user.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]}.", @meeting.class,{meeting_id: @meeting.id})
     end
     # @meeting_member = @meeting.meeting_members.build(memberable: @target_user).save
     redirect_to :back
@@ -81,7 +81,11 @@ class MeetingsController < ApplicationController
 
   def accept_request
     puts params
-    @meeting_request = Notification.find(params[:notification_id]).meeting.update(acceptance_status: "accepted")
+    if params[:status] == "1"
+      @meeting_request = Notification.find(params[:notification_id]).meeting.update(acceptance_status: "accepted",accepted_by: current_user.id)
+    else
+      @meeting_request = Notification.find(params[:notification_id]).meeting.update(acceptance_status: "rejected",accepted_by: current_user.id)
+    end
     redirect_to :back
   end
 
