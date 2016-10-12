@@ -39,7 +39,9 @@ class ApplicationController < ActionController::Base
     @user_notifications = @user.profilable.notifications.where(is_viewed: false)
     @enterprises = @user.enterprises
     @enterprise_notifications = Notification.where('notificable_id IN(?) and notificable_type = ? and is_viewed = ?', @enterprises.ids, "Enterprise", false)
-    @notifications = @user_notifications + @enterprise_notifications
+    @notifications_temp = @user_notifications + @enterprise_notifications
+    @notifications = @notifications_temp.sort! { |current_element,next_element| current_element.id <=> next_element.id }
+    @notifications.sort! { |current_element, next_element| current_element.created_at <=> next_element.updated_at }.reverse!
   end
 
   def get_user

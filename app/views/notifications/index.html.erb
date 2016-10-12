@@ -22,7 +22,7 @@
                 <div class="notification-box">
                   <ul>
                     <% @notifications.each do |notification| %>
-                    <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) ?  'alert-success-note' : '' %>">
+                    <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) %>">
                       <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
                       <div class="notes-track">
                         <!-- <div class="main-pro-name"><span class="yellow"><% notification.user.name if notification.user.present? %></span> added you as a connection</div> -->
@@ -33,15 +33,12 @@
                         <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id%>"></i>
                       </div>
                       <% if notification.notification_type == "Meeting" %>
-                        <%#= notification.meeting.meeting_members.find_by(memberable: current_user).as_json if notification.meeting_id.present? %>
-                        <%#  if notification.meeting_id.present? %>
-                          <% if notification.is_accepted(current_user) == false %>
+                          <% if notification.meeting.acceptance_status == "requested" %>
                             <div class="btn-yes-no">
-                              <%= link_to accept_request_meetings_path(notification_id: notification.id) do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
-                              <a href="#"><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div></a>
+                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 1) do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
+                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 0) do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
                             </div>
                           <% end %>
-                        <%# end %>
                       <% end %>
                   </li>
                   <% end %>

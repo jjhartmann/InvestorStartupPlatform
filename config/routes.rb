@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get 'add_member'
       post 'add_member'
       get 'public_profile'
+      get 'invitation_status'
     end
   end
   resources :news_feeds

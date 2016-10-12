@@ -13,7 +13,7 @@
                 <% end %>
               </div>
               <div class="buttons">
-                <% if current_user.profilable.class == "InvestorProfile"%>
+                <% if current_user.profilable.class != "InvestorProfile"%>
                   <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
                 <% end %>
               </div>

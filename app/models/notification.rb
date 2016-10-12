@@ -10,7 +10,7 @@ class Notification < ApplicationRecord
   validates :notification_text, presence: true
 
   def is_accepted(current_user)
-    meeting_id.present? ? (meeting.acceptance_status ? true : false) : false
+    meeting_id.present? ? (meeting.acceptance_status == "accepted" ? "alert-success-note" : (meeting.acceptance_status == "rejected" ? "alert-failure-note" : '')) : ''
   end
 
   protected
