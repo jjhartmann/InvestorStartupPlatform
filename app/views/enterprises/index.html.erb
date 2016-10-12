@@ -40,7 +40,7 @@
                       <li>
                         <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise) %></div>
                         <div class="destory">
-                          <% if enterprise.enterprise_users.find_by(member_title: "Founder").id == current_user.id %>
+                          <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
                             <%= link_to enterprise, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
                             <%= link_to edit_enterprise_path(enterprise) do %><div class="edit"><span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span></div><% end %>
                           <% else %>
