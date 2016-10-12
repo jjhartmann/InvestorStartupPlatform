@@ -1866,7 +1866,73 @@ ul.menu.cf li {
   margin-bottom: 20px !important;
   font-size: 16px;
 }
-
 .alert-failure-note{
   background: #f07777 !important;
 }
+
+/*12-10-2016*/
+.sr-member {
+    float: left;
+    width: 90%;
+}
+.sr-member span {
+    background: #222222 none repeat scroll 0 0;
+    border-radius: 100%;
+    display: inline-block;
+    height: 30px;
+    padding-top: 5px;
+    text-align: center;
+    width: 30px;
+    margin-right: 5px;
+}
+.sr-member {
+    float: left;
+    width: 90%;
+    color: #222 !important;
+}
+.sr-member span .fa {
+    color: #ffc857;
+}
+.message-header-member {
+    background: #333333 none repeat scroll 0 0;
+    color: #ffffff;
+    padding: 10px 15px;
+}
+.member {
+    margin-right: 10px;
+}
+.member .fa {
+    margin-right: 5px;
+}
+.member .fa {
+    color: #ffc857;
+}
+.sr-member .track-point {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #ffc857;
+    height: 0;
+    width: 22px;
+}
+.sender-box span a {
+    background: #222222 none repeat scroll 0 0;
+    border-radius: 100%;
+    display: inline-block;
+    height: 35px;
+    margin-right: 5px;
+    padding-top: 0;
+    text-align: center;
+    width: 35px;
+    position: relative;
+    overflow: hidden;
+}
+.sender-box span a input[type="file"] {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.timer .fa {
+    margin-right: 5px;
+  }
