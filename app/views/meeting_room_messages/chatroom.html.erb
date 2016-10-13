@@ -8,24 +8,39 @@
       <div class="tab-content">
         <div  class="tab-pane fade active in">
           <div class="tab-title">Meeting Rooms</div>
+          <div><%= link_to "Back", meeting_rooms_path %></div>
           <div class="message">
             <div class="message-box">
-              <div class="message-header">ABC Group</div>
-                <div class="message-header-member"><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span></div>
+              <div class="message-header"><%= @meeting_room.meeting.topic.capitalize %></div>
+                <div class="message-header-member">
+                  <% @meeting_room.meeting_room_members.each do |member| %>
+                    <span class="member"><i aria-hidden="true" class="fa fa-user"></i><%= member.meetable.user.name %></span>
+                  <% end %>
+                </div>
               <div class="message-body">
                 <ul>
-                  <li><div class="circle-message"><img src="images/pro-1.jpg"></div><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div></li>
-                  <li><div class="circle-message"><img src="images/pro-1.jpg"></div><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div></li>
-                  <li class="rlt"><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div><div class="circle-message"><img src="images/sec.jpg"></div></li>
-                  <li class="rlt"><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div><div class="circle-message"><img src="images/sec.jpg"></div></li>
+                  <% @messages.each do |message| %>
+                    <% if message.message.user == @user %>
+                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= message.message.content %><span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div><div class="circle-message"><%= image_tag message.message.user.photo_avatar %></div></li>
+                    <% else %>
+                      <li><div class="circle-message"><%= image_tag message.message.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= message.message.content %><span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div></li>
+                    <% end %>
+                  <% end %>
                 </ul>
               </div>
               <div class="sender-box">
-                <div class="circle-message"><img src="images/sec.jpg"></div>
-                <div class="form-group">
-                  <textarea class="form-group" placeholder="Type a Message.."></textarea>
-                </div>
-                <span><a href="#"><i aria-hidden="true" class="fa fa-paper-plane"></i></a><a href="#"><i aria-hidden="true" class="fa fa-paperclip"></i><input type="file"></a></span>
+                <%= form_for @message,url: meeting_room_message_send_message_path do |f|%>
+                  <div class="circle-message"><%= image_tag @user.photo_avatar %></div>
+                  <div class="form-group">
+                    <%= f.text_area :content, class: "form-group", placeholder: "Type a message" %>
+                  </div>
+                  <span>
+                    <a href="#"><i aria-hidden="true" class="fa fa-paperclip"></i><input type="file"></a>
+                    <%= f.button("Send") do %>
+                      <i aria-hidden="true" class="fa fa-paper-plane"></i>
+                    <% end %>
+                  </span>
+                <% end %>
               </div>
             </div>
           </div>
