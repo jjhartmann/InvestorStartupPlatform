@@ -156,7 +156,6 @@
 }
 .tabing {
     background: #eff4f7 none repeat scroll 0 0;
-    height:100%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 html,body{
@@ -1936,3 +1935,7 @@ ul.menu.cf li {
 .timer .fa {
     margin-right: 5px;
   }
+
+.submit-btn.forget-password  .btn.btn-default{
+  width: 200px;
+}
