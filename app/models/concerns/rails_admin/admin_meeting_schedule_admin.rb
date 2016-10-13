@@ -8,7 +8,7 @@ module RailsAdmin::AdminMeetingScheduleAdmin
       label_plural 'MeetingsSchedules'
 
       create do
-        field :user
+        field :investor_profile
         field :start_time
         field :end_time
         field :day , :enum do
