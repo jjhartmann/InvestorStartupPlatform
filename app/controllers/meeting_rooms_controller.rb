@@ -6,7 +6,7 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms
   # GET /meeting_rooms.json
   def index
-    @meetings = @user.profilable.meeting_rooms
+    @meetings = @user.profilable.meetings.where(acceptance_status: "accepted")
   end
 
   # GET /meeting_rooms/1

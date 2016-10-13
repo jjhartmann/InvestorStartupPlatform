@@ -3,6 +3,6 @@ class Meeting < ApplicationRecord
   belongs_to :investor_profile
   has_many :meeting_members
   has_many :notifications, :as => :notificable
-  has_many :meeting_rooms
+  has_one :meeting_room
 
 end
