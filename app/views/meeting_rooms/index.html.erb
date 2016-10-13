@@ -1,27 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_meeting_rooms_class, 'active' %>
+<%= render "user_dashboards/profile" %>
+<%= render partial: "user_dashboards/sidebar" %>
 
-<h1>Meeting Rooms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Meeting</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @meetings.each do |meeting_room| %>
-      <tr>
-        <td><%= meeting_room.meeting %></td>
-        <td><%= link_to 'Show', meeting_room %></td>
-        <td><%= link_to 'Edit', edit_meeting_room_path(meeting_room) %></td>
-        <td><%= link_to 'Destroy', meeting_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Meeting Room', new_meeting_room_path %>
+<div class="container side-deatail">
+  <div class="col-xs-12">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div  class="tab-pane fade active in">
+          <div class="tab-title">Meeting Rooms</div>
+          <div class="message">
+            <ul>
+              <% @meetings.each do |meeting| %>
+                <%= link_to meeting_room_message_chatroom_path(meeting.meeting_room) do %>
+                  <li>
+                    <div class="pro-message">
+                      <div class="circle-pic"><img src="images/meeting.jpg"></div>
+                    </div>
+                    <div class="on-off online"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                    <!-- <div class="top-count">2</div> -->
+                    <div class="sr-name"><%= meeting.topic %></div>
+                    <div class="sr-member"><span><i aria-hidden="true" class="fa fa-users"></i></span><span class="track-point"><%= meeting.meeting_room.meeting_room_members.count %></span>Participants Member</div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_meeting_rooms_class, 'active' %>
+<% render "user_dashboards/profile" %>
+<%= render partial: "user_dashboards/sidebar" %>
+<div class="container side-deatail">
+  <div class="col-xs-12">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div  class="tab-pane fade active in">
+          <div class="tab-title">Meeting Rooms</div>
+          <div class="message">
+            <div class="message-box">
+              <div class="message-header">ABC Group</div>
+                <div class="message-header-member"><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span><span class="member"><i aria-hidden="true" class="fa fa-user"></i>abc-123</span></div>
+              <div class="message-body">
+                <ul>
+                  <li><div class="circle-message"><img src="images/pro-1.jpg"></div><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div></li>
+                  <li><div class="circle-message"><img src="images/pro-1.jpg"></div><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div></li>
+                  <li class="rlt"><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div><div class="circle-message"><img src="images/sec.jpg"></div></li>
+                  <li class="rlt"><div class="message-trip"><div class="tap-sticker">Hi, all of You<span class="timer">2 hour ago</span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i>abc-123</span></div></div><div class="circle-message"><img src="images/sec.jpg"></div></li>
+                </ul>
+              </div>
+              <div class="sender-box">
+                <div class="circle-message"><img src="images/sec.jpg"></div>
+                <div class="form-group">
+                  <textarea class="form-group" placeholder="Type a Message.."></textarea>
+                </div>
+                <span><a href="#"><i aria-hidden="true" class="fa fa-paper-plane"></i></a><a href="#"><i aria-hidden="true" class="fa fa-paperclip"></i><input type="file"></a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

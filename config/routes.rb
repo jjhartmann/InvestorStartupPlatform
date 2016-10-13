@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :meeting_room_messages
+  resources :meeting_room_messages do
+    get 'chatroom'
+    post 'send_message'
+  end
   resources :meeting_rooms
   resources :meetings do
     collection do
