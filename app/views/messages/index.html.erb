@@ -23,7 +23,7 @@
                           <% if thread.target_id == current_user.id %>
                             <%= image_tag thread.user.photo_avatar %>
                           <% else %>
-                            <%= image_tag thread.target.photo_avatar %>
+                            <%= image_tag thread.target.photo_avatar if thread.target.present? %>
                           <% end %>
                         </div>
                       </div>
