@@ -83,9 +83,7 @@
             <p id="datepairExample">
               <%= text_field_tag "meeting_date",'', class: "date start form-control",placeholder: "Date" %>
               <!-- <input type="text" class="date start form-control" placeholder="Date" /> -->
-              <%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>
-              <!-- <input type="text" class="time start" placeholder="Starting Time" /> --> to
-              <%= text_field_tag "meeting_end_time",'', class: "time end", placeholder: "Ending Time" %>
+
               <!-- <input type="text" class="time end" placeholder="Ending Time"/> -->
             </p>
           </div>
@@ -108,6 +106,15 @@
 
 <script>
 $(document).ready(function(){
+  var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
+  var array = $.map(array1, function(value, index) {
+    return [value];
+  });
+
+  '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
+  var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+    array.splice(array.indexOf(parseInt(index)),1);
+  '<% end %>'
   $("#message_send").click(function(e){
     if ($("#topic").val() == ''){
       e.preventDefault();
@@ -115,21 +122,43 @@ $(document).ready(function(){
       $("#topic").css("border","red solid 1px");
     }
   });
-  // initialize input widgets first
-  $('#datepairExample .time.start').timepicker({
-    'showDuration': true,
-    'timeFormat': 'G:i',
-    'minTime': '2:00'
-  });
 
-  $('#datepairExample .time.end').timepicker({
-    'showDuration': true,
-    'timeFormat': 'G:i'
-  });
 
   $('#datepairExample .date').datepicker({
     'format': 'yyyy-m-d',
-    'autoclose': true
+    'autoclose': true,
+    'daysOfWeekDisabled': array
+  }).on('changeDate',function(){
+    var a = new Date($("#meeting_date").val());
+    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var day = weekdays[parseInt(a.getDay())];
+    '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
+      if ('<%= day.day %>' == day){
+        if (array1.indexOf(a.getDay().toString()) > -1){
+        }else{
+          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
+          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
+          $(".form-control-wrapper #datepairExample").find("div").remove();
+
+          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %><div>to</div>'+
+                                                              '<%= text_field_tag "meeting_end_time",'', class: "time end", placeholder: "Ending Time" %>');
+          $('#datepairExample .time.start').timepicker({
+            'showDuration': true,
+            'timeFormat': 'G:i',
+            'minTime': '<%= day.start_time.strftime("%H:%M")%>'
+          });
+          $('#datepairExample .time.end').timepicker({
+            'showDuration': true,
+            'timeFormat': 'G:i'
+          });
+
+          // alert("invalid");
+        }
+      }else{
+      }
+      '<% end %>'
+
+    // alert('<%= current_user.profilable.admin_meeting_schedules.first.day %>');
   });
 
   // initialize datepair

@@ -1853,12 +1853,15 @@ ul.menu.cf li {
 #meetingModal1 .date.start.form-control{
   margin-top: 10px;
 }
-#meetingModal1 .time.start{
-  margin-top: 10px;
-  width: 48% !important;
+#meetingModal1 .time.start {
+    margin-top: 10px;
+    width: 48% !important;
+    float: left;
+    margin-right: 5px;
 }
 #meetingModal1 .time.end{
   width:47%;
+  margin-left: 5px;
 }
 #meetingModal1 .modal-body p.title-modal{
   padding: 10px;
@@ -1869,4 +1872,9 @@ ul.menu.cf li {
 
 .alert-failure-note{
   background: #f07777 !important;
+}
+
+#meetingModal1 #datepairExample div{
+ display: inline-block;
+ margin-top: 10px;
 }
