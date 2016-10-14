@@ -81,7 +81,7 @@ class MeetingRoomMessagesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to :back, alert: 'There was some error in Sending the message. Make sure the message is not blank.' }
+        format.html { redirect_to :back, alert: 'There was some error in Sending the message. Make sure the message is not blank and does not execeed 140 characters.' }
         format.json { render :show, status: :created, location: @meeting_room_message }
       end
     end
