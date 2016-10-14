@@ -1,9 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Meeting:</strong>
-  <%= @meeting_room.meeting %>
-</p>
-
-<%= link_to 'Edit', edit_meeting_room_path(@meeting_room) %> |
-<%= link_to 'Back', meeting_rooms_path %>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :sidebar_meeting_rooms_class, 'active' %>
+<% render "user_dashboards/profile" %>
+<%= render partial: "user_dashboards/sidebar" %>
+<div class="container side-deatail">
+  <div class="col-xs-12">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div  class="tab-pane fade active in">
+          <div class="tab-title">Meeting Rooms</div>
+          <div class="row col-md-8 col-md-offset-2">
+            <h1><%= @meeting_room.meeting.topic %></h1>
+            <div class="panel panel-default">
+              <% if @meeting_room.meeting_room_messages.any? %>
+              <div class="panel-body" id="messages">
+                <%= render partial: 'meeting_room_messages/message', collection: @meeting_room.meeting_room_messages %>
+              </div>
+              <%else%>
+              <div class="panel-body hidden" id="messages">
+              </div>
+              <%end%>
+            </div>
+            <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms/1
   # GET /meeting_rooms/1.json
   def show
+    @message = Message.new
   end
 
   # GET /meeting_rooms/new
