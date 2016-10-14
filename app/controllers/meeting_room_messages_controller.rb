@@ -52,10 +52,10 @@ class MeetingRoomMessagesController < ApplicationController
   end
 
   def chatroom
-    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_message_id])
+    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_id])
     if @member.present?
     else
-      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_message_id])
+      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_id])
     end
     @meeting_room = @member.meeting_room
     @messages = @meeting_room.meeting_room_messages
@@ -67,23 +67,36 @@ class MeetingRoomMessagesController < ApplicationController
     @m = @user.messages.new(message_params)
     if @m.save
       @message = @m
-      @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_message_id])
+      @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:message][:meeting_room_id])
+      puts "-----------------------#{@member}-------------------------"
       @meeting_room = @member.meeting_room
       @meeting_room_message = @meeting_room.meeting_room_messages.new(message_id: @message.id, meeting_room_member_id: @member.id)
-      respond_to do |format|
-        if @meeting_room_message.save
-          format.html { redirect_to :back, notice: 'Meeting room was successfully sent.' }
-          format.json { render :show, status: :created, location: @meeting_room_message }
-        else
-          @message.destroy
-          format.html { redirect_to :back, alert: 'There was some error in sending the message.' }
-        end
+      # respond_to do |format|
+      #   if @meeting_room_message.save
+      #     format.html { redirect_to :back, notice: 'Meeting Message was successfully sent.' }
+      #     format.json { render :show, status: :created, location: @meeting_room_message }
+      #   else
+      #     @message.destroy
+      #     format.html { redirect_to :back, alert: 'There was some error in sending the message.' }
+      #   end
+      # end
+      if @meeting_room_message.save
+        ActionCable.server.broadcast 'messages',
+          message: @message.content,
+          user: @message.user.name
+        head :ok
       end
+
     else
       respond_to do |format|
-        format.html { redirect_to :back, alert: 'There was some error in Sending the message. Make sure the message is not blank and does not execeed 140 characters.' }
-        format.json { render :show, status: :created, location: @meeting_room_message }
+        flash[:notice] = @m.errors
+        format.html { redirect_to meeting_room_path(params[:message][:meeting_room_id]) }
+        format.js { render template: 'messages/error.js.erb'}
       end
+      # respond_to do |format|
+      #   format.html { redirect_to :back, alert: 'There was some error in Sending the message. Make sure the message is not blank and does not execeed 140 characters.' }
+      #   format.json { render :show, status: :created, location: @meeting_room_message }
+      # end
     end
   end
 
