@@ -110,7 +110,6 @@ $(document).ready(function(){
   var array = $.map(array1, function(value, index) {
     return [value];
   });
-
   '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
   var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
     array.splice(array.indexOf(parseInt(index)),1);
@@ -123,11 +122,12 @@ $(document).ready(function(){
     }
   });
 
-
   $('#datepairExample .date').datepicker({
     'format': 'yyyy-m-d',
     'autoclose': true,
-    'daysOfWeekDisabled': array
+    'daysOfWeekDisabled': array,
+    // startDate: "today" To start date from today.
+    startDate: "+1d" // To start date from next available date.
   }).on('changeDate',function(){
     var a = new Date($("#meeting_date").val());
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -158,7 +158,6 @@ $(document).ready(function(){
       }
       '<% end %>'
 
-    // alert('<%= current_user.profilable.admin_meeting_schedules.first.day %>');
   });
 
   // initialize datepair

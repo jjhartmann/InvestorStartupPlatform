@@ -31,6 +31,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # assign polymorophic relation to profilable
     resource.profilable = user_profile
     resource_saved = resource.save(validate: false)
+    2.times do
+      AdminMeetingSchedule.create!(investor_profile_id: resource.profilable_id,day: Date::DAYNAMES.sample,start_time: (Time.now.beginning_of_day + rand(8..18).hour)) if resource.profilable_type == "InvestorProfile"
+    end
     yield resource if block_given?
     # if all the three are succesfully created
 

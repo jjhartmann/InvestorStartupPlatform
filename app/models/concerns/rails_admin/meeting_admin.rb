@@ -1,4 +1,4 @@
-module RailsAdmin::AdminMeetingScheduleAdmin
+module RailsAdmin::MeetingAdmin
   extend ActiveSupport::Concern
 
   included do
@@ -8,23 +8,16 @@ module RailsAdmin::AdminMeetingScheduleAdmin
       label_plural 'MeetingsSchedules'
 
       create do
-        field :investor_profile
-        field :start_time
-        field :end_time
-        field :day , :enum do
-          enum do
-            Date::DAYNAMES
-          end
-        end
       end
 
       edit do
-        field :investor_profile
+        field :topic
         field :start_time
         field :end_time
-        field :day , :enum do
+        field :enterprise_id
+        field :acceptance_status , :enum do
           enum do
-            Date::DAYNAMES
+            MeetingMember::ACCEPT_STATUS
           end
         end
       end

@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 
 
+
+gem 'rufus-scheduler', '~> 3.2'
 gem "simple_calendar", "~> 2.0"
 # Gem for webpack
 gem 'webpack-rails', '~> 0.9.5'
