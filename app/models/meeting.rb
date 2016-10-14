@@ -1,4 +1,6 @@
 class Meeting < ApplicationRecord
+  include RailsAdmin::MeetingAdmin
+
   belongs_to :enterprise
   belongs_to :investor_profile
   has_many :meeting_members

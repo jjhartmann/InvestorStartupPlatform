@@ -4,6 +4,7 @@ class AdminMeetingSchedule < ApplicationRecord
 
 
   before_create :set_end_time
+  before_update :set_end_time
 
 
   # Set end time for the meeting schedule created from the seed file.
