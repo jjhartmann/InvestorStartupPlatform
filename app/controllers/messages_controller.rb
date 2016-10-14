@@ -4,8 +4,8 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   def index
-    @current_user_received_messages = Message.where(target_id: current_user.id).topics
-    @messages = current_user.messages.topics
+    @current_user_received_messages = Message.where(target_id: current_user.id, is_private: true).topics
+    @messages = current_user.messages.topics.private_only
     @unsorted_message_thread = @messages | @current_user_received_messages
     @unsorted_message_thread1 = @unsorted_message_thread.sort! { |a,b| a.replies.unread.count <=> b.replies.unread.count }
     @message_thread = @unsorted_message_thread1.sort! { |a,b| a.updated_at <=> b.updated_at }.reverse!

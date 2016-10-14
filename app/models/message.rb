@@ -11,6 +11,8 @@ class Message < ApplicationRecord
   belongs_to :topic, :class_name => 'Message', :foreign_key => 'topic_id', optional: true
   has_many :replies, :class_name => 'Message', :foreign_key => 'topic_id'
 
+  has_one :meeting_room_message, :dependent => :destroy
+
   validates :content, :presence => true,
             :length   => { :maximum => 140 }
 

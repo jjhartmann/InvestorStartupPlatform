@@ -15,11 +15,12 @@
                 <%= link_to meeting_room_message_chatroom_path(meeting.meeting_room) do %>
                   <li>
                     <div class="pro-message">
-                      <div class="circle-pic"><img src="images/meeting.jpg"></div>
+                      <div class="circle-pic"><%= image_tag meeting.enterprise.logo_avatar %></div>
                     </div>
                     <div class="on-off online"><i class="fa fa-bolt" aria-hidden="true"></i></div>
                     <!-- <div class="top-count">2</div> -->
                     <div class="sr-name"><%= meeting.topic %></div>
+                    <div class="tag-line-pro meeting-name"><%= meeting.enterprise.name %></div>
                     <div class="sr-member"><span><i aria-hidden="true" class="fa fa-users"></i></span><span class="track-point"><%= meeting.meeting_room.meeting_room_members.count %></span>Participants Member</div>
                   </li>
                 <% end %>

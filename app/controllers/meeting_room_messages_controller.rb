@@ -3,28 +3,20 @@ class MeetingRoomMessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_meeting_room_message, only: [:show, :edit, :update, :destroy]
 
-  # GET /meeting_room_messages
-  # GET /meeting_room_messages.json
   def index
     @meeting_room_messages = MeetingRoomMessage.all
   end
 
-  # GET /meeting_room_messages/1
-  # GET /meeting_room_messages/1.json
   def show
   end
 
-  # GET /meeting_room_messages/new
   def new
     @meeting_room_message = MeetingRoomMessage.new
   end
 
-  # GET /meeting_room_messages/1/edit
   def edit
   end
 
-  # POST /meeting_room_messages
-  # POST /meeting_room_messages.json
   def create
     @meeting_room_message = MeetingRoomMessage.new(meeting_room_message_params)
 
@@ -39,8 +31,6 @@ class MeetingRoomMessagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /meeting_room_messages/1
-  # PATCH/PUT /meeting_room_messages/1.json
   def update
     respond_to do |format|
       if @meeting_room_message.update(meeting_room_message_params)
@@ -53,8 +43,6 @@ class MeetingRoomMessagesController < ApplicationController
     end
   end
 
-  # DELETE /meeting_room_messages/1
-  # DELETE /meeting_room_messages/1.json
   def destroy
     @meeting_room_message.destroy
     respond_to do |format|
@@ -64,14 +52,39 @@ class MeetingRoomMessagesController < ApplicationController
   end
 
   def chatroom
-    if @user.profilable.meeting_room_members.where(meeting_room_id: params[:meeting_room_message_id]).present?
+    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_message_id])
+    if @member.present?
     else
-      @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_message_id])
+      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_message_id])
     end
+    @meeting_room = @member.meeting_room
+    @messages = @meeting_room.meeting_room_messages
+    @members = @meeting_room.meeting_room_members
+    @message = Message.new()
   end
 
   def send_message
-
+    @m = @user.messages.new(message_params)
+    if @m.save
+      @message = @m
+      @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_message_id])
+      @meeting_room = @member.meeting_room
+      @meeting_room_message = @meeting_room.meeting_room_messages.new(message_id: @message.id, meeting_room_member_id: @member.id)
+      respond_to do |format|
+        if @meeting_room_message.save
+          format.html { redirect_to :back, notice: 'Meeting room was successfully sent.' }
+          format.json { render :show, status: :created, location: @meeting_room_message }
+        else
+          @message.destroy
+          format.html { redirect_to :back, alert: 'There was some error in sending the message.' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, alert: 'There was some error in Sending the message. Make sure the message is not blank.' }
+        format.json { render :show, status: :created, location: @meeting_room_message }
+      end
+    end
   end
 
   private
@@ -83,5 +96,9 @@ class MeetingRoomMessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_message_params
       params.require(:meeting_room_message).permit(:meeting_room_id, :meeting_member_id, :message_id)
+    end
+
+    def message_params
+      params.require(:message).permit(:content)
     end
 end
