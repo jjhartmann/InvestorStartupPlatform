@@ -19,7 +19,7 @@ module RailsAdmin::AdminMeetingScheduleAdmin
       end
 
       edit do
-        field :user
+        field :investor_profile
         field :start_time
         field :end_time
         field :day , :enum do
