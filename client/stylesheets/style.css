@@ -313,9 +313,9 @@ html,body{
     border-radius: 100%;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.46);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
     height: 25px;
-    padding-top: 2px;
+    padding-top: 4px;
     position: absolute;
     right: -5px;
     text-align: center;

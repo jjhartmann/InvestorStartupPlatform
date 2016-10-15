@@ -5,10 +5,10 @@
       <%= link_to user_dashboards_path do %><i aria-hidden="true" class="fa fa-tachometer"></i><span class="tab-name">Dashboard</span><% end %>
     </li>
     <li class='<%= yield :sidebar_notification_class %>'>
-      <%= link_to notifications_path do %><i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count %></div><% end %>
+      <%= link_to notifications_path do %><i aria-hidden="true" class="fa fa-bell"></i><span class="tab-name">Notifications</span><div class="top-count notes"><%= @notifications.count > 99 ? "99+" : @notifications.count %></div><% end %>
     </li>
     <li class='<%= yield :sidebar_message_class %>'>
-      <%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count"><%= Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count %></div><% end %>
+      <%= link_to messages_path do %><i aria-hidden="true" class="fa fa-comments"></i><span class="tab-name">Messages</span><div class="top-count"><%= Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count > 99 ? "99+" : Message.where(target_id: current_user.id).unread.pluck(:topic_id).uniq.count %></div><% end %>
     </li>
     <li class='<%= yield :sidebar_proposals_class %>'>
       <%= link_to proposals_path do %><i class="fa fa-usd" aria-hidden="true"></i><span class="tab-name">Proposals</span><% end %>

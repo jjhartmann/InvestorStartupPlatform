@@ -102,48 +102,50 @@
 
 <script>
 $(document).ready(function(){
-  var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
-  var array = $.map(array1, function(value, index) {
-    return [value];
-  });
-  '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
-  var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
-    array.splice(array.indexOf(parseInt(index)),1);
-  '<% end %>'
-  $("#message_send").click(function(e){
-    if ($("#topic").val() == ''){
-      e.preventDefault();
-      $("#message_error").css("display","block");
-      $("#topic").css("border","red solid 1px");
-    }
-  });
-
-  $('#datepairExample .date').datepicker({
-    'format': 'yyyy-m-d',
-    'autoclose': true,
-    'daysOfWeekDisabled': array,
-    // startDate: "today" To start date from today.
-    startDate: "+1d" // To start date from next available date.
-  }).on('changeDate',function(){
-    $(this).addClass("new-date-start");
-    var a = new Date($("#meeting_date").val());
-    var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var day = weekdays[parseInt(a.getDay())];
-    '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
-      if ('<%= day.day %>' == day){
-        if (array1.indexOf(a.getDay().toString()) > -1){
-        }else{
-          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
-          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
-          $(".form-control-wrapper #datepairExample").find("div").remove();
-
-          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
-
-          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>');
-          // alert("invalid");
-        }
-      }else{
+  '<% if current_user.profilable_type == "InvestorProfile" %>'
+    var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
+    var array = $.map(array1, function(value, index) {
+      return [value];
+    });
+    '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
+    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+      array.splice(array.indexOf(parseInt(index)),1);
+    '<% end %>'
+    $("#message_send").click(function(e){
+      if ($("#topic").val() == ''){
+        e.preventDefault();
+        $("#message_error").css("display","block");
+        $("#topic").css("border","red solid 1px");
       }
+    });
+
+    $('#datepairExample .date').datepicker({
+      'format': 'yyyy-m-d',
+      'autoclose': true,
+      'daysOfWeekDisabled': array,
+      // startDate: "today" To start date from today.
+      startDate: "+1d" // To start date from next available date.
+    }).on('changeDate',function(){
+      $(this).addClass("new-date-start");
+      var a = new Date($("#meeting_date").val());
+      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var day = weekdays[parseInt(a.getDay())];
+      '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
+        if ('<%= day.day %>' == day){
+          if (array1.indexOf(a.getDay().toString()) > -1){
+          }else{
+            $(".form-control-wrapper #datepairExample").find(".time.start").remove();
+            $(".form-control-wrapper #datepairExample").find(".time.end").remove();
+            $(".form-control-wrapper #datepairExample").find("div").remove();
+
+            $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
+
+            initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>');
+            // alert("invalid");
+          }
+        }else{
+        }
+        '<% end %>'
       '<% end %>'
 
   });
