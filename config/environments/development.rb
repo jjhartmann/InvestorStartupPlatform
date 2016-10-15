@@ -76,4 +76,6 @@ Rails.application.configure do
 
   config.active_record.time_zone_aware_types = [:datetime, :time]
   config.time_zone = "Mumbai"
+
+  config.action_cable.url = "ws://localhost:3000/cable"
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-
-
+#for ActionCable
+gem 'redis', '~> 3.0'
 
 gem 'rufus-scheduler', '~> 3.2'
 gem "simple_calendar", "~> 2.0"

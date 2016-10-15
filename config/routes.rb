@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
 
   resources :meeting_room_messages do
-    get 'chatroom'
-    post 'send_message'
+    collection do
+      get 'chatroom'
+      post 'send_message'
+    end
   end
   resources :meeting_rooms
   resources :meetings do
