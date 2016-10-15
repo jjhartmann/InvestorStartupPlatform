@@ -36,6 +36,8 @@ We faced some issues when we installed the google-charts and the error said that
 #Load Jquery_ujs in webpack
 14. npm install jquery-ujs
 
+15. brew install redis (Requirement for Action Cable)
+
 Resolve Errors
 
 remove from bootstrap.min.css in assets to resolve bootstrap.min.css.map not found (Log)
