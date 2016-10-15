@@ -145,7 +145,7 @@
 </div>
 <script>
   $("#message_send").click(function(e){
-    if ($("#message_content").val() == ''){
+    if ($("#message_content").val().trim() == ''){
       e.preventDefault();
       $("#message_error").css("display","block");
       $("#message_content").css("border","red solid 1px");
