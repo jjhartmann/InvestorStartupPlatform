@@ -12,6 +12,11 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms/1
   # GET /meeting_rooms/1.json
   def show
+    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_id])
+    if @member.present?
+    else
+      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_id])
+    end
     @message = Message.new
   end
 

@@ -8,20 +8,29 @@
       <div class="tab-content">
         <div  class="tab-pane fade active in">
           <div class="tab-title">Meeting Rooms</div>
-          <div class="row col-md-8 col-md-offset-2">
-            <h1><%= @meeting_room.meeting.topic %></h1>
-            <div class="panel panel-default">
-              <% if @meeting_room.meeting_room_messages.any? %>
-              <div class="panel-body" id="messages">
-                <%= render partial: 'meeting_room_messages/message', collection: @meeting_room.meeting_room_messages %>
+          <div class="message-box">
+            <div class="message-header"><%= @meeting_room.meeting.topic.capitalize %></div>
+              <div class="message-header-member">
+                <% @meeting_room.meeting_room_members.each do |member| %>
+                  <span class="member"><i aria-hidden="true" class="fa fa-user"></i><%= member.meetable.user.name %></span>
+                <% end %>
               </div>
-              <%else%>
-              <div class="panel-body hidden" id="messages">
-              </div>
-              <%end%>
+            <div class="message-body">
+              <ul>
+                <% if @meeting_room.meeting_room_messages.any? %>
+                <div class="panel-body" id="messages">
+                  <%= render partial: 'meeting_room_messages/message', collection: @meeting_room.meeting_room_messages %>
+                </div>
+                <%else%>
+                <div class="panel-body hidden" id="messages">
+                </div>
+                <% end %>
+              </ul>
             </div>
-            <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
-          </div>
+            <div class="sender-box send-new">
+              <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
+            </div>
+          </div>          
         </div>
       </div>
     </div>

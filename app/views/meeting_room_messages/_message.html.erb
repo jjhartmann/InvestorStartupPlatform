@@ -1,1 +1,5 @@
-<p><strong><%=message.message.user.name%>:</strong> <%=message.message.content%></p>
+<% if message.message.user == @user %>
+  <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= message.message.content %><span class="timer"><%= message.message.created_time %></span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i><%= message.message.user.name %></span></div></div><div class="circle-message"><%= image_tag message.message.user.photo_avatar %></div></li>
+<% else %>
+  <li><div class="circle-message"><%= image_tag message.message.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= message.message.content %><span class="timer"><%= message.message.created_time %></span><span class="timer"><i class="fa fa-user" aria-hidden="true"></i><%= message.message.user.name %></span></div></div></li>
+<% end %>
