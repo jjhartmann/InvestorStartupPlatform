@@ -50,7 +50,7 @@ class MeetingsController < ApplicationController
 
   def meeting_request
     @enterprise = Enterprise.find(params[:requested_client_id])
-    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], end_time: params[:meeting_end_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
+    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
     @enterprise.enterprise_users.each do |member|
       @meeting_member = @meeting.meeting_members.build(memberable: member.user.profilable).save
       @meeting.notifications.create_notification(member.user.profilable_id, member.user.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]} on #{@meeting.start_time.strftime("#{@meeting.start_time.day.ordinalize} %B, %Y")} .", @meeting.class,{meeting_id: @meeting.id})

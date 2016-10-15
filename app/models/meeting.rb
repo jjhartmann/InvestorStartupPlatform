@@ -7,4 +7,13 @@ class Meeting < ApplicationRecord
   has_many :notifications, :as => :notificable
   has_one :meeting_room
 
+  before_create :set_end_time
+  before_update :set_end_time
+
+
+  # Set end time for the meeting schedule created from the seed file.
+  def set_end_time
+    self.end_time = self.start_time + 1.day
+  end
+
 end

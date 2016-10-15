@@ -77,14 +77,10 @@
         <p class="title-modal">Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
         <div class="well">
           <div class="form-control-wrapper">
-            <%#= text_field_tag "topic",'',class: "form-control", placeholder: "Enter the Topic of Meeting" %>
             <%= text_field_tag "topic",'',class: "form-control", placeholder: "Topic" %>
             <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
             <p id="datepairExample">
               <%= text_field_tag "meeting_date",'', class: "date start form-control",placeholder: "Date" %>
-              <!-- <input type="text" class="date start form-control" placeholder="Date" /> -->
-
-              <!-- <input type="text" class="time end" placeholder="Ending Time"/> -->
             </p>
           </div>
         </div>
@@ -129,6 +125,7 @@ $(document).ready(function(){
     // startDate: "today" To start date from today.
     startDate: "+1d" // To start date from next available date.
   }).on('changeDate',function(){
+    $(this).addClass("new-date-start");
     var a = new Date($("#meeting_date").val());
     var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var day = weekdays[parseInt(a.getDay())];
@@ -140,18 +137,9 @@ $(document).ready(function(){
           $(".form-control-wrapper #datepairExample").find(".time.end").remove();
           $(".form-control-wrapper #datepairExample").find("div").remove();
 
-          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %><div>to</div>'+
-                                                              '<%= text_field_tag "meeting_end_time",'', class: "time end", placeholder: "Ending Time" %>');
-          $('#datepairExample .time.start').timepicker({
-            'showDuration': true,
-            'timeFormat': 'G:i',
-            'minTime': '<%= day.start_time.strftime("%H:%M")%>'
-          });
-          $('#datepairExample .time.end').timepicker({
-            'showDuration': true,
-            'timeFormat': 'G:i'
-          });
+          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
 
+          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>');
           // alert("invalid");
         }
       }else{
@@ -159,8 +147,42 @@ $(document).ready(function(){
       '<% end %>'
 
   });
+function initialize_timepicker(val2){
+  $('#datepairExample .time.start').timepicker({
+    'showDuration': true,
+    'timeFormat': 'G:i',
+    'minTime': val2
+  }).on('change',function(){
+    console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+    reload_time($(this).val());
+  });
+}
+
+$('#datepairExample .time.start').timepicker().on('change',function(){
+  reload_time($(this).val());
+})
+
+
 
   // initialize datepair
   $('#datepairExample').datepair();
+});
+</script>
+
+
+
+<script>
+function reload_time(val1){
+  $('#datepairExample .time.end').timepicker({
+    'showDuration': true,
+    'timeFormat': 'G:i',
+    'minTime': (parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]
+  }).val((parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]);
+}
+</script>
+
+<script>
+$('#meetingModal1').on('hidden.bs.modal', function(){
+    $(this).find('input[type=text]').val('');
 });
 </script>

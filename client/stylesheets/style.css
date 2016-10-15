@@ -388,11 +388,12 @@ html,body{
 }
 
 .dashbord .navbar-nav > li .top-count {
-    height: 20px;
-    padding-top: 0;
+    height: 25px;
+    padding-top: 4px;
     right: 5px;
     top: -3px;
-    width: 20px;
+    width: 25px;
+    font-size: 12px;
 }
 .dashbord .navbar-right .dropdown-menu.user-section {
     right: 13px;
@@ -1856,7 +1857,11 @@ ul.menu.cf li {
     margin-top: 10px;
     width: 48% !important;
     float: left;
-    margin-right: 5px;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 4px 10px;
 }
 #meetingModal1 .time.end{
   width:47%;
@@ -1958,10 +1963,10 @@ ul.menu.cf li {
 .submit-btn.forget-password  .btn.btn-default{
   width: 200px;
 }
-#meetingModal1 #datepairExample div{
+/*#meetingModal1 #datepairExample div{
  display: inline-block;
  margin-top: 10px;
-}
+}*/
 .tag-line-pro.meeting-name {
     float: left;
     display: inline-block;
@@ -2018,4 +2023,15 @@ ul.menu.cf li {
 }
 .sender-box.send-new .form-group{
   width: calc(100% - 125px);
+}
+
+/*15-10-2016*/
+.well{
+  float: left;
+  width: 100%;
+}
+
+.new-date-start {
+    width: 50%;
+    float: left;
 }
