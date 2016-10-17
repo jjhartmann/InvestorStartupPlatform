@@ -77,7 +77,7 @@ class Enterprise < ApplicationRecord
   end
 
   def logo_avatar
-    logo? ? logo.avatar : '/assets/user_50.jpg'
+    logo? ? logo.avatar : '/assets/user_150.jpg'
     # logo? ? logo.avatar : 'enterprise_50x50.png'
   end
 

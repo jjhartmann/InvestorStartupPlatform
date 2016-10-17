@@ -9,12 +9,17 @@
             <div class="box-tab">
               <div class="all-notification-close">
                 <%= link_to enterprises_path do %>
-                <i aria-hidden="true" class="fa fa-times"></i>
+                  <i aria-hidden="true" class="fa fa-times"></i>
                 <% end %>
               </div>
               <div class="buttons">
                 <% if current_user.profilable_type == "InvestorProfile"%>
-                <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
+                  <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
+                <% end %>
+                <% if @enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
+                  <%= link_to edit_enterprise_path(@enterprise) do %>
+                    <div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div>
+                  <% end %>
                 <% end %>
               </div>
               <div class="form-group">
@@ -73,31 +78,30 @@
         <h4 class="modal-title">Meeting Request</h4>
       </div>
       <%= form_tag meeting_request_meetings_path(requested_client_id: @enterprise.id) do  %>
-      <div class="modal-body">
-        <p class="title-modal">Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
-        <div class="well">
-          <div class="form-control-wrapper">
-            <%= text_field_tag "topic",'',class: "form-control", placeholder: "Topic" %>
-            <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
-            <p id="datepairExample">
-              <%= text_field_tag "meeting_date",'', class: "date start form-control",placeholder: "Date" %>
-            </p>
+        <div class="modal-body">
+          <p class="title-modal">Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
+          <div class="well">
+            <div class="form-control-wrapper">
+              <%= text_field_tag "topic",'',class: "form-control", placeholder: "Topic" %>
+              <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+              <p id="datepairExample">
+                <%= text_field_tag "meeting_date",'', class: "date start form-control",placeholder: "Date" %>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <div class="terminals">
-          <div class="btn-yes-no">
-            <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary", id: "message_send" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <div class="terminals">
+            <div class="btn-yes-no">
+              <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary", id: "message_send" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
   </div>
 </div>
-
 
 
 <script>
@@ -108,7 +112,7 @@ $(document).ready(function(){
       return [value];
     });
     '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
-    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+      var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
       array.splice(array.indexOf(parseInt(index)),1);
     '<% end %>'
     $("#message_send").click(function(e){
@@ -149,42 +153,37 @@ $(document).ready(function(){
       '<% end %>'
 
   });
-function initialize_timepicker(val2){
-  $('#datepairExample .time.start').timepicker({
-    'showDuration': true,
-    'timeFormat': 'G:i',
-    'minTime': val2
-  }).on('change',function(){
-    console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+  function initialize_timepicker(val2){
+    $('#datepairExample .time.start').timepicker({
+      'showDuration': true,
+      'timeFormat': 'G:i',
+      'minTime': val2
+    }).on('change',function(){
+      // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+      reload_time($(this).val());
+    });
+  }
+
+  $('#datepairExample .time.start').timepicker().on('change',function(){
     reload_time($(this).val());
   });
-}
-
-$('#datepairExample .time.start').timepicker().on('change',function(){
-  reload_time($(this).val());
-})
-
-
-
-  // initialize datepair
-  $('#datepairExample').datepair();
-});
-</script>
-
-
-
-<script>
-function reload_time(val1){
-  $('#datepairExample .time.end').timepicker({
-    'showDuration': true,
-    'timeFormat': 'G:i',
-    'minTime': (parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]
-  }).val((parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]);
-}
+    // initialize datepair
+    $('#datepairExample').datepair();
+  });
 </script>
 
 <script>
-$('#meetingModal1').on('hidden.bs.modal', function(){
-    $(this).find('input[type=text]').val('');
-});
+  function reload_time(val1){
+    $('#datepairExample .time.end').timepicker({
+      'showDuration': true,
+      'timeFormat': 'G:i',
+      'minTime': (parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]
+    }).val((parseInt(val1.split(":")[0])+1).toString()+":"+val1.split(":")[1]);
+  }
+</script>
+
+<script>
+  $('#meetingModal1').on('hidden.bs.modal', function(){
+      $(this).find('input[type=text]').val('');
+  });
 </script>
