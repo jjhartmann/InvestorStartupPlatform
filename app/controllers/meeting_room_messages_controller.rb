@@ -71,12 +71,15 @@ class MeetingRoomMessagesController < ApplicationController
       @meeting_room = @member.meeting_room
       @meeting_room_message = @meeting_room.meeting_room_messages.new(message_id: @message.id, meeting_room_member_id: @member.id)
       if @meeting_room_message.save
+        if params[:message][:meeting_room_message_document].present?
+          @meeting_room_message.create_meeting_room_message_document(document: params[:message][:meeting_room_message_document][:document])
+        end
         ActionCable.server.broadcast 'messages',
           message: @message.content,
           user: @message.user.name,
           created_at: @message.created_time,
           user_id:  @message.user.id,
-          image: @message.user.photo_avatar.url
+          image: @message.user.photo? ? @message.user.photo_avatar.url : '/assets/user_50.jpeg'
         head :ok
       else
         respond_to do |format|

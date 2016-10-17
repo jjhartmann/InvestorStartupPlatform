@@ -1,9 +1,12 @@
 <div id="message-errors">
 
 </div>
-<%= form_for message,url: send_message_meeting_room_messages_path, remote: true do |f|%>
-  <%= f.text_area :content, class: "form-control", data: {textarea: "message"}, placeholder: "Your Text Message"%>
-
+<%= form_for message,url: send_message_meeting_room_messages_path, remote: true  do |f|%>
+  <%= f.text_field :content, class: "form-control", data: {textarea: "message"}, placeholder: "Your Text Message"%>
+  <%= f.fields_for :meeting_room_message_document do |document| %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= document.file_field :document %>
+  <% end %>
   <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
   <%= f.submit "send", class: "btn btn-primary", data: {send: "message"}%>
 <%end%>
