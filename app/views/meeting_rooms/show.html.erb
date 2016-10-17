@@ -1,6 +1,6 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :sidebar_meeting_rooms_class, 'active' %>
-<% render "user_dashboards/profile" %>
+<%= render "user_dashboards/profile" %>
 <%= render partial: "user_dashboards/sidebar" %>
 <div class="container side-deatail">
   <div class="col-xs-12">
@@ -15,22 +15,22 @@
                   <span class="member"><i aria-hidden="true" class="fa fa-user"></i><%= member.meetable.user.name %></span>
                 <% end %>
               </div>
-            <div class="message-body">
-              <ul>
-                <% if @meeting_room.meeting_room_messages.any? %>
-                <div class="panel-body" id="messages">
-                  <%= render partial: 'meeting_room_messages/message', collection: @meeting_room.meeting_room_messages %>
-                </div>
-                <%else%>
-                <div class="panel-body hidden" id="messages">
-                </div>
-                <% end %>
-              </ul>
+              <div class="message-body">
+                <ul>
+                  <% if @meeting_room.meeting_room_messages.any? %>
+                  <div class="panel-body" id="messages" data-id="<%= @user.id %>">
+                    <%= render partial: 'meeting_room_messages/message', collection: @meeting_room.meeting_room_messages %>
+                  </div>
+                  <%else%>
+                  <div class="panel-body hidden" id="messages" data-id="<%= @user.id %>">
+                  </div>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="sender-box send-new">
+                <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
+              </div>
             </div>
-            <div class="sender-box send-new">
-              <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
-            </div>
-          </div>          
         </div>
       </div>
     </div>

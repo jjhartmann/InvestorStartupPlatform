@@ -76,13 +76,8 @@ class MeetingRoomMessagesController < ApplicationController
           user: @message.user.name,
           created_at: @message.created_time,
           user_id:  @message.user.id,
-          current_user: current_user.id
-
-          puts @user.inspect
-          puts @message.user.inspect
-          puts @message.user == @user ? "self" : ''
+          image: @message.user.photo_avatar.url
         head :ok
-
       else
         respond_to do |format|
           flash[:notice] = "There was some error in sending the message."
