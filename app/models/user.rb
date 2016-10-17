@@ -128,33 +128,45 @@ class User < ApplicationRecord
   end
 
   def send_private_message(target_user, content, extras = {})
+    puts "123"
     messages.create!({
                          :content     => content,
                          :is_private  => true,
                          :target_id   => target_user.id,
                          :target_type => 'User'
-                     }.merge(extras)) && reload
+                     }.merge(extras))
+
   end
 
   def reply_private_message(topic, content, extras = {})
-    messages.create!({
+    puts "456"
+      message = messages.new({
                          :content     => content,
                          :is_private  => true,
                          :target_id   => topic.user.id,
                          :target_type => 'User',
                          :topic_id    => topic.id
-                     }.merge(extras)) && reload
+                     }.merge(extras))
+       message_saved = message.save
+
+       return message, message_saved
+
   end
 
   #function to send reply for message to the other user
   def new_reply_private_message(topic, content, extras = {})
-    messages.create!({
+    puts "789"
+    message = messages.new({
                          :content     => content,
                          :is_private  => true,
                          :target_id   => topic.target.id,
                          :target_type => 'User',
                          :topic_id    => topic.id
-                     }.merge(extras)) && reload
+                     }.merge(extras))
+    message_saved = message.save
+
+    return message, message_saved
+
   end
 
   def add_micro_post(content)

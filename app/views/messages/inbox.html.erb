@@ -13,16 +13,23 @@
               <div class="message-header"><%= @user.name %></div>
               <div class="message-body">
                 <ul>
-                  <% @message_thread.each do |thread| %>
-                    <% if thread.user_id != current_user.id %>
-                      <li><div class="circle-message"><%=image_tag thread.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div></li>
-                    <% else %>
-                      <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
-                    <% end %>
+                  <% if @message_thread.any? %>
+                    <div class="panel-body" id="messages" data-id="<%= @user.id %>">
+                      <% @message_thread.each do |thread| %>
+                        <% if thread.user_id != current_user.id %>
+                          <li><div class="circle-message"><%=image_tag thread.user.photo_avatar %></div><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div></li>
+                        <% else %>
+                          <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <%else%>
+                    <div class="panel-body hidden" id="messages" data-id="<%= @user.id %>">
+                    </div>
                   <% end %>
                 </ul>
               </div>
-              <%= form_for @message,url: messages_path do |f|%>
+              <%= form_for @message,url: messages_path, remote: true do |f|%>
                 <%= f.hidden_field :topic_id,value: params[:id] %>
                 <div class="sender-box">
                   <div class="circle-message"><%=image_tag current_user.photo_avatar %></div>

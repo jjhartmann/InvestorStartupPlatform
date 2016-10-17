@@ -25,13 +25,24 @@ class MessagesController < ApplicationController
     if params[:message][:topic_id].present?
       @topic = Message.find(params[:message][:topic_id])
       @content = params[:message][:content]
+      @message_sent = @topic.user.id == current_user.id ? current_user.new_reply_private_message(@topic, @content) : current_user.reply_private_message(@topic, @content)
+      puts @message_sent
+      puts @message_sent[0].user.photo_avatar
       respond_to do |format|
-        if @topic.user.id == current_user.id ? current_user.new_reply_private_message(@topic, @content) : current_user.reply_private_message(@topic, @content)
-          format.html { redirect_to :back, notice: 'Message was successfully sent.' }
-          format.json { render :show, status: :created, location: @message }
+        if @message_sent[1]
+          ActionCable.server.broadcast 'messages',
+            message: @message_sent[0].content,
+            user: @message_sent[0].user.name,
+            created_at: @message_sent[0].created_time,
+            user_id:  @message_sent[0].user.id,
+            image: @message_sent[0].user.photo_avatar.url
+          head :ok
+          # format.html { redirect_to :back, notice: 'Message was successfully sent.' } and return
+          # format.json { render :show, status: :created, location: @message }
         else
           format.html { render :new }
           format.json { render json: @message.errors, status: :unprocessable_entity }
+          format.js { render template: 'error.js.erb'}
         end
       end
     else
