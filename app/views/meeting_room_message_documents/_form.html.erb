@@ -1,0 +1,11 @@
+<%= simple_form_for(@meeting_room_message_document) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :meeting_room_message %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+json.array! @meeting_room_message_documents, partial: 'meeting_room_message_documents/meeting_room_message_document', as: :meeting_room_message_document

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Meeting room message:</strong>
+  <%= @meeting_room_message_document.meeting_room_message %>
+</p>
+
+<%= link_to 'Edit', edit_meeting_room_message_document_path(@meeting_room_message_document) %> |
+<%= link_to 'Back', meeting_room_message_documents_path %>
