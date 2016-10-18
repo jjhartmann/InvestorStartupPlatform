@@ -4,7 +4,7 @@ class Meeting < ApplicationRecord
   belongs_to :enterprise
   belongs_to :investor_profile
   has_many :meeting_members
-  has_many :notifications, :as => :notificable
+  has_many :notifications
   has_one :meeting_room
 
   before_create :set_end_time
