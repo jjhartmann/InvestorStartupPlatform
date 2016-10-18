@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
             user: @message_sent[0].user.name,
             created_at: @message_sent[0].created_time,
             user_id:  @message_sent[0].user.id,
-            image: @message_sent[0].user.photo_avatar.url
+            image: @message_sent[0].user.photo? ? @message_sent[0].user.photo_avatar.url : '/assets/user_50.jpeg'
           head :ok
           # format.html { redirect_to :back, notice: 'Message was successfully sent.' } and return
           # format.json { render :show, status: :created, location: @message }
