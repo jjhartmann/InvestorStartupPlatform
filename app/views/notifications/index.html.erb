@@ -35,8 +35,8 @@
                       <% if notification.notification_type == "Meeting" %>
                           <% if notification.meeting.acceptance_status == "requested" %>
                             <div class="btn-yes-no">
-                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 1) do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
-                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 0) do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
+                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 1), remote: true do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
+                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 0), remote: true do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
                             </div>
                           <% end %>
                       <% end %>

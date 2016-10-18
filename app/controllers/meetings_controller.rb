@@ -50,12 +50,17 @@ class MeetingsController < ApplicationController
 
   def meeting_request
     @enterprise = Enterprise.find(params[:requested_client_id])
-    @meeting = Meeting.create(topic: params[:topic],start_time: params[:meeting_start_time], investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
+    @meeting = Meeting.create(topic: params[:topic],start_time: DateTime.parse(params[:meeting_start_time]) + 1.day, investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
     @enterprise.enterprise_users.each do |member|
       @meeting_member = @meeting.meeting_members.build(memberable: member.user.profilable).save
-      @meeting.notifications.create_notification(member.user.profilable_id, member.user.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]} on #{@meeting.start_time.strftime("#{@meeting.start_time.day.ordinalize} %B, %Y")} .", @meeting.class,{meeting_id: @meeting.id})
+      @notification = @meeting.notifications.create_notification(member.user.profilable_id, member.user.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]} on #{@meeting.start_time.strftime("#{@meeting.start_time.day.ordinalize} %B, %Y")} .", @meeting.class,{meeting_id: @meeting.id})
+      ActionCable.server.broadcast 'create_notifications',
+        notification: @notification,
+        acceptance_status: @notification.notification_type == "Meeting" ? @notification.meeting.acceptance_status : "",
+        notification_created_time: @notification.created_time
     end
-    redirect_to :back
+    head :ok
+    # redirect_to :back
   end
 
   def accept_request
@@ -66,7 +71,14 @@ class MeetingsController < ApplicationController
     else
       @meeting_request = @notification.meeting.update(acceptance_status: "rejected",accepted_by: current_user.id)
     end
-    redirect_to :back
+    @notification.meeting.notifications.each do |notification|
+      ActionCable.server.broadcast 'notifications',
+        notification: notification,
+        acceptance_status: notification.meeting.acceptance_status,
+        notification_li_class: notification.is_accepted(current_user),
+        notification_created_time: notification.created_time
+    end
+    head :ok
   end
 
   private

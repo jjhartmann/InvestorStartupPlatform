@@ -77,7 +77,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Meeting Request</h4>
       </div>
-      <%= form_tag meeting_request_meetings_path(requested_client_id: @enterprise.id) do  %>
+      <%= form_tag meeting_request_meetings_path(requested_client_id: @enterprise.id), remote: true do  %>
         <div class="modal-body">
           <p class="title-modal">Hello, <%= @enterprise.name %>. Can we setup a meeting?</p>
           <div class="well">
