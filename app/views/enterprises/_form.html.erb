@@ -1,9 +1,6 @@
 <%= simple_form_for(@enterprise) do |f| %>
   <%= f.error_notification %>
 
-  <!-- <div class="form-actions text-center">
-  <%#= f.button :submit %>
-  </div> -->
   <div class='box-tab prepend-type'>
     <div class='all-notification-close'><%= link_to enterprises_path do %><i class='fa fa-times' aria-hidden='true'></i><% end %></div>
     <div class='circle'>
@@ -50,7 +47,7 @@
       </div>
     </div>
     <div class='form-group optional-tips'>
-      <div class='user-positon'><span class='name notes'><i class='fa fa-plane' aria-hidden='true'></i>market identifer</span>
+      <div class='user-positon'><span class='name notes'><i class='fa fa-plane' aria-hidden='true'></i>Market Identifer</span>
         <%= f.input :market_identifier, collection: Enterprise.markets.map {|identfier| [identfier[1], identfier[0]]}, prompt: "Select One" %>
       </div>
     </div>
