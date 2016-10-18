@@ -3,10 +3,12 @@
 
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
-  <%= render "/user_dashboards/sidebar" %>
   <div class="container side-deatail">
-    <div class="col-xs-12">
-      <div class="profile-tabs">
+  <div class="col-xs-3">
+    <%= render "/user_dashboards/sidebar" %>
+  </div>
+  <div class="col-xs-9">
+        <div class="profile-tabs">
         <div class="tab-content">
           <div class="tab-title">Notification</div>
           <% if @notifications.present? %>
@@ -57,6 +59,5 @@
       <% end %>
     </div>
   </div>
-</div>
 </div>
 </div>

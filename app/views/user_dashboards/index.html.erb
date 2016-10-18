@@ -1,15 +1,17 @@
 <%= content_for :body_class, "dashbord" %>
-<%= content_for :sidebar_dashboard_class, "active" %>
+<%#= content_for :sidebar_dashboard_class, "active" %>
 
-<%= render "profile" %>
 <div class="main-body">
-  <%= render "sidebar" %>
   <div class="container side-deatail">
-    <div class="col-xs-12">
+    <%= render "profile" %>
+    <div class="col-xs-3">
+      <%= render "sidebar" %>
+    </div>
+    <div class="col-xs-9">
       <div class="profile-tabs">
         <div class="tab-content">
           <div class="tab-pane fade in active">
-            <div class="tab-title">Dashboard</div>
+            <!--<div class="tab-title">Dashboard</div>-->
             <ul class="main-dashbord">
               <% @feeds.each do |feed| %>
                 <li>
@@ -34,7 +36,7 @@
                 </li>
               <% end %>
             </ul>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
