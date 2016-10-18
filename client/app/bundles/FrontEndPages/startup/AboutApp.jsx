@@ -6,9 +6,6 @@ import AboutInfo from '../components/AboutInfo'
 const About = (props, _railsContext) => {
   const reactComponent = (
     <div>
-      <header className="back-image">
-
-      </header>
       <div className="container">
         <div className="row">
           <div className="col-xs-12 about">
