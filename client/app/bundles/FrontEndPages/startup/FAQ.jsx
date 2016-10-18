@@ -7,9 +7,6 @@ import FAQBody from '../containers/FAQContainer';
 const FAQApp = (props, _railsContext) => {
   const reactComponent = (
     <div>
-    <header className="back-image">
-
-    </header>
       <div className="container">
         <div className="row">
           <div className="col-xs-12 faq-tab">
