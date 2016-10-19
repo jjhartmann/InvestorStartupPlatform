@@ -83,4 +83,21 @@ class UserDashboardsController < ApplicationController
     @visitors = @user.visitee
   end
 
+  def featured_users
+    @featured_users = StartupFeature.all
+  end
+
+  def searched_users
+    @user = current_user
+    # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
+    @all_users = User.where('name LIKE ? AND profilable_type NOT IN(?)',"%#{params[:name]}%",['InvestorProfile']).where.not(id: current_user.id)
+    puts "___________"
+    puts @all_users.as_json
+    puts "___________"
+    @enterprises = Enterprise.where('name LIKE ?', "%#{params[:name]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

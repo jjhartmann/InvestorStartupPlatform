@@ -12,6 +12,9 @@
         <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
           <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
         </div>
+        <div class="new-button">
+          <%= link_to "Everyone", all_users_user_dashboards_path(id: current_user.id), class: "btn btn-primary"%>
+        </div>
           <% if @connected_users.count != 0 %>
           <div class="enterprise-deatils box-tab">
               <div class="user-follow">

@@ -11,6 +11,8 @@ class UserProfile < ApplicationRecord
   has_many :meeting_room_members, :as => :meetable
   has_many :meeting_rooms,        :through => :meeting_room_members
 
+  has_one :startup_feature
+
   validates :profession,       :presence     => true,
             :length       => { :within => 1..140 }, on: :update
   validates :industry, :presence     => true,
