@@ -5,13 +5,14 @@
     <div class='all-notification-close'><%= link_to enterprises_path do %><i class='fa fa-times' aria-hidden='true'></i><% end %></div>
     <div class='circle'>
       <div class="go-top">
-        <%= f.input :photo, as: :file, label: false %>
+        <%= f.input :logo, as: :file, label: false %>
         <a href="#"><i class="fa fa-camera" aria-hidden="true"></i></a>
       </div>
-      <%= image_tag @enterprise.logo_thumb %>
-      <div class='set-view-deatils'><p><span class='name notes'><i class='fa fa-paperclip' aria-hidden='true'></i>Upload Logo</span>
-        <%= f.input :logo, as: :file%></p>
-      </div>
+      <%= image_tag @enterprise.logo_thumb, id: "enterprise_image" %>
+
+    </div>
+    <div class="form-group error">
+      <%= f.error :logo, id: 'photo_error', class: "error-p" %>
     </div>
     <div class='form-group optional-tips'>
       <h2><span class='name notes'><i class='fa fa-user' aria-hidden='true'></i>Name</span><%= f.input :name, placeholder: "Enterprise Name" %></h2>
@@ -61,3 +62,30 @@
     </div>
   </div>
 <% end %>
+
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var file = input.files[0];
+      var fileType = file["type"];
+      var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+      if ($.inArray(fileType, ValidImageTypes) <= 0) {
+        $('.form-group.error').append('<span class="error-p">You can only upload images. (.gif, .jpeg, .png)</span>');
+      }
+      else
+      {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#enterprise_image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  }
+
+  $("#enterprise_logo").change(function(){
+    $('.form-group.error').find('span').remove();
+    readURL(this);
+  });
+</script>

@@ -9,7 +9,6 @@ class EnterprisesController < ApplicationController
       @enterprises = @user.enterprises_followed
     else
       @enterprises = @user.enterprises
-      puts @enterprises.as_json
     end
   end
 
@@ -46,13 +45,8 @@ class EnterprisesController < ApplicationController
     respond_to do |format|
       if @enterprise.save
         current_user.follow(@enterprise)
-        @enterprise_user = EnterpriseUser.create(enterprise_id: @enterprise.id, user_email: current_user.email, role_identifier: "member", member_title: "Founder")
-        puts @user.enterprises.as_json
+        @enterprise_user = @enterprise.enterprise_user.create(user_email: current_user.email, role_identifier: "member", member_title: "Founder")
         @enterprise.create_questionaire
-        puts "----------------------"
-        puts @user.enterprises.as_json
-        puts "----------------------"
-
         format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }
         format.json { render :index, status: :created, location: @enterprise }
       else
@@ -141,7 +135,7 @@ class EnterprisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enterprise_params
-      params.require(:enterprise).permit(:name, :pitch, :funds_to_raise, :industry, :enterprise_stage, :stage_identifier, :market_identifier, :location, :description, :logo, :followers_count, :followed_count, :comment_count, :logo)
+      params.require(:enterprise).permit(:name, :pitch, :funds_to_raise, :industry, :enterprise_stage, :stage_identifier, :market_identifier, :location, :description, :logo, :followers_count, :followed_count, :comment_count)
       # params.fetch(:enterprise, {})
     end
 end
