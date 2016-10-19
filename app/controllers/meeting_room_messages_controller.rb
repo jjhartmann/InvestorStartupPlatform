@@ -64,16 +64,13 @@ class MeetingRoomMessagesController < ApplicationController
   end
 
   def send_message
-    @m = @user.messages.new(message_params)
-    if @m.save
-      @message = @m
+    message = @user.messages.new(message_params)
+    if message.save
+      @message = message
       @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:message][:meeting_room_id])
       @meeting_room = @member.meeting_room
       @meeting_room_message = @meeting_room.meeting_room_messages.new(message_id: @message.id, meeting_room_member_id: @member.id)
       if @meeting_room_message.save
-        if params[:message][:meeting_room_message_document].present?
-          @meeting_room_message.create_meeting_room_message_document(document: params[:message][:meeting_room_message_document][:document])
-        end
         ActionCable.server.broadcast 'messages',
           message: @message.content,
           user: @message.user.name,
@@ -90,11 +87,67 @@ class MeetingRoomMessagesController < ApplicationController
       end
     else
       respond_to do |format|
-        flash[:notice] = @m.errors
-        format.html { redirect_to meeting_room_path(params[:message][:meeting_room_id]) }
+        flash[:notice] = message.errors
         format.js { render template: 'messages/error.js.erb'}
+        format.html { redirect_to meeting_room_path(params[:message][:meeting_room_id]) }
       end
     end
+  end
+
+  def send_document
+    @message = Message.create(content: "#{@user.name} has sent a document", user_id: @user.id)
+    @meeting_room = @user.profilable.meeting_rooms.find_by(params[:meeting_room_id])
+    if @meeting_room.present?
+      @member = @meeting_room.meeting_room_members.find_by(meetable: @user.profilable)
+      if @member.present?
+        @meeting_room_message = @meeting_room.meeting_room_messages.create(message_id: @message.id, meeting_room_member_id: @member.id)
+        puts @meeting_room_message
+        @document =  MeetingRoomMessageDocument.new(meeting_room_message_document_params.merge(meeting_room_message_id: @meeting_room_message.id))
+        if @document.save
+          ActionCable.server.broadcast 'messages',
+            message: @message.content,
+            user: @message.user.name,
+            created_at: @message.created_time,
+            user_id:  @message.user.id,
+            image: @message.user.photo? ? @message.user.photo_avatar.url : '/assets/user_50.jpeg',
+            document: @document.document.url,
+            document_id: @document.id
+          redirect_to meeting_room_path(id: @meeting_room.id), notice: "Document Sent successfully"
+        else
+          @meeting_room_message.destroy
+          @message.destroy
+          respond_to do |format|
+            format.html {redirect_to :back, alert: "Make sure that you uploaded a document of type .jpg, .jpeg, .png, .doc, .docx, .pdf, .xlsx, .xls" }
+          end
+        end
+      else
+        @message.destroy
+        respond_to do |format|
+          format.html {redirect_to :back, alert: "You are not a member of this meeting." }
+        end
+        p "error; member not present"
+      end
+    else
+      @message.destroy
+      respond_to do |format|
+        format.html {redirect_to :back, alert: "No such meeting exists." }
+      end
+      p "error; no such meeting room"
+    end
+  end
+
+  def view_document
+    @document = MeetingRoomMessageDocument.find_by(id: params[:id])
+    #This will decrpyt the file first
+
+    Carrierwave::EncrypterDecrypter::Downloader.decrypt(@document,mounted_as: :document)
+
+    file_path = @document.document.path
+      File.open(file_path, 'r') do |f|
+        send_data f.read, type: MIME::Types.type_for(file_path).first.content_type,disposition: :inline,:filename => File.basename(file_path)
+    end
+      #This is to remove the decrypted file after transfer
+      File.unlink(file_path)
   end
 
   private
@@ -110,5 +163,9 @@ class MeetingRoomMessagesController < ApplicationController
 
     def message_params
       params.require(:message).permit(:content)
+    end
+
+    def meeting_room_message_document_params
+      params.require(:meeting_room_message_document).permit(:document)
     end
 end
