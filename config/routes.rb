@@ -51,6 +51,8 @@ Rails.application.routes.draw do
       get 'suggested_profile'
       get 'connections'
       get 'profile_visitors'
+      get 'featured_users'
+      get 'searched_users'
     end
   end
   resources :user_profiles

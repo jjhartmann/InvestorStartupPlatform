@@ -55,6 +55,15 @@
                     <span class="display-mode-value"><%= @user_profile.email %></span>
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="data-view collapse" id="demo">
+                    <p><%= @user_profile.profilable.startup_feature.announcement %></p>
+                    <p>Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsumLoerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum</p>
+                  </div>
+                </div>
+                <div class="load-more-item" data-toggle="collapse" data-target="#demo">
+                  <div class="btn-view">Show More Features</div>
+                </div>
                 <div class="event-btn">
                   <button type="button" class="btn btn-default js-cancel">Cancel</button>
                 </div>
@@ -149,5 +158,18 @@
       $("#message_error").css("display","block");
       $("#message_content").css("border","red solid 1px");
     }
+  });
+
+  $(".load-more-item").click(function(){
+    if ($(".btn-view").text() == "Show More Features"){
+      $(".btn-view").text("Hide More Features");
+    }else{
+      $(".btn-view").text("Show More Features");
+    }
+    // if ($(this).hasClass(".collapsed")){
+    //   $(".btn-view").text("Hide More Features");
+    // }else {
+    //   $(".btn-view").text("Show More Features");
+    // }
   })
 </script>
