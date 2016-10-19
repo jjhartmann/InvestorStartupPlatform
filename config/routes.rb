@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :meeting_room_message_documents
   mount ActionCable.server => '/cable'
+  resources :meeting_room_message_documents
 
   resources :meeting_room_messages do
     collection do
       get 'chatroom'
       post 'send_message'
+      post 'send_document'
+      get 'view_document'
     end
   end
   resources :meeting_rooms

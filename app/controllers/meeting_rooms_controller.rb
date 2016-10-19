@@ -18,6 +18,7 @@ class MeetingRoomsController < ApplicationController
       @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:id])
     end
     @message = Message.new
+    @document = MeetingRoomMessageDocument.new
   end
 
   # GET /meeting_rooms/new

@@ -9,5 +9,9 @@
   <%= @news_feed.description %>
 </p>
 
+<p>
+  <strong>External Link:</strong>
+  <%= @news_feed.external_link %>
+</p>
 <%= link_to 'Edit', edit_news_feed_path(@news_feed) %> |
 <%= link_to 'Back', news_feeds_path %>

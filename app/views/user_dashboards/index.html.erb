@@ -16,7 +16,7 @@
                 <li>
                   <div class="box-tab">
                     <div class="header-type">
-                      <span class="header-name">Loerm ipsum  is simply dummy text of the printing and typesetting industry.</span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i>5 Hours ago</div></span>
+                      <span class="header-name"><%= feed.title %></span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i><%= feed.created_time %></div></span>
                     </div>
                     <div class="box effect2">
                       <div class="main-img">
@@ -24,8 +24,7 @@
                       </div>
                     </div>
                     <div class="main-details">
-                      <h3><%= feed.title %></h3>
-                      <p><%= feed.description %></p>
+                      <p><%= h truncate(feed.description, length: 320) %><%= link_to "See More", "http://#{feed.external_link}", target: "_blank" %></p>
                       <div class="likers clearfix">
                         <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
                         <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>

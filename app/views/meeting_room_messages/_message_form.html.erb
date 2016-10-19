@@ -1,12 +1,19 @@
 <div id="message-errors">
 
 </div>
-<%= form_for message,url: send_message_meeting_room_messages_path, remote: true  do |f|%>
+<%= form_for message,url: send_message_meeting_room_messages_path, authenticity_token: true, remote: true  do |f|%>
   <%= f.text_field :content, class: "form-control", data: {textarea: "message"}, placeholder: "Your Text Message"%>
-  <%= f.fields_for :meeting_room_message_document do |document| %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <%= document.file_field :document %>
-  <% end %>
   <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
   <%= f.submit "send", class: "btn btn-primary", data: {send: "message"}%>
+<%end%>
+<%= form_for @document,url: send_document_meeting_room_messages_path, authenticity_token: true, html: {id: "document"} do |f| %>
+  <%= f.file_field :document %>
+  <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
+  <%= f.submit "Send File" %>
+<% end %>
+
+<% if flash.alert %>
+  <div class="alert alert-danger">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><%= flash.alert %>
+  </div>
 <%end%>
