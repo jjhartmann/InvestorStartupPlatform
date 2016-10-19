@@ -79,7 +79,7 @@ class Proposal < ApplicationRecord
   def self.get_proposals(user)
     @user = user
     @following_enterprises = @user.enterprises_followed
-    @proposals = self.where("proposals.enterprise_id IN(?)", @following_enterprises.ids)
+    @proposals = self.where("proposals.enterprise_id IN(?) AND proposals.proposal_stage_identifier = 'submitted'", @following_enterprises.ids)
   end
 
   def self.get_users_proposals(user)
