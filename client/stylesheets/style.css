@@ -2005,11 +2005,11 @@ ul.menu.cf li {
     width: 50%;
     float: left;
 }
-<<<<<<< HEAD
-
 /*17-10-2016*/
 a.navbar-img img{
   width: 130px;
+  /*width: 60px;*/
+  height: 50px;
 }
 a.navbar-img {
     display: inline-block;
