@@ -9,7 +9,10 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="tab-title">All Users</div>
-              <div class="user-follow">
+              <div style="margin-top: 10px">
+                <%= text_field_tag "find_users", '',class: "form-control", placeholder: "Find People" %>
+              </div>
+              <div class="user-follow" style="margin-top: 10px">
                 <ul class="clearfix">
                   <% @all_users.each do |user| %>
                   <%= link_to user_profile_path(id: current_user.id,suggested_profile: user.id) do %>
@@ -67,3 +70,19 @@
     </div>
   </div>
 </div>
+
+
+<script>
+$(document).ready(function(){
+  $("#find_users").on("keyup",function(event){
+    if (event.keyCode != 10 && event.keyCode != 13) {
+    //  event.preventDefault();
+     $.ajax({
+       type: "get",
+       url: "/user_dashboards/searched_users",
+       data: {name: $(this).val()}
+     });
+   }
+  })
+})
+</script>

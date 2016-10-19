@@ -2059,4 +2059,20 @@ ul.menu.cf li {
 }
 .go-top .form-group span {
     display: none;
+  }
+/*19-10-2016*/
+
+.load-more-item {
+    margin-top: 30px;
+    text-align: center;
+}
+.load-more-item .btn-view {
+    background: #333 none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 25px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 200px;
 }
