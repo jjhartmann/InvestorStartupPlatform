@@ -1171,6 +1171,7 @@ a.view:hover{
     width: 350px;
     position: relative;
     word-wrap: break-word;
+    float: left;
 }
 .tap-sticker::after{
   content:"";
@@ -2034,4 +2035,28 @@ ul.menu.cf li {
 .new-date-start {
     width: 50%;
     float: left;
+}
+.draw-tag-1 {
+    width: calc(100% - 60px);
+    float: right;
+}
+/*19-10-2016*/
+.draw-tag-1 {
+    width: calc(100% - 60px);
+    float: left;
+}
+.files.tag-view-1 {
+    float: left;
+    width: 60px;
+}
+.box-tab .form-group .error-p {
+      text-align: center !important;
+      color: red !important;
+}
+.form-group.error {
+      text-align: center !important;
+      color: red !important;
+}
+.go-top .form-group span {
+    display: none;
 }
