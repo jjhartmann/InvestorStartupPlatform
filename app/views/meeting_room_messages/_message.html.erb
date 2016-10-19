@@ -3,8 +3,7 @@
     <div class="message-trip">
       <div class="tap-sticker">
         <% if message.meeting_room_message_document.present? %>
-          <%= link_to view_document_meeting_room_messages_path(id: message.meeting_room_message_document.id) do %>
-            <%= message.meeting_room_message_document.id %>
+          <%= link_to view_document_meeting_room_messages_path(id: message.meeting_room_message_document.id), target: "_blank" do %>
             <div class="files">
               <div class="file-circle">
                 <img src="/assets/files.png"/>
@@ -31,12 +30,23 @@
     </div>
     <div class="message-trip">
       <div class="tap-sticker">
-        <%= message.message.content %>
-        <span class="timer"><%= message.message.created_time %></span>
-        <span class="timer">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          <%= message.message.user.name %>
-        </span>
+        <div class="draw-tag-1">
+          <%= message.message.content %>
+          <span class="timer"><%= message.message.created_time %></span>
+          <span class="timer">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <%= message.message.user.name %>
+          </span>
+        </div>
+        <% if message.meeting_room_message_document.present? %>
+          <%= link_to view_document_meeting_room_messages_path(id: message.meeting_room_message_document.id), target: "_blank" do %>
+            <div class="files tag-view-1">
+              <div class="file-circle">
+                <img src="/assets/files.png"/>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </li>

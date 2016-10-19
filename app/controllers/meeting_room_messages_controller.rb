@@ -110,7 +110,8 @@ class MeetingRoomMessagesController < ApplicationController
             created_at: @message.created_time,
             user_id:  @message.user.id,
             image: @message.user.photo? ? @message.user.photo_avatar.url : '/assets/user_50.jpeg',
-            document: @document.document.url
+            document: @document.document.url,
+            document_id: @document.id
           redirect_to meeting_room_path(id: @meeting_room.id), notice: "Document Sent successfully"
         else
           @meeting_room_message.destroy
