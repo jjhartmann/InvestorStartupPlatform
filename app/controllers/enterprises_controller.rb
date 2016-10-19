@@ -45,7 +45,7 @@ class EnterprisesController < ApplicationController
     respond_to do |format|
       if @enterprise.save
         current_user.follow(@enterprise)
-        @enterprise_user = @enterprise.enterprise_user.create(user_email: current_user.email, role_identifier: "member", member_title: "Founder")
+        @enterprise_user = @enterprise.enterprise_users.create(user_email: current_user.email, role_identifier: "member", member_title: "Founder")
         @enterprise.create_questionaire
         format.html { redirect_to enterprise_path(@enterprise.id), notice: 'Enterprise was successfully created.' }
         format.json { render :index, status: :created, location: @enterprise }
