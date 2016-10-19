@@ -16,6 +16,7 @@ config = {
     './app/bundles/FrontEndPages/startup/Home',
     // #Header of the main page.
     './app/bundles/FrontEndPages/startup/FrontPageHeaderApp',
+    // './app/bundles/FrontEndPages/startup/NewHeader',
     // #Profile Page of the user
     './app/bundles/FrontEndPages/startup/Profile',
     // #Header of user after sigin in
