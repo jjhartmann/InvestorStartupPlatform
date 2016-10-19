@@ -11,7 +11,6 @@
       <div class="profile-tabs">
         <% devise_error_messages! %>
         <div id="home" class="editable-contact-info edit-mode-enabled">
-          <div class="tab-title">Profile</div>
           <div class="main-start">
             <div class="box-tab">
               <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: { input_html: { class: 'default_class' } } do |f| %>

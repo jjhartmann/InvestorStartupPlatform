@@ -11,7 +11,7 @@ body {
   color: #777777;
 }
 .text-primary {
-  color: #fed136;
+  color: #3f81c7;
 }
 p {
   font-size: 14px;
@@ -28,7 +28,7 @@ a.active {
   outline: none;
 }
 a {
-  color: #fed136;
+  color: #3f81c7;
 }
 a:hover,
 a:focus,
@@ -57,20 +57,21 @@ h6 {
 }
 .btn-primary {
   color: white;
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #3f81c7;
+  border-color: #3f81c7;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
+  transition: all 0.4s;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: white;
-  background-color: #fec503;
-  border-color: #f6bf01;
+  color: #adadad;
+  background-color: #dde2e7;
+  border-color: #dde2e7;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -101,23 +102,24 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-xl {
   color: white;
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #3f81c7;
+  border-color: #3f81c7;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 3px;
   font-size: 18px;
   padding: 20px 40px;
+  transition: all 0.4s;
 }
 .btn-xl:hover,
 .btn-xl:focus,
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-  color: white;
-  background-color: #fec503;
-  border-color: #f6bf01;
+  color: #adadad;
+  background-color: #dde2e7;
+  border-color: #adadad;
 }
 .btn-xl:active,
 .btn-xl.active,
@@ -176,16 +178,22 @@ fieldset[disabled] .btn-xl.active {
   background-color: #fed136;
 }
 .navbar-custom .nav li a {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: white;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #adadad;
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-top: 5px;
+    padding: 10px 15px;
+    transition: all 0.4s;
 }
 .navbar-custom .nav li a:hover,
 .navbar-custom .nav li a:focus {
-  color: #fed136;
-  outline: none;
+  background-color: #3f81c7;
+ color: #fff;
 }
 .navbar-custom .navbar-nav > .active > a {
   border-radius: 0;
@@ -214,7 +222,7 @@ ul.our-background {
     margin-bottom: 75px;
 }
 .main-label {
-    color: #fed136;
+    color: #3f81c7;
     font-size: 16px;
     font-weight: normal;
 }
@@ -226,9 +234,9 @@ ul.our-background {
     height: 40px;
     padding: 12px 15px;
     text-decoration: none;
-    background: #222222;
+    background: #3f81c7;
     border-radius: 3px;
-    color: #fed136;
+    color: #fff;
     font-weight: 100;
     font-size: 14px;
     cursor: pointer;
@@ -355,9 +363,8 @@ html, body {
   color: #f1f1f1;
 }
 .submit-btn .btn.btn-default {
-    background: none;
-    border: 2px solid #fed136;
-    color: #f1f1f1;
+    background: #3f81c7;
+    color: #fff;
     width: 120px;
     transition: all 0.4s;
     display: inline-block;
@@ -366,8 +373,8 @@ html, body {
   text-align: center;
 }
 .submit-btn .btn.btn-default:hover {
-  background: #fed136;
-  color: #222;
+  background: #dde2e7;
+  color: #adadad;
 }
 .or-tag {
     font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
@@ -398,7 +405,7 @@ html, body {
     width: 100%;
     float: left;
     margin-bottom: 0;
-    background-color: #333;
+    background-color: #fff;
     min-height: 639px;
     box-sizing: border-box;
     width: 400px;
@@ -407,6 +414,7 @@ html, body {
     padding-bottom: 40px;
     border-radius: 3px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid #eee;
 
 }
 .social1 li {
@@ -416,7 +424,7 @@ html, body {
     list-style: none;
   }
   .social li a {
-      background: #222;
+      border: 1px solid #dde2e7;
       width: 90%;
       display:block;
       padding: 10px 10px;
@@ -427,32 +435,27 @@ html, body {
       margin-top: 22px;
       margin-left:20px;
       text-align: left;
+      color: #444;
   }
   .social li a:hover {
-      background: #fed136;
-      color: #222;
-
-      -webkit-transform: translateY(-3px);
-      -ms-transform: translateY(-3px);
-      -moz-transform: translateY(-3px);
-      -o-transform: translateY(-3px);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+      background: #3f81c7;
+      color: #fff;
   }
   .social li:last-child a {
     margin-bottom: 0;
 }
   .social li a:hover .fa{
-    background: #222;
-    color:#fed136;
+    background: #fff;
+    color:#3f81c7;
+    border: 2px solid #fff;
   }
 .social .fa {
-    color: #222;
+    color: #adadad;
     width: 30px;
     height: 30px;
-    border: 2px solid #fff;
+    border: 2px solid #adadad;
     border-radius: 100%;
-    background: #fed136;
+    background: #dde2e7;
     padding-top: 6px;
     text-align: center;
     margin-right: 20px;
@@ -596,7 +599,7 @@ section h3.section-subheading {
   margin: 0 auto;
 }
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
-  background: rgba(254, 209, 54, 0.9);
+  background: rgba(63, 129, 199, 0.9);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -704,7 +707,7 @@ section h3.section-subheading {
   height: 80px;
   position: absolute;
   z-index: 100;
-  background-color: #fed136;
+  background-color: #3f81c7;
   color: white;
   border-radius: 100%;
   border: 7px solid #f1f1f1;
@@ -865,14 +868,14 @@ section#contact .form-group textarea.form-control {
   display: block;
   border: none;
   padding: 10px 0;
-  border-bottom: solid 1px #ffc857;
+  border-bottom: solid 1px #3f81c7;
   transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
  -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
  -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
  -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #3f81c7 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #3f81c7 4%);
   background-position: -350px 0;
   background-size: 350px 100%;
   background-repeat: no-repeat;
@@ -940,7 +943,7 @@ ul.social-buttons {
 }
 ul.social-buttons li a {
   display: block;
-  background-color: #222222;
+  background-color: #3f81c7;
   height: 40px;
   width: 40px;
   border-radius: 100%;
@@ -955,7 +958,8 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: #fed136;
+  background-color: #dde2e7;
+  color: #adadad;
 }
 .btn:focus,
 .btn:active,
@@ -1037,14 +1041,7 @@ ul.social-buttons li a:active {
   opacity: 0;
   display: none;
 }
-::-moz-selection {
-  text-shadow: none;
-  background: #fed136;
-}
-::selection {
-  text-shadow: none;
-  background: #fed136;
-}
+
 img::selection {
   background: transparent;
 }
@@ -1085,13 +1082,12 @@ h1 {
   width: 100%;
   margin-bottom:0;
   padding: 20px;
-  background: #222;
+  background: #dde2e7;
   color: #ffc857;
   line-height: 150%;
   border-radius: 3px 3px 0 0;
-  box-shadow: 0 2px 5px 1px rgba(8,8,10,0.3);
   font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
-  color: #fed136;
+  color: #adadad;
   font-size: 36px;
  /* box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);*/
 }
@@ -1100,11 +1096,10 @@ h1 {
     box-sizing: border-box;
     width: 400px;
     margin: 100px auto 0;
-   /* box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);*/
-    box-shadow:2px 2px 5px 1px rgba(8,8,10,0.6);
     padding-bottom: 40px;
     border-radius: 3px;
-    background-color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 #contactForm form {
     box-sizing: border-box;
@@ -1125,25 +1120,16 @@ h1 {
   padding: 20px;
 }
 
-.registration input{
+.registration input {
     margin: 36px 25px;
     width: 350px;
     display: block;
     border: none;
     padding: 10px 0;
-    border-bottom: solid 1px #ffc857;
-	  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-	 -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-   -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-   -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
-    background-position: -350px 0;
-    background-size: 350px 100%;
-    background-repeat: no-repeat;
-    color: #ffc857;
+    border: solid 1px #dde2e7;
+    color: #444;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px 15px;
 }
 #contactForm input{
     margin: 40px 25px;
@@ -1151,14 +1137,14 @@ h1 {
     display: block;
     border: none;
     padding: 10px 0;
-    border-bottom: solid 1px #ffc857;
+    border-bottom: solid 1px  #3f81c7;
 	  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 	 -moz-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
    -ms-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
    -o-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ffc857 4%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #3f81c7 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #3f81c7 4%);
     background-position: -350px 0;
     background-size: 350px 100%;
     background-repeat: no-repeat;
@@ -1172,7 +1158,7 @@ input:focus {
   background-position: 0 0;
 }
 
-input:focus::-webkit-input-placeholder {
+/*input:focus::-webkit-input-placeholder {
   color: #ffc857;
   font-size: 11px;
   transform: translateY(-20px);
@@ -1181,47 +1167,30 @@ input:focus::-webkit-input-placeholder {
   -o-transform: translateY(-20px);
   -ms-transform: translateY(-20px);
   visibility: visible !important;
-}
+}*/
 
 input[type=submit]{
     border: none;
-    background: #ffc857;
+    background: #3f81c7;
     cursor: pointer;
     border-radius: 3px;
     padding: 6px;
     width: 100px;
     color: white;
-    /*box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);*/
-    box-shadow: 0 3px 6px 0 rgba(255, 200, 87, 0.23);
+    transition: all 0.4s;
 }
 input[type=submit]:hover {
-  -webkit-transform: translateY(-3px);
-  -ms-transform: translateY(-3px);
-  -moz-transform: translateY(-3px);
-  -o-transform: translateY(-3px);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  color: #ADADAD;
+  background: #DDE2E7;
 }
 
-input:focus::-webkit-input-placeholder {
-  color: #ffc857;
-  font-size: 11px;
-  transform: translateY(-20px);
-  -webkit-transform: translateY(-20px);
-  -moz-transform: translateY(-20px);
-  -o-transform: translateY(-20px);
-  -ms-transform: translateY(-20px);
-  visibility: visible !important;
-}
+
 .links{
   margin-top: 100px !important;
   box-sizing: border-box;
   width: 400px;
   margin: 100px auto 0;
- /* box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);*/
-  box-shadow:2px 2px 5px 1px rgba(8,8,10,0.6);
   border-radius: 3px;
-  background-color: #333;
   margin-left:0;
   display: inline-block;
 }
@@ -1273,7 +1242,7 @@ input:focus::-webkit-input-placeholder {
     color: white;
     /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2); */
     box-shadow: 0 3px 6px 0 rgba(255, 200, 87, 0.23);
-    border: 2px solid #fed136;
+    border: 2px solid #3f81c7;
     color: #f1f1f1;
     transition: all 0.4s;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1287,8 +1256,8 @@ a.submit-btn.default-style{
   text-decoration: none;
 }
 .submit-btn.default-style:hover{
-  background: #fed136;
-  color: #222;
+  background: #3f81c7;
+  color: #fff;
   webkit-transform: translateY(-3px);
   -ms-transform: translateY(-3px);
   -moz-transform: translateY(-3px);
