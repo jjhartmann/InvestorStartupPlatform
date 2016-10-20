@@ -5,7 +5,7 @@ module RailsAdmin::AdminMeetingScheduleAdmin
     rails_admin do
       navigation_label 'Navigation'
       navigation_icon 'fa fa-calendar'
-      label_plural 'MeetingsSchedules'
+      label_plural 'Meetings Schedules'
 
       create do
         field :investor_profile
