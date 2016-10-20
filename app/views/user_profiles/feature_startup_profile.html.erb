@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="tab-title">Profile</div>
+      <div class="main-start">
+        <div class="box-tab tag-stack">
+          <div class="form-group">
+            <div class="tag-pro-view">
+              <%= image_tag @featured_startup.photo_avatar, class: "display-mode-value" %>
+            </div>
+            <div class="pro-tag-src">
+              <h2><i aria-hidden="true" class="fa fa-user"></i><span class="display-mode-value"><%= @featured_startup.name %></span></h2>
+              <div class="user-positon main-tag-view"><span><%= @featured_startup.profilable.something_cool%></span></div>
+              <div class="user-positon main-tag-view"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @featured_startup.profilable.profession %></span></div>
+
+              <div class="user-positon main-tag-view"><i aria-hidden="true" class="fa fa-map-marker"></i><span class="display-mode-value">Gujarat Housing Board</span></div>
+
+              <div class="user-positon main-tag-view"><i aria-hidden="true" class="fa fa-envelope"></i><span class="display-mode-value"><%= @featured_startup.email %></span></div>
+            </div>
+          </div>
+          <div class="main-view">
+            <h3>About</h3>
+            <div class="deatils-main">
+              <span><i class="fa fa-hand-o-right" aria-hidden="true"></i><p><%= @featured_startup.profilable.startup_feature.announcement %></p></span>
+              <!-- <span><i class="fa fa-hand-o-right" aria-hidden="true"></i><p>loerm ipsum tag view loerm ipsum tag view.....</p></span> -->
+              <!-- <span><i class="fa fa-hand-o-right" aria-hidden="true"></i><p>loerm ipsum tag view loerm ipsum tag view.....</p></span> -->
+              <!-- <span><i class="fa fa-hand-o-right" aria-hidden="true"></i><p>loerm ipsum tag view loerm ipsum tag view.....</p></span> -->
+              <!-- <span><i class="fa fa-hand-o-right" aria-hidden="true"></i><p>loerm ipsum tag view loerm ipsum tag view.....</p></span> -->
+            </div>
+          </div>
+          <!-- <div class="main-view">
+            <h3>Loerm ipsum</h3>
+            <div class="comment">
+              <ul>
+                <li>
+                  <div class="new-pic"><%= image_tag @featured_startup.photo_avatar %></div>
+                  <div class="main-deatils-pro">
+                    <a href="#"><h4>abc123</h4></a>
+                    <span class="tag-line">loerm ipsum loerm ipsum</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="new-pic"><img src="images/pro-1.jpg"/></div>
+                  <div class="main-deatils-pro">
+                    <a href="#"><h4>abc123</h4></a>
+                    <span class="tag-line">loerm ipsum loerm ipsum</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="new-pic"><img src="images/pro-1.jpg"/></div>
+                  <div class="main-deatils-pro">
+                    <a href="#"><h4>abc123</h4></a>
+                    <span class="tag-line">loerm ipsum loerm ipsum</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="new-pic"><img src="images/pro-1.jpg"/></div>
+                  <div class="main-deatils-pro">
+                    <a href="#"><h4>abc123</h4></a>
+                    <span class="tag-line">loerm ipsum loerm ipsum</span>
+                  </div>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
