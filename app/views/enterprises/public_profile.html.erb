@@ -143,7 +143,7 @@ $(document).ready(function(){
 
             $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
 
-            initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>');
+            initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>','<%= day.end_time.strftime("%H:%M")%>');
             // alert("invalid");
           }
         }else{
@@ -152,11 +152,12 @@ $(document).ready(function(){
       '<% end %>'
 
   });
-  function initialize_timepicker(val2){
+  function initialize_timepicker(startTime,endTime){
     $('#datepairExample .time.start').timepicker({
       'showDuration': true,
       'timeFormat': 'G:i',
-      'minTime': val2
+      'minTime': startTime,
+      'maxTime': endTime
     }).on('change',function(){
       // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
       reload_time($(this).val());

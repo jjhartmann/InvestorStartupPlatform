@@ -117,8 +117,8 @@ end
 p ' > Admin Meeting Schedule'
 
 User.where(profilable_type: "InvestorProfile").each do |a|
- 2.times do
-   @meeting = AdminMeetingSchedule.create!(investor_profile_id: a.profilable_id,day: Date::DAYNAMES.sample,start_time: (Time.now.beginning_of_day + rand(8..18).hour))
+ Date::DAYNAMES.each do |today|
+   @meeting = AdminMeetingSchedule.create!(investor_profile_id: a.profilable_id,day: today,start_time: (Time.now.beginning_of_day + rand(8..18).hour))
  end
 end
 

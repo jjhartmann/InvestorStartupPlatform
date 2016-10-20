@@ -55,7 +55,11 @@ Rails.application.routes.draw do
       get 'searched_users'
     end
   end
-  resources :user_profiles
+  resources :user_profiles do
+    collection do
+      get 'feature_startup_profile'
+    end
+  end
   resources :questionaries do
     collection do
       post 'save_questions'

@@ -3,9 +3,9 @@ class Meeting < ApplicationRecord
 
   belongs_to :enterprise
   belongs_to :investor_profile
-  has_many :meeting_members
-  has_many :notifications
-  has_one :meeting_room
+  has_many :meeting_members, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_one :meeting_room, dependent: :destroy
 
   before_create :set_end_time
   before_update :set_end_time

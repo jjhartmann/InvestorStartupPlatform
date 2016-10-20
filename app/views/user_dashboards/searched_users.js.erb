@@ -1,4 +1,4 @@
-$(".user-follow").html('<ul class="clearfix">'+
+$("#home-1 .user-follow").html('<ul class="clearfix">'+
   '<% @all_users.each do |user| %>'+
   '<%= link_to user_profile_path(id: current_user.id,suggested_profile: user.id) do %>'+
     '<li id="user_<%= user.id %>">'+
@@ -23,6 +23,11 @@ $(".user-follow").html('<ul class="clearfix">'+
     '</li>'+
   '<% end %>'+
   '<% end %>'+
+'</ul>');
+
+
+$("#menu-2 .user-follow").html('<ul class="clearfix">'+
+  '<% if @enterprises.count > 0 %>'+
   '<% @enterprises.each do |enterprise| %>'+
   '<%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>'+
     '<li>'+
@@ -46,5 +51,12 @@ $(".user-follow").html('<ul class="clearfix">'+
       '</div>'+
     '</li>'+
   '<% end %>'+
+  '<% end %>'+
+  '<% else %>'+
+    '<div class="notes-alert">'+
+        '<div class="alert alert-warning">'+
+          '<strong>No Enterprise</strong> found.'+
+        '</div>'+
+    '</div>'+
   '<% end %>'+
 '</ul>');

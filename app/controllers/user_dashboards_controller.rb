@@ -31,19 +31,23 @@ class UserDashboardsController < ApplicationController
   def all_users
     @user = current_user
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_users = User.where('profilable_type NOT IN(?)',['InvestorProfile']).where.not(id: current_user.id)
+    @all_users = User.where('profilable_type NOT IN(?)',[current_user.profilable_type]).where.not(id: current_user.id)
     @enterprises = Enterprise.all
   end
 
   def follow_unfollow_user
     if params[:target_type] == "Enterprise"
+      puts "%%%%"
       @user = Enterprise.find(params[:target_id])
     else
+      puts "$$$$$$$$$"
       @user = User.find(params[:target_id])
     end
     if current_user.is_following?(@user)
+      puts "_______"
       current_user.unfollow(@user)
     else
+      puts "@@@@@@@@"
       current_user.follow(@user)
     end
     @network_count = current_user.network_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)
@@ -90,7 +94,7 @@ class UserDashboardsController < ApplicationController
   def searched_users
     @user = current_user
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_users = User.where('name LIKE ? AND profilable_type NOT IN(?)',"%#{params[:name]}%",['InvestorProfile']).where.not(id: current_user.id)
+    @all_users = User.where('name LIKE ? AND profilable_type NOT IN(?)',"%#{params[:name]}%",[current_user.profilable_type]).where.not(id: current_user.id)
     puts "___________"
     puts @all_users.as_json
     puts "___________"
