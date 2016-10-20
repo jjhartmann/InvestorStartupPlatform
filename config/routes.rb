@@ -53,6 +53,8 @@ Rails.application.routes.draw do
       get 'profile_visitors'
       get 'featured_users'
       get 'searched_users'
+      patch 'update_password'
+      patch 'update_profile'
     end
   end
   resources :user_profiles
