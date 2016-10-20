@@ -63,7 +63,6 @@ class User < ApplicationRecord
   scope :new_users,  -> {  where :profilable => nil }
   scope :entrepreneurs, -> { joins(:enterprise_users).where('enterprise_users.user_email != nil') }
   scope :investors, ->   { where :profilable_type => 'InvestorProfile'}
-  # scope :visitor, -> { includes(:profile_visitors).where('profile_visitors.visitee = ?', self)  }
 
   before_save :email_nomarlisation
 
@@ -128,7 +127,6 @@ class User < ApplicationRecord
   end
 
   def send_private_message(target_user, content, extras = {})
-    puts "123"
     messages.create!({
                          :content     => content,
                          :is_private  => true,
@@ -139,7 +137,6 @@ class User < ApplicationRecord
   end
 
   def reply_private_message(topic, content, extras = {})
-    puts "456"
       message = messages.new({
                          :content     => content,
                          :is_private  => true,
@@ -155,7 +152,6 @@ class User < ApplicationRecord
 
   #function to send reply for message to the other user
   def new_reply_private_message(topic, content, extras = {})
-    puts "789"
     message = messages.new({
                          :content     => content,
                          :is_private  => true,
@@ -308,6 +304,21 @@ class User < ApplicationRecord
                             )
     end
   end
+
+  # instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  # ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end  
 
   protected
 

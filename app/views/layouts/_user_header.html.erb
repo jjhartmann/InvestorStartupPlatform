@@ -36,7 +36,11 @@
           <ul class="dropdown-menu user-section">
             <li><%= link_to user_profile_path(@user) do %><%= current_user.name %><% end %></li>
             <li class="divider" role="presentation"></li>
-            <li><a href="#">Settings</a></li>
+            <li>
+              <%= link_to edit_user_dashboard_path(@user) do %>
+              Settings
+              <% end %>
+            </li>
             <% unless @user.profilable_type == "InvestorProfile" %>
             <li><%= link_to new_enterprise_path do %>Create Company Profile<% end %></li>
             <% end %>

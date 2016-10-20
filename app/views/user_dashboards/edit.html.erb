@@ -1,2 +1,67 @@
-<h1>UserDashboards#edit</h1>
-<p>Find me in app/views/user_dashboards/edit.html.erb</p>
+<%= content_for :body_class, "dashbord" %>
+
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <div class="container side-deatail">
+    <div class="col-xs-3">
+      <%= render "/user_dashboards/sidebar" %>
+    </div>
+    <div class="col-xs-9">
+      <div class="container">
+  <h2>Seetings</h2>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#change_pass">Change Password</a></li>
+    <li><a data-toggle="tab" href="#profile_type">Privacy</a></li>
+    <li><a data-toggle="tab" href="#deactivate_account">Deactivate Account</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="change_pass" class="tab-pane fade in active">
+      <h3>Change Password</h3>
+      <div class="profile-tabs">
+        <div class="tab-content">
+          <div class="tab-pane fade in active">
+            <%= simple_form_for(@user, :url => { :action => "update_password" }) do |f| %>
+            <div class="field">
+              <%= f.input :password, :autocomplete => "off"  %>
+            </div>
+            <div class="field">
+              <%= f.input :password_confirmation %>
+            </div>
+            <div class="field">
+              <%= f.input :current_password %>
+            </div>
+            <div class="action_container">
+              <%= f.submit %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="profile_type" class="tab-pane fade">
+      <h3>Privacy</h3>
+      <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
+        <div class="field">
+          <%= f.input :is_public,
+                      :collection => [[true, 'Private'], [false, 'Public']],
+                      :label_method => :last,
+                      :value_method => :first,
+                      :as => :radio_buttons,
+                      :item_wrapper_class => 'inline',
+                      :checked => true %>
+        </div>
+        <%= f.submit "Save" %>
+      <% end %>
+
+    </div>
+    <div id="deactivate_account" class="tab-pane fade">
+      <h3>Delete Account</h3>
+      <%= link_to "Destroy Account", user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } %>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
