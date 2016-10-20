@@ -65,6 +65,7 @@
                   <div class="load-more-item" data-toggle="collapse" data-target="#demo">
                     <div class="btn-view">Show More Features</div>
                   </div>
+                  <%= link_to "Features", feature_startup_profile_user_profiles_path(id: @user_profile.id), class: "btn btn-primary" %>
                 <% end %>
                 <div class="event-btn">
                   <button type="button" class="btn btn-default js-cancel">Cancel</button>

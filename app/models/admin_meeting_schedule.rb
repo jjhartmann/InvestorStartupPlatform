@@ -9,6 +9,8 @@ class AdminMeetingSchedule < ApplicationRecord
 
   # Set end time for the meeting schedule created from the seed file.
   def set_end_time
-    self.end_time = self.start_time + 1.day
+    puts "_____________"
+    self.end_time = self.start_time + 6.hours
+    puts self.as_json
   end
 end

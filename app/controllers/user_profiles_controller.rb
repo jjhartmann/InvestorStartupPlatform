@@ -40,6 +40,11 @@ class UserProfilesController < ApplicationController
   def destroy
   end
 
+  def feature_startup_profile
+    @featured_startup = User.find(params[:id])
+    puts params
+  end
+
   # def meeting_request
   #   @target_user = User.find(params[:requested_client_id])
   #   @meeting = Meeting.create(topic: params[:topic],start_time: Time.now, end_time: Time.now+1.hour, user_id: current_user.id)

@@ -1,4 +1,11 @@
-// alert("hello");
+//= require cable
+//= require_self
+//= require_tree .
+
+this.App = {};
+
+App.cable = ActionCable.createConsumer();
+
 App.messages = App.cable.subscriptions.create('NotificationChannel', {
   received: function(data,id) {
     return $('.notification-box ul').find('li[data-notification-id="'+ data.notification.id+'"]').html(this.renderMessage(data)), $('.notification-box ul').find('li[data-notification-id="'+ data.notification.id+'"]').addClass(data.notification_li_class);
