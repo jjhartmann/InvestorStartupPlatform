@@ -8,10 +8,10 @@ class OffersController < ApplicationController
   # GET /offers.json
   def index
     if @user.profilable_type == "InvestorProfile"
-      @offers = current_user.offers
+      @offers = current_user.offers.paginate(page: params[:page], per_page: 2)
     else
       @proposals = Proposal.get_users_proposals(@user)
-      @offers = Offer.where("proposal_id IN(?)",@proposals.ids)
+      @offers = Offer.where("proposal_id IN(?)",@proposals.ids).paginate(page: params[:page], per_page: 2)
     end
   end
 

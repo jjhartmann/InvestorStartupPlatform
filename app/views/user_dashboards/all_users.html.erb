@@ -11,17 +11,26 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="tab-title">All Users</div>
-
             <div style="margin-top: 10px">
               <%= text_field_tag "find_users", '',class: "form-control", placeholder: "Find People" %>
             </div>
             <div class="tab-content">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#all_users">Users<%#= current_user.profilable_type.underscore.split('_')[0].upcase_first.pluralize %></a></li>
-              <li><a data-toggle="tab" href="#all_investors">Investors</a></li>
-              <li><a data-toggle="tab" href="#all_enterprises">Enterprises</a></li>
+              <li class="<%= params[:enterprises]  || params[:investors] ? '' : 'active' %>">
+                <%= link_to all_users_user_dashboards_path do %>
+                  Users
+                <% end %>
+              </li>
+              <li class="<%= params[:investors] ? 'active' : '' %>">
+                <%= link_to all_users_user_dashboards_path(investors: true) do %>
+                  Investors
+                <% end %>
+              </li>
+              <li class="<%= params[:enterprises] ? 'active' : '' %>">
+                <%= link_to "Enterprises", all_users_user_dashboards_path(enterprises: true) %>
+              </li>
             </ul>
-              <div id="all_users" class="tab-pane fade in active">
+              <div id="all_users" class="tab-pane fade in <%= params[:enterprises]  || params[:investors] ? '' : 'active' %>">
                 <div class="user-follow" style="margin-top: 10px">
                   <ul class="clearfix">
                   <% @all_users.each do |user| %>
@@ -51,9 +60,11 @@
                   <% end %>
                 </ul>
               </div>
+              <div class="text-center">
+                <%= will_paginate @all_users %>
               </div>
-
-              <div id="all_investors" class="tab-pane fade">
+              </div>
+              <div id="all_investors" class="tab-pane fade in <%= params[:investors] ? 'active' : '' %>">
                 <div class="user-follow" style="margin-top: 10px">
                   <ul class="clearfix">
                   <% @all_investors.each do |investor| %>
@@ -83,9 +94,11 @@
                   <% end %>
                 </ul>
               </div>
+              <div class="text-center">
+                <%= will_paginate @all_users %>
               </div>
-
-              <div id="all_enterprises" class="tab-pane fade">
+              </div>
+              <div id="all_enterprises" class="tab-pane fade in <%= params[:enterprises] ? 'active' : '' %>">
                 <div class="user-follow" style="margin-top: 10px">
                   <ul class="clearfix">
                     <% @enterprises.each do |enterprise| %>
@@ -114,6 +127,9 @@
                     <%# end %>
                     <% end %>
                   </ul>
+                </div>
+                <div class="text-center">
+                  <%= will_paginate @enterprises %>
                 </div>
               </div>
             </div>

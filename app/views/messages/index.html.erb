@@ -13,37 +13,44 @@
       <div class="profile-tabs">
         <div class="tab-content">
           <div  class="tab-pane fade active in">
-
-            <div class="message">
-              <ul>
-                <% @message_thread.each do |thread| %>
-                <%#=  thread.class %>
-                  <%= link_to inbox_messages_path(id: thread.id) do %>
-                    <li>
-                      <div class="pro-message">
-                        <div class="circle-pic">
+            <% if @message_thread.count > 0 %>
+              <div class="message">
+                <ul>
+                  <% @message_thread.each do |thread| %>
+                  <%#=  thread.class %>
+                    <%= link_to inbox_messages_path(id: thread.id) do %>
+                      <li>
+                        <div class="pro-message">
+                          <div class="circle-pic">
+                            <% if thread.target_id == current_user.id %>
+                              <%= image_tag thread.user.photo_avatar %>
+                            <% else %>
+                              <%= image_tag thread.target.photo_avatar if thread.target.present? %>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                        <%= puts thread.unread_messages(current_user) %>
+                        <div class="top-count"><%= thread.unread_messages(current_user) %></div>
+                        <div class="sr-name">
                           <% if thread.target_id == current_user.id %>
-                            <%= image_tag thread.user.photo_avatar %>
+                            <%= thread.user.name %>
                           <% else %>
-                            <%= image_tag thread.target.photo_avatar if thread.target.present? %>
+                            <%= thread.target.name %>
                           <% end %>
                         </div>
-                      </div>
-                      <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
-                      <%= puts thread.unread_messages(current_user) %>
-                      <div class="top-count"><%= thread.unread_messages(current_user) %></div>
-                      <div class="sr-name">
-                        <% if thread.target_id == current_user.id %>
-                          <%= thread.user.name %>
-                        <% else %>
-                          <%= thread.target.name %>
-                        <% end %>
-                      </div>
-                    </li>
+                      </li>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </ul>
+                </ul>
+              </div>
+            <% else %>
+            <div class="notes-alert">
+              <div class="alert alert-warning">
+                You do not have any <strong>Messages</strong> at the current moment.
+              </div>
             </div>
+            <% end %>
           </div>
         </div>
       </div>

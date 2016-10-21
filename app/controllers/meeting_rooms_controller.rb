@@ -3,35 +3,23 @@ class MeetingRoomsController < ApplicationController
   layout 'frontpage'
   before_action :authenticate_user!
 
-  # GET /meeting_rooms
-  # GET /meeting_rooms.json
   def index
-    @meetings = @user.profilable.meetings.where(acceptance_status: "accepted")
+    @meetings = @user.profilable.meetings.where(acceptance_status: "accepted").paginate(page: params[:page], per_page: 2)
   end
 
-  # GET /meeting_rooms/1
-  # GET /meeting_rooms/1.json
   def show
-    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:id])
-    if @member.present?
-    else
-      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:id])
-    end
+    @member = @user.profilable.meeting_room_members.find_or_create(meeting_room_id: params[:id])
     @message = Message.new
     @document = MeetingRoomMessageDocument.new
   end
 
-  # GET /meeting_rooms/new
   def new
     @meeting_room = MeetingRoom.new
   end
 
-  # GET /meeting_rooms/1/edit
   def edit
   end
 
-  # POST /meeting_rooms
-  # POST /meeting_rooms.json
   def create
     @meeting_room = MeetingRoom.new(meeting_room_params)
 
@@ -46,8 +34,6 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /meeting_rooms/1
-  # PATCH/PUT /meeting_rooms/1.json
   def update
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
@@ -60,8 +46,6 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
-  # DELETE /meeting_rooms/1
-  # DELETE /meeting_rooms/1.json
   def destroy
     @meeting_room.destroy
     respond_to do |format|

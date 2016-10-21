@@ -12,7 +12,7 @@
             <div class="tab-content">
               <div class="tab-pane fade in active">
                 <% if @user.profilable_type == "InvestorProfile" %>
-                <div class="pull-right new-button">
+                <div class="new-button">
                   <%= link_to 'New Offer', new_offer_path, class: "btn btn-primary" %>
                 </div>
                 <% if @offers.present? %>
@@ -29,10 +29,10 @@
                       <% @offers.each do |offer| %>
                       <li>
                         <div class="name-enetrprise"><%= offer.offer_title %></div>
-                        <div class="destory"><%= offer.text %></div>
-                        <div class="destory"><%= h truncate(offer.description, length: 30) %></div>
+                        <div class="destory"><%= h truncate(offer.text, length: 10) %></div>
+                        <div class="destory"><%= h truncate(offer.description, length: 10) %></div>
                         <div class="destory"><%= offer.amount_to_offer %></div>
-                        <div class="destory"><%= h truncate(offer.proposal.pitch, length: 60) %></div>
+                        <div class="destory"><%= h truncate(offer.proposal.pitch, length: 10) %></div>
                         <div class="destory">
                           <div class="buttons">
                             <%= link_to edit_offer_path(offer) do %><div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div><% end %>
@@ -43,6 +43,9 @@
                       </li>
                       <% end %>
                     </ul>
+                  </div>
+                  <div class="text-center">
+                    <%= will_paginate @offers %>
                   </div>
                   <% else %>
                     <div class="notes-alert">
