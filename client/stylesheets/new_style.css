@@ -357,7 +357,7 @@ ul.comapny{
     color: #9d9d9d;
     font-size: 15px;
 }
-.tag-btn-view a {
+.tag-btn-view div {
     background: #3f81c7;
     display: inline-block;
     padding: 5px 15px;
@@ -367,7 +367,7 @@ ul.comapny{
     border-radius: 3px;
     transition: all 0.2s;
 }
-.tag-btn-view a:hover {
+.tag-btn-view div:hover {
     background-color: #dde2e7;
     color: #777;
 }

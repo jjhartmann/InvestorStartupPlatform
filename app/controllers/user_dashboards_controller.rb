@@ -39,8 +39,8 @@ class UserDashboardsController < ApplicationController
   def all_users
     @user = current_user
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_users = User.where(profilable_type: current_user.profilable_type).where.not(id: current_user.id)
-    @all_investors = User.where('profilable_type NOT IN(?)',[current_user.profilable_type]).where.not(id: current_user.id)
+    @all_users = User.where(profilable_type: "UserProfile").where.not(id: current_user.id)
+    @all_investors = User.where(profilable_type: "InvestorProfile").where.not(id: current_user.id)
     @enterprises = Enterprise.all
   end
 
