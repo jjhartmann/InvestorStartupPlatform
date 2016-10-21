@@ -7,7 +7,7 @@ export default class Links extends React.Component {
   render() {
     return (
       <div>
-        <LinksWidget/>
+        <LinksWidget {...this.props}/>
       </div>
     );
   }
