@@ -2,147 +2,111 @@
 <%= content_for :sidebar_all_users_class, "active" %>
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
-  <div class="container side-deatail">
-    <div class="col-xs-3">
-      <%= render "/user_dashboards/sidebar" %>
-    </div>
-    <div class="col-xs-9">
-      <div class="profile-tabs">
-        <div class="tab-content">
-          <div class="tab-pane fade in active">
-            <div class="tab-title">All Users</div>
-
-            <div style="margin-top: 10px">
-              <%= text_field_tag "find_users", '',class: "form-control", placeholder: "Find People" %>
-            </div>
-            <div class="tab-content">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#all_users">Users<%#= current_user.profilable_type.underscore.split('_')[0].upcase_first.pluralize %></a></li>
-              <li><a data-toggle="tab" href="#all_investors">Investors</a></li>
-              <li><a data-toggle="tab" href="#all_enterprises">Enterprises</a></li>
-            </ul>
-              <div id="all_users" class="tab-pane fade in active">
-                <div class="user-follow" style="margin-top: 10px">
-                  <ul class="clearfix">
+  <!--search-details-->
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="head-title">Search</h2>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#all_users">Users</a></li>
+            <li><a data-toggle="pill" href="#all_investors">Investors</a></li>
+            <li><a data-toggle="pill" href="#all_enterprises">Enterprises</a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <div class="tab-content">
+            <div id="all_users" class="tab-pane fade in active">
+              <div class="items-view">
+                <ul>
                   <% @all_users.each do |user| %>
-                    <%#= link_to user_profile_path(id: current_user.id,suggested_profile: user.id) do %>
-                      <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= user.id %>'>
-                        <div class="tag-1">
-                          <div class="follow-pro">
-                            <div class="pic-user"><%= image_tag user.photo_avatar %></div>
-                          </div>
+                    <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= user.id %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag user.photo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= user.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{user.id}"%>' data-type='<%="#{user.profilable_type}"%>'>Follow</div>
                         </div>
-                        <div class="tag-2">
-                          <h2><%= user.name %></h2>
-                          <div class="tag-line-pro"><%= truncate(user.profilable.something_cool,length: 80,separator: ' ') %></div>
-                        </div>
-                        <div class="tag-3">
-                          <div class="action-tag">
-                            <ul class="menu cf">
-                              <li class="follow" data-id='<%="#{user.id}"%>' data-type='<%="#{user.profilable_type}"%>'>
-                                <%= current_user.is_following?(user) ? "Following" : "Follow" %>
-                                <%#= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                    <%# end %>
+                      </div>
+                    </li>
                   <% end %>
                 </ul>
-              </div>
-              </div>
-
-              <div id="all_investors" class="tab-pane fade">
-                <div class="user-follow" style="margin-top: 10px">
-                  <ul class="clearfix">
-                  <% @all_investors.each do |investor| %>
-                    <%#= link_to user_profile_path(id: current_user.id,suggested_profile: user.id) do %>
-                      <li id="investor_<%= investor.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= investor.id %>'>
-                        <div class="tag-1">
-                          <div class="follow-pro">
-                            <div class="pic-user"><%= image_tag investor.photo_avatar %></div>
-                          </div>
-                        </div>
-                        <div class="tag-2">
-                          <h2><%= investor.name %></h2>
-                          <div class="tag-line-pro"><%= truncate(investor.profilable.description,length: 80,separator: ' ') %></div>
-                        </div>
-                        <div class="tag-3">
-                          <div class="action-tag">
-                            <ul class="menu cf">
-                              <li class="follow" data-id='<%="#{investor.id}"%>' data-type='<%="#{investor.profilable_type}"%>'>
-                                <%= current_user.is_following?(investor) ? "Following" : "Follow" %>
-                                <%#= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                    <%# end %>
-                  <% end %>
-                </ul>
-              </div>
-              </div>
-
-              <div id="all_enterprises" class="tab-pane fade">
-                <div class="user-follow" style="margin-top: 10px">
-                  <ul class="clearfix">
-                    <% @enterprises.each do |enterprise| %>
-                    <%#= link_to public_profile_enterprises_path(enterprise: enterprise) do %>
-                      <li id="enterprise_<%= enterprise.id %>" class="clickable-row" data-href='<%= public_profile_enterprises_path(enterprise: enterprise) %>'>
-                        <div class="tag-1">
-                          <div class="follow-pro">
-                            <div class="pic-user"><%= image_tag enterprise.logo_avatar %></div>
-                          </div>
-                        </div>
-                        <div class="tag-2">
-                          <h2><%= enterprise.name %></h2>
-                          <div class="tag-line-pro"><%= truncate(enterprise.description,length: 80,separator: ' ') %><%#= enterprise.description %></div>
-                        </div>
-                        <div class="tag-3">
-                          <div class="action-tag">
-                            <ul class="menu cf">
-                              <li class="follow" data-id='<%="#{enterprise.id}"%>' data-type='<%="#{enterprise.class}"%>'>
-                                <%= current_user.is_following?(enterprise) ? "Following" : "Follow" %>
-                                <%#= link_to @user.is_following?(enterprise) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                    <%# end %>
-                    <% end %>
-                  </ul>
-                </div>
               </div>
             </div>
-          </div>
+            <div id="all_investors" class="tab-pane fade">
+              <div class="items-view">
+                <ul>
+                  <% @all_investors.each do |investor| %>
+                    <li id="investor_<%= investor.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= investor.id %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag investor.photo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= investor.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-tag" aria-hidden="true"></i><%= investor.profilable.tagline %></div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(investor.profilable.description,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{investor.id}"%>' data-type='<%="#{investor.profilable_type}"%>'>Follow</div>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div id="all_enterprises" class="tab-pane fade">
+              <div class="items-view">
+                <ul>
+                  <% @enterprises.each do |enterprise| %>
+                    <li id="enterprise_<%= enterprise.id %>" class="clickable-row" data-href='<%= public_profile_enterprises_path(enterprise: enterprise) %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag enterprise.logo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= enterprise.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-tag" aria-hidden="true"></i><%= enterprise.pitch %></div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(enterprise.description,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{enterprise.id}"%>' data-type='<%="#{enterprise.class}"%>'>Follow</div>
+                        </div>
+
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
+  <!--/search-details-->
 
 <script>
-$(document).ready(function(){
-  $("#find_users").on("keyup",function(event){
-    if (event.keyCode != 10 && event.keyCode != 13) {
-    //  event.preventDefault();
-     $.ajax({
-       type: "get",
-       url: "/user_dashboards/searched_users",
-       data: {name: $(this).val()}
-     });
-   }
-  })
-})
-$(".clickable-row>div").click(function() {
-  if($(this).hasClass('tag-3')){
-  }else{
-    window.document.location = $(this).parent("li").data("href");
-  }
-});
+  $(document).ready(function(){
+    $("#find_users").on("keyup",function(event){
+      if (event.keyCode != 10 && event.keyCode != 13) {
+      //  event.preventDefault();
+       $.ajax({
+         type: "get",
+         url: "/user_dashboards/searched_users",
+         data: {name: $(this).val()}
+       });
+     }
+    })
+  });
+  $('li.clickable-row>div>div').each(function(){
+    $(this).click(function() {
+      if($(this).hasClass('tag-btn-view')){
+      }else{
+        window.document.location = $(this).parent().parent().data("href");
+      }
+    });
+
+  });
 </script>
