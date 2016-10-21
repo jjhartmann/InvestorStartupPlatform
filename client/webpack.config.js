@@ -57,6 +57,7 @@ config = {
     './stylesheets/agency',
     './stylesheets/font-awesome.min',
     './stylesheets/style',
+    './stylesheets/new_style',
     './stylesheets/responsive',
     './stylesheets/bootstrap-datepicker',
     './stylesheets/jquery.timepicker.min',
@@ -124,6 +125,10 @@ config = {
       // Font Awesome Loaders
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file?name=src/fonts/[name].[ext]'
+      },
 
       // Jquery-UI
       { test: /\.(jpe?g|png|gif)$/i, loader:"file" },
