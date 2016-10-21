@@ -36,18 +36,9 @@ class UserDashboardsController < ApplicationController
   end
 
   def all_users
-    # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-<<<<<<< HEAD
-    # @all_users = User.where(profilable_type: current_user.profilable_type).where.not(id: current_user.id)
-    # @all_investors = User.where('profilable_type NOT IN(?)',[current_user.profilable_type]).where.not(id: current_user.id)
-    @all_users = User.where(profilable_type: "UserProfile").where.not(id: current_user.id).paginate(page: params[:page], per_page: 2)
-    @all_investors = User.where(profilable_type: "InvestorProfile").where.not(id: current_user.id).paginate(page: params[:page], per_page: 2)
-    @enterprises = Enterprise.all.paginate(page: params[:page], per_page: 2)
-=======
     @all_users = User.where(profilable_type: "UserProfile").where.not(id: current_user.id)
     @all_investors = User.where(profilable_type: "InvestorProfile").where.not(id: current_user.id)
     @enterprises = Enterprise.all
->>>>>>> b05b12586936ec25ee3c64d235a630e744d91c86
   end
 
   def follow_unfollow_user

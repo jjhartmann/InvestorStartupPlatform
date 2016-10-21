@@ -8,7 +8,7 @@ class MeetingRoomsController < ApplicationController
   end
 
   def show
-    @member = @user.profilable.meeting_room_members.find_or_create(meeting_room_id: params[:id])
+    @member = @user.profilable.meeting_room_members.find_or_create_by(meeting_room_id: params[:id])
     @message = Message.new
     @document = MeetingRoomMessageDocument.new
   end
