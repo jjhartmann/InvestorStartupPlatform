@@ -5,93 +5,65 @@
 <%= content_for :profile_active_class, "active" %>
 
 <div class="main-body">
-  <div class="container side-deatail" style="transition: none; width: 100%;">
-    <div class="col-xs-12">
-      <div class="profile-tabs">
-        <div id="home" class="editable-contact-info edit-mode-disabled">
-            <div class="main-start">
-              <div class="box-tab">
-                <div class="form-group">
-                   <div class="circle">
-                    <%= image_tag @user_profile.photo_thumb, class: "display-mode-value"%>
-                   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-9">
+      <div class="box-pro">
+        <div class="circle-tag">
+          <div class="pro"><%= image_tag @user_profile.photo_thumb %></div>
+          <div class="pro-deatils">
+            <h3><%= @user_profile.name %></h3>
+            <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>India, Gujrat, Surat</p>
+            <p><span><i class="fa fa-tag" aria-hidden="true"></i></span><%= @user_profile.profilable.profession if @user_profile.profilable_type == "UserProfile" %></p>
+            <p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><%= @user_profile.email %></p>
+          </div>
+        </div>
+        <div class="deatils-tag">
+          <h3>About Me</h3>
+          <p><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.something_cool : @user_profile.profilable.description %></p>
+        </div>
+      </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="view-side">
+          <% if @user_profile.profilable_type == "UserProfile" %>
+            <div class="tag-new">
+            <h2>Companies</h2>
+            <div class="view-bar">
+             <ul class="comapny">
+              <li>
+                <div class="pro-com"><img src="images/pro-1.jpg"/></div>
+                <div class="com-det">
+                  <span class="name">Abc Technology</span>
+                  <span class="date"><i aria-hidden="true" class="fa fa-calendar"></i> 10 Oct 2016</span>
+                  <span>Loerm ipsum</span>
                 </div>
-                <div class="form-group">
-                  <h2>
-                    <i aria-hidden="true" class="fa fa-user"></i>
-                    <span class="display-mode-value"><%= @user_profile.name %><%= hidden_field_tag :target_id1,@user_profile.id %></span>
-                  </h2>
-                </div>
-                <div class="form-group">
-                  <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
-                </div>
-                <% if @user.profilable_type == "UserProfile" %>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><span class="display-mode-value"><%= @user.profilable.industry %></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><span class="display-mode-value"><%= @user.profilable.profession %></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><span class="display-mode-value"><%= @user.profilable.skills %></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><span class="display-mode-value"><%= @user.profilable.something_cool %></span></div>
-                  </div>
-                <% else %>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><span class="display-mode-value"><%= @user.profilable.description %></span></div>
-                  </div>
-                <% end %>
-                <div class="form-group">
-                  <div class="user-positon">
-                    <i aria-hidden="true" class="fa fa-envelope"></i>
-                    <span class="display-mode-value"><%= @user_profile.email %></span>
-                  </div>
-                </div>
-                <% if @user_profile.profilable.startup_feature %>
-                  <div class="form-group">
-                    <div class="data-view collapse" id="demo">
-                      <p><%= @user_profile.profilable.startup_feature.announcement %></p>
-                      <p>Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum Loerm ipsumLoerm ipsum Loerm ipsum Loerm ipsum Loerm ipsum</p>
-                    </div>
-                  </div>
-                  <div class="load-more-item" data-toggle="collapse" data-target="#demo">
-                    <div class="btn-view">Show More Features</div>
-                  </div>
-                  <%= link_to "Features", feature_startup_profile_user_profiles_path(id: @user_profile.id), class: "btn btn-primary" %>
-                <% end %>
-                <div class="event-btn">
-                  <button type="button" class="btn btn-default js-cancel">Cancel</button>
-                </div>
-                <div class="buttons">
-                  <% if params[:connection_profile].present? %>
-                    <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
-                    <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
-                  <% elsif params[:suggested_profile].present?  %>
-                    <% if current_user.is_connection?(@user_profile,current_user) %>
-                      <div class="edit"><%= link_to '<i class="fa fa-comments" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
-                    <% end %>
-                    <!-- <div class="edit"><%#= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div> -->
-                  <% else %>
-                    <%= link_to edit_user_registration_path do %>
-                      <div class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-                    <% end %>
-                  <% end %>
-                  <a href="#"><div class="edit share"><i class="fa fa-share" aria-hidden="true"></i></div></a>
-                </div>
-              </div>
+              </li>
+             </ul>
             </div>
           </div>
+          <div class="tag-new">
+            <h2>Company Afflllations</h2>
+            <div class="view-bar">
+              <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i><a href="#" class="name">https://www.123.com/</a></span>
+              <hr>
+              <span class="tag-view"><i aria-hidden="true" class="fa fa-share"></i>
+                <ul>
+                  <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i aria-hidden="true" class="fa fa-instagram"></i></a></li>
+                </ul>
+              </span>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
+  <!--/proside-->
+
   </div>
 </div>
 
@@ -154,6 +126,8 @@
     </div>
   </div>
 </div>
+
+
 <script>
   $("#message_send").click(function(e){
     if ($("#message_content").val().trim() == ''){

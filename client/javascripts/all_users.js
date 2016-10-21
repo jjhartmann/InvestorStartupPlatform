@@ -11,7 +11,7 @@ $(document).ready(function(){
       success: function(){
         // console.log("success");
         // console.log(link.text());
-        console.log(link);
+        console.log(link.text());
         console.log($('#user_'+link.data('id')).find(".tag-3 li.follow").text());
         if (link.text().trim() == "Follow"){
           link.text("Following");
