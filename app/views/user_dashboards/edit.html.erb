@@ -8,55 +8,55 @@
     </div>
     <div class="col-xs-9">
       <div class="container">
-  <h2>Seetings</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#change_pass">Change Password</a></li>
-    <li><a data-toggle="tab" href="#profile_type">Privacy</a></li>
-    <li><a data-toggle="tab" href="#deactivate_account">Deactivate Account</a></li>
-  </ul>
+        <h2>Settings</h2>
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#change_pass">Change Password</a></li>
+          <li><a data-toggle="tab" href="#profile_type">Privacy</a></li>
+          <li><a data-toggle="tab" href="#deactivate_account">Deactivate Account</a></li>
+        </ul>
 
-  <div class="tab-content">
-    <div id="change_pass" class="tab-pane fade in active">
-      <h3>Change Password</h3>
-      <div class="profile-tabs">
         <div class="tab-content">
-          <div class="tab-pane fade in active">
-            <%= simple_form_for(@user, :url => { :action => "update_password" }) do |f| %>
+          <div id="change_pass" class="tab-pane fade in active">
+            <h3>Change Password</h3>
+            <div class="profile-tabs">
+              <div class="tab-content">
+                <div class="tab-pane fade in active">
+                  <%= simple_form_for(@user, :url => { :action => "update_password" }) do |f| %>
+                  <div class="field">
+                    <%= f.input :password, :autocomplete => "off"  %>
+                  </div>
+                  <div class="field">
+                    <%= f.input :password_confirmation %>
+                  </div>
+                  <div class="field">
+                    <%= f.input :current_password %>
+                  </div>
+                  <div class="action_container">
+                    <%= f.submit %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="profile_type" class="tab-pane fade">
+            <h3>Privacy</h3>
+            <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
             <div class="field">
-              <%= f.input :password, :autocomplete => "off"  %>
+              <%= f.collection_radio_buttons :is_public, [[true, 'Public'] ,[false, 'Private']], :first, :last %>
             </div>
-            <div class="field">
-              <%= f.input :password_confirmation %>
-            </div>
-            <div class="field">
-              <%= f.input :current_password %>
-            </div>
-            <div class="action_container">
-              <%= f.submit %>
-            </div>
+            <%= f.submit "Save" %>
+            <% end %>
+
+          </div>
+          <div id="deactivate_account" class="tab-pane fade">
+
+            <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
+            <h3>Delete Account</h3>
             <% end %>
           </div>
         </div>
       </div>
-    </div>
-    <div id="profile_type" class="tab-pane fade">
-      <h3>Privacy</h3>
-      <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
-        <div class="field">
-          <%= f.collection_radio_buttons :is_public, [[true, 'Public'] ,[false, 'Private']], :first, :last %>
-        </div>
-        <%= f.submit "Save" %>
-      <% end %>
-
-    </div>
-    <div id="deactivate_account" class="tab-pane fade">
-
-      <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
-        <h3>Delete Account</h3>
-      <% end %>
-    </div>
-  </div>
-</div>
 
     </div>
   </div>

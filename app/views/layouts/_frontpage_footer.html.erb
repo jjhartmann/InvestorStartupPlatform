@@ -1,1 +1,26 @@
-<%= react_component("FooterApp") %>
+<% react_component("FooterApp") %>
+<footer>
+  <div class="main-view">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="view-link">
+            <li><%= link_to "Services", services_home_pages_path %></a></li>
+            <li><%= link_to "About", about_home_pages_path %></a></li>
+            <li><%= link_to "FAQ", faq_home_pages_path %></a></li>
+            <li><%#= link_to "Contact", home_pages_path %></a></li>
+            <li><%#= link_to "Team", home_pages_path %></a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12">
+           <ul class="view-social">
+            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-view-sec"> ©2016 All rights reserved </div>
+</footer>
