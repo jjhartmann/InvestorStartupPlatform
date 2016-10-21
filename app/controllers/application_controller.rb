@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
     @notifications_temp = @user_notifications + @enterprise_notifications
     @notifications = @notifications_temp.sort! { |current_element,next_element| current_element.id <=> next_element.id }
     @notifications.sort! { |current_element, next_element| current_element.created_at <=> next_element.updated_at }.reverse!
+    puts @notifications.class
   end
 
   def get_user
