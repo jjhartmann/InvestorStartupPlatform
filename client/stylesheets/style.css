@@ -384,7 +384,7 @@ html,body{
   width: calc(100% - 50%);
   background: #222;
   padding: 12px;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
   border: none;
 }
 .question .submit-btn .btn.btn-default:hover {
@@ -724,7 +724,7 @@ a.view:hover{
   background:#eff4f7;
 }
 .dashbord {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 .edit-mode-enabled .form-control,
 .edit-mode-enabled .address-fields,
@@ -892,7 +892,7 @@ background: #ffc857;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
+  /*font-family: montserrat;*/
   color: #2C3E50;
   font-size: 13px;
 }
@@ -1340,7 +1340,7 @@ margin-top: 55px;
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
   font-size: 14px;
 }
 .menu li:hover {
@@ -2039,7 +2039,7 @@ ul.menu.cf li a:first-child {
 .registration.question-type input{
   border-bottom: solid 1px #444;
   color: #444;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 .registration.question-type input:focus{
   background-size: 0;
