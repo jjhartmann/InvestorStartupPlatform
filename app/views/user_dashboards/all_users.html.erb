@@ -2,6 +2,7 @@
 <%= content_for :sidebar_all_users_class, "active" %>
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
+<<<<<<< HEAD
   <div class="container side-deatail">
     <div class="col-xs-3">
       <%= render "/user_dashboards/sidebar" %>
@@ -141,24 +142,113 @@
   </div>
 </div>
 
+=======
+  <!--search-details-->
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="head-title">Search</h2>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#all_users">Users</a></li>
+            <li><a data-toggle="pill" href="#all_investors">Investors</a></li>
+            <li><a data-toggle="pill" href="#all_enterprises">Enterprises</a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+          <div class="tab-content">
+            <div id="all_users" class="tab-pane fade in active">
+              <div class="items-view">
+                <ul>
+                  <% @all_users.each do |user| %>
+                    <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= user.id %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag user.photo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= user.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{user.id}"%>' data-type='<%="#{user.profilable_type}"%>'>Follow</div>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div id="all_investors" class="tab-pane fade">
+              <div class="items-view">
+                <ul>
+                  <% @all_investors.each do |investor| %>
+                    <li id="investor_<%= investor.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id%>?suggested_profile=<%= investor.id %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag investor.photo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= investor.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-tag" aria-hidden="true"></i><%= investor.profilable.tagline %></div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(investor.profilable.description,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{investor.id}"%>' data-type='<%="#{investor.profilable_type}"%>'>Follow</div>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <div id="all_enterprises" class="tab-pane fade">
+              <div class="items-view">
+                <ul>
+                  <% @enterprises.each do |enterprise| %>
+                    <li id="enterprise_<%= enterprise.id %>" class="clickable-row" data-href='<%= public_profile_enterprises_path(enterprise: enterprise) %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag enterprise.logo_avatar %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= enterprise.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-tag" aria-hidden="true"></i><%= enterprise.pitch %></div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(enterprise.description,length: 80,separator: ' ') %></div>
+                        <div class="tag-btn-view">
+                          <div class="follow" data-id='<%="#{enterprise.id}"%>' data-type='<%="#{enterprise.class}"%>'>Follow</div>
+                        </div>
+
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--/search-details-->
+>>>>>>> b05b12586936ec25ee3c64d235a630e744d91c86
 
 <script>
-$(document).ready(function(){
-  $("#find_users").on("keyup",function(event){
-    if (event.keyCode != 10 && event.keyCode != 13) {
-    //  event.preventDefault();
-     $.ajax({
-       type: "get",
-       url: "/user_dashboards/searched_users",
-       data: {name: $(this).val()}
-     });
-   }
-  })
-})
-$(".clickable-row>div").click(function() {
-  if($(this).hasClass('tag-3')){
-  }else{
-    window.document.location = $(this).parent("li").data("href");
-  }
-});
+  $(document).ready(function(){
+    $("#find_users").on("keyup",function(event){
+      if (event.keyCode != 10 && event.keyCode != 13) {
+      //  event.preventDefault();
+       $.ajax({
+         type: "get",
+         url: "/user_dashboards/searched_users",
+         data: {name: $(this).val()}
+       });
+     }
+    })
+  });
+  $('li.clickable-row>div>div').each(function(){
+    $(this).click(function() {
+      if($(this).hasClass('tag-btn-view')){
+      }else{
+        window.document.location = $(this).parent().parent().data("href");
+      }
+    });
+
+  });
 </script>
