@@ -1,62 +1,103 @@
-$("#home-1 .user-follow").html('<ul class="clearfix">'+
-  '<% @all_users.each do |user| %>'+
-  '<%= link_to user_profile_path(id: current_user.id,suggested_profile: user.id) do %>'+
-    '<li id="user_<%= user.id %>">'+
-      '<div class="tag-1">'+
-        '<div class="follow-pro">'+
-          '<div class="pic-user"><%= image_tag user.photo_avatar %></div>'+
-        '</div>'+
-      '</div>'+
-      '<div class="tag-2">'+
-        '<h2><%= user.name %></h2>'+
-        '<div class="tag-line-pro">Developer, Gujarat Housing Board</div>'+
-      '</div>'+
-      '<div class="tag-3">'+
-        '<div class="action-tag">'+
-          '<ul class="menu cf">'+
-            '<li>'+
-              '<%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}", remote: true %>'+
-            '</li>'+
-          '</ul>'+
-        '</div>'+
-      '</div>'+
-    '</li>'+
-  '<% end %>'+
-  '<% end %>'+
-'</ul>');
+$("#all_users .user-follow").html('<ul class="clearfix">'+
+                                    '<% if @all_users.count > 0 %>'+
+                                    '<% @all_users.each do |user| %>'+
+                                      '<li id="user_<%= user.id %>" class="clickable-row" data-href=\'/user_profiles/<%= current_user.id%>?suggested_profile=<%= user.id %>\'>'+
+                                        '<div class="tag-1">'+
+                                          '<div class="follow-pro">'+
+                                            '<div class="pic-user"><%= image_tag user.photo_avatar %></div>'+
+                                          '</div>'+
+                                        '</div>'+
+                                        '<div class="tag-2">'+
+                                          '<h2><%= user.name %></h2>'+
+                                          '<div class="tag-line-pro">Developer, Gujarat Housing Board</div>'+
+                                        '</div>'+
+                                        '<div class="tag-3">'+
+                                          '<div class="action-tag">'+
+                                            '<ul class="menu cf">'+
+                                              '<li>'+
+                                                '<%= link_to @user.is_following?(user) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{user.id}", "data-type": "#{user.profilable_type}", remote: true %>'+
+                                              '</li>'+
+                                            '</ul>'+
+                                          '</div>'+
+                                        '</div>'+
+                                      '</li>'+
+                                    '<% end %>'+
+                                    '<% else %>'+
+                                      '<div class="notes-alert">'+
+                                          '<div class="alert alert-warning">'+
+                                            '<strong>No User</strong> found.'+
+                                          '</div>'+
+                                      '</div>'+
+                                    '<% end %>'+
+                                  '</ul>');
 
 
-$("#menu-2 .user-follow").html('<ul class="clearfix">'+
-  '<% if @enterprises.count > 0 %>'+
-  '<% @enterprises.each do |enterprise| %>'+
-  '<%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>'+
-    '<li>'+
-      '<div class="tag-1">'+
-        '<div class="follow-pro">'+
-          '<div class="pic-user"><%= image_tag enterprise.logo_avatar %></div>'+
-        '</div>'+
-      '</div>'+
-      '<div class="tag-2">'+
-        '<h2><%= enterprise.name %></h2>'+
-        '<div class="tag-line-pro">Enterprise, Gujarat Housing Board</div>'+
-      '</div>'+
-      '<div class="tag-3">'+
-        '<div class="action-tag">'+
-          '<ul class="menu cf">'+
-            '<li>'+
-              '<%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", public_profile_enterprises_path(enterprise: enterprise), class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>'+
-            '</li>'+
-          '</ul>'+
-        '</div>'+
-      '</div>'+
-    '</li>'+
-  '<% end %>'+
-  '<% end %>'+
-  '<% else %>'+
-    '<div class="notes-alert">'+
-        '<div class="alert alert-warning">'+
-          '<strong>No Enterprise</strong> found.'+
-        '</div>'+
-    '</div>'+
-  '<% end %>'+
-'</ul>');
+$("#all_enterprises .user-follow").html('<ul class="clearfix">'+
+                                          '<% if @enterprises.count > 0 %>'+
+                                          '<% @enterprises.each do |enterprise| %>'+
+                                          '<%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>'+
+                                            '<li>'+
+                                              '<div class="tag-1">'+
+                                                '<div class="follow-pro">'+
+                                                  '<div class="pic-user"><%= image_tag enterprise.logo_avatar %></div>'+
+                                                '</div>'+
+                                              '</div>'+
+                                              '<div class="tag-2">'+
+                                                '<h2><%= enterprise.name %></h2>'+
+                                                '<div class="tag-line-pro">Enterprise, Gujarat Housing Board</div>'+
+                                              '</div>'+
+                                              '<div class="tag-3">'+
+                                                '<div class="action-tag">'+
+                                                  '<ul class="menu cf">'+
+                                                    '<li>'+
+                                                      '<%= link_to @user.is_following?(enterprise) ? "Following" : "Follow", public_profile_enterprises_path(enterprise: enterprise), class: "follow", "data-id": "#{enterprise.id}", "data-type": "#{enterprise.class}",remote: true %>'+
+                                                    '</li>'+
+                                                  '</ul>'+
+                                                '</div>'+
+                                              '</div>'+
+                                            '</li>'+
+                                          '<% end %>'+
+                                          '<% end %>'+
+                                          '<% else %>'+
+                                            '<div class="notes-alert">'+
+                                                '<div class="alert alert-warning">'+
+                                                  '<strong>No Enterprise</strong> found.'+
+                                                '</div>'+
+                                            '</div>'+
+                                          '<% end %>'+
+                                        '</ul>');
+
+
+
+$("#all_investors .user-follow").html('<ul class="clearfix">'+
+                                        '<% if @all_investors.count > 0 %>'+
+                                        '<% @all_investors.each do |investor| %>'+
+                                            '<li id="investor_<%= investor.id %>" class="clickable-row" data-href=\'/user_profiles/<%= current_user.id%>?suggested_profile=<%= investor.id %>\'>'+
+                                              '<div class="tag-1">'+
+                                                '<div class="follow-pro">'+
+                                                  '<div class="pic-user"><%= image_tag investor.photo_avatar %></div>'+
+                                                '</div>'+
+                                              '</div>'+
+                                              '<div class="tag-2">'+
+                                                '<h2><%= investor.name %></h2>'+
+                                                '<div class="tag-line-pro"><%= truncate(investor.profilable.description,length: 80,separator: ' ') %></div>'+
+                                              '</div>'+
+                                              '<div class="tag-3">'+
+                                                '<div class="action-tag">'+
+                                                  '<ul class="menu cf">'+
+                                                    '<li class="follow" data-id=\'<%="#{investor.id}"%>\' data-type=\'<%="#{investor.profilable_type}"%>\'>'+
+                                                      '<%= current_user.is_following?(investor) ? "Following" : "Follow" %>'+
+                                                    '</li>'+
+                                                  '</ul>'+
+                                                '</div>'+
+                                              '</div>'+
+                                            '</li>'+
+                                          '<% end %>'+
+                                          '<% else %>'+
+                                            '<div class="notes-alert">'+
+                                                '<div class="alert alert-warning">'+
+                                                  '<strong>No Investor</strong> found.'+
+                                                '</div>'+
+                                            '</div>'+
+                                          '<% end %>'+
+                                        '</ul>')
