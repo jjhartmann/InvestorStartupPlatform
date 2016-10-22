@@ -11,7 +11,8 @@ body{
 .navbar.navbar-inverse {
     background: #0d3861;
     border: medium none;
-    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    margin-bottom: 0;
 }
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
     background-color: #dde2e7;
@@ -183,7 +184,7 @@ ul.comapny{
 .main-view {
     background: #dde2e7 none repeat scroll 0 0;
     border-top: 1px solid #e3e3e3;
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 15px;
 }
 .view-link,
@@ -233,6 +234,8 @@ ul.comapny{
     font-size: 15px;
     padding: 10px 0;
     text-align: center;
+    float: left;
+    width: 100%;
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #ffffff;
@@ -343,11 +346,6 @@ ul.comapny{
     list-style: none;
     padding: 10px 0px;
     border-top: 1px solid #e3e3e3;
-}
-.tab-content {
-    border: 1px solid #e3e3e3;
-    border-top: none;
-    padding: 15px;
 }
 .tab-content h3 {
     margin-top: 0;
