@@ -5,7 +5,11 @@ import LoginPage from '../containers/LoginPage'
 const Login = (props, _railsContext) => {
   const reactComponent = (
     <div className="container">
-      <LoginPage {...props} />
+      <div className="row">
+        <div className="col-xs-12">
+          <LoginPage {...props} />
+        </div>
+      </div>
     </div>
   );
   return reactComponent;

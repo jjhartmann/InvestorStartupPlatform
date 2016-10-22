@@ -4,10 +4,8 @@ export default class SubmitButton extends React.Component{
 
   render() {
     return (
-      <div className="form-group">
-        <div className="submit-btn">
-          <input type="submit" className="btn-default btn" value={this.props.submit}/>
-        </div>
+      <div className="submit-tag text-center">
+        <input type="submit" className="btn-default btn" value={this.props.submit}/>        
       </div>
     );
   }
