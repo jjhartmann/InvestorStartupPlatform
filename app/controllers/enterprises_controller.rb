@@ -6,9 +6,9 @@ class EnterprisesController < ApplicationController
   def index
     @user = current_user
     if @user.profilable_type == "InvestorProfile"
-      @enterprises = @user.enterprises_followed
+      @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 2)
     else
-      @enterprises = @user.enterprises
+      @enterprises = @user.enterprises.paginate(page: params[:page], per_page: 2)
     end
   end
 
@@ -92,7 +92,7 @@ class EnterprisesController < ApplicationController
   end
 
   def public_profile
-    @enterprise = Enterprise.find_by(id: params[:enterprise].to_i)
+    @enterprise = Enterprise.find_by(id: params[:enterprise])
     if @enterprise.questionaire.questions.present?
         @notification = Notification.create_notification(@enterprise.id, "Enterprise", "#{@user.name} viewed #{@enterprise.name}'s profile.","Enterprise")
     else

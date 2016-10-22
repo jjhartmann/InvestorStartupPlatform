@@ -13,7 +13,6 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
   <body id="<%= yield :body_id %>" class='<%= yield :body_class %>'>
       <%= render "layouts/frontpage_header" %>
-      <div class="manage-header <%= yield :header_manage_class %>"></div>
       <%= render 'layouts/alert_messages' %>
         <%= yield %>
     <% unless user_signed_in?%>

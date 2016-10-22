@@ -8,9 +8,9 @@ class ProposalsController < ApplicationController
   # GET /proposals.json
   def index
     if @user.profilable_type == "InvestorProfile"
-      @proposals = Proposal.get_proposals(@user)
+      @proposals = Proposal.get_proposals(@user).paginate(page: params[:page], per_page: 2)
     else
-      @proposals =  Proposal.where("enterprise_id IN(?)", @user.enterprises.ids)
+      @proposals =  Proposal.where("enterprise_id IN(?)", @user.enterprises.ids).paginate(page: params[:page], per_page: 2)
     end
   end
 

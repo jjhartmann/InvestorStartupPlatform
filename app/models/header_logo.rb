@@ -1,4 +1,5 @@
 class HeaderLogo < ApplicationRecord
+  validates :logo, presence: true
   validate :cannot_create_record, on: :create
   # before_destroy :cannot_delete
 

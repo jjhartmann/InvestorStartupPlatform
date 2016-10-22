@@ -1,8 +1,10 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  layout 'frontpage'
+  before_action :authenticate_user!
 
   def index
-    @meetings = Meeting.all
+    @meetings = @user.profilable.meetings.paginate(page: params[:page], per_page: 2)
   end
 
   def show
