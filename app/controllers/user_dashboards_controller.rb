@@ -36,19 +36,17 @@ class UserDashboardsController < ApplicationController
   end
 
   def all_users
-    @all_users = User.where(profilable_type: "UserProfile").where.not(id: current_user.id)
-    @all_investors = User.where(profilable_type: "InvestorProfile").where.not(id: current_user.id)
+    @all_users = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id)
+    @all_investors = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id)
     @enterprises = Enterprise.all
   end
 
   def follow_unfollow_user
-    puts "________"
     if params[:target_type] == "Enterprise"
       @user = Enterprise.find(params[:target_id])
     else
       @user = User.find(params[:target_id])
     end
-    puts "@@@@@@@"
     if current_user.is_following?(@user)
       current_user.unfollow(@user)
     else
@@ -96,8 +94,8 @@ class UserDashboardsController < ApplicationController
 
   def searched_users
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?)',"%#{params[:name]}%",[current_user.profilable_type]).where.not(id: current_user.id)
-    @all_users = User.where('name LIKE ? AND profilable_type = ?',"%#{params[:name]}%",[current_user.profilable_type]).where.not(id: current_user.id)
+    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?) AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
+    @all_users = User.where('name LIKE ? AND profilable_type = ? AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
     @enterprises = Enterprise.where('name LIKE ?', "%#{params[:name]}%")
     respond_to do |format|
       format.js
