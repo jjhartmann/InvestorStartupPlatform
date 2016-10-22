@@ -1,29 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Privacy Policies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Header</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @privacy_policies.each do |privacy_policy| %>
-      <tr>
-        <td><%= privacy_policy.header %></td>
-        <td><%= privacy_policy.content %></td>
-        <td><%= link_to 'Show', privacy_policy %></td>
-        <td><%= link_to 'Edit', edit_privacy_policy_path(privacy_policy) %></td>
-        <td><%= link_to 'Destroy', privacy_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Privacy Policy', new_privacy_policy_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="head-title">Privacy</h2>
+    </div>
+    <div class="col-xs-12">
+      <div class="tab-view-tag">
+        <ul>
+          <% @privacy_policies.each do |privacy_policy| %>
+            <li>
+              <div class="main-tag-head"><%= privacy_policy.header %></div>
+              <div class="main-tag-view-style">
+                <p><%= privacy_policy.content %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

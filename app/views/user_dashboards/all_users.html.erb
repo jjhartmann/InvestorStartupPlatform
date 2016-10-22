@@ -30,7 +30,7 @@
                         <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
                         <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool,length: 80,separator: ' ') %></div>
                         <div class="tag-btn-view">
-                          <div class="follow" data-id='<%="#{user.id}"%>' data-type='<%="#{user.profilable_type}"%>'>Follow</div>
+                          <div class="follow" data-id='<%="#{user.id}"%>' data-type='<%="#{user.profilable_type}"%>'><%= current_user.is_following?(user) ? "Following" : "Follow" %></div>
                         </div>
                       </div>
                     </li>

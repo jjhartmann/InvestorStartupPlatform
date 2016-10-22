@@ -366,6 +366,8 @@ ul.comapny{
     margin-top: 5px;
     border-radius: 3px;
     transition: all 0.2s;
+    width: 100px;
+    text-align: center;
 }
 .tag-btn-view div:hover {
     background-color: #dde2e7;
@@ -530,6 +532,16 @@ ul.comapny{
     padding-right: 20px
 }
 .deatails-mode p{
+    color: #9d9d9d;
+    font-size: 15px;
+}
+
+.main-tag-head {
+    color: #252936;
+    font-size: 18px;
+    font-weight: 600;
+}
+.main-tag-view-style p {
     color: #9d9d9d;
     font-size: 15px;
 }
