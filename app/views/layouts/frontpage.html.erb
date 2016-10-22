@@ -14,7 +14,9 @@
   <body id="<%= yield :body_id %>" class='<%= yield :body_class %>'>
       <%= render "layouts/frontpage_header" %>
       <%= render 'layouts/alert_messages' %>
+      <div style="padding-top: 20px">
         <%= yield %>
+      </div>
     <% unless user_signed_in?%>
       <%= render "layouts/frontpage_footer" %>
     <% end %>
