@@ -17,7 +17,7 @@
         <div class="new-button">
           <%= link_to "Everyone", all_users_user_dashboards_path(id: current_user.id), class: "btn btn-primary"%>
         </div>
-          <% if @connected_users.count != 0 %>
+          <% if @connected_users.any? %>
           <div class="enterprise-deatils box-tab">
               <div class="user-follow">
                 <ul class="clearfix" id="connections_list">
@@ -52,11 +52,14 @@
                 </ul>
               </div>
             </div>
-          <% else %>
-          <div class="notes-alert">
-            <div class="alert alert-warning">
-              Sorry, you have no <strong>connections</strong>.
+            <div class="text-center">
+              <%= will_paginate @connected_users %>
             </div>
+          <% else %>
+            <div class="notes-alert">
+              <div class="alert alert-warning">
+                Sorry, you have no <strong>connections</strong>.
+              </div>
           </div>
           <% end %>
       </div>

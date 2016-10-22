@@ -11,7 +11,6 @@
       <div class="profile-tabs">
         <div class="tab-content">
           <div class="tab-pane fade in active">
-
             <% if @user.profilable_type == "InvestorProfile" %>
               <% if @enterprises.present? %>
                 <div class="enterprise-deatils box-tab">
@@ -22,6 +21,9 @@
                     </li>
                     <% end %>
                   </ul>
+                </div>
+                <div class="text-center">
+                  <%= will_paginate @enterprises %>
                 </div>
               <% else %>
                 <div class="notes-alert">
@@ -52,6 +54,9 @@
                       </li>
                     <% end %>
                   </ul>
+                </div>
+                <div class="text-center">
+                  <%= will_paginate @all_users %>
                 </div>
               <% else %>
                 <div class="notes-alert">

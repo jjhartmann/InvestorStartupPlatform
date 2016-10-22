@@ -4,7 +4,7 @@ class UserDashboardsController < ApplicationController
 
   def index
     if current_user.profilable.questionaire.questions.present?
-      @feeds = NewsFeed.all.limit(5)
+      @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 2)
     else
       redirect_to questionaries_path
     end
@@ -20,7 +20,6 @@ class UserDashboardsController < ApplicationController
   end
 
   def update_password
-    @user = User.find(current_user.id)
     if @user.update_with_password(user_params)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
@@ -37,21 +36,17 @@ class UserDashboardsController < ApplicationController
   end
 
   def all_users
-    @user = current_user
-    # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_users = User.where(profilable_type: "UserProfile").where.not(id: current_user.id)
-    @all_investors = User.where(profilable_type: "InvestorProfile").where.not(id: current_user.id)
+    @all_users = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id)
+    @all_investors = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id)
     @enterprises = Enterprise.all
   end
 
   def follow_unfollow_user
-    puts "________"
     if params[:target_type] == "Enterprise"
       @user = Enterprise.find(params[:target_id])
     else
       @user = User.find(params[:target_id])
     end
-    puts "@@@@@@@"
     if current_user.is_following?(@user)
       current_user.unfollow(@user)
     else
@@ -85,13 +80,12 @@ class UserDashboardsController < ApplicationController
         @connection_id_array << target_id
       end
     end
-    @connected_users = User.where(id: @connection_id_array)
-
+    @connected_users = User.where(id: @connection_id_array).paginate(page: params[:page], per_page: 2)
     @message = Message.new
   end
 
   def profile_visitors
-    @visitors = @user.visitee
+    @visitors = @user.visitee.paginate(page: params[:page], per_page: 2)
   end
 
   def featured_users
@@ -99,13 +93,9 @@ class UserDashboardsController < ApplicationController
   end
 
   def searched_users
-    @user = current_user
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?)',"%#{params[:name]}%",[current_user.profilable_type]).where.not(id: current_user.id)
-    @all_users = User.where('name LIKE ? AND profilable_type = ?',"%#{params[:name]}%",[current_user.profilable_type]).where.not(id: current_user.id)
-    puts "___________"
-    puts @all_users.as_json
-    puts "___________"
+    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?) AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
+    @all_users = User.where('name LIKE ? AND profilable_type = ? AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
     @enterprises = Enterprise.where('name LIKE ?', "%#{params[:name]}%")
     respond_to do |format|
       format.js

@@ -2024,7 +2024,7 @@ a.navbar-img {
   color: #3f81c7 !importantl;
 }
 ul.nav.navbar-nav.navbar-right > li > a{
-  background: #dde2e7;
+  /*background: #dde2e7;*/
 }
 ul.nav.navbar-nav.navbar-right > li > a:hover{
   background:#3f81c7;
