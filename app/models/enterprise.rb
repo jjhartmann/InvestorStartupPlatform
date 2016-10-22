@@ -72,7 +72,7 @@ class Enterprise < ApplicationRecord
   end
 
   def logo_thumb
-    logo? ? logo.thumb : '/assets/user_150.jpg'
+    logo? ? logo.thumb : '/assets/user_50.jpg'
     # logo? ? logo.thumb : 'enterprise_153x100.png'
   end
 

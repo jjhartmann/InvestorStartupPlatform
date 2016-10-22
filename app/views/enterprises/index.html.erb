@@ -16,9 +16,22 @@
                 <div class="enterprise-deatils box-tab">
                   <ul class="full-details clearfix">
                     <% @enterprises.each do |enterprise| %>
-                    <li>
-                      <div class="name-enetrprise"><%= link_to enterprise.name, public_profile_enterprises_path(enterprise: enterprise) %></div>
-                    </li>
+                      <li>
+                        <div class="pro-tags-in">
+                          <%= image_tag enterprise.logo_thumb %>
+                        </div>
+                        <div class="deatails-module">
+                          <h3><%= enterprise.name %></h3>
+                          <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
+                          <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i><%=h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %></div>
+                          <div class="tag-btn-view">
+                            <div class="follow" data-id='<%="#{enterprise.id}"%>' data-type='<%="#{enterprise.class}"%>'>Following</div>
+                          </div>
+                          <div class="tag-btn-view">
+                            <div><%= link_to "View Profile", public_profile_enterprises_path(enterprise: enterprise) , style: "color: #fff;"%></div>
+                          </div>
+                        </div>
+                      </li>
                     <% end %>
                   </ul>
                 </div>
@@ -39,19 +52,23 @@
               <% if @enterprises.present? %>
                 <div class="enterprise-deatils box-tab">
                   <ul class="full-details clearfix">
-                    <li><div class="name-enetrprise head-box">Name</div><div class="destory head-box">Action</div></li>
                     <% @enterprises.each do |enterprise| %>
-                      <li>
-                        <div class="name-enetrprise"><%= link_to enterprise.name, enterprise_path(enterprise) %></div>
-                        <div class="destory">
-                          <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
-                            <%= link_to enterprise, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
-                            <%= link_to edit_enterprise_path(enterprise) do %><div class="edit"><span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span></div><% end %>
-                          <% else %>
-                            <p>Sorry. You cannot perform any actions for this enterprise.</p>
-                          <% end %>
-                        </div>
-                      </li>
+                    <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
+                      <div class="pro-tags-in">
+                        <%= image_tag enterprise.logo_thumb %>
+                      </div>
+                      <div class="deatails-module">
+                        <h3><%= enterprise.name %></h3>
+                        <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
+                        <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i><%=h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %></div>
+                        <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
+                          <%= link_to enterprise, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
+                          <%= link_to edit_enterprise_path(enterprise) do %><div class="edit"><span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span></div><% end %>
+                        <% else %>
+                          <p>Sorry. You cannot perform any actions for this enterprise.</p>
+                        <% end %>
+                      </div>
+                    </li>
                     <% end %>
                   </ul>
                 </div>

@@ -88,14 +88,20 @@ export default class LoginPage extends React.Component {
         <div id="floating_alert">
           {errors}
         </div>
-        <div className="registration col-xs-12">
-          <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
-            <RegisterHeader header={this.state.translation.login}/>
-            <input placeholder={this.state.translation.user_name} type="text" required="" name="user[login]" value={this.state.user.login} onChange={this.updateLogin.bind(this)} />
-            <input placeholder={this.state.translation.password} type="password" required="" name="user[password]" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+        <div className="log-in-track">
+          <h3>Welcome to Login</h3>
+         <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
+            <div className="form-group">
+              <label for="email">Email</label>
+              <input className="form-control" type="text" required="" name="user[login]" value={this.state.user.login} onChange={this.updateLogin.bind(this)} />
+            </div>
+            <div className="form-group">
+              <label for="pwd">Password</label>
+              <input className="form-control" type="password" required="" name="user[password]" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
+            </div>
             <LoginForgetPassword forgot_password={this.state.translation.forgot_password}/>
-            <SubmitButton submit={this.state.translation.submit}/>
-          </form>
+            <SubmitButton submit="Submit"></SubmitButton>            
+         </form>
         </div>
       </div>
     );
