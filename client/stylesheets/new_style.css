@@ -280,6 +280,7 @@ ul.comapny{
     float: left;
     width: calc(100% - 150px);
     padding-left: 20px;
+    padding-bottom: 20px;
 }
 .deatails-module h3 {
     margin-top: 0;
@@ -556,8 +557,7 @@ ul.comapny{
     color: #9d9d9d;
     font-size: 15px;
 }
-<<<<<<< HEAD
-=======
+
 .log-in-track {
     border: 1px solid #e3e3e3;
     margin: 15% auto;
@@ -587,4 +587,3 @@ ul.comapny{
 .tag-line-new ul {
     padding-left: 0;
 }
->>>>>>> 8bca037aaa0efcbed4c0b71d358e209999d0cb34
