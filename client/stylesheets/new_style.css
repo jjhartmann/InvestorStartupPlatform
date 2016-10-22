@@ -11,7 +11,8 @@ body{
 .navbar.navbar-inverse {
     background: #0d3861;
     border: medium none;
-    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    margin-bottom: 0;
 }
 .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
     background-color: #dde2e7;
@@ -183,7 +184,7 @@ ul.comapny{
 .main-view {
     background: #dde2e7 none repeat scroll 0 0;
     border-top: 1px solid #e3e3e3;
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 15px;
 }
 .view-link,
@@ -233,6 +234,8 @@ ul.comapny{
     font-size: 15px;
     padding: 10px 0;
     text-align: center;
+    float: left;
+    width: 100%;
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #ffffff;
@@ -343,11 +346,6 @@ ul.comapny{
     list-style: none;
     padding: 10px 0px;
     border-top: 1px solid #e3e3e3;
-}
-.tab-content {
-    border: 1px solid #e3e3e3;
-    border-top: none;
-    padding: 15px;
 }
 .tab-content h3 {
     margin-top: 0;
@@ -535,7 +533,20 @@ ul.comapny{
     color: #9d9d9d;
     font-size: 15px;
 }
-
+.video-mode iframe {
+    height: 100%;
+    width: 100%;
+}
+.service-view ul li {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    padding-right: 20px
+}
+.deatails-mode p{
+    color: #9d9d9d;
+    font-size: 15px;
+}
 .main-tag-head {
     color: #252936;
     font-size: 18px;
@@ -545,3 +556,35 @@ ul.comapny{
     color: #9d9d9d;
     font-size: 15px;
 }
+<<<<<<< HEAD
+=======
+.log-in-track {
+    border: 1px solid #e3e3e3;
+    margin: 15% auto;
+    padding: 0 15px 15px;
+    width: 500px;
+}
+.log-in-track h3 {
+    font-size: 36px;
+    text-align: center;
+    color: #3f81c7;
+}
+.log-in-track button {
+    background-color: #3f81c7;
+    border: medium none;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 16px;
+    padding: 5px 20px;
+    transition:all 0.2s;
+}
+.forgot{
+    float: right;
+}
+.forgot a{
+    text-decoration: none;
+}
+.tag-line-new ul {
+    padding-left: 0;
+}
+>>>>>>> 8bca037aaa0efcbed4c0b71d358e209999d0cb34

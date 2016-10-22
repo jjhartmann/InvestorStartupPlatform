@@ -318,7 +318,7 @@ class User < ApplicationRecord
   # provide a custom message for a deleted account
   def inactive_message
     !deleted_at ? super : :deleted_account
-  end  
+  end
 
   protected
 
