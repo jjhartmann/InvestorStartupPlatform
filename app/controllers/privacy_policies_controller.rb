@@ -1,4 +1,5 @@
 class PrivacyPoliciesController < ApplicationController
+  layout 'frontpage'
   before_action :set_privacy_policy, only: [:show, :edit, :update, :destroy]
 
   # GET /privacy_policies

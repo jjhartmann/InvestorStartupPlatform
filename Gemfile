@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 #for ActionCable
 gem 'redis', '~> 3.0'
 
+# Gem for WYSIWYG plugin
+gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
+#Gem for scheduling pieces of code
 gem 'rufus-scheduler', '~> 3.2'
 gem "simple_calendar", "~> 2.0"
 # Gem for webpack
