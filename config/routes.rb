@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :privacy_policies
   mount ActionCable.server => '/cable'
   resources :meeting_room_message_documents
 
