@@ -142,7 +142,8 @@ class User < ApplicationRecord
                          :is_private  => true,
                          :target_id   => topic.user.id,
                          :target_type => 'User',
-                         :topic_id    => topic.id
+                         :topic_id    => topic.id,
+                         :created_at  => Time.now
                      }.merge(extras))
        message_saved = message.save
 
@@ -157,8 +158,9 @@ class User < ApplicationRecord
                          :is_private  => true,
                          :target_id   => topic.target.id,
                          :target_type => 'User',
-                         :topic_id    => topic.id
-                     }.merge(extras))
+                         :topic_id    => topic.id,
+                         :created_at  => Time.now
+                      }.merge(extras))
     message_saved = message.save
 
     return message, message_saved
