@@ -3,45 +3,51 @@
 <%= render "user_dashboards/profile" %>
 
 <%#= link_to 'New Message', new_message_path %>
-  <div class="container side-deatail">
-    <div class="col-xs-3">
-      <%= render partial: "user_dashboards/sidebar" %>
-    </div>
-    <div class="col-xs-9">
-      <div class="profile-tabs test">
-        <div class="tab-content">
-          <div  class="tab-pane fade active in">
-            <div class="message-box">
-              <div class="message-header"><%= @user.name %></div>
-              <div class="message-body">
-                <ul>
-                  <% if @message_thread.any? %>
+<div class="container side-deatail">
+  <div class="col-xs-3">
+    <%= render partial: "user_dashboards/sidebar" %>
+  </div>
+  <div class="col-xs-9">
+    <div class="profile-tabs test">
+      <div class="tab-content">
+        <div class="tab-pane fade active in">
+          <div class="message-box">
+            <div class="message-header"><%= @user.name %></div>
+            <div class="message-body">
+              <ul>
+                <% if @message_thread.any? %>
                     <div class="panel-body" id="messages" data-id="<%= @user.id %>">
                       <% @message_thread.each do |thread| %>
-                        <% if thread.user_id != current_user.id %>
-                          <li>
-                            <div class="circle-message"><%=image_tag thread.user.photo_avatar %></div>
-                            <div class="message-trip">
-                              <div class="tap-sticker"><%= thread.content %>
-                                <span class="timer"><%= thread.created_at %> ago</span>
-                              </div>
-                            </div>
-                          </li>
-                        <% else %>
-                          <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
-                        <% end %>
+                          <% if thread.user_id != current_user.id %>
+                              <li>
+                                <div class="circle-message"><%= image_tag thread.user.photo_avatar %></div>
+                                <div class="message-trip">
+                                  <div class="tap-sticker"><%= thread.content %>
+                                    <span class="timer"><%= thread.created_at %> ago</span>
+                                  </div>
+                                </div>
+                              </li>
+                          <% else %>
+                              <li class="rlt">
+                                <div class="message-trip">
+                                  <div class="tap-sticker"><%= thread.content %>
+                                    <span class="timer"><%= thread.created_time %> ago</span></div>
+                                </div>
+                                <div class="circle-message"><%= image_tag thread.user.photo_avatar %></div>
+                              </li>
+                          <% end %>
                       <% end %>
                     </div>
-                  <% else %>
+                <% else %>
                     <div class="panel-body hidden" id="messages" data-id="<%= @user.id %>">
                     </div>
-                  <% end %>
-                </ul>
-              </div>
-              <%= form_for @message,url: messages_path, remote: true do |f|%>
-                <%= f.hidden_field :topic_id,value: params[:id] %>
+                <% end %>
+              </ul>
+            </div>
+            <%= form_for @message, url: messages_path, remote: true do |f| %>
+                <%= f.hidden_field :topic_id, value: params[:id] %>
                 <div class="sender-box">
-                  <div class="circle-message"><%=image_tag current_user.photo_avatar %></div>
+                  <div class="circle-message"><%= image_tag current_user.photo_avatar %></div>
                   <div class="form-group">
                     <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
                     <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
@@ -52,20 +58,20 @@
                     </button>
                   </span>
                 </div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    $("#message_send").click(function(e){
-      if ($("#message_content").val().trim() == ''){
-        e.preventDefault();
-        $("#message_error").css("display","block");
-        $("#message_content").css("border","red solid 1px");
-      }
-    })
-  </script>
+<script>
+  $("#message_send").click(function (e) {
+    if ($("#message_content").val().trim() == '') {
+      e.preventDefault();
+      $("#message_error").css("display", "block");
+      $("#message_content").css("border", "red solid 1px");
+    }
+  })
+</script>
