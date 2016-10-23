@@ -39,18 +39,29 @@ class UserDashboardsController < ApplicationController
     @title_heading = "Search"
 
     @search = nil
+
     case params[:type]
       when "Investors"
-        @search =  User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+        if params[:search] != nil
+          @search = User.where("profilable_type = ? AND deleted_at IS ? AND name LIKE (?)", "InvestorProfile", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+        else
+          @search =  User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+        end
       when "Companies"
-        @search = Enterprise.all.paginate(page: params[:page], per_page: 10)
+        if params[:search] != nil
+          @search = Enterprise.where("name LIKE (?)", "%#{params[:search]}%").paginate(page: params[:page], per_page: 10)
+        else
+          @search = Enterprise.all.paginate(page: params[:page], per_page: 10)
+        end
       else
         params[:type] = "Users"
-        @search = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+
+        if params[:search] != nil
+          @search = User.where("profilable_type = ? AND deleted_at IS ? AND name LIKE (?)", "UserProfile", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+        else
+          @search = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+        end
     end
-    # @all_users = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
-    # @all_investors = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
-    # @enterprises = Enterprise.all.paginate(page: params[:page], per_page: 10)
   end
 
   def follow_unfollow_user

@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   resources :user_dashboards do
     collection do
       get 'all_users'
+      post 'all_users'
       get 'follow_unfollow_user'
       get 'suggested_profile'
       get 'connections'
