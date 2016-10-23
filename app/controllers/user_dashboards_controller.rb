@@ -45,7 +45,7 @@ class UserDashboardsController < ApplicationController
         if params[:search] != nil
           @search = User.where("profilable_type = ? AND deleted_at IS ? AND name LIKE (?)", "InvestorProfile", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         else
-          @search =  User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+          @search = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         end
       when "Companies"
         if params[:search] != nil
@@ -76,8 +76,8 @@ class UserDashboardsController < ApplicationController
     else
       current_user.follow(@user)
     end
-    @network_count = current_user.network_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)
-    @connection_count = current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id),current_user)
+    @network_count = current_user.network_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id), current_user)
+    @connection_count = current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id), current_user)
 
     @connections = current_user.target_followed.where(target_type: "User")
     @connection_id_array = []
@@ -122,8 +122,8 @@ class UserDashboardsController < ApplicationController
 
   def searched_users
     # @all_users = User.where('profilable_type IS NOT ?', 'InvestorProfile')
-    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?) AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
-    @all_users = User.where('name LIKE ? AND profilable_type = ? AND deleted_at = ?',"%#{params[:name]}%",[current_user.profilable_type], nil).where.not(id: current_user.id)
+    @all_investors = User.where('name LIKE ? AND profilable_type NOT IN(?) AND deleted_at = ?', "%#{params[:name]}%", [current_user.profilable_type], nil).where.not(id: current_user.id)
+    @all_users = User.where('name LIKE ? AND profilable_type = ? AND deleted_at = ?', "%#{params[:name]}%", [current_user.profilable_type], nil).where.not(id: current_user.id)
     @enterprises = Enterprise.where('name LIKE ?', "%#{params[:name]}%")
     respond_to do |format|
       format.js
