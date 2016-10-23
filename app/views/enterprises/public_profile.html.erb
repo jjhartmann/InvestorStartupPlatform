@@ -5,12 +5,17 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box-lane">
-          <%= image_tag @enterprise.logo_avatar %>
+          <%= image_tag @enterprise.logo_full %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-4">
+        <div class="buttons">
+          <% if current_user.profilable_type == "InvestorProfile" %>
+              <div class="edit" style="float: right"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
+          <% end %>
+        </div>
         <div class="body-panel">
           <div class="main-pro">
             <%= image_tag @enterprise.logo_avatar %>
@@ -35,17 +40,37 @@
       <div class="col-xs-8">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-          <!-- <li><a data-toggle="tab" href="#menu1">Menu 1</a></li> -->
+          <li><a data-toggle="tab" href="#people">People</a></li>
         </ul>
         <div class="tab-content">
           <div id="home" class="tab-pane fade in active">
             <h3>Description</h3>
             <p><%= @enterprise.description %></p>
           </div>
-          <div id="menu1" class="tab-pane fade">
-            <h3>Menu</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.</p>
+          <div id="people" class="tab-pane fade">
+            <h3>People</h3>
+            <ul class="full-details clearfix" id="connections_list">
+              <% @people.each do |user| %>
+                  <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= user.id %>'>
+                    <div class="pro-tags-in">
+                      <%= image_tag user.photo_avatar %>
+                    </div>
+                    <div class="deatails-module">
+                      <h3><%= user.name %></h3>
+                      <div class="tag-line-des treck">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+                      <div class="tag-line-des">
+                        <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool, length: 80, separator: ' ') %>
+                      </div>
+                      <div class="tag-btn-view">
+                        <div id="follow_<%= user.id %>" class="follow" data-id='<%= "#{user.id}" %>' data-type='<%= "#{user.profilable_type}" %>'>
+                          <%= current_user.is_following?(user) ? "Unfollow" : "Follow" %>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
@@ -101,6 +126,7 @@
     var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
     array.splice(array.indexOf(parseInt(index)), 1);
     '<% end %>'
+
     $("#message_send").click(function (e) {
       if ($("#topic").val() == '') {
         e.preventDefault();

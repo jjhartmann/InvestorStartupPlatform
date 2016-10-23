@@ -20,6 +20,7 @@ class EnterprisesController < ApplicationController
 
   def show
     @enterprise = Enterprise.find_by(id: params[:id])
+
     if @enterprise.nil?
       respond_to do |format|
         format.html{ redirect_to enterprises_path, alert: "No such enterprise exists." }
@@ -37,6 +38,8 @@ class EnterprisesController < ApplicationController
         end
       end
     end
+
+
   end
 
   def new
@@ -99,7 +102,7 @@ class EnterprisesController < ApplicationController
 
   def public_profile
     @enterprise = Enterprise.find_by(id: params[:enterprise])
-    if @enterprise.questionaire.questions.present?
+    if @enterprise.questionaire != nil && @enterprise.questionaire.questions != nil && @enterprise.questionaire.questions.present?
       if current_user.add_visitor(@enterprise)
         @notification = Notification.create_notification(@enterprise.id, "Enterprise", "#{@user.name} viewed #{@enterprise.name}'s profile.","Enterprise")
       end
@@ -108,6 +111,8 @@ class EnterprisesController < ApplicationController
         format.html { redirect_to enterprises_path, alert: "This enterprise is not available right now." }
       end
     end
+
+    @people = @enterprise.members
   end
 
   def invitation_status
