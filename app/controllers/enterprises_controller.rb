@@ -3,7 +3,13 @@ class EnterprisesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enterprise, only: [:edit, :update, :destroy, :show]
 
+
+
+
   def index
+    # Heading for title setions
+    @title_heading = "Companies"
+
     @user = current_user
     if @user.profilable_type == "InvestorProfile"
       @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 2)
