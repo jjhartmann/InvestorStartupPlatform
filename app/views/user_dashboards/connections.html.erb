@@ -14,12 +14,7 @@
           <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
             <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
           </div>
-          <div class="enterprise-deatils box-tab" style="margin-bottom: 20px">
-            <div class="body h2" style="display: inline-block">Connections</div>
-            <div class="new-button" style="display: inline-block; float: right">
-              <%= link_to "Search", all_users_user_dashboards_path(id: current_user.id), class: "btn btn-primary" %>
-            </div>
-          </div>
+          <%= render "user_dashboards/title_bar" %>
           <% if @connected_users.any? %>
               <div class="enterprise-deatils box-tab">
                 <div class="user-follow">
