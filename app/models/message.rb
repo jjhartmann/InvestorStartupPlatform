@@ -62,4 +62,11 @@ class Message < ApplicationRecord
   def unread_messages(current_user)
     is_read == false ? (self.replies.unread.count + 1) : self.replies.unread.count
   end
+
+  def latest_message
+    if self.topic_id == nil && self.latest_message_id != 0
+      return Message.find(self.latest_message_id).content
+    end
+    return nil
+  end
 end

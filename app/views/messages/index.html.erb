@@ -31,8 +31,8 @@
                             </div>
                             <% if thread.unread_messages(current_user) != 0 %>
                                 <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>">
-                                  <i class="fa fa-bolt" aria-hidden="true"></i></div>
-                                <%= puts thread.unread_messages(current_user) %>
+                                  <i class="fa fa-bolt" aria-hidden="true"></i>
+                                </div>
                             <% end %>
                             <div class="top-count"><%= thread.unread_messages(current_user) %></div>
                             <div class="sr-name">
@@ -41,6 +41,9 @@
                               <% else %>
                                   <%= thread.target.name %>
                               <% end %>
+                            </div>
+                            <div class="deatails-module not-active">
+                                <%= truncate(thread.latest_message, length: 120) %>
                             </div>
                           </li>
                       <% end %>
