@@ -1,0 +1,14 @@
+<div class="tabing">
+  <!--  <div class="close-open"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
+  <ul class="nav nav-pills">
+    <li class=<%= params[:type] == "Users" ? "active" : "" %>>
+      <%= link_to all_users_user_dashboards_path(id: current_user.id, type: "Users") do %><i aria-hidden="true" class="fa fa-users"></i><span class="tab-name">Users</span><% end %>
+    </li>
+    <li class=<%= params[:type] == "Investors" ? "active" : "" %>>
+      <%= link_to all_users_user_dashboards_path(id: current_user.id, type: "Investors") do %><i aria-hidden="true" class="fa fa-money"></i><span class="tab-name">Investors</span><% end %>
+    </li>
+    <li class=<%= params[:type] == "Companies" ? "active" : "" %>>
+      <%= link_to all_users_user_dashboards_path(id: current_user.id, type: "Companies") do %><i aria-hidden="true" class="fa fa-cubes"></i><span class="tab-name">Companies</span><% end %>
+    </li>
+  </ul>
+</div>
