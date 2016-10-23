@@ -4,11 +4,15 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   def index
-    @current_user_received_messages = Message.where(target_id: current_user.id, is_private: true).topics
-    @messages = current_user.messages.topics.private_only
-    @unsorted_message_thread = @messages | @current_user_received_messages
-    @unsorted_message_thread1 = @unsorted_message_thread.sort! { |a, b| a.replies.unread.count <=> b.replies.unread.count }
-    @message_thread = @unsorted_message_thread1.sort! { |a, b| a.updated_at <=> b.updated_at }.reverse!
+    # Unarchived Messages
+    @message_sent_unarchived = current_user.inbox_messages
+    @message_recieved_unarchived = Message.where(target_id: current_user.id).private_only.topics.without_proposal.unarchived
+    @message_thread = (@message_sent_unarchived | @message_recieved_unarchived).sort_by(&:updated_at).reverse!
+
+    # Archived Messages
+    @message_sent_archived = current_user.archived_messages
+    @message_recieved_archived = Message.where(target_id: current_user.id).private_only.topics.without_proposal.archived
+    @message_thread_archived = (@message_sent_archived | @message_recieved_archived).sort_by(&:updated_at).reverse!
   end
 
   def show
@@ -26,8 +30,8 @@ class MessagesController < ApplicationController
       @topic = Message.find(params[:message][:topic_id])
       @content = params[:message][:content]
       @message_sent = @topic.user.id == current_user.id ? current_user.new_reply_private_message(@topic, @content) : current_user.reply_private_message(@topic, @content)
-      puts @message_sent
-      puts @message_sent[0].user.photo_avatar
+      # puts @message_sent
+      # puts @message_sent[0].user.photo_avatar
       respond_to do |format|
         if @message_sent[1]
           ActionCable.server.broadcast 'messages',
@@ -84,20 +88,21 @@ class MessagesController < ApplicationController
 
   def inbox
     @first_message = Message.find(params[:id])
-    @read_status = Message.where(topic_id: @first_message.id, target_id: current_user.id)
-    @first_message.update(is_read: true) if @first_message.target_id == current_user.id
-    @read_status.each do |read_message|
-      read_message.update(is_read: true)
-    end
     if @first_message.target_id == current_user.id
       @user = User.find(@first_message.user_id)
     else
       @user = User.find(@first_message.target_id)
     end
+
     @following_messages = Message.where(topic_id: @first_message.id)
     @message_thread = Array.new
     @message_thread.push(@first_message)
     @message_thread = @message_thread | @following_messages
+
+    @first_message.update(is_read: true)
+    @message_thread.each do |read_message|
+      read_message.update(is_read: true)
+    end
 
     # For the form
     @message = Message.new

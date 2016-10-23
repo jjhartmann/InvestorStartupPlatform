@@ -17,6 +17,7 @@ class Message < ApplicationRecord
             :length   => { :maximum => 140 }
 
   scope :default_order,    -> { order 'created_at DESC'}
+  scope :update_order,     -> { order 'updated_at DESC'}
   scope :topics,           -> { where :topic_id =>  nil } #Syntax changed
   scope :replies,          -> { where :topic_id => !nil } #Syntax changed
   scope :public_only,      -> { where :is_private => false}

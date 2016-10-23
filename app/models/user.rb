@@ -67,7 +67,7 @@ class User < ApplicationRecord
   before_save :email_nomarlisation
 
   def incoming_messages
-    comments.private_only.topics
+    messages.private_only.topics
   end
 
   def outgoing_messages
@@ -76,6 +76,14 @@ class User < ApplicationRecord
 
   def inbox_messages
     incoming_messages.without_proposal.unarchived
+  end
+
+  def unread_messages
+    inbox_messages.unread
+  end
+
+  def read_messages
+    inbox_messages.read
   end
 
   def sent_messages
@@ -143,11 +151,18 @@ class User < ApplicationRecord
                          :target_id   => topic.user.id,
                          :target_type => 'User',
                          :topic_id    => topic.id,
-                         :created_at  => Time.now
+                         :created_at  => Time.now,
+                         :updated_at  => Time.now
                      }.merge(extras))
        message_saved = message.save
 
-       return message, message_saved
+      if message_saved
+        topic.updated_at = Time.now
+        topic.is_read = false
+        topic.save
+      end
+
+      return message, message_saved
 
   end
 
@@ -159,9 +174,16 @@ class User < ApplicationRecord
                          :target_id   => topic.target.id,
                          :target_type => 'User',
                          :topic_id    => topic.id,
-                         :created_at  => Time.now
+                         :created_at  => Time.now,
+                         :updated_at  => Time.now
                       }.merge(extras))
     message_saved = message.save
+
+    if message_saved
+      topic.updated_at = Time.now
+      topic.is_read = false
+      topic.save
+    end
 
     return message, message_saved
 
