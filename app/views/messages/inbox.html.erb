@@ -16,7 +16,7 @@
             <div class="message-body">
               <ul>
                 <% if @message_thread.any? %>
-                    <div class="panel-body" id="messages" data-id="<%= @user.id %>">
+                    <div class="panel-body" id="messages" data-id="<%= current_user.id %>">
                       <% @message_thread.each do |thread| %>
                           <% if thread.user_id != current_user.id %>
                               <li>
