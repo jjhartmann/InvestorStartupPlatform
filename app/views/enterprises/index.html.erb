@@ -5,89 +5,102 @@
 <div class="main-body">
   <div class="container side-deatail">
     <div class="col-xs-3">
-    <%= render "/user_dashboards/sidebar" %>
-  </div>
+      <%= render "/user_dashboards/sidebar" %>
+    </div>
     <div class="col-xs-9">
       <div class="profile-tabs">
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <%= render "user_dashboards/title_bar" %>
             <% if @user.profilable_type == "InvestorProfile" %>
-              <% if @enterprises.present? %>
-                <div class="enterprise-deatils box-tab">
-                  <ul class="full-details clearfix">
-                    <% @enterprises.each do |enterprise| %>
-                      <li>
-                        <div class="pro-tags-in">
-                          <%= image_tag enterprise.logo_thumb %>
-                        </div>
-                        <div class="deatails-module">
-                          <h3><%= enterprise.name %></h3>
-                          <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
-                          <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i><%=h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %></div>
-                          <div class="tag-btn-view">
-                            <div class="follow" data-id='<%="#{enterprise.id}"%>' data-type='<%="#{enterprise.class}"%>'>Unfollow</div>
-                            <div><%= link_to "Profile", public_profile_enterprises_path(enterprise: enterprise) , style: "color: #fff;"%></div>
-                          </div>
-                        </div>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-                <div class="text-center">
-                  <%= will_paginate @enterprises %>
-                </div>
-              <% else %>
-                <div class="notes-alert">
-                  <div class="alert alert-warning">
-                    You are not following any <strong>enterprises</strong> yet.
-                  </div>
-                </div>
-              <% end %>
+                <% if @enterprises.present? %>
+                    <div class="enterprise-deatils box-tab">
+                      <ul class="full-details clearfix">
+                        <% @enterprises.each do |enterprise| %>
+                            <li>
+                              <div class="pro-tags-in">
+                                <%= image_tag enterprise.logo_thumb %>
+                              </div>
+                              <div class="deatails-module">
+                                <h3><%= enterprise.name %></h3>
+                                <div class="tag-line-des treck">
+                                  <i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
+                                <div class="tag-line-des">
+                                  <i aria-hidden="true" class="fa fa-tags"></i><%= h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %>
+                                </div>
+                                <div class="tag-btn-view">
+                                  <div class="follow" data-id='<%= "#{enterprise.id}" %>' data-type='<%= "#{enterprise.class}" %>'>Unfollow</div>
+                                  <div><%= link_to "Profile", public_profile_enterprises_path(enterprise: enterprise), style: "color: #fff;" %></div>
+                                </div>
+                              </div>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="text-center">
+                      <%= will_paginate @enterprises %>
+                    </div>
+                <% else %>
+                    <div class="notes-alert">
+                      <div class="alert alert-warning">
+                        You are not following any <strong>enterprises</strong> yet.
+                      </div>
+                    </div>
+                <% end %>
             <% else %>
-              <div class="new-button">
-                <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
-              </div>
-              <% if @enterprises.present? %>
-                <div class="enterprise-deatils box-tab">
-                  <ul class="full-details clearfix">
-                    <% @enterprises.each do |enterprise| %>
-                      <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
-                        <div class="pro-tags-in">
-                          <%= image_tag enterprise.logo_thumb %>
-                        </div>
-                        <div class="deatails-module">
-                          <h3><%= enterprise.name %></h3>
-                          <div class="tag-line-des treck"><i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
-                          <div class="tag-line-des"><i aria-hidden="true" class="fa fa-tags"></i><%=h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %></div>
-                          <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
-                            <%= link_to enterprise, method: :delete do %><div class="edit share destroy-btn"><i aria-hidden="true" class="fa fa-trash"></i></div><% end %>
-                            <%= link_to edit_enterprise_path(enterprise) do %><div class="edit"><span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span></div><% end %>
-                          <% else %>
-                            <p>Sorry. You cannot perform any actions for this enterprise.</p>
-                          <% end %>
-                        </div>
-                      </li>
-                    <% end %>
-                  </ul>
+                <div class="new-button">
+                  <%= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
                 </div>
-                <div class="text-center">
-                  <%= will_paginate @all_users %>
-                </div>
-              <% else %>
-                <div class="notes-alert">
-                  <div class="alert alert-warning">
-                    You have not created any <strong>Enterprises</strong> yet.
-                  </div>
-                </div>
-              <% end %>
+                <% if @enterprises.present? %>
+                    <div class="enterprise-deatils box-tab">
+                      <ul class="full-details clearfix">
+                        <% @enterprises.each do |enterprise| %>
+                            <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
+                              <div class="pro-tags-in">
+                                <%= image_tag enterprise.logo_thumb %>
+                              </div>
+                              <div class="deatails-module">
+                                <h3><%= enterprise.name %></h3>
+                                <div class="tag-line-des treck">
+                                  <i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
+                                <div class="tag-line-des">
+                                  <i aria-hidden="true" class="fa fa-tags"></i><%= h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %>
+                                </div>
+                                <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
+                                    <%= link_to enterprise, method: :delete do %>
+                                        <div class="edit share destroy-btn">
+                                          <i aria-hidden="true" class="fa fa-trash"></i></div>
+                                    <% end %>
+                                    <%= link_to edit_enterprise_path(enterprise) do %>
+                                        <div class="edit">
+                                          <span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span>
+                                        </div>
+                                    <% end %>
+                                <% else %>
+                                    <p>Sorry. You cannot perform any actions for this enterprise.</p>
+                                <% end %>
+                              </div>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="text-center">
+                      <%= will_paginate @all_users %>
+                    </div>
+                <% else %>
+                    <div class="notes-alert">
+                      <div class="alert alert-warning">
+                        You have not created any <strong>Enterprises</strong> yet.
+                      </div>
+                    </div>
+                <% end %>
             <% end %>
             <% current_user.invitations.where(acceptance_status: "requested").each do |invitation| %>
-              <div>
-                <p><%= invitation.enterprise.name %></p>
-                <%= link_to "Accept", invitation_status_enterprises_path(id: invitation.id, status: 1) %>
-                <%= link_to "Reject", invitation_status_enterprises_path(id: invitation.id, status: 0) %>
-              </div>
+                <div>
+                  <p><%= invitation.enterprise.name %></p>
+                  <%= link_to "Accept", invitation_status_enterprises_path(id: invitation.id, status: 1) %>
+                  <%= link_to "Reject", invitation_status_enterprises_path(id: invitation.id, status: 0) %>
+                </div>
             <% end %>
           </div>
         </div>
