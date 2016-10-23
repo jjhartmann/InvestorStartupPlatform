@@ -12,9 +12,9 @@ class EnterprisesController < ApplicationController
 
     @user = current_user
     if @user.profilable_type == "InvestorProfile"
-      @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 2)
+      @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 10)
     else
-      @enterprises = @user.enterprises.paginate(page: params[:page], per_page: 2)
+      @enterprises = @user.enterprises.paginate(page: params[:page], per_page: 10)
     end
   end
 
