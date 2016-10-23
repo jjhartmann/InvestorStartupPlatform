@@ -48,7 +48,7 @@
                 <%= f.hidden_field :topic_id, value: params[:id] %>
                 <div class="box" style="width: 100%;">
                   <div class="form-group" style="width: 100%; display: table-cell; padding-right: 20px;" >
-                    <%= f.text_area :content, class: "search-query form-control", style: "width: 100%", placeholder: "Write a message" %>
+                    <%= f.text_area :content, class: "search-query form-control", id: "text_area_message", style: "width: 100%", placeholder: "Write a message" %>
                     <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
                   </div>
                   <div style="width: 50px; display: table-cell; ">
@@ -73,4 +73,11 @@
       $("#message_content").css("border", "red solid 1px");
     }
   })
+  $("#text_area_message").keypress(function(event) {
+    if (event.which == 13) {
+      event.preventDefault();
+      $("form").submit();
+      $(this).val("");
+    }
+  });
 </script>
