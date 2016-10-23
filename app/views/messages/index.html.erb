@@ -5,56 +5,57 @@
 
 <%#= link_to 'New Message', new_message_path %>
 
-  <div class="container side-deatail">
-    <div class="col-xs-3">
-      <%= render partial: "user_dashboards/sidebar" %>
-    </div>
-    <div class="col-xs-9">
-      <div class="profile-tabs">
-        <div class="tab-content">
-          <div  class="tab-pane fade active in">
-            <% if @message_thread.count > 0 %>
+<div class="container side-deatail">
+  <div class="col-xs-3">
+    <%= render partial: "user_dashboards/sidebar" %>
+  </div>
+  <div class="col-xs-9">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div class="tab-pane fade active in">
+          <% if @message_thread.count > 0 %>
               <div class="message">
                 <ul>
                   <% @message_thread.each do |thread| %>
-                  <%#=  thread.class %>
-                    <%= link_to inbox_messages_path(id: thread.id) do %>
-                      <li>
-                        <div class="pro-message">
-                          <div class="circle-pic">
-                            <% if thread.target_id == current_user.id %>
-                              <%= image_tag thread.user.photo_avatar %>
-                            <% else %>
-                              <%= image_tag thread.target.photo_avatar if thread.target.present? %>
+                      <%#=  thread.class %>
+                      <%= link_to inbox_messages_path(id: thread.id) do %>
+                          <li>
+                            <div class="pro-message">
+                              <div class="circle-pic">
+                                <% if thread.target_id == current_user.id %>
+                                    <%= image_tag thread.user.photo_avatar %>
+                                <% else %>
+                                    <%= image_tag thread.target.photo_avatar if thread.target.present? %>
+                                <% end %>
+                              </div>
+                            </div>
+                            <% if thread.unread_messages(current_user) != 0 %>
+                                <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>">
+                                  <i class="fa fa-bolt" aria-hidden="true"></i></div>
+                                <%= puts thread.unread_messages(current_user) %>
                             <% end %>
-                          </div>
-                        </div>
-                        <% if  thread.unread_messages(current_user) != 0 %>
-                        <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>"><i class="fa fa-bolt" aria-hidden="true"></i></div>
-                        <%= puts thread.unread_messages(current_user) %>
-                        <% end %>
-                        <div class="top-count"><%= thread.unread_messages(current_user) %></div>
-                        <div class="sr-name">
-                          <% if thread.target_id == current_user.id %>
-                            <%= thread.user.name %>
-                          <% else %>
-                            <%= thread.target.name %>
-                          <% end %>
-                        </div>
-                      </li>
-                    <% end %>
+                            <div class="top-count"><%= thread.unread_messages(current_user) %></div>
+                            <div class="sr-name">
+                              <% if thread.target_id == current_user.id %>
+                                  <%= thread.user.name %>
+                              <% else %>
+                                  <%= thread.target.name %>
+                              <% end %>
+                            </div>
+                          </li>
+                      <% end %>
                   <% end %>
                 </ul>
               </div>
-            <% else %>
-            <div class="notes-alert">
-              <div class="alert alert-warning">
-                You do not have any <strong>Messages</strong> at the current moment.
+          <% else %>
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  You do not have any <strong>Messages</strong> at the current moment.
+                </div>
               </div>
-            </div>
-            <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
