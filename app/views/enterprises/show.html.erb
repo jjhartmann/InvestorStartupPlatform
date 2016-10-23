@@ -9,12 +9,12 @@
             <div class="box-tab">
               <div class="buttons">
                 <%= link_to edit_enterprise_path(@enterprise) do %>
-                  <div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div>
+                    <div class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></div>
                 <% end %>
               </div>
               <div class="all-notification-close">
                 <%= link_to enterprises_path do %>
-                  <i aria-hidden="true" class="fa fa-times"></i>
+                    <i aria-hidden="true" class="fa fa-times"></i>
                 <% end %>
               </div>
               <div class="form-group">
@@ -23,30 +23,46 @@
                 </div>
               </div>
               <div class="form-group">
-                <h2><span class="name notes"><i aria-hidden="true" class="fa fa-user"></i>Name</span><span class="display-mode-value"><%= @enterprise.name %></span></h2>
+                <h2>
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-user"></i>Name</span><span class="display-mode-value"><%= @enterprise.name %></span>
+                </h2>
               </div>
               <div class="form-group">
                 <div class="set-view-deatils">
-                  <p><span class="name notes"><i class="fa fa-bank" aria-hidden="true"></i>Pitch</span><span class="display-mode-value"><%= @enterprise.pitch %></span></p>
+                  <p>
+                    <span class="name notes"><i class="fa fa-bank" aria-hidden="true"></i>Pitch</span><span class="display-mode-value"><%= @enterprise.pitch %></span>
+                  </p>
                 </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-money"></i>Funds to raise</span><span class="display-mode-value"><%= @enterprise.funds_to_raise %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-money"></i>Funds to raise</span><span class="display-mode-value"><%= @enterprise.funds_to_raise %></span>
+                </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-industry"></i>Industry</span><span class="display-mode-value"><%= @enterprise.industry %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-industry"></i>Industry</span><span class="display-mode-value"><%= @enterprise.industry %></span>
+                </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-star-half-o"></i>Enterprise stage</span><span class="display-mode-value"><%= @enterprise.enterprise_stage %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-star-half-o"></i>Enterprise stage</span><span class="display-mode-value"><%= @enterprise.enterprise_stage %></span>
+                </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-map-marker"></i>Location</span><span class="display-mode-value"><%= @enterprise.location %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-map-marker"></i>Location</span><span class="display-mode-value"><%= @enterprise.location %></span>
+                </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>Stage identifer</span><span class="display-mode-value"><%= @enterprise.stage_identifier %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-lightbulb-o"></i>Stage identifer</span><span class="display-mode-value"><%= @enterprise.stage_identifier %></span>
+                </div>
               </div>
               <div class="form-group">
-                <div class="user-positon"><span class="name notes"><i aria-hidden="true" class="fa fa-plane"></i>market identifer</span><span class="display-mode-value"><%= @enterprise.market_identifier %></span></div>
+                <div class="user-positon">
+                  <span class="name notes"><i aria-hidden="true" class="fa fa-plane"></i>market identifer</span><span class="display-mode-value"><%= @enterprise.market_identifier %></span>
+                </div>
               </div>
               <div class="form-group">
                 <div class="set-view-deatils">
@@ -58,7 +74,7 @@
               <div class="add-form">
                 <div class="btn-yes-no">
                   <%#= link_to new_enterprise_path, class: "btn btn-green" do %><!--<div class="btn btn-green">Add Enterprise</div>--><%# end %>
-                  <%= link_to "Add Members","#add_member",'data-toggle': "modal",class: "btn btn-primary" %>
+                  <%= link_to "Add Members", "#add_member", 'data-toggle': "modal", class: "btn btn-primary" %>
                 </div>
               </div>
             </div>
@@ -80,15 +96,15 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Modal Header</h4>
       </div>
-      <%= form_tag add_member_enterprises_path do |f|%>
-      <div class="modal-body">
-        <%= hidden_field_tag 'enterprise_id', params[:id].to_i %>
-        <%= text_field_tag "invitee","",class: "form-control",placeholder: "Enter email id of Invitee..."%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= submit_tag "Submit" %>
-      </div>
+      <%= form_tag add_member_enterprises_path do |f| %>
+          <div class="modal-body">
+            <%= hidden_field_tag 'enterprise_id', params[:id].to_i %>
+            <%= text_field_tag "invitee", "", class: "form-control", placeholder: "Enter email id of Invitee..." %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= submit_tag "Submit" %>
+          </div>
       <% end %>
     </div>
   </div>
