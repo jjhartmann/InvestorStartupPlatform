@@ -7,8 +7,8 @@ class MessagesController < ApplicationController
     @current_user_received_messages = Message.where(target_id: current_user.id, is_private: true).topics
     @messages = current_user.messages.topics.private_only
     @unsorted_message_thread = @messages | @current_user_received_messages
-    @unsorted_message_thread1 = @unsorted_message_thread.sort! { |a,b| a.replies.unread.count <=> b.replies.unread.count }
-    @message_thread = @unsorted_message_thread1.sort! { |a,b| a.updated_at <=> b.updated_at }.reverse!
+    @unsorted_message_thread1 = @unsorted_message_thread.sort! { |a, b| a.replies.unread.count <=> b.replies.unread.count }
+    @message_thread = @unsorted_message_thread1.sort! { |a, b| a.updated_at <=> b.updated_at }.reverse!
   end
 
   def show
@@ -31,18 +31,18 @@ class MessagesController < ApplicationController
       respond_to do |format|
         if @message_sent[1]
           ActionCable.server.broadcast 'messages',
-            message: @message_sent[0].content,
-            user: @message_sent[0].user.name,
-            created_at: @message_sent[0].created_time,
-            user_id:  @message_sent[0].user.id,
-            image: @message_sent[0].user.photo? ? @message_sent[0].user.photo_avatar.url : '/assets/user_50.jpeg'
+                                       message: @message_sent[0].content,
+                                       user: @message_sent[0].user.name,
+                                       created_at: @message_sent[0].created_time,
+                                       user_id: @message_sent[0].user.id,
+                                       image: @message_sent[0].user.photo? ? @message_sent[0].user.photo_avatar.url : '/assets/user_50.jpeg'
           head :ok
           # format.html { redirect_to :back, notice: 'Message was successfully sent.' } and return
           # format.json { render :show, status: :created, location: @message }
         else
           format.html { render :new }
           format.json { render json: @message.errors, status: :unprocessable_entity }
-          format.js { render template: 'error.js.erb'}
+          format.js { render template: 'error.js.erb' }
         end
       end
     else
@@ -84,7 +84,7 @@ class MessagesController < ApplicationController
 
   def inbox
     @first_message = Message.find(params[:id])
-    @read_status = Message.where(topic_id: @first_message.id,target_id: current_user.id)
+    @read_status = Message.where(topic_id: @first_message.id, target_id: current_user.id)
     @first_message.update(is_read: true) if @first_message.target_id == current_user.id
     @read_status.each do |read_message|
       read_message.update(is_read: true)
@@ -97,18 +97,18 @@ class MessagesController < ApplicationController
     @following_messages = Message.where(topic_id: @first_message.id)
     @message_thread = Array.new
     @message_thread.push(@first_message)
-    @message_thread =  @message_thread | @following_messages
+    @message_thread = @message_thread | @following_messages
     @message = Message.new
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_message
-      @message = Message.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_message
+    @message = Message.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def message_params
-      params.require('message').permit(:content, :is_read, :is_private, :is_archived, :target_id, :target_type, :proposal_id, :topic_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def message_params
+    params.require('message').permit(:content, :is_read, :is_private, :is_archived, :target_id, :target_type, :proposal_id, :topic_id, :user_id)
+  end
 end
