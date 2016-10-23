@@ -67,14 +67,15 @@
 
 <script>
   $("#message_send").click(function (e) {
-    if ($("#message_content").val().trim() == '') {
+    if ($("#text_area_message").val().trim() == '') {
       e.preventDefault();
       $("#message_error").css("display", "block");
       $("#message_content").css("border", "red solid 1px");
     }
-  })
+    $("#text_area_message").val('');
+  });
   $("#text_area_message").keypress(function(event) {
-    if (event.which == 13) {
+    if (event.which == 13 && !event.shiftKey) {
       event.preventDefault();
       $("form").submit();
       $(this).val("");
