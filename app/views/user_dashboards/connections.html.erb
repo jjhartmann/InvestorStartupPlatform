@@ -38,7 +38,7 @@
                                       <a href="#">More Action
                                         <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
                                       <ul class="submenu">
-                                        <li><%= link_to @user.is_following?(connection) ? "Following" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
+                                        <li><%= link_to @user.is_following?(connection) ? "Unfollow" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
                                         <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>
                                       </ul>
                                     </li>
