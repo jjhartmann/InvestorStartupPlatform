@@ -282,6 +282,15 @@ ul.comapny{
     padding-left: 20px;
     padding-bottom: 20px;
 }
+
+.deatails-module.not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: #666;
+    width: 80%;
+}
+
 .deatails-module h3 {
     margin-top: 0;
 }

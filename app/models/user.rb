@@ -158,7 +158,7 @@ class User < ApplicationRecord
 
       if message_saved
         topic.updated_at = Time.now
-        topic.is_read = false
+        topic.latest_message_id = message.id
         topic.save
       end
 
@@ -181,7 +181,7 @@ class User < ApplicationRecord
 
     if message_saved
       topic.updated_at = Time.now
-      topic.is_read = false
+      topic.latest_message_id = message.id
       topic.save
     end
 
