@@ -4,7 +4,7 @@ class UserDashboardsController < ApplicationController
 
   def index
     if current_user.profilable.questionaire.questions.present?
-      @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 2)
+      @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
     else
       redirect_to questionaries_path
     end
@@ -36,9 +36,21 @@ class UserDashboardsController < ApplicationController
   end
 
   def all_users
-    @all_users = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id)
-    @all_investors = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id)
-    @enterprises = Enterprise.all
+    @title_heading = "Search"
+
+    @search = nil
+    case params[:type]
+      when "Investors"
+        @search =  User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+      when "Companies"
+        @search = Enterprise.all.paginate(page: params[:page], per_page: 10)
+      else
+        params[:type] = "Users"
+        @search = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+    end
+    # @all_users = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+    # @all_investors = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+    # @enterprises = Enterprise.all.paginate(page: params[:page], per_page: 10)
   end
 
   def follow_unfollow_user
@@ -49,6 +61,7 @@ class UserDashboardsController < ApplicationController
     end
     if current_user.is_following?(@user)
       current_user.unfollow(@user)
+
     else
       current_user.follow(@user)
     end
@@ -66,6 +79,9 @@ class UserDashboardsController < ApplicationController
     respond_to do |format|
       format.js
     end
+
+
+    redirect_back
   end
 
   def suggested_profile
