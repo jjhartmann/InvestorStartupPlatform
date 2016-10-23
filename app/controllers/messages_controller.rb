@@ -98,6 +98,8 @@ class MessagesController < ApplicationController
     @message_thread = Array.new
     @message_thread.push(@first_message)
     @message_thread = @message_thread | @following_messages
+
+    # For the form
     @message = Message.new
   end
 
