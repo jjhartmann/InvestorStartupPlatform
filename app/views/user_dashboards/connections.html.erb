@@ -10,113 +10,117 @@
   <div class="col-xs-9">
     <div class="profile-tabs">
       <div class="tab-content">
-        <div  class="tab-pane fade active in">
-        <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
-          <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
-        </div>
-        <div class="new-button">
-          <%= link_to "Everyone", all_users_user_dashboards_path(id: current_user.id), class: "btn btn-primary"%>
-        </div>
+        <div class="tab-pane fade active in">
+          <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
+            <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
+          </div>
+          <div class="enterprise-deatils box-tab" style="margin-bottom: 20px">
+            <div class="body h2" style="display: inline-block">Connections</div>
+            <div class="new-button" style="display: inline-block; float: right">
+              <%= link_to "Search", all_users_user_dashboards_path(id: current_user.id), class: "btn btn-primary" %>
+            </div>
+          </div>
           <% if @connected_users.any? %>
-          <div class="enterprise-deatils box-tab">
-              <div class="user-follow">
-                <ul class="clearfix" id="connections_list">
-                  <% @connected_users.each do |connection| %>
-                    <%= link_to user_profile_path(id: current_user.id,connection_profile: connection.id), 'data-id': "#{connection.id}" do %>
-                      <li>
-                        <div class="tag-1">
-                          <div class="follow-pro">
-                            <div class="pic-user"><%= image_tag connection.photo_avatar %></div>
-                          </div>
-                        </div>
-                        <div class="tag-2">
-                          <h3><%= connection.name %></h3>
-                          <div class="tag-line-pro">Developer, Gujarat Housing Board</div>
-                        </div>
-                        <div class="tag-3">
-                          <div class="action-tag">
-                            <ul class="menu cf">
-                              <li>
-                                <a href="#">More Action <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
-                                <ul class="submenu">
-                                  <li><%= link_to @user.is_following?(connection) ? "Following" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
-                                  <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
+              <div class="enterprise-deatils box-tab">
+                <div class="user-follow">
+                  <ul class="clearfix" id="connections_list">
+                    <% @connected_users.each do |connection| %>
+                        <%= link_to user_profile_path(id: current_user.id, connection_profile: connection.id), 'data-id': "#{connection.id}" do %>
+                            <li>
+                              <div class="tag-1">
+                                <div class="follow-pro">
+                                  <div class="pic-user"><%= image_tag connection.photo_avatar %></div>
+                                </div>
+                              </div>
+                              <div class="tag-2">
+                                <h3><%= connection.name %></h3>
+                                <div class="tag-line-pro">Developer, Gujarat Housing Board</div>
+                              </div>
+                              <div class="tag-3">
+                                <div class="action-tag">
+                                  <ul class="menu cf">
+                                    <li>
+                                      <a href="#">More Action
+                                        <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
+                                      <ul class="submenu">
+                                        <li><%= link_to @user.is_following?(connection) ? "Following" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
+                                        <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </li>
+                        <% end %>
                     <% end %>
-                  <% end %>
-                </ul>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="text-center">
-              <%= will_paginate @connected_users %>
-            </div>
+              <div class="text-center">
+                <%= will_paginate @connected_users %>
+              </div>
           <% else %>
-            <div class="notes-alert">
-              <div class="alert alert-warning">
-                Sorry, you have no <strong>connections</strong>.
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  Sorry, you have no <strong>connections</strong>.
+                </div>
               </div>
-          </div>
           <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- Modal -->
-<div id="messageModal" class="modal" role="dialog">
-  <div class="modal-dialog">
+  <!-- Modal -->
+  <div id="messageModal" class="modal" role="dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <%= simple_form_for @message,url: messages_path do |f|%>
-      <div class="modal-body">
-        <%= f.hidden_field :target_id %>
-        <%= f.hidden_field :user_id,value: current_user.id %>
-        <div class="message-tab">
-          <div class="head-tab">Shantilal matariya</div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
         </div>
-        <div class="form-inputs">
-          <%= f.input :content, class: "form-control", placeholder: "Write a message to abc" %>
-          <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
-        </div>
+        <%= simple_form_for @message, url: messages_path do |f| %>
+            <div class="modal-body">
+              <%= f.hidden_field :target_id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <div class="message-tab">
+                <div class="head-tab">Shantilal matariya</div>
+              </div>
+              <div class="form-inputs">
+                <%= f.input :content, class: "form-control", placeholder: "Write a message to abc" %>
+                <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+              </div>
 
-        <%#= render partial: "messages/form" %>
+              <%#= render partial: "messages/form" %>
+            </div>
+            <div class="modal-footer">
+              <div class="terminals">
+                <div class="btn-yes-no">
+                  <%= f.submit "Send", class: "remodal-confirm btn btn-green", id: "message_send" %>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        <% end %>
       </div>
-      <div class="modal-footer">
-        <div class="terminals">
-          <div class="btn-yes-no">
-            <%= f.submit "Send",class: "remodal-confirm btn btn-green", id: "message_send" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-      <% end %>
+
     </div>
-
   </div>
-</div>
 </div>
 <script>
 
-  $("#messageModal").on('bs.modal.show',function(){
-    $("#message_error").css("display","none");
+  $("#messageModal").on('bs.modal.show', function () {
+    $("#message_error").css("display", "none");
     $("#message_content").removeAttr('style');
   })
-  $("#message_send").click(function(e){
-    if ($("#message_content").val().trim() == ''){
+  $("#message_send").click(function (e) {
+    if ($("#message_content").val().trim() == '') {
       e.preventDefault();
-      $("#message_error").css("display","block");
-      $("#message_content").css("border","red solid 1px");
+      $("#message_error").css("display", "block");
+      $("#message_content").css("border", "red solid 1px");
     }
   })
 </script>
