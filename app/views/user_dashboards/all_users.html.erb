@@ -12,8 +12,8 @@
         <div class="tab-content">
           <div id="all_search" class="tab-pane fade in active">
             <%= render "user_dashboards/title_bar_search" %>
-            <div class="user-follow">
-              <ul class="clearfix" id="connections_list">
+            <div class="enterprise-deatils box-tab">
+              <ul class="full-details clearfix" id="connections_list">
                 <% if params[:type] == "Users" %>
                     <% @search.each do |user| %>
                         <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= user.id %>'>
