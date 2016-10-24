@@ -38,17 +38,51 @@ We faced some issues when we installed the google-charts and the error said that
 
 15. brew install redis (Requirement for Action Cable)
 
+# for certain users, the profile does not exists. Also, for others, their questionaire does not exist. To create the same
 
-QuestionsToAskEntrepreneur.create(question: 'Deal with Lowest Budget')
-QuestionsToAskEntrepreneur.create(question: 'Fields of Major deals')
-QuestionsToAskEntrepreneur.create(question: 'Fields of Interest for investment')
-QuestionsToAskInvestor.create(question: 'Fields of Interest for investment')
-QuestionsToAskInvestor.create(question: 'Minimum Budget for investment')
-QuestionsToAskInvestor.create(question: 'Maximum Budget for investment')
-QuestionsToAskInvestor.create(question: 'What startup type are you looking for?', qtype: 'dropdown')
-QuestionsToAskEnterprise.create(question: 'Fields of Interest for investment')
-QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
-QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
+User.all.each do |user|
+ if user.profilable.present?
+ puts "profile present."
+  if user.profilable.questionaire.present?
+   puts "questionaire present"
+  else
+   user.profilable.create_questionaire
+   puts "questionaire created"
+  end
+ else
+ puts "profile not present"
+   u = UserProfile.new
+   u.save(validates: true)
+   puts "profile created for user"
+   user.update(profilable_id: u.id, profilable_type: u.class)
+   puts "update the user profilable"
+   u.create_questionaire
+   puts "questioanaire for user created"
+ end
+end
+
+# To create questioanire for enterprise that already exists,
+
+Enterprise.all.each do |e|
+  if e.questionaire.present?
+    puts "Questionaire Present."
+  else
+   e.create_questionaire
+  end
+ end
+
+# Default questions for questioanire
+
+ QuestionsToAskEntrepreneur.create(question: 'Deal with Lowest Budget')
+ QuestionsToAskEntrepreneur.create(question: 'Fields of Major deals')
+ QuestionsToAskEntrepreneur.create(question: 'Fields of Interest for investment')
+ QuestionsToAskInvestor.create(question: 'Fields of Interest for investment')
+ QuestionsToAskInvestor.create(question: 'Minimum Budget for investment')
+ QuestionsToAskInvestor.create(question: 'Maximum Budget for investment')
+ QuestionsToAskInvestor.create(question: 'What startup type are you looking for?', qtype: 'dropdown')
+ QuestionsToAskEnterprise.create(question: 'Fields of Interest for investment')
+ QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
+ QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
 
 Resolve Errors
 

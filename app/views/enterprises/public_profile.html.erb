@@ -21,7 +21,6 @@
             <%= image_tag @enterprise.logo_avatar %>
           </div>
           <h3><%= @enterprise.name %></h3>
-          <p><%= @enterprise.description %></p>
           <div class="main-details">
             <ul>
               <li>Pitch <span class="pull-right"><%= @enterprise.pitch %></span></li>
@@ -79,10 +78,35 @@
     '<% end %>'
 
     $("#message_send").click(function (e) {
-      if ($("#topic").val() == '') {
+      if ($("#meeting_date").val() == ""){
         e.preventDefault();
-        $("#message_error").css("display", "block");
-        $("#topic").css("border", "red solid 1px");
+        $("#meeting_date").css("border", "1px solid red");
+        $("#datepairExample").append("<p id='meeting_date_error' style='color:red'>Select the meeting date.</p>")
+      }else{
+        $("#meeting_date").css("border", "1px solid #ccc");
+      }
+      console.log($("#meeting_start_time").length);
+      if ($("#meeting_start_time").length == 1){
+        if ($("#meeting_start_time").val()== ""){
+          e.preventDefault();
+          $("#meeting_start_time").css("border", "1px solid red");
+          $("#datepairExample").append("<p id='meeting_time_error' style='color:red'>Select the meeting time.</p>")
+        }else{
+          $("#meeting_time_error").remove();
+        }
+      }
+    });
+    $("#meeting_date").change(function(){
+      if ($("#meeting_date_error").length == 1){
+        $("#meeting_date_error").remove();
+        $("#meeting_date").css("border","1px solid #ccc");
+      }
+    });
+    var el = $('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>');
+    el.change(function(){
+      if($("#meeting_time_error").length == 1){
+        $("#meeting_time_error").remove();
+        $("#meeting_start_time").css("border","1px solid #ccc");
       }
     });
 
@@ -105,7 +129,7 @@
           $(".form-control-wrapper #datepairExample").find(".time.end").remove();
           $(".form-control-wrapper #datepairExample").find("div").remove();
 
-          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
+          $(".form-control-wrapper #datepairExample").append(el);
 
           initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
           // alert("invalid");

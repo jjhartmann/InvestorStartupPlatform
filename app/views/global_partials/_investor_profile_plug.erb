@@ -12,5 +12,8 @@
       <div id="follow_<%= investor.id %>" class="follow" data-id='<%= "#{investor.id}" %>' data-type='<%= "#{investor.profilable_type}" %>'>
         <%= current_user.is_following?(investor) ? "Unfollow" : "Follow" %>
       </div>
+      <div>
+        <%= link_to "Profile", user_profile_path(id: @user.id,suggested_profile: investor.id), style: "color: #fff;" %>
+      </div>
     </div>
   </div>
