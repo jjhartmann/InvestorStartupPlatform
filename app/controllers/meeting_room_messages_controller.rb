@@ -52,11 +52,7 @@ class MeetingRoomMessagesController < ApplicationController
   end
 
   def chatroom
-    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_id])
-    if @member.present?
-    else
-      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_id])
-    end
+    @member = @user.profilable.meeting_room_members.find__or_craete_by(meeting_room_id: params[:meeting_room_id])    
     @meeting_room = @member.meeting_room
     @messages = @meeting_room.meeting_room_messages
     @members = @meeting_room.meeting_room_members
@@ -96,7 +92,7 @@ class MeetingRoomMessagesController < ApplicationController
 
   def send_document
     @message = Message.create(content: "#{@user.name} has sent a document", user_id: @user.id)
-    @meeting_room = @user.profilable.meeting_rooms.find_by(params[:meeting_room_id])
+    @meeting_room = @user.profilable.meeting_rooms.find_by(id: params[:meeting_room_message_document][:meeting_room_id])
     if @meeting_room.present?
       @member = @meeting_room.meeting_room_members.find_by(meetable: @user.profilable)
       if @member.present?

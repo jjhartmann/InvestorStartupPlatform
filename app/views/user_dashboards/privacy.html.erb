@@ -1,0 +1,26 @@
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :privacy_class, "active" %>
+
+<%= render "/user_dashboards/profile" %>
+<div class="main-body">
+  <div class="container side-deatail">
+    <div class="col-xs-3">
+      <%= render partial: "settings" %>
+    </div>
+    <div class="col-xs-9">
+      <div class="container">
+        <div class="tab-content">
+          <div id="profile_type" class="tab-pane fade in active">
+            <h3>Privacy</h3>
+            <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
+            <div class="field">
+              <%= f.collection_radio_buttons :is_public, [[true, 'Public'] ,[false, 'Private']], :first, :last %>
+            </div>
+            <%= f.submit "Save" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
