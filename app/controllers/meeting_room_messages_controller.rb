@@ -52,11 +52,7 @@ class MeetingRoomMessagesController < ApplicationController
   end
 
   def chatroom
-    @member = @user.profilable.meeting_room_members.find_by(meeting_room_id: params[:meeting_room_id])
-    if @member.present?
-    else
-      @member = @user.profilable.meeting_room_members.create(meeting_room_id: params[:meeting_room_id])
-    end
+    @member = @user.profilable.meeting_room_members.find__or_craete_by(meeting_room_id: params[:meeting_room_id])    
     @meeting_room = @member.meeting_room
     @messages = @meeting_room.meeting_room_messages
     @members = @meeting_room.meeting_room_members
