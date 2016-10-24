@@ -52,7 +52,14 @@ class MeetingsController < ApplicationController
 
   def meeting_request
     @enterprise = Enterprise.find(params[:requested_client_id])
-    @meeting = Meeting.create(topic: params[:topic],start_time: DateTime.parse(params[:meeting_start_time]) + 1.day, investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
+    @date = Date.parse(params[:meeting_date])
+    @time = Time.parse(params[:meeting_start_time])
+    @date_time = (@date + @time.seconds_since_midnight.seconds).to_datetime
+
+    puts "____________"
+    puts @date_time
+    puts "____________"
+    @meeting = Meeting.create(topic: params[:topic],start_time: @date_time + 6.hours, investor_profile_id: current_user.profilable.id, enterprise_id: @enterprise.id,acceptance_status: "requested")
     @enterprise.enterprise_users.each do |member|
       @meeting_member = @meeting.meeting_members.build(memberable: member.user.profilable).save
       @notification = @meeting.notifications.create_notification(member.user.profilable_id, member.user.profilable_type, "#{current_user.name} have asked you to setup the meeting for following topic #{params[:topic]} on #{@meeting.start_time.strftime("#{@meeting.start_time.day.ordinalize} %B, %Y")} .", @meeting.class,{meeting_id: @meeting.id})
@@ -61,8 +68,11 @@ class MeetingsController < ApplicationController
         acceptance_status: @notification.notification_type == "Meeting" ? @notification.meeting.acceptance_status : "",
         notification_created_time: @notification.created_time
     end
-    head :ok
+    # head :ok
     # redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 
   def accept_request
