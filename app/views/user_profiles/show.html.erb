@@ -18,6 +18,17 @@
             <p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><%= @user_profile.email %></p>
           </div>
         </div>
+        <div class="">
+          <% if current_user.profilable_type == "InvestorProfile" %>
+              <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#messageModal1", 'data-toggle': "modal" %></div>
+          <% end %>
+        </div>
+        <div>
+          <% if @user == @user_profile %>
+            <div class="edit"><%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, 'data-toggle': "modal" %></div>
+
+          <% end %>
+        </div>
         <div class="deatils-tag">
           <h3>About Me</h3>
           <p><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.something_cool : @user_profile.profilable.description %></p>
@@ -26,19 +37,25 @@
       </div>
       <div class="col-xs-3">
         <div class="view-side">
-          <% if @user_profile.profilable_type == "UserProfile" %>
-            <div class="tag-new">
+          <% if @user_profile.profilable_type == "UserProfile" &&  @user_profile.enterprises.any? %>
+            <div>
             <h2>Companies</h2>
             <div class="view-bar">
              <ul class="comapny">
-              <li>
-                <div class="pro-com"><img src="images/pro-1.jpg"/></div>
-                <div class="com-det">
-                  <span class="name">Abc Technology</span>
-                  <span class="date"><i aria-hidden="true" class="fa fa-calendar"></i> 10 Oct 2016</span>
-                  <span>Loerm ipsum</span>
-                </div>
-              </li>
+              <% @user_profile.enterprises.each do |enterprise| %>
+                <li>
+                  <%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>
+                    <div class="pro-com">
+                      <%= image_tag enterprise.logo_thumb %>
+                    </div>
+                    <div class="com-det">
+                      <span class="name"><%= enterprise.name %></span>
+                      <span class="date"><i aria-hidden="true" class="fa fa-calendar"></i> <%= enterprise.created_at.strftime("%d-%b-%Y") %></span>
+                      <span><%=h truncate(enterprise.pitch, length: 25) %></span>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
              </ul>
             </div>
           </div>
@@ -57,6 +74,8 @@
               </span>
             </div>
           </div>
+          <% else %>
+            No Company yet
           <% end %>
         </div>
       </div>

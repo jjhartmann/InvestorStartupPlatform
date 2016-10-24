@@ -10,8 +10,8 @@
     <div class="col-xs-9">
       <div class="tab-content view-tag">
         <div id="deactivate_account" class="tab-pane fade in active">
-          <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
-          <h3>Delete Account</h3>
+          <%= link_to user_registration_path(id: @user.id),class: "text-center", method: :delete, data: { confirm: "You sure?" } do %>
+            <h3>Delete Account</h3>
           <% end %>
         </div>
         </div>
