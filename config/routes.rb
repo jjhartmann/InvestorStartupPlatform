@@ -57,6 +57,8 @@ Rails.application.routes.draw do
       get 'searched_users'
       patch 'update_password'
       patch 'update_profile'
+      get "delete_account"
+      get "privacy"
     end
   end
   resources :user_profiles do

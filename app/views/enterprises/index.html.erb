@@ -94,77 +94,6 @@
 
 <div id="popover-schedule"></div>
 
-
-<script>
-  $(document).ready(function () {
-    '<% if current_user.profilable_type == "InvestorProfile" %>'
-    var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
-    var array = $.map(array1, function (value, index) {
-      return [value];
-    });
-    '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
-    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
-    array.splice(array.indexOf(parseInt(index)), 1);
-    '<% end %>'
-
-    $("#message_send").click(function (e) {
-      if ($("#topic").val() == '') {
-        e.preventDefault();
-        $("#message_error").css("display", "block");
-        $("#topic").css("border", "red solid 1px");
-      }
-    });
-
-    $('#datepairExample .date').datepicker({
-      'format': 'yyyy-m-d',
-      'autoclose': true,
-      'daysOfWeekDisabled': array,
-      // startDate: "today" To start date from today.
-      startDate: "+1d" // To start date from next available date.
-    }).on('changeDate', function () {
-      $(this).addClass("new-date-start");
-      var a = new Date($("#meeting_date").val());
-      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      var day = weekdays[parseInt(a.getDay())];
-      '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
-      if ('<%= day.day %>' == day) {
-        if (array1.indexOf(a.getDay().toString()) > -1) {
-        } else {
-          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
-          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
-          $(".form-control-wrapper #datepairExample").find("div").remove();
-
-          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
-
-          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
-          // alert("invalid");
-        }
-      } else {
-      }
-      '<% end %>'
-      '<% end %>'
-
-    });
-    function initialize_timepicker(startTime, endTime) {
-      $('#datepairExample .time.start').timepicker({
-        'showDuration': true,
-        'timeFormat': 'G:i',
-        'minTime': startTime,
-        'maxTime': endTime
-      }).on('change', function () {
-        // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
-        reload_time($(this).val());
-      });
-    }
-
-    $('#datepairExample .time.start').timepicker().on('change', function () {
-      reload_time($(this).val());
-    });
-    // initialize datepair
-    $('#datepairExample').datepair();
-  });
-</script>
-
 <script>
   function reload_time(val1) {
     $('#datepairExample .time.end').timepicker({
@@ -196,5 +125,102 @@
 
   $('#meetingModal1').on('hidden.bs.modal', function () {
     $(this).find('input[type=text]').val('');
+  });
+
+  $('#popover-schedule').on('shown.bs.modal', function () {
+
+
+    '<% if current_user.profilable_type == "InvestorProfile" %>'
+    var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
+    var array = $.map(array1, function (value, index) {
+      return [value];
+    });
+    '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
+    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+    array.splice(array.indexOf(parseInt(index)), 1);
+    '<% end %>'
+
+    $("#message_send").click(function (e) {
+      if ($("#meeting_date").val() == ""){
+        e.preventDefault();
+        $("#meeting_date").css("border", "1px solid red");
+        $("#datepairExample").append("<p id='meeting_date_error' style='color:red'>Select the meeting date.</p>")
+      }else{
+        $("#meeting_date").css("border", "1px solid #ccc");
+      }
+      if ($("#meeting_start_time").length == 1){
+        if ($("#meeting_start_time").val()== ""){
+          e.preventDefault();
+          $("#meeting_start_time").css("border", "1px solid red");
+          $("#datepairExample").append("<p id='meeting_time_error' style='color:red'>Select the meeting time.</p>")
+        }else{
+          $("#meeting_time_error").remove();
+        }
+      }
+    });
+    $("#meeting_date").change(function(){
+      if ($("#meeting_date_error").length == 1){
+        $("#meeting_date_error").remove();
+        $("#meeting_date").css("border","1px solid #ccc");
+      }
+    });
+    var el = $('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>');
+
+    el.change(function(){
+      // alert("hello");
+      if($("#meeting_time_error").length == 1){
+        $("#meeting_time_error").remove();
+        $("#meeting_start_time").css("border","1px solid #ccc");
+      }
+    });
+
+
+    $('#datepairExample .date').datepicker({
+      'format': 'yyyy-m-d',
+      'autoclose': true,
+      'daysOfWeekDisabled': array,
+      // startDate: "today" To start date from today.
+      startDate: "+1d" // To start date from next available date.
+    }).on('changeDate', function () {
+      $(this).addClass("new-date-start");
+      var a = new Date($("#meeting_date").val());
+      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var day = weekdays[parseInt(a.getDay())];
+      '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
+      if ('<%= day.day %>' == day) {
+        if (array1.indexOf(a.getDay().toString()) > -1) {
+        } else {
+          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
+          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
+          $(".form-control-wrapper #datepairExample").find("div").remove();
+
+          $(".form-control-wrapper #datepairExample").append(el);
+
+          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
+          // alert("invalid");
+        }
+      } else {
+      }
+      '<% end %>'
+      '<% end %>'
+
+    });
+    function initialize_timepicker(startTime, endTime) {
+      $('#datepairExample .time.start').timepicker({
+        'showDuration': true,
+        'timeFormat': 'G:i',
+        'minTime': startTime,
+        'maxTime': endTime
+      }).on('change', function () {
+        // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+        reload_time($(this).val());
+      });
+    }
+
+    $('#datepairExample .time.start').timepicker().on('change', function () {
+      reload_time($(this).val());
+    });
+    // initialize datepair
+    $('#datepairExample').datepair();
   });
 </script>

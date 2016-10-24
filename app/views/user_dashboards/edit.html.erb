@@ -1,23 +1,16 @@
 <%= content_for :body_class, "dashbord" %>
+<%= content_for :edit_user_class, "active" %>
 
 <%= render "/user_dashboards/profile" %>
 <div class="main-body">
   <div class="container side-deatail">
     <div class="col-xs-3">
-      <%= render "/user_dashboards/sidebar" %>
+      <%= render partial: "settings" %>
     </div>
     <div class="col-xs-9">
-      <div class="container">
-        <h2>Settings</h2>
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#change_pass">Change Password</a></li>
-          <li><a data-toggle="tab" href="#profile_type">Privacy</a></li>
-          <li><a data-toggle="tab" href="#deactivate_account">Deactivate Account</a></li>
-        </ul>
-
-        <div class="tab-content">
+        <div class="tab-content view-tag">
           <div id="change_pass" class="tab-pane fade in active">
-            <h3>Change Password</h3>
+            <h3 class="text-center">Change Password</h3>
             <div class="profile-tabs">
               <div class="tab-content">
                 <div class="tab-pane fade in active">
@@ -39,25 +32,8 @@
               </div>
             </div>
           </div>
-          <div id="profile_type" class="tab-pane fade">
-            <h3>Privacy</h3>
-            <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
-            <div class="field">
-              <%= f.collection_radio_buttons :is_public, [[true, 'Public'] ,[false, 'Private']], :first, :last %>
-            </div>
-            <%= f.submit "Save" %>
-            <% end %>
-
-          </div>
-          <div id="deactivate_account" class="tab-pane fade">
-
-            <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
-            <h3>Delete Account</h3>
-            <% end %>
-          </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

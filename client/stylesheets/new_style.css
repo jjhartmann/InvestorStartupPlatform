@@ -596,3 +596,15 @@ ul.comapny{
 .tag-line-new ul {
     padding-left: 0;
 }
+/*24-10-2016*/
+.meeting .circle-pic .fa {
+    text-align: center;
+    font-size: 48px;
+}
+.meeting .circle-pic {
+    text-align: center;
+    padding-top: 15px;
+}
+.meeting .sr-name{
+  line-height: 25px;
+}
