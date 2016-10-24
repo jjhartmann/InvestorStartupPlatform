@@ -1,0 +1,18 @@
+<li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= user.id %>'>
+  <div class="pro-tags-in">
+    <%= image_tag user.photo_avatar %>
+  </div>
+  <div class="deatails-module">
+    <h3><%= user.name %></h3>
+    <div class="tag-line-des treck">
+      <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+    <div class="tag-line-des">
+      <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool, length: 80, separator: ' ') %>
+    </div>
+    <div class="tag-btn-view">
+      <div id="follow_<%= user.id %>" class="follow" data-id='<%= "#{user.id}" %>' data-type='<%= "#{user.profilable_type}" %>'>
+        <%= current_user.is_following?(user) ? "Unfollow" : "Follow" %>
+      </div>
+    </div>
+  </div>
+</li>

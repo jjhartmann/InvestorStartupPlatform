@@ -1,0 +1,18 @@
+<li id="investor_<%= investor.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= investor.id %>'>
+  <div class="pro-tags-in">
+    <%= image_tag investor.photo_avatar %>
+  </div>
+  <div class="deatails-module">
+    <h3><%= investor.name %></h3>
+    <div class="tag-line-des treck">
+      <i class="fa fa-tag" aria-hidden="true"></i><%= investor.profilable.tagline %></div>
+    <div class="tag-line-des">
+      <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(investor.profilable.description, length: 80, separator: ' ') %>
+    </div>
+    <div class="tag-btn-view">
+      <div id="follow_<%= investor.id %>" class="follow" data-id='<%= "#{investor.id}" %>' data-type='<%= "#{investor.profilable_type}" %>'>
+        <%= current_user.is_following?(investor) ? "Unfollow" : "Follow" %>
+      </div>
+    </div>
+  </div>
+</li>
