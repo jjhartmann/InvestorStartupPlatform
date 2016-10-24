@@ -79,10 +79,27 @@
     '<% end %>'
 
     $("#message_send").click(function (e) {
-      if ($("#topic").val() == '') {
+      if ($("#meeting_date").val() == ""){
         e.preventDefault();
-        $("#message_error").css("display", "block");
-        $("#topic").css("border", "red solid 1px");
+        $("#meeting_date").css("border", "1px solid red");
+        $("#datepairExample").append("<p id='meeting_date_error' style='color:red'>Select the meeting date.</p>")
+      }else{
+        $("#meeting_date").css("border", "1px solid #ccc");
+      }
+      console.log($("#meeting_start_time").length);
+      if ($("#meeting_start_time").length == 1){
+        if ($("#meeting_start_time").val()== ""){
+          e.preventDefault();
+          $("#meeting_start_time").css("border", "1px solid red");
+          $("#datepairExample").append("<p id='meeting_time_error' style='color:red'>Select the meeting time.</p>")
+        }else{
+          $("#meeting_time_error").remove();
+        }
+      }
+    });
+    $("#meeting_date").change(function(){
+      if ($("#meeting_date_error").length == 1){
+        $("#meeting_date_error").remove();
       }
     });
 
