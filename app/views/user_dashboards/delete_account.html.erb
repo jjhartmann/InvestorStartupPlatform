@@ -8,15 +8,13 @@
       <%= render partial: "settings" %>
     </div>
     <div class="col-xs-9">
-      <div class="container">
-        <div class="tab-content">
-          <div id="deactivate_account" class="tab-pane fade in active">
-            <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
-            <h3>Delete Account</h3>
-            <% end %>
-          </div>
+      <div class="tab-content view-tag">
+        <div id="deactivate_account" class="tab-pane fade in active">
+          <%= link_to user_registration_path(id: @user.id), method: :delete, data: { confirm: "You sure?" } do %>
+          <h3>Delete Account</h3>
+          <% end %>
         </div>
-      </div>
+        </div>
     </div>
   </div>
 </div>
