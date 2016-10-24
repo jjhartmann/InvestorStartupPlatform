@@ -90,7 +90,7 @@ class UserDashboardsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    redirect_back
+    redirect_to :back
   end
 
   def suggested_profile
