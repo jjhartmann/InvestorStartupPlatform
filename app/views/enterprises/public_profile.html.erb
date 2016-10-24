@@ -100,6 +100,14 @@
     $("#meeting_date").change(function(){
       if ($("#meeting_date_error").length == 1){
         $("#meeting_date_error").remove();
+        $("#meeting_date").css("border","1px solid #ccc");
+      }
+    });
+    var el = $('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>');
+    el.change(function(){
+      if($("#meeting_time_error").length == 1){
+        $("#meeting_time_error").remove();
+        $("#meeting_start_time").css("border","1px solid #ccc");
       }
     });
 
@@ -122,7 +130,7 @@
           $(".form-control-wrapper #datepairExample").find(".time.end").remove();
           $(".form-control-wrapper #datepairExample").find("div").remove();
 
-          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
+          $(".form-control-wrapper #datepairExample").append(el);
 
           initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
           // alert("invalid");
