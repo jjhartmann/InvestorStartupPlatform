@@ -11,47 +11,52 @@
       <div class="tab-content">
         <div  class="tab-pane fade active in">
           <% if @meetings.any? %>
-            <div class="message">
-              <ul>
-                <% @meetings.each do |meeting| %>
+              <% @meetings.each do |meeting| %>
                 <% if meeting.meeting_room %>
-                <div class="message meeting">
+                  <div class="message meeting">
                     <ul>
                       <%= link_to meeting_room_path(meeting.meeting_room) do %>
-                          <li>
-                            <div class="pro-message">
-                              <div class="circle-pic"><i aria-hidden="true" class="fa fa-users"></i></div>
-                            </div>
-                            <div class="sr-name">Topic: <span class="tag-hr"><%= meeting.topic %></span></div>
-                            <div class="sr-name">For Enterprise: <span class="tag-hr"><%= meeting.enterprise.name %></span></div>
-                            <div class="sr-name">Start Time: <span class="tag-hr"><%= meeting.start_time %></span></div>
-                          </li>
+                      <li>
+                        <div class="pro-message">
+                          <div class="circle-pic"><i aria-hidden="true" class="fa fa-users"></i></div>
+                        </div>
+                        <div class="sr-name">Topic: <span class="tag-hr"><%= meeting.topic %></span></div>
+                        <div class="sr-name">For Enterprise: <span class="tag-hr"><%= meeting.enterprise.name %></span></div>
+                        <div class="sr-name">Start Time: <span class="tag-hr"><%= meeting.start_time %></span></div>
+                      </li>
                       <% end %>
                     </ul>
                   </div>
-                  <% else%>
-                  <p>this meeting is currently requested.</p>
-                  <li>
-                    <div>Topic: <%= meeting.topic %></div>
-                    <div>Enterprise: <%= meeting.enterprise.name %></div>
-                    <div>Requested starting time: <%= meeting.start_time %></div>
-                  </li>
-                  <% end %>
+                <% else %>
+                  <div class="message meeting">
+                    <ul>
+                      <%= link_to "#" do %>
+                        <li>
+                          <div class="pro-message">
+                            <div class="circle-pic"><i aria-hidden="true" class="fa fa-users"></i></div>
+                          </div>
+                          <div class="sr-name">Topic: <span class="tag-hr"><%= meeting.topic %></span></div>
+                          <div class="sr-name">For Enterprise: <span class="tag-hr"><%= meeting.enterprise.name %></span></div>
+                          <div class="sr-name">Start Time: <span class="tag-hr"><%= meeting.start_time %></span></div>
+                          <p>This meeting is currently requested.</p>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
                 <% end %>
-              </ul>
-            </div>
-            <div class="text-center">
-              <%= will_paginate @meetings %>
-            </div>
-          <% else %>
-            <div class="notes-alert">
-              <div class="alert alert-warning">
-                You do not have any <strong>Meetings</strong> at the current moment.
+              <% end %>
+              <div class="text-center">
+                <%= will_paginate @meetings %>
               </div>
+              <% else %>
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  You do not have any <strong>Meetings</strong> at the current moment.
+                </div>
+              </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
