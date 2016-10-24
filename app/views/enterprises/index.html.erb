@@ -17,7 +17,9 @@
                     <div class="enterprise-deatils box-tab">
                       <ul class="full-details clearfix">
                         <% @enterprises.each do |enterprise| %>
-                            <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
+                            <li>
+                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
+                            </li>
                         <% end %>
                       </ul>
                     </div>

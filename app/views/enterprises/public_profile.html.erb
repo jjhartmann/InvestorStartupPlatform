@@ -51,7 +51,9 @@
             <h3>People</h3>
             <ul class="full-details clearfix" id="connections_list">
               <% @people.each do |user| %>
-                  <%= render "global_partials/user_profile_plug", user: user %>
+                  <li id="user_<%= user.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= user.id %>'>
+                    <%= render "global_partials/user_profile_plug", user: user %>
+                  </li>
               <% end %>
             </ul>
           </div>
