@@ -29,8 +29,8 @@
                                 <% end %>
                               </div>
                             </div>
-                            <% if thread.unread_messages(current_user) != 0 %>
-                                <div class="on-off <%= thread.unread_messages(current_user) != 0 ? "online" : "" %>">
+                            <% if thread.unread_messages(current_user) > 0 %>
+                                <div class="on-off <%= thread.unread_messages(current_user) > 0 ? "online" : "" %>">
                                   <i class="fa fa-bolt" aria-hidden="true"></i>
                                 </div>
                             <% end %>
