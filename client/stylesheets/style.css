@@ -2028,7 +2028,7 @@ ul.nav.navbar-nav.navbar-right > li > a{
   /*background: #dde2e7;*/
 }
 ul.nav.navbar-nav.navbar-right > li > a:hover{
-  background:#3f81c7;
+  background:#dde2e7;
 }
 /*18-10-2016*/
 ul.menu.cf li a:first-child {
@@ -2175,4 +2175,25 @@ ul.menu.cf li a:first-child {
 }
 .clickable-row{
   cursor: pointer;
+}
+
+/*24-10-2016*/
+
+.dashbord .navbar.navbar-inverse {
+    height: 70px;
+}
+.dashbord ul.nav.navbar-nav {
+    margin-top: 5px;
+}
+.dashbord a.navbar-brand{
+  margin-top: 10px
+}
+.tab-content.view-tag {
+    border: 1px solid #ddd;
+    border-top: 0;
+    padding: 15px;
+}
+#profile_type label {
+    margin-right: 15px;
+    margin-left: 5px;
 }
