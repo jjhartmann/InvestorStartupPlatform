@@ -3,9 +3,6 @@ class EnterprisesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enterprise, only: [:edit, :update, :destroy, :show]
 
-
-
-
   def index
     # Heading for title setions
     @title_heading = "Companies"
@@ -13,8 +10,6 @@ class EnterprisesController < ApplicationController
     @overlay_partial = render_to_string(partial: "enterprises/meeting_schedule_popover", layout: false, locals: {id: "id-99858", name: "name-996854"})
     @overlay_partial.remove!("\n")
     @overlay_partial.tr! '"', "'"
-
-
 
     @user = current_user
     if @user.profilable_type == "InvestorProfile"
