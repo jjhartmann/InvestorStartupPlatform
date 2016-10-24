@@ -60,7 +60,7 @@ class Message < ApplicationRecord
   end
 
   def unread_messages(current_user)
-    is_read == false ? (self.replies.unread.count + 1) : self.replies.unread.count
+    self.replies.where(target_id: current_user.id).unread.count
   end
 
   def latest_message

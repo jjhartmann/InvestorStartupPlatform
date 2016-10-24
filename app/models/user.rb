@@ -82,6 +82,10 @@ class User < ApplicationRecord
     inbox_messages.unread
   end
 
+  def unread_topics
+    Message.where(target_id: self.id, topic_id: nil).unread.uniq.count
+  end
+
   def read_messages
     inbox_messages.read
   end
@@ -135,12 +139,16 @@ class User < ApplicationRecord
   end
 
   def send_private_message(target_user, content, extras = {})
-    messages.create!({
+    msg = messages.create!({
                          :content     => content,
                          :is_private  => true,
                          :target_id   => target_user.id,
-                         :target_type => 'User'
+                         :target_type => 'User',
+                         :created_at  => Time.now,
+                         :updated_at  => Time.now,
                      }.merge(extras))
+
+    msg.update(latest_message_id: msg.id)
 
   end
 
