@@ -1,18 +1,19 @@
-<li id="enterprise_<%= enterprise.id %>" class="clickable-row" data-href='<%= public_profile_enterprises_path(enterprise: enterprise) %>'>
+<li>
   <div class="pro-tags-in">
-    <%= image_tag enterprise.logo_avatar %>
+    <%= image_tag enterprise.logo_thumb %>
   </div>
   <div class="deatails-module">
     <h3><%= enterprise.name %></h3>
     <div class="tag-line-des treck">
-      <i class="fa fa-tag" aria-hidden="true"></i><%= enterprise.pitch %></div>
+      <i class="fa fa-briefcase" aria-hidden="true"></i><%= enterprise.pitch %> </div>
     <div class="tag-line-des">
-      <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(enterprise.description, length: 80, separator: ' ') %>
+      <i aria-hidden="true" class="fa fa-tags"></i><%= h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %>
     </div>
-    <div class="tag-btn-view">
-      <div id="follow_<%= enterprise.id %>" class="follow" data-id='<%= "#{enterprise.id}" %>' data-type='<%= "#{enterprise.class}" %>'>
-        <%= current_user.is_following?(enterprise) ? "Unfollow" : "Follow" %>
-      </div>
+    <div class="tag-btn-view" style="display: table-cell; padding-right: 10px">
+      <div class="follow" data-id='<%= "#{enterprise.id}" %>' data-type='<%= "#{enterprise.class}" %>'>Unfollow</div>
+    </div>
+    <div class="tag-btn-view" style="display: table-cell">
+      <div><%= link_to "Profile", public_profile_enterprises_path(enterprise: enterprise), style: "color: #fff;" %></div>
     </div>
   </div>
 </li>
