@@ -11,6 +11,9 @@ class Meeting < ApplicationRecord
   before_update :set_end_time
 
 
+  validates :topic, presence: :true
+
+
   # Set end time for the meeting schedule created from the seed file.
   def set_end_time
     self.end_time = self.start_time + 1.day
