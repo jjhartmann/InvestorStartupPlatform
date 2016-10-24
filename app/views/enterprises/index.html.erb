@@ -49,7 +49,7 @@
                         <% @enterprises.each do |enterprise| %>
                             <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
                               <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
-                              <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
+                              <% if enterprise.enterprise_users.find_by(member_title: "Founder") != nil && enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
                                   <%= link_to enterprise, method: :delete do %>
                                       <div class="edit share destroy-btn">
                                         <i aria-hidden="true" class="fa fa-trash"></i></div>
