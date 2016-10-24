@@ -101,9 +101,10 @@ class MessagesController < ApplicationController
 
     @first_message.update(is_read: true)
     @message_thread.each do |read_message|
-      read_message.update(is_read: true)
+      if read_message.target_id == current_user.id
+        read_message.update(is_read: true)
+      end
     end
-
     # For the form
     @message = Message.new
   end
