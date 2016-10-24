@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".tag-btn-view").click(function(){
+  $("div.tag-btn-view").not(document.getElementById('meeting-schedule')).click(function(){
     var link = $(this).find('div.follow');
     $.ajax({
       url: "/user_dashboards/follow_unfollow_user",
