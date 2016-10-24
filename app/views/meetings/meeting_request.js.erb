@@ -1,1 +1,10 @@
-$("#meetingModal1").modal('hide');
+<% if @saved == true %>
+ $("#meetingModal1").modal('hide');
+<% else %>
+  <% @meeting.errors.messages.each do |m| %>
+    <% if @meeting.errors[:topic].present? %>
+      $('#topic').after('<p style="color:red" ><% error = @meeting.errors.messages[:topic] %><%= error[0] %></p>')
+    <% end %>
+
+  <% end %>
+<% end %>
