@@ -28,8 +28,10 @@
                                 <div class="tag-line-des">
                                   <i aria-hidden="true" class="fa fa-tags"></i><%= h truncate(enterprise.description, length: 150) %><%= link_to "(See More)", public_profile_enterprises_path(enterprise: enterprise) %>
                                 </div>
-                                <div class="tag-btn-view">
+                                <div class="tag-btn-view" style="display: table-cell; padding-right: 10px">
                                   <div class="follow" data-id='<%= "#{enterprise.id}" %>' data-type='<%= "#{enterprise.class}" %>'>Unfollow</div>
+                                </div>
+                                <div class="tag-btn-view" style="display: table-cell">
                                   <div><%= link_to "Profile", public_profile_enterprises_path(enterprise: enterprise), style: "color: #fff;" %></div>
                                 </div>
                               </div>
