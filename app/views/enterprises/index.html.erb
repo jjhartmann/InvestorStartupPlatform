@@ -18,7 +18,13 @@
                       <ul class="full-details clearfix">
                         <% @enterprises.each do |enterprise| %>
                             <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
-                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
+                              <div>
+                                <%= render "global_partials/company_profile_plug", enterprise: enterprise do %>
+                                    <div class="tag-btn-view" id="meeting-schedule" data-id=<%= enterprise.id %> data-name="<%= enterprise.name %>" style="display: table-cell; padding-left: 10px; width: auto">
+                                      <div><%= link_to 'Meetings'.html_safe, "#meetingModal1", 'data-toggle': "modal", style: "color: #fff; text-decoration: none;" %></div>
+                                    </div>
+                                <% end %>
+                              </div>
                             </li>
                         <% end %>
                       </ul>
@@ -42,20 +48,20 @@
                       <ul class="full-details clearfix">
                         <% @enterprises.each do |enterprise| %>
                             <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
-                                <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
-                                <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
-                                    <%= link_to enterprise, method: :delete do %>
-                                        <div class="edit share destroy-btn">
-                                          <i aria-hidden="true" class="fa fa-trash"></i></div>
-                                    <% end %>
-                                    <%= link_to edit_enterprise_path(enterprise) do %>
-                                        <div class="edit">
-                                          <span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span>
-                                        </div>
-                                    <% end %>
-                                <% else %>
-                                    <p>Sorry. You cannot perform any actions for this enterprise.</p>
-                                <% end %>
+                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
+                              <% if enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
+                                  <%= link_to enterprise, method: :delete do %>
+                                      <div class="edit share destroy-btn">
+                                        <i aria-hidden="true" class="fa fa-trash"></i></div>
+                                  <% end %>
+                                  <%= link_to edit_enterprise_path(enterprise) do %>
+                                      <div class="edit">
+                                        <span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span>
+                                      </div>
+                                  <% end %>
+                              <% else %>
+                                  <p>Sorry. You cannot perform any actions for this enterprise.</p>
+                              <% end %>
                             </li>
                         <% end %>
                       </ul>
@@ -84,3 +90,111 @@
     </div>
   </div>
 </div>
+
+
+<div id="popover-schedule"></div>
+
+
+<script>
+  $(document).ready(function () {
+    '<% if current_user.profilable_type == "InvestorProfile" %>'
+    var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
+    var array = $.map(array1, function (value, index) {
+      return [value];
+    });
+    '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
+    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+    array.splice(array.indexOf(parseInt(index)), 1);
+    '<% end %>'
+
+    $("#message_send").click(function (e) {
+      if ($("#topic").val() == '') {
+        e.preventDefault();
+        $("#message_error").css("display", "block");
+        $("#topic").css("border", "red solid 1px");
+      }
+    });
+
+    $('#datepairExample .date').datepicker({
+      'format': 'yyyy-m-d',
+      'autoclose': true,
+      'daysOfWeekDisabled': array,
+      // startDate: "today" To start date from today.
+      startDate: "+1d" // To start date from next available date.
+    }).on('changeDate', function () {
+      $(this).addClass("new-date-start");
+      var a = new Date($("#meeting_date").val());
+      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var day = weekdays[parseInt(a.getDay())];
+      '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
+      if ('<%= day.day %>' == day) {
+        if (array1.indexOf(a.getDay().toString()) > -1) {
+        } else {
+          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
+          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
+          $(".form-control-wrapper #datepairExample").find("div").remove();
+
+          $(".form-control-wrapper #datepairExample").append('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>')
+
+          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
+          // alert("invalid");
+        }
+      } else {
+      }
+      '<% end %>'
+      '<% end %>'
+
+    });
+    function initialize_timepicker(startTime, endTime) {
+      $('#datepairExample .time.start').timepicker({
+        'showDuration': true,
+        'timeFormat': 'G:i',
+        'minTime': startTime,
+        'maxTime': endTime
+      }).on('change', function () {
+        // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+        reload_time($(this).val());
+      });
+    }
+
+    $('#datepairExample .time.start').timepicker().on('change', function () {
+      reload_time($(this).val());
+    });
+    // initialize datepair
+    $('#datepairExample').datepair();
+  });
+</script>
+
+<script>
+  function reload_time(val1) {
+    $('#datepairExample .time.end').timepicker({
+      'showDuration': true,
+      'timeFormat': 'G:i',
+      'minTime': (parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]
+    }).val((parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]);
+  }
+
+  $('div.follow').click( function(event) {
+    var innerText = $.trim($(this).text()).toLowerCase();
+    if (innerText == "Follow".toLowerCase()){
+      $(this).text("Unfollow");
+    } else {
+      $(this).text("Follow");
+    }
+  });
+</script>
+
+<script>
+  $("div#meeting-schedule").click(function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    var data = "<%= @overlay_partial.html_safe %>";
+    data = data.replace("id-99858", id);
+    data = data.replace("name-996854", name);
+    $("#popover-schedule").html(data);
+  });
+
+  $('#meetingModal1').on('hidden.bs.modal', function () {
+    $(this).find('input[type=text]').val('');
+  });
+</script>
