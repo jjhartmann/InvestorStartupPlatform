@@ -1,0 +1,13 @@
+<div class="tabing">
+  <ul class="nav nav-pills">
+    <li class="<%= yield :edit_user_class %>">
+      <%= link_to edit_user_dashboard_path(@user) do %><i aria-hidden="true" class="fa fa-key"></i><span class="tab-name">Change Password</span><% end %>
+    </li>
+    <li class="<%= yield :privacy_class %>">
+      <%= link_to privacy_user_dashboards_path do %><i aria-hidden="true" class="fa fa-user-secret"></i><span class="tab-name">Account Privacy</span><% end %>
+    </li>
+    <li class="<%= yield :delete_user_class %>">
+      <%= link_to delete_account_user_dashboards_path do %><i aria-hidden="true" class="fa fa-trash"></i><span class="tab-name">Delete Account</span><% end %>
+    </li>
+  </ul>
+</div>
