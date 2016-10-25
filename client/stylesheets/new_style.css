@@ -608,3 +608,53 @@ ul.comapny{
 .meeting .sr-name{
   line-height: 25px;
 }
+/*25-10-2016*/
+.draw-tag-2 {
+    float: right;
+    width: calc(100% - 60px);
+}
+.buttons.pro-1 {
+    position: initial;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+.send-new textarea {
+    width: calc(100% - 95px);
+    float: left;
+    margin-right: 10px;
+}
+a.choose-btn {
+    width: 40px;
+    height: 35px;
+    display: inline-block;
+    float: left;
+    background: #3f81c7;
+    color: #fff;
+    text-align: center;
+    padding-top: 6px;
+    margin-left: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+button#message_send {
+    float: left;
+}
+.alert.alert-danger .glyphicon {
+    display: inline-block;
+    margin-right: 10px;
+}
+.alert-danger {
+    float: left;
+    width: 100%;
+}
+.action-tag {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.side-deatail {
+    margin-top: 20px;
+}
