@@ -18,19 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     build_resource(sign_up_params)
-
-    # create profile_type of user
-    if resource.profilable_type == 'UserProfile'
-      user_profile = UserProfile.new
-    elsif resource.profilable_type == "InvestorProfile"
-      user_profile = InvestorProfile.new
-    end
-
-    # skip validation and save the user_profile for now
-    user_profile_saved= user_profile.save(validate: false)
-    # assign polymorophic relation to profilable
-    resource.profilable = user_profile
-    resource_saved = resource.save(validate: false)
+    resource_saved = resource.save
     2.times do
       AdminMeetingSchedule.create!(investor_profile_id: resource.profilable_id,day: Date::DAYNAMES.sample,start_time: (Time.now.beginning_of_day + rand(8..18).hour)) if resource.profilable_type == "InvestorProfile"
     end
@@ -38,6 +26,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # if all the three are succesfully created
 
     if resource_saved
+      # create profile_type of user
+      if resource.profilable_type == 'UserProfile'
+        user_profile = UserProfile.new
+      elsif resource.profilable_type == "InvestorProfile"
+        user_profile = InvestorProfile.new
+      end
+
+      # skip validation and save the user_profile for now
+      user_profile_saved= user_profile.save(validate: false)
+      # assign polymorophic relation to profilable
+      resource.profilable_id = user_profile.id
+      resource.profilable_type = user_profile.class
+      resource.save
 
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
@@ -74,7 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       set_flash_message :notice, :destroyed if is_flashing_format?
       yield resource if block_given?
       respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
-  end 
+  end
 
   # DELETE /resource
   # def destroy
