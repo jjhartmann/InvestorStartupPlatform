@@ -1,7 +1,7 @@
-console.log('<%= current_user.as_json %>');
 $(".network").html("<%= @network_count %> <%= 'Person'.pluralize(@network_count)%>");
 $(".connection").html("<%= @connection_count %>");
-$("#connections_list").html('<% @connected_users.each do |connection| %>' +
+$("#connections_list").html('<%if @connected_users.count > 0 %>'+
+                            '<% @connected_users.each do |connection| %>' +
                               '<%= link_to user_profile_path(id: current_user.id,connection_profile: connection.id), 'data-id': "#{connection.id}" do %>' +
                                   '<li>' +
                                     '<div class="tag-1">' +
@@ -28,4 +28,7 @@ $("#connections_list").html('<% @connected_users.each do |connection| %>' +
                                     '</div>' +
                                   '</li>' +
                                 '<% end %>' +
+                              '<% end %>'+
+                              '<% else %>'+
+                                '<div>You have no Connections</div>'+
                               '<% end %>');

@@ -48,6 +48,7 @@ config = {
     './javascripts/dashboard',
     './javascripts/all_users',
     './javascripts/connections',
+    './javascripts/profile_visitor',
     './javascripts/bootstrap-datepicker.min',
     './javascripts/jquery.timepicker',
     './javascripts/jquery.datepair.min',

@@ -14,8 +14,8 @@
                     <div class="enterprise-deatils box-tab  edit-offer">
                       <ul class="full-details clearfix">
                         <% @visitors.each do |visitee| %>
-                          <%= link_to user_profile_path(id: current_user.id,suggested_profile: visitee.visitor.id) do %>
-                            <li>
+                          <%#= link_to user_profile_path(id: current_user.id,suggested_profile: visitee.visitor.id) do %>
+                            <li id="visitor_<%= visitee.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?suggested_profile=<%= visitee.id %>'>
                               <div class="tag-1">
                                 <div class="follow-pro">
                                   <div class="pic-user"><%#= image_tag profilable.photo_avatar %></div>
@@ -31,7 +31,7 @@
                                     <li>
                                       <a href="#">More Action <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
                                       <ul class="submenu">
-                                        <li><%= link_to @user.is_following?(visitee.visitor) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{visitee.visitor.id}", "data-type": "#{visitee.visitor.profilable_type}" %></li>
+                                        <li><%= link_to @user.is_following?(visitee.visitor) ? "Unfollow" : "Follow", "#", class: "profile_visitor_follow", "data-id": "#{visitee.visitor.id}", "data-type": "#{visitee.visitor.profilable_type}" %></li>
                                         <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{visitee.visitor.id}", 'data-name': "#{visitee.visitor.name}" %></li>
                                       </ul>
                                     </li>
@@ -39,7 +39,7 @@
                                 </div>
                               </div>
                             </li>
-                          <% end %>
+                          <%# end %>
                         <% end %>
                       </ul>
                     </div>
@@ -59,3 +59,17 @@
         </div>
       </div>
   </div>
+
+
+
+<script>
+  $('li.clickable-row>div').each(function () {
+    $(this).click(function () {
+      if ($(this).hasClass('tag-3')) {
+
+      } else {
+        window.document.location = $(this).parent().data("href");
+      }
+    });
+  });
+</script>

@@ -657,4 +657,7 @@ button#message_send {
 }
 .side-deatail {
     margin-top: 20px;
+  }
+.tag-btn-view > div:hover{
+  cursor: pointer;
 }
