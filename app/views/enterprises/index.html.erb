@@ -48,20 +48,7 @@
                       <ul class="full-details clearfix">
                         <% @enterprises.each do |enterprise| %>
                             <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
-                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
-                              <% if enterprise.enterprise_users.find_by(member_title: "Founder") != nil && enterprise.enterprise_users.find_by(member_title: "Founder").user.id == current_user.id %>
-                                  <%= link_to enterprise, method: :delete do %>
-                                      <div class="edit share destroy-btn">
-                                        <i aria-hidden="true" class="fa fa-trash"></i></div>
-                                  <% end %>
-                                  <%= link_to edit_enterprise_path(enterprise) do %>
-                                      <div class="edit">
-                                        <span class="pencil-view"> <i aria-hidden="true" class="fa fa-pencil"></i></span>
-                                      </div>
-                                  <% end %>
-                              <% else %>
-                                  <p>Sorry. You cannot perform any actions for this enterprise.</p>
-                              <% end %>
+                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>                              
                             </li>
                         <% end %>
                       </ul>

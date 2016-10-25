@@ -11,7 +11,7 @@ class Enterprise < ApplicationRecord
 
   has_many :photos, :class_name => 'EnterprisePhoto'
 
-  has_many :enterprise_users
+  has_many :enterprise_users, dependent: :destroy
   has_many :users,      :through => :enterprise_users
   has_many :members,    -> { where 'enterprise_users.role_identifier' => 'member' }, :through => :enterprise_users, :source => :user
   has_many :investors,  -> { where 'enterprise_users.role_identifier' => 'investor' }, :through => :enterprise_users, :source => :user
@@ -23,11 +23,11 @@ class Enterprise < ApplicationRecord
   has_one :questionaire, :as => :questionable
 
   #Association for the invitatiions send to respective enterprise
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
 
   has_many :notifications, :as => :notificable
 
-  has_many :meetings
+  has_many :meetings, dependent: :destroy
 
   accepts_nested_attributes_for :photos, :limit => 5, :allow_destroy => true, :reject_if => :all_blank
 
