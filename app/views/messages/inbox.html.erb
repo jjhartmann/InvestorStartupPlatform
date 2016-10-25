@@ -46,7 +46,7 @@
                 <% end %>
               </ul>
             </div>
-            <%= form_for @message, url: messages_path, remote: true do |f| %>
+            <%= form_for @message, url: messages_path, authenticity_token: true, remote: true do |f| %>
                 <%= f.hidden_field :topic_id, value: params[:id] %>
                 <div class="box" style="width: 100%;">
                   <div class="form-group" style="width: 100%; display: table-cell; padding-right: 20px;">

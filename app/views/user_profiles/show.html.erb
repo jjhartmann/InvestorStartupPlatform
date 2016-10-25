@@ -23,10 +23,10 @@
           <% if @user == @user_profile %>
             <div class="edit"><%= link_to edit_user_registration_path do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %></div>
           <% else %>
-            <div class="edit"><%= link_to "#" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
+            <div class="edit"><%= link_to "#", 'data-id': "#{@user_profile.id}", 'data-type': "#{@user_profile.profilable_type}", class: "follow1" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
           <% end %>
           <% if @user.is_connection?(@user_profile, @user) %>
-              <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %><i class="fa fa-users" aria-hidden="true"></i><% end %></div>
+              <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %><i class="fa fa-comments-o" aria-hidden="true"></i><% end %></div>
           <% end %>
         </div>
         </div>
@@ -100,7 +100,7 @@
           <%= f.hidden_field :target_id,value:  @user_profile.id %>
           <%= f.hidden_field :user_id,value: current_user.id %>
           <div class="message-tab">
-            <div class="head-tab">Shantilal matariya</div>
+            <div class="head-tab"><%= @user_profile.name %></div>
           </div>
           <div class="form-inputs">
             <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>

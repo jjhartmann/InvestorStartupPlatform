@@ -76,7 +76,7 @@ class UserDashboardsController < ApplicationController
     else
       current_user.follow(@user)
     end
-    @network_count = current_user.network_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id), current_user)
+    @network_count = current_user.followers.count
     @connection_count = current_user.connection_counts(current_user.target_followed.where(target_type: "User").pluck(:target_id), current_user)
 
     @connections = current_user.target_followed.where(target_type: "User")
@@ -87,7 +87,10 @@ class UserDashboardsController < ApplicationController
       end
     end
     @connected_users = User.where(id: @connection_id_array)
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    puts "______________________"
+    puts @network_count
+    puts @connection_count
+    puts "______________________"
     respond_to do |format|
       format.js
     end
