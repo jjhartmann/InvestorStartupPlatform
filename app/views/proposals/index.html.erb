@@ -16,14 +16,12 @@
                 <%= link_to 'New Proposal', new_proposal_path, class: "btn btn-primary" %>
               </div>
             <% end %>
-            <ul class="main-dashbord">
+            <ul class="main-dashbord table-new-view">
               <% if @proposals.present? %>
               <div class="enterprise-deatils box-tab edit-proposal">
                 <ul class="full-details clearfix">
                   <li>
                     <div class="name-enetrprise head-box"><%= "Stage" %></div>
-                    <div class="destory head-box"><%= "New model?" %></div>
-                    <div class="destory head-box"><%= "New Product?" %></div>
                     <div class="destory head-box"><%= "Pitch" %></div>
                     <div class="destory head-box"><%= "Competitiors Details" %></div>
                     <div class="destory head-box"><%= "Investment" %></div>
@@ -34,13 +32,11 @@
                   <% @proposals.each do |proposal| %>
                   <li>
                     <div class="name-enetrprise"><%=h truncate(proposal.proposal_stage_identifier, length: 10) %></div>
-                    <div class="destory"><%=proposal.new_business_model %></div>
-                    <div class="destory"><%=proposal.new_product %></div>
                     <div class="destory"><%=h truncate(proposal.pitch, length: 10) %></div>
-                    <div class="destory"><%=h truncate(proposal.competitors_details, length: 20) %></div>
+                    <div class="destory"><%=h truncate(proposal.competitors_details, length: 15) %></div>
                     <div class="destory"><%=proposal.investment_amount %> <%=proposal.investment_currency %></div>
                     <div class="destory"><%= proposal.equity_percentage %></div>
-                    <div class="destory"><%=h truncate(proposal.spending_plan, length: 20) %></div>
+                    <div class="destory"><%=h truncate(proposal.spending_plan, length: 15) %></div>
                     <div class="destory">
                       <div class="buttons">
                         <% if proposal.document_url %>

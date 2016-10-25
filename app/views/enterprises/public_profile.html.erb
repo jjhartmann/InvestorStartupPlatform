@@ -11,16 +11,21 @@
     </div>
     <div class="row">
       <div class="col-xs-4">
-        <div class="buttons">
-          <% if current_user.profilable_type == "InvestorProfile" %>
-              <div class="edit" style="float: right"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
-          <% end %>
-        </div>
         <div class="body-panel">
           <div class="main-pro">
             <%= image_tag @enterprise.logo_avatar %>
           </div>
           <h3><%= @enterprise.name %></h3>
+          <div class="buttons pro-1">
+            <% if @enterprise.all_users.include?(@user) %>
+            <div class="edit"><%= link_to edit_enterprise_path(@enterprise) do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %></div>
+            <div class="edit"><%= link_to enterprise_path(@enterprise), method: :delete do %><i class="fa fa-trash" aria-hidden="true"></i><% end %></div>
+            <% end %>
+            <% if @user.profilable_type == "InvestorProfile" %>
+                <div class="edit"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
+            <% end %>
+              <div class="edit"><%= link_to "#" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
+          </div>
           <div class="main-details">
             <ul>
               <li>Pitch <span class="pull-right"><%= @enterprise.pitch %></span></li>
@@ -40,6 +45,9 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
           <li><a data-toggle="tab" href="#people">People</a></li>
+          <% if @enterprise.all_users.include?(@user) %>
+            <li><a data-toggle="tab" href="#meeting">Meetings</a></li>
+          <% end %>
         </ul>
         <div class="tab-content">
           <div id="home" class="tab-pane fade in active">
@@ -56,6 +64,18 @@
               <% end %>
             </ul>
           </div>
+          <% if @enterprise.all_users.include?(@user) %>
+            <div id="meeting" class="tab-pane fade">
+              <h3>Meetings</h3>
+              <ul class="full-details clearfix" id="connections_list">
+                <% @enterprise.meetings.each do |meeting| %>
+                  <li>
+                    <%= render "global_partials/meeting_plug", meeting: meeting %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
