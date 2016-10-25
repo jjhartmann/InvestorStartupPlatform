@@ -1317,7 +1317,7 @@ a.submit-btn.default-style{
   position: absolute;
   left: 0;
   width: 100%;
-  top: 100px;
+  /*top: 100px;*/
   z-index: 9999;
 }
 /*17-09-2016*/
