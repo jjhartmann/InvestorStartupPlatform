@@ -1,34 +1,15 @@
 $(".network").html("<%= @network_count %> <%= 'Person'.pluralize(@network_count)%>");
 $(".connection").html("<%= @connection_count %>");
 $("#connections_list").html('<%if @connected_users.count > 0 %>'+
-                            '<% @connected_users.each do |connection| %>' +
-                              '<%= link_to user_profile_path(id: current_user.id,connection_profile: connection.id), 'data-id': "#{connection.id}" do %>' +
-                                  '<li>' +
-                                    '<div class="tag-1">' +
-                                      '<div class="follow-pro">' +
-                                        '<div class="pic-user"><%= image_tag connection.photo_avatar %></div>' +
-                                      '</div>' +
-                                    '</div>' +
-                                    '<div class="tag-2">' +
-                                      '<h3><%= connection.name %></h3>' +
-                                      '<div class="tag-line-pro">Developer, Gujarat Housing Board</div>' +
-                                    '</div>' +
-                                    '<div class="tag-3">' +
-                                      '<div class="action-tag">' +
-                                        '<ul class="menu cf">' +
-                                          '<li>' +
-                                            '<a href="#">More Action <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>' +
-                                            '<ul class="submenu">' +
-                                              '<li><%= link_to current_user.is_following?(connection) ? "Following" : "Follow", "#", class: "follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>' +
-                                              '<li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>' +
-                                            '</ul>' +
-                                          '</li>' +
-                                        '</ul>' +
-                                      '</div>' +
-                                    '</div>' +
-                                  '</li>' +
-                                '<% end %>' +
-                              '<% end %>'+
+                              '<% @connected_users.each do |connection| %>' +
+                                '<li>'+
+                                  '<% if connection.profilable_type == "UserProfile" %>'+
+                                    '<%=j render "global_partials/user_profile_plug", user: connection %>'+
+                                  '<% else %>'+
+                                    '<%=j render "global_partials/investor_profile_plug", investor: connection %>'+
+                                  '<% end %>'+
+                                '</li>'+
+                                '<% end %>'+
                               '<% else %>'+
                                 '<div>You have no Connections</div>'+
                               '<% end %>');

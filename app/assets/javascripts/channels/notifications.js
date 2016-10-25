@@ -26,7 +26,6 @@ App.messages = App.cable.subscriptions.create('NotificationChannel', {
   }
 });
 $('.all-notification-close.dismiss-notification').click(function(){
-  alert();
   var data_id = $(this).find('i').data('id');
   $.ajax({
     type: "POST",
