@@ -1,0 +1,32 @@
+<% if meeting.meeting_room %>
+  <div class="message meeting">
+    <ul>
+      <%= link_to meeting_room_path(meeting.meeting_room) do %>
+      <li>
+        <div class="pro-message">
+          <div class="circle-pic"><i aria-hidden="true" class="fa fa-users"></i></div>
+        </div>
+        <div class="sr-name">Topic: <span class="tag-hr"><%= meeting.topic %></span></div>
+        <div class="sr-name">For Enterprise: <span class="tag-hr"><%= meeting.enterprise.name %></span></div>
+        <div class="sr-name">Start Time: <span class="tag-hr"><%= meeting.start_time %></span></div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class="message meeting">
+    <ul>
+      <%= link_to "#" do %>
+        <li>
+          <div class="pro-message">
+            <div class="circle-pic"><i aria-hidden="true" class="fa fa-users"></i></div>
+          </div>
+          <div class="sr-name">Topic: <span class="tag-hr"><%= meeting.topic %></span></div>
+          <div class="sr-name">For Enterprise: <span class="tag-hr"><%= meeting.enterprise.name %></span></div>
+          <div class="sr-name">Start Time: <span class="tag-hr"><%= meeting.start_time %></span></div>
+          <p>This meeting is currently requested.</p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
