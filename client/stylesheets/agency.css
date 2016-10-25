@@ -1086,7 +1086,7 @@ h1 {
   color: #ffc857;
   line-height: 150%;
   border-radius: 3px 3px 0 0;
-  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+  /*font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;*/
   color: #adadad;
   font-size: 36px;
  /* box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);*/
@@ -1285,7 +1285,7 @@ a.submit-btn.default-style{
   margin-left: 30px !important;
 }
 .radio-item label {
-    color: #fff;
+    color: #555;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 .question ul li {

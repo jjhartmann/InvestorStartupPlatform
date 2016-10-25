@@ -2,15 +2,44 @@
 
 </div>
 <%= form_for message,url: send_message_meeting_room_messages_path, authenticity_token: true, remote: true  do |f|%>
-  <%= f.text_field :content, class: "form-control", data: {textarea: "message"}, placeholder: "Your Text Message"%>
+  <%= f.text_area :content, class: "form-control", data: {textarea: "message"}, placeholder: "Your Text Message"%>
   <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
-  <%= f.submit "send", class: "btn btn-primary", data: {send: "message"}%>
+  <% f.submit "send", class: "btn btn-primary", data: {send: "message"}%>
+    <button class='btn btn-primary' id="message_send">
+      <i aria-hidden="true" class="fa fa-paper-plane"></i>
+    </button>
+  <%= link_to "#send_file", "data-toggle": "modal", class: "choose-btn", id: "message_send" do %>
+  <i aria-hidden="true" class="fa fa-paperclip"></i>
+  <% end %>
 <%end%>
-<%= form_for @document,url: send_document_meeting_room_messages_path, authenticity_token: true, html: {id: "document"} do |f| %>
-  <%= f.file_field :document %>
-  <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
-  <%= f.submit "Send File" %>
-<% end %>
+
+<div id="send_file" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Meeting Request</h4>
+      </div>
+      <%= form_for @document,url: send_document_meeting_room_messages_path, authenticity_token: true, html: {id: "document"} do |f| %>
+        <div class="modal-body">
+          <p class="title-modal">Hello, <%= @user.name %>. Can we setup a meeting?</p>
+        <div class="input">
+          <%= f.file_field :document %>
+          <%= f.hidden_field :meeting_room_id, value: meeting_room.id %>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <div class="terminals">
+            <div class="btn-yes-no">
+              <%= f.submit "Share File", class: "btn btn-primary" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <% if flash.alert %>
   <div class="alert alert-danger">
