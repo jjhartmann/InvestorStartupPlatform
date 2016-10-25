@@ -87,10 +87,11 @@ class UserDashboardsController < ApplicationController
       end
     end
     @connected_users = User.where(id: @connection_id_array)
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     respond_to do |format|
       format.js
     end
-    redirect_to :back
+    # redirect_back(fallback_location: request.referer)
   end
 
   def suggested_profile

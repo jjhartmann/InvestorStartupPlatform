@@ -25,3 +25,13 @@ App.messages = App.cable.subscriptions.create('NotificationChannel', {
     return '<div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div><div class="notes-track"><div class="main-pro-name">'+ data.notification.notification_text +'</div><span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i>' + data.notification_created_time + '</span></div><div class="all-notification-close dismiss-notification"><i aria-hidden="true" class="fa fa-times" data-id="' + data.notification.id + '"></i></div>'+accept_reject
   }
 });
+$('.all-notification-close.dismiss-notification').click(function(){
+  alert();
+  var data_id = $(this).find('i').data('id');
+  $.ajax({
+    type: "POST",
+    url: '/notifications/' + data_id + '/dismiss',
+    success: function(data){
+    }
+  });
+});

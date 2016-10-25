@@ -20,8 +20,8 @@
                 <div class="user-follow">
                   <ul class="clearfix" id="connections_list">
                     <% @connected_users.each do |connection| %>
-                        <%= link_to user_profile_path(id: current_user.id, connection_profile: connection.id), 'data-id': "#{connection.id}" do %>
-                            <li>
+                        <%#= link_to user_profile_path(id: current_user.id, connection_profile: connection.id), 'data-id': "#{connection.id}" do %>
+                            <li id="connection_<%= connection.id %>" class="clickable-row" data-href='/user_profiles/<%= current_user.id %>?connection_profile=<%= connection.id %>'>
                               <div class="tag-1">
                                 <div class="follow-pro">
                                   <div class="pic-user"><%= image_tag connection.photo_avatar %></div>
@@ -38,7 +38,7 @@
                                       <a href="#">More Action
                                         <i aria-hidden="true" class="fa fa-chevron-circle-down"></i></a>
                                       <ul class="submenu">
-                                        <li><%= link_to @user.is_following?(connection) ? "Unfollow" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}" %></li>
+                                        <li><%= link_to @user.is_following?(connection) ? "Unfollow" : "Follow", "#", class: "connection_follow", "data-id": "#{connection.id}", "data-type": "#{connection.profilable_type}", remote: true %></li>
                                         <li><%= link_to "Message", "#messageModal", 'data-toggle': "modal", class: "message_modal", 'data-id': "#{connection.id}", 'data-name': "#{connection.name}" %></li>
                                       </ul>
                                     </li>
@@ -46,7 +46,7 @@
                                 </div>
                               </div>
                             </li>
-                        <% end %>
+                        <%# end %>
                     <% end %>
                   </ul>
                 </div>
@@ -110,12 +110,21 @@
   $("#messageModal").on('bs.modal.show', function () {
     $("#message_error").css("display", "none");
     $("#message_content").removeAttr('style');
-  })
+  });
   $("#message_send").click(function (e) {
     if ($("#message_content").val().trim() == '') {
       e.preventDefault();
       $("#message_error").css("display", "block");
       $("#message_content").css("border", "red solid 1px");
     }
-  })
+  });
+  $('li.clickable-row>div').each(function () {
+    $(this).click(function () {
+      if ($(this).hasClass('tag-3')) {
+
+      } else {
+        window.document.location = $(this).parent().data("href");
+      }
+    });
+  });
 </script>
