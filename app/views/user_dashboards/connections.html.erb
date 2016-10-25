@@ -77,7 +77,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"></h4>
         </div>
-        <%= simple_form_for @message, url: messages_path do |f| %>
+        <%= form_for @message, url: messages_path do |f| %>
             <div class="modal-body">
               <%= f.hidden_field :target_id %>
               <%= f.hidden_field :user_id, value: current_user.id %>
@@ -85,7 +85,7 @@
                 <div class="head-tab">Shantilal matariya</div>
               </div>
               <div class="form-inputs">
-                <%= f.input :content, class: "form-control", placeholder: "Write a message to abc" %>
+                <%= f.text_area :content, class: "form-control", placeholder: "Write a message to abc" %>
                 <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
               </div>
 
