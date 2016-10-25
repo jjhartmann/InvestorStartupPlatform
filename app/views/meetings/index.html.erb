@@ -1,7 +1,8 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :sidebar_meeting_schedules_class, 'active' %>
-<%= render "user_dashboards/profile" %>
 
+<div class="main-body">
+<%= render "user_dashboards/profile" %>
 <div class="container side-deatail">
   <div class="col-xs-3">
     <%= render partial: "user_dashboards/sidebar" %>
@@ -9,7 +10,7 @@
   <div class="col-xs-9">
     <div class="profile-tabs">
       <div class="tab-content">
-        <div  class="tab-pane fade active in">
+        <div class="tab-pane fade active in">
           <% if @meetings.any? %>
               <% @meetings.each do |meeting| %>
                 <%= render "global_partials/meeting_plug", meeting: meeting %>
@@ -18,14 +19,15 @@
                 <%= will_paginate @meetings %>
               </div>
           <% else %>
-          <div class="notes-alert">
-            <div class="alert alert-warning">
-              You do not have any <strong>Meetings</strong> at the current moment.
+            <div class="notes-alert">
+              <div class="alert alert-warning">
+                You do not have any <strong>Meetings</strong> at the current moment.
+              </div>
             </div>
-          </div>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
