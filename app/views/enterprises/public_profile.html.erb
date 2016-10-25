@@ -67,13 +67,21 @@
           <% if @enterprise.all_users.include?(@user) %>
             <div id="meeting" class="tab-pane fade">
               <h3>Meetings</h3>
-              <ul class="full-details clearfix" id="connections_list">
-                <% @enterprise.meetings.each do |meeting| %>
-                  <li>
-                    <%= render "global_partials/meeting_plug", meeting: meeting %>
-                  </li>
-                <% end %>
-              </ul>
+              <% if @enterprise.meetings.any? %>
+                <ul class="full-details clearfix" id="connections_list">
+                  <% @enterprise.meetings.each do |meeting| %>
+                    <li>
+                      <%= render "global_partials/meeting_plug", meeting: meeting %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <div class="notes-alert">
+                  <div class="alert alert-warning">
+                    You do not have any <strong>Meetings</strong> at the current moment.
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>

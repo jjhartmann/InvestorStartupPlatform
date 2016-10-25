@@ -1,8 +1,8 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :enterprise_class, 'active' %>
-<%= render "user_dashboards/profile" %>
 
-<%#= link_to 'New Message', new_message_path %>
+<div class="main-body">
+<%= render "user_dashboards/profile" %>
 <div class="container side-deatail">
   <div class="col-xs-3">
     <%= render partial: "user_dashboards/sidebar" %>
@@ -65,6 +65,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>

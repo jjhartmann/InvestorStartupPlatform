@@ -1,8 +1,8 @@
 <%= content_for :body_class, "dashbord" %>
 <%= content_for :connection_class, "active" %>
+
+<div class="main-body">
 <%= render "user_dashboards/profile" %>
-
-
 <div class="container side-deatail">
   <div class="col-xs-3">
     <%= render partial: "user_dashboards/sidebar" %>
@@ -101,10 +101,11 @@
             </div>
         <% end %>
       </div>
-
     </div>
   </div>
 </div>
+</div>
+
 <script>
 
   $("#messageModal").on('bs.modal.show', function () {
