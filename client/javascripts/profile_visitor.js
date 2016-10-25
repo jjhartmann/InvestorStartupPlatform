@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".profile_visitor_follow").click(function(){
+  $(".follow").click(function(){
     var link = $(this);
     $.ajax({
       url: "/user_dashboards/follow_unfollow_user",
