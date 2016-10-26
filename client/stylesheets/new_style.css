@@ -597,6 +597,87 @@ ul.comapny{
 .tag-line-new ul {
     padding-left: 0;
 }
+.tag-line-new ul li {
+    float: left;
+    list-style: outside none none;
+    padding-right: 15px;
+    width: 33.33%;
+}
+.tag-line-new ul li:last-child {
+    padding-right: 0;
+}
+.circle-tag-1 {
+    display: inline-block;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 150px;
+}
+.circle-tag-1 img{
+    width: 100%;
+}
+.main-bx-tag{
+    background-color: #f1f1f1;
+    padding: 15px;
+    text-align: center;
+}
+.main-bx-tag p {
+    color: #9d9d9d;
+    font-size: 15px;
+}
+.main-bx-tag h2 {
+    font-size: 24px;
+}
+.about-type ul li {
+    margin-bottom: 5px;
+}
+.bg {
+    background-color: #1abc96;
+    padding: 60px 0;
+}
+.box {
+    color: #ffffff;
+}
+.box h2{
+    font-size: 40px;
+}
+.box p{
+    font-size: 16px;
+}
+.submit-tag button {
+    background-color: #3f81c7;
+    border: medium none;
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 30px;
+    outline: medium none;
+    padding: 10px 20px;
+}
+.tag-set h3 {
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 5px;
+}
+.tag {
+    color: #777777;
+    font-size: 16px;
+    font-weight: bold;
+}
+.tag-set  p{
+    color: #505050;
+    font-size:16px;
+}
+.tag-set{
+    margin-top: 30px;
+}
+.tag-view img {
+    width: 100%;
+}
+.bg-ray {
+    background: #f9f9fa none repeat scroll 0 0;
+    margin-top: 30px;
+    padding: 30px 0;
+}
 /*24-10-2016*/
 .meeting .circle-pic .fa {
     text-align: center;
@@ -644,7 +725,7 @@ button#message_send {
     float: left;
 }
 .alert.alert-danger .glyphicon,
-.alert.alert-warning .glyphicon 
+.alert.alert-warning .glyphicon
  {
     display: inline-block;
     margin-right: 10px;
@@ -665,4 +746,56 @@ button#message_send {
   }
 .tag-btn-view > div:hover{
   cursor: pointer;
+}
+/*26-10-2016*/
+.tags-view {
+    padding: 15px 150px;
+    text-align: center;
+}
+.tag-new-view {
+    color: #010101;
+    font-size: 33px;
+}
+.tag-new-view-1 {
+    color: #777777;
+    font-size: 16px;
+}
+.flex-control-nav {
+    display: none;
+}
+.tag-img {
+    height: 150px;
+    margin: 0 auto;
+    width: 150px;
+}
+.main-items {
+    border: 1px solid #dddddd;
+    padding: 15px;
+    text-align: center;
+}
+.tag-nav h2,
+.main-view-tag h2
+ {
+    font-size: 22px;
+}
+.tag-nav p,
+.main-view-tag p
+  {
+    font-size: 16px;
+    color: #777;
+}
+.main-view-tag {
+    padding: 0 130px;
+}
+.enterprise .box{
+  background-color: #1abc96;
+}
+.submit-tag a {
+    background-color: #3f81c7;
+    border: medium none;
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 30px;
+    outline: medium none;
+    padding: 10px 20px;
 }
