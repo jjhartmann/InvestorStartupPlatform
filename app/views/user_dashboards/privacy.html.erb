@@ -11,7 +11,7 @@
       <div class="tab-content view-tag">
         <div id="profile_type" class="tab-pane fade in active">
           <h3 class="text-center">Privacy</h3>
-          <%= simple_form_for(@user.profilable, :url => { :action => "update_profile" }) do |f| %>
+          <%= simple_form_for(@user, :url => { :action => "update_profile" }) do |f| %>
           <div class="field">
             <%= f.collection_radio_buttons :is_public, [[true, 'Public'] ,[false, 'Private']], :first, :last %>
           </div>
