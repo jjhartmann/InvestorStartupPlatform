@@ -17,4 +17,8 @@ class UserProfile < ApplicationRecord
             :length       => { :within => 1..140 }, on: :update
   validates :industry, :presence     => true,
             :length       => { :within => 1..140 }, on: :update
+
+  def is_featured?
+    startup_feature.present?
+  end
 end

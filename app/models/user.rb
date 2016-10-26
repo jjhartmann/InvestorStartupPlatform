@@ -136,10 +136,6 @@ class User < ApplicationRecord
     investor_profile.present?
   end
 
-  def is_featured?
-    profilable.startup_feature.present?
-  end
-
   def avatar(size = 80)
     "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=#{size}"
   end
