@@ -17,7 +17,7 @@
               <div class="message-body">
                 <ul>
                   <% if @message_thread.any? %>
-                    <div class="panel-body" id="messages" data-id="<%= @user.id %>">
+                    <div class="panel-body" id="messages" data-id="<%= current_user.id %>">
                       <% @message_thread.each do |thread| %>
                         <% if thread.user_id == current_user.id %>
                           <li class="rlt"><div class="message-trip"><div class="tap-sticker"><%= thread.content %><span class="timer"><%= thread.created_time %> ago</span></div></div><div class="circle-message"><%= image_tag thread.user.photo_avatar %></div></li>
@@ -27,25 +27,24 @@
                       <% end %>
                     </div>
                   <%else%>
-                    <div class="panel-body hidden" id="messages" data-id="<%= @user.id %>">
+                    <div class="panel-body hidden" id="messages" data-id="<%= current_user.id %>">
                     </div>
                   <% end %>
                 </ul>
               </div>
-              <%= form_for @message,url: messages_path, remote: true do |f|%>
-                <%= f.hidden_field :topic_id,value: params[:id] %>
-                <div class="sender-box">
-                  <div class="circle-message"><%=image_tag current_user.photo_avatar %></div>
-                  <div class="form-group">
-                    <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
-                    <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+              <%= form_for @message, url: messages_path, authenticity_token: true, remote: true do |f| %>
+                  <%= f.hidden_field :topic_id, value: params[:id] %>
+                  <div class="box" style="width: 100%;">
+                    <div class="form-group" style="width: 100%; display: table-cell; padding-right: 20px;">
+                      <%= f.text_area :content, class: "search-query form-control", style: "width: 100%", placeholder: "Write a message" %>
+                      <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
+                    </div>
+                    <div style="width: 50px; display: table-cell; ">
+                      <button class='btn btn-primary' style='width:40px; height: 100%; ' id="message_send">
+                        <i aria-hidden="true" class="fa fa-paper-plane"></i>
+                      </button>
+                    </div>
                   </div>
-                  <span>
-                    <button class='btn btn-primary' style='width:40px;' id="message_send">
-                      <i aria-hidden="true" class="fa fa-paper-plane"></i>
-                    </button>
-                  </span>
-                </div>
               <% end %>
             </div>
           </div>
