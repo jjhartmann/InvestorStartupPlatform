@@ -9,8 +9,12 @@
   </div>
   <div class="col-xs-9">
     <div class="profile-tabs">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#all-meetings">All Meetings</a></li>
+        <li><a data-toggle="tab" href="#meeting-requests">Meeting Requests</a></li>
+      </ul>
       <div class="tab-content">
-        <div class="tab-pane fade active in">
+        <div id="all-meetings" class="tab-pane fade active in">
           <% if @meetings.any? %>
               <% @meetings.each do |meeting| %>
                 <%= render "global_partials/meeting_plug", meeting: meeting %>
@@ -22,6 +26,35 @@
             <div class="notes-alert">
               <div class="alert alert-warning">
                 You do not have any <strong>Meetings</strong> at the current moment.
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div id="meeting-requests" class="tab-pane fade">
+          <% if @requests.any? %>
+            <div class="notification-box">
+              <ul>
+                <% @requests.each do |notification| %>
+                  <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) %>">
+                    <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
+                    <div class="notes-track">
+                      <div class="main-pro-name"><%=raw notification.notification_text %></div>
+                      <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
+                    </div>
+                    <% if notification.meeting.acceptance_status == "requested" %>
+                      <div class="btn-yes-no">
+                        <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 1), remote: true do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
+                        <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 0), remote: true do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% else %>
+            <div class="notes-alert">
+              <div class="alert alert-warning">
+                You do not have any <strong>Meetings Requests</strong> at the current moment.
               </div>
             </div>
           <% end %>

@@ -1,22 +1,29 @@
-<%= content_for :header_manage_class, 'header_manage' %>
+<%= content_for :header_manage_class, '' %>
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
 <% if resource.errors.present? %>
   <div id="floating_alert">
     <div class="alert header-alert alert-message alert-danger">
       <%= resource.errors.full_messages[0] %>
-      <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a>
+      <!-- <a href="#" class="alert-danger" data-dismiss="alert" aria-label="close" style="float: right;">&times;</a> -->
     </div>
   </div>
 <% end %>
-
-<div class="container">
+<div class="log-in-track">
   <div>
-    <div class="registration col-xs-12">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
-        <h1 class="text-center">Change your password</h1>
-        <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Password" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password" %>
+        <h3 class="text-center">Change your password</h3>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+        </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "form-control" %>
+          </div>
         <div class="form-group">
           <div class="submit-btn forget-password">
             <%= f.submit "Change my password", class: "btn-default btn password-reset" %>
@@ -25,4 +32,6 @@
       <% end %>
     </div>
   </div>
+</div>
+</div>
 </div>
