@@ -31,7 +31,13 @@
                 </ul>
               </div>
               <div class="sender-box send-new">
-                <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
+                <%# if @meeting_room.time_range %>
+                  <%= render partial: 'meeting_room_messages/message_form', locals: {message: @message, meeting_room: @meeting_room}%>
+                <%# else %>
+                  <!-- <div class="alert alert-warning">
+                      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>This meeting is currently not accessible.
+                  </div> -->
+                <%# end %>
               </div>
             </div>
         </div>
@@ -40,3 +46,6 @@
   </div>
 </div>
 </div>
+<script>
+  $(".message-body").scrollTop($('.message-body').height())
+</script>
