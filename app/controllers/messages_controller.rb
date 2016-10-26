@@ -30,7 +30,6 @@ class MessagesController < ApplicationController
       @topic = Message.find(params[:message][:topic_id])
       @content = params[:message][:content]
       @message_sent = @topic.user.id == current_user.id ? current_user.new_reply_private_message(@topic, @content) : current_user.reply_private_message(@topic, @content)
-      puts @message_sent[1]
           ActionCable.server.broadcast 'messages',
                                        message: @message_sent[0].content,
                                        user: @message_sent[0].user.name,
@@ -41,7 +40,6 @@ class MessagesController < ApplicationController
           # format.html { redirect_to :back, notice: 'Message was successfully sent.' } and return
           # format.json { render :show, status: :created, location: @message }
         else
-          puts "*************"
           respond_to do |format|
             format.html { render :new }
             format.json { render json: @message.errors, status: :unprocessable_entity }
