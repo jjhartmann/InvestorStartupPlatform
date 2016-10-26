@@ -43,9 +43,9 @@ class UserDashboardsController < ApplicationController
     case params[:type]
       when "Investors"
         if params[:search] != nil
-          @search = User.where("profilable_type = ? AND deleted_at IS ? AND name LIKE (?)", "InvestorProfile", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+          @search = User.investors.public_only.where("deleted_at IS ? AND name LIKE (?)", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         else
-          @search = User.where(profilable_type: "InvestorProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+          @search = User.investors.public_only.where(deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         end
       when "Companies"
         if params[:search] != nil
@@ -57,9 +57,9 @@ class UserDashboardsController < ApplicationController
         params[:type] = "Users"
 
         if params[:search] != nil
-          @search = User.where("profilable_type = ? AND deleted_at IS ? AND name LIKE (?)", "UserProfile", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+          @search = User.startups.public_only.where("deleted_at IS ? AND name LIKE (?)", nil, "%#{params[:search]}%").where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         else
-          @search = User.where(profilable_type: "UserProfile", deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
+          @search = User.startups.public_only.where(deleted_at: nil).where.not(id: current_user.id).paginate(page: params[:page], per_page: 10)
         end
     end
   end
@@ -133,7 +133,7 @@ class UserDashboardsController < ApplicationController
   end
 
   def update_profile
-    @user.profilable.update_attribute("is_public", params[:user_profile][:is_public])
+    @user.update(is_public: params[:user][:is_public])
     redirect_to root_path, notice: "Profile successfully updated"
   end
 
