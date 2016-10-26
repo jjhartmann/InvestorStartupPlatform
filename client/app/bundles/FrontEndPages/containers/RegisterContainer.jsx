@@ -135,45 +135,45 @@ export default class Register extends React.Component {
         <div id="floating_alert">
           {errors}
         </div>
-        <div className="registration col-xs-12 col-sm-6">
+        <div className="log-in-track">
           <div className="">
+            <h3>Register Now</h3>
             <form onSubmit={this.submit.bind(this)}>
-              <RegisterHeader header={this.state.translation.register}/>
               <div className="form-group">
-                <input
-                  type="text"
-                  placeholder={this.state.translation.full_name}
-                  value={this.state.user.name}
-                  onChange={this.updateName.bind(this)}
+                <label>Full Name</label>
+                <input className="form-control"
+                        type="text"
+                        value={this.state.user.name}
+                        onChange={this.updateName.bind(this)}
                 />
               </div>
               <div className="form-group">
-                <input
+                <label>Email</label>
+                <input className="form-control"
                   type="text"
-                  placeholder={this.state.translation.email_address}
                   value={this.state.user.email}
                   onChange={this.updateEmail.bind(this)}
                 />
               </div>
               <div className="form-group">
-                <input
+                <label>User Name</label>
+                <input className="form-control"
                   type="text"
-                  placeholder={this.state.translation.user_name}
                   value={this.state.user.username}
                   onChange={this.updateUserName.bind(this)}
                 />
               </div>
               <div className="form-group">
-                <input
+                <label>Password</label>
+                <input className="form-control"
                   type="password"
-                  placeholder={this.state.translation.password}
                   value={this.state.user.password}
                   onChange={this.updatePassword.bind(this)} />
               </div>
               <div className="form-group">
-                <input
+                <label>Confirm Password</label>
+                <input className="form-control"
                   type="password"
-                  placeholder={this.state.translation.confirm_password}
                   value={this.state.user.password_confirmation}
                   onChange={this.updateConfirmPassword.bind(this)}
                 />
@@ -204,21 +204,6 @@ export default class Register extends React.Component {
               </div>
               <SubmitButton submit={this.state.translation.submit}/>
             </form>
-          </div>
-        </div>
-        <div className="registration col-xs-12 col-sm-6">
-          <div className="">
-            <div className="clearfix">
-              <div className="links">
-                <RegisterHeader header={this.state.translation.social_media_register}/>
-                <ul className="social">
-                  <RegisterationLinks link_name="Wee Chat" key="we-chat"/>
-                  <RegisterationLinks link_name="QQ" key="qq"/>
-                  <RegisterationLinks link_name="Gmail" key="gmail"/>
-                  <RegisterationLinks link_name="Facebook" key="fb"/>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>

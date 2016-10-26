@@ -19,16 +19,19 @@
           </div>
         </div>
         <div>
-        <div class="action-tag">
-          <% if @user == @user_profile %>
-            <div class="edit"><%= link_to edit_user_registration_path do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %></div>
-          <% else %>
-            <div class="edit"><%= link_to "#", 'data-id': "#{@user_profile.id}", 'data-type': "#{@user_profile.profilable_type}", class: "follow1" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
-          <% end %>
-          <% if @user.is_connection?(@user_profile, @user) %>
-              <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %><i class="fa fa-comments-o" aria-hidden="true"></i><% end %></div>
-          <% end %>
-        </div>
+          <div class="action-tag">
+            <% if @user == @user_profile %>
+              <div class="edit"><%= link_to edit_user_registration_path do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %></div>
+            <% else %>
+              <div class="edit"><%= link_to "#", 'data-id': "#{@user_profile.id}", 'data-type': "#{@user_profile.profilable_type}", class: "follow1" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
+            <% end %>
+            <% if @user.is_connection?(@user_profile, @user) %>
+                <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %><i class="fa fa-comments-o" aria-hidden="true"></i><% end %></div>
+            <% end %>
+            <% if @user_profile.is_featured? == true %>
+              <div class="edit"><%= link_to feature_startup_profile_user_profiles_path(id: @user_profile) do %><i class="fa fa-star" aria-hidden="true"></i><% end %></div>
+            <% end %>
+          </div>
         </div>
         <div class="deatils-tag">
           <h3>About Me</h3>

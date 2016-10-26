@@ -1,1 +1,40 @@
-<%= @featured_users.as_json %>
+<%= content_for :body_class, "dashbord" %>
+<%= content_for :connection_class, "active" %>
+
+<div class="main-body">
+<%= render "user_dashboards/profile" %>
+<div class="container side-deatail">
+  <div class="col-xs-3">
+    <%= render partial: "user_dashboards/sidebar" %>
+  </div>
+  <div class="col-xs-9">
+    <div class="profile-tabs">
+      <div class="tab-content">
+        <div class="tab-pane fade active in">
+          <h3 class="text-center">Featured startups</h3>
+          <% if @featured_users.any? %>
+              <div class="enterprise-deatils box-tab">
+                <div class="user-follow">
+                  <ul class="clearfix" id="connections_list">
+                    <% @featured_users.each do |connection| %>
+                      <li>
+                        <%= render "global_partials/user_profile_plug", user: connection.user_profile.user %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="text-center">
+                <%= will_paginate @featured_users %>
+              </div>
+          <% else %>
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  Sorry, you have no <strong>connections</strong>.
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

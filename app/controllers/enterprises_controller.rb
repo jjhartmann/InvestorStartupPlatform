@@ -16,6 +16,7 @@ class EnterprisesController < ApplicationController
       @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 10)
     else
       @enterprises = @user.enterprises.paginate(page: params[:page], per_page: 10)
+      @requests = @user.invitations.where(acceptance_status: "requested")
     end
   end
 

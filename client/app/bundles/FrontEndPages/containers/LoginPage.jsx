@@ -92,15 +92,15 @@ export default class LoginPage extends React.Component {
           <h3>Welcome to Login</h3>
          <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
             <div className="form-group">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input className="form-control" type="text" required="" name="user[login]" value={this.state.user.login} onChange={this.updateLogin.bind(this)} />
             </div>
             <div className="form-group">
-              <label for="pwd">Password</label>
+              <label htmlFor="pwd">Password</label>
               <input className="form-control" type="password" required="" name="user[password]" value={this.state.user.password} onChange={this.updatePassword.bind(this)} />
             </div>
             <LoginForgetPassword forgot_password={this.state.translation.forgot_password}/>
-            <SubmitButton submit="Submit"></SubmitButton>            
+            <SubmitButton submit="Submit"></SubmitButton>
          </form>
         </div>
       </div>

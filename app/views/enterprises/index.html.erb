@@ -10,8 +10,14 @@
     <div class="col-xs-9">
       <div class="profile-tabs">
         <div class="tab-content">
-          <div class="tab-pane fade in active">
-            <%= render "user_dashboards/title_bar" %>
+            <%= render "user_dashboards/title_bar", type: "Companies" %>
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#all-enterprises">All Enterprises</a></li>
+              <% if @user.profilable_type == "UserProfile" %>
+                <li><a data-toggle="tab" href="#enterprises-requests">Enterprise Invitations</a></li>
+              <% end %>
+            </ul>
+            <div id="all-enterprises" class="tab-pane fade in active">
             <% if @user.profilable_type == "InvestorProfile" %>
                 <% if @enterprises.present? %>
                     <div class="enterprise-deatils box-tab">
@@ -64,14 +70,35 @@
                     </div>
                 <% end %>
             <% end %>
-            <% current_user.invitations.where(acceptance_status: "requested").each do |invitation| %>
-                <div>
-                  <p><%= invitation.enterprise.name %></p>
-                  <%= link_to "Accept", invitation_status_enterprises_path(id: invitation.id, status: 1) %>
-                  <%= link_to "Reject", invitation_status_enterprises_path(id: invitation.id, status: 0) %>
-                </div>
-            <% end %>
           </div>
+          <% if @user.profilable_type == "UserProfile" %>
+            <div id="enterprises-requests" class="tab-pane fade in active">
+              <% if @requests.any? %>
+                <div class="notification-box">
+                  <ul>
+                    <% @requests.each do |invitation| %>
+                      <li>
+                        <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
+                        <div class="notes-track">
+                          <div class="main-pro-name"><%=raw invitation.enterprise.name %></div>
+                        </div>
+                        <div class="btn-yes-no">
+                          <%= link_to invitation_status_enterprises_path(id: invitation.id, status: 1) do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
+                          <%= link_to link_to "Reject", invitation_status_enterprises_path(id: invitation.id, status: 0) do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% else %>
+                <div class="notes-alert">
+                  <div class="alert alert-warning">
+                    You do not have any <strong>Enterprise Invitations</strong> at the current moment.
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
