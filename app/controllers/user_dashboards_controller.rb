@@ -133,7 +133,7 @@ class UserDashboardsController < ApplicationController
   end
 
   def update_profile
-    @user.update(is_public: params[:user][:is_public])
+    @user.update_attribute(:is_public, params[:user][:is_public])
     redirect_to root_path, notice: "Profile successfully updated"
   end
 
