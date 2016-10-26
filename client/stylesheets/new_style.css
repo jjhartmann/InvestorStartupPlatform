@@ -787,6 +787,58 @@ button#message_send {
 .main-view-tag {
     padding: 0 130px;
 }
+.view-img {
+    float: right;
+}
+.view-img img {
+    height: 500px;
+    width: auto;
+}
+.view-sec ul li {
+    list-style:none;
+}
+.tag-ico .fa {
+    color: #0d3861;
+    margin-right: 10px;
+}
+.tag-ico {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+}
+.view-sec ul li {
+    list-style: outside none none;
+    margin-bottom: 29px;
+}
+.view-sec ul li p{
+    color:#777;
+    font-size: 16px;
+}
+.view-sec ul {
+    padding-left: 0;
+    width: 90%;
+}
+.tag-rate {
+    margin-top: 30px;
+}
+.circle-tag-new {
+    background: #2b903e none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #ffffff;
+    font-size: 28px;
+    height: 60px;
+    margin: 0 auto;
+    padding-top: 12px;
+    text-align: center;
+    width: 60px;
+}
+.box-view h2{
+    font-size: 22px;
+}
+.box-view p{
+    font-size: 22px;
+    color: #777;
+}
 .enterprise .box{
   background-color: #1abc96;
 }

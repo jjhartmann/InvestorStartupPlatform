@@ -20,6 +20,9 @@
                         <% @search.each do |user| %>
                             <li>
                               <%= render "global_partials/user_profile_plug", user: user %>
+                              <% if user.profilable.is_featured? == true %>
+                                <div class="featured"><a href="#">Featured</a></div>
+                              <% end %>
                             </li>
                         <% end %>
                     <% else %>
