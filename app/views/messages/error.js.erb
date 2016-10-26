@@ -1,9 +1,10 @@
+alert();
 $("#message-errors").html('<br>' +
-'<% if flash.notice %>' +
-  '<div class="alert alert-danger">' +
-      '<% flash.notice.each do |type, messages|%>' +
-        '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
-          ' <%= type.capitalize %> <%= messages %>' +
-      '<%end%>' +
-  '</div>' +
-'<%end%>');
+                            '<% if flash.notice %>' +
+                              '<div class="alert alert-danger">' +
+                                  '<% flash.notice.each do |type, messages|%>' +
+                                    '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
+                                      ' <%= type.capitalize %> <%= messages %>' +
+                                  '<%end%>' +
+                              '</div>' +
+                            '<%end%>');
