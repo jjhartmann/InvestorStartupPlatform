@@ -29,8 +29,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # create profile_type of user
       if resource.profilable_type == 'UserProfile'
         user_profile = UserProfile.new
+        resource.is_public = true
       elsif resource.profilable_type == "InvestorProfile"
         user_profile = InvestorProfile.new
+        resource.is_public = false
       end
 
       # skip validation and save the user_profile for now
