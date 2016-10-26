@@ -52,6 +52,7 @@ config = {
     './javascripts/bootstrap-datepicker.min',
     './javascripts/jquery.timepicker',
     './javascripts/jquery.datepair.min',
+    // './javascripts/jquery.flexslider-min',
 
     //include stylesheets
     './stylesheets/bootstrap.min',
@@ -62,6 +63,8 @@ config = {
     './stylesheets/responsive',
     './stylesheets/bootstrap-datepicker',
     './stylesheets/jquery.timepicker.min',
+    // './stylesheets/flexslider',
+
   ],
   RailsAdminBundle: [
     './javascripts/rails_admin/ra.widgets',
