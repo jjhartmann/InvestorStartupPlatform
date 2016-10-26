@@ -119,7 +119,7 @@ class UserDashboardsController < ApplicationController
   end
 
   def featured_users
-    @featured_users = StartupFeature.all
+    @featured_users = StartupFeature.all.paginate(page: params[:page], per_page: 3)
   end
 
   def searched_users

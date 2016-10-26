@@ -14,7 +14,7 @@
           <div class="pull-right" style="margin-top:5px; margin-bottom:5px">
             <%#= link_to 'New Enterprise', new_enterprise_path, class: "btn btn-primary" %>
           </div>
-          <%= render "user_dashboards/title_bar" %>
+          <%= render "user_dashboards/title_bar", type: "Users" %>
           <% if @connected_users.any? %>
               <div class="enterprise-deatils box-tab">
                 <div class="user-follow">
