@@ -83,6 +83,7 @@ Rails.application.routes.draw do
       get 'faq'
       get 'about'
       get 'services'
+      get 'for_enterprises'
     end
   end
 

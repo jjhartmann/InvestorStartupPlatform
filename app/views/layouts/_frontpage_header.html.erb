@@ -27,12 +27,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to root_path, class: "navbar-brand" do %><%= image_tag header_logo %><% end %>            
+            <%= link_to root_path, class: "navbar-brand" do %><%= image_tag header_logo %><% end %>
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li class=""><a href="#">For Investors</a></li>
-              <li class=""><a href="#">For Companies</a></li>
+              <li class=""><%= link_to "#" do %>For Investors<% end %></li>
+              <li class=""><%= link_to for_enterprises_home_pages_path do %>For Companies<% end %></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><%= link_to "Sign Up", new_user_registration_path %></li>
