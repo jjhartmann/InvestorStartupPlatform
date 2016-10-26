@@ -5,6 +5,7 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = @user.profilable.meetings.paginate(page: params[:page], per_page: 2)
+    @requests = @user.profilable.notifications.where(notification_type: "Meeting")
   end
 
   def show

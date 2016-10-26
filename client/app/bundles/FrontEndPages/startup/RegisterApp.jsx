@@ -5,11 +5,13 @@ import RegisterHeader from '../components/RegisterHeader'
 
 const Registration = (props, _railsContext) => {
   const reactComponent = (
-    <div className="login-set registration">
       <div className="container">
-          <Register {...props} />
+        <div className="row">
+          <div className="col-xs-12">
+            <Register {...props} />
+          </div>
+        </div>
       </div>
-    </div>
   );
   return reactComponent;
 };

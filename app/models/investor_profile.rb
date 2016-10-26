@@ -17,4 +17,8 @@ class InvestorProfile < ApplicationRecord
   validates :funds_to_offer, :presence     => true,
             :numericality => true
 
+
+  def is_featured?
+    false
+  end
 end
