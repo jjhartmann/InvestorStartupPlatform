@@ -313,6 +313,12 @@ html,body{
   background: #008cff none repeat scroll 0 0;
   margin-left: 5px;
 }
+.edit.blue{
+  background-color: #3f81c7;
+}
+.edit.red{
+  background-color: #d9534f;
+}
 .buttons a {
   color: #ffffff;
 }

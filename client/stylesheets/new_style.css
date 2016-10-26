@@ -643,11 +643,15 @@ a.choose-btn {
 button#message_send {
     float: left;
 }
-.alert.alert-danger .glyphicon {
+.alert.alert-danger .glyphicon,
+.alert.alert-warning .glyphicon 
+ {
     display: inline-block;
     margin-right: 10px;
 }
-.alert-danger {
+.alert-danger,
+.alert-warning
+ {
     float: left;
     width: 100%;
 }
