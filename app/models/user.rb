@@ -63,6 +63,8 @@ class User < ApplicationRecord
   scope :new_users,  -> {  where :profilable => nil }
   scope :entrepreneurs, -> { joins(:enterprise_users).where('enterprise_users.user_email != nil') }
   scope :investors, ->   { where :profilable_type => 'InvestorProfile'}
+  scope :startups,  -> { where(profilable_type: "UserProfile") }
+  scope :public_only,      -> {  where is_public: true}
 
   before_save :email_nomarlisation
 
