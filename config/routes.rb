@@ -84,6 +84,7 @@ Rails.application.routes.draw do
       get 'about'
       get 'services'
       get 'for_enterprises'
+      get 'for_investors'
     end
   end
 
