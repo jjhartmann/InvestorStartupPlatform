@@ -15,10 +15,12 @@
                       <ul class="full-details clearfix">
                         <% @visitors.each do |visitee| %>
                         <li>
-                          <% if visitee.visitor.profilable_type == "UserProfile" %>
-                            <%= render "global_partials/user_profile_plug", user: visitee.visitor %>
-                          <% else %>
-                            <%= render "global_partials/investor_profile_plug", investor: visitee.visitor %>
+                          <% if visitee.visitor != nil %>
+                            <% if visitee.visitor.profilable_type == "UserProfile" %>
+                              <%= render "global_partials/user_profile_plug", user: visitee.visitor %>
+                            <% else %>
+                              <%= render "global_partials/investor_profile_plug", investor: visitee.visitor %>
+                            <% end %>
                           <% end %>
                         </li>
                         <% end %>
