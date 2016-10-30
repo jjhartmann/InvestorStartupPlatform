@@ -12,9 +12,9 @@
         <div class="tab-content">
             <%= render "user_dashboards/title_bar", type: "Companies" %>
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#all-enterprises">All Enterprises</a></li>
+              <li class="active"><a data-toggle="tab" href="#all-enterprises">My Companies</a></li>
               <% if @user.profilable_type == "UserProfile" %>
-                <li><a data-toggle="tab" href="#enterprises-requests">Enterprise Invitations</a></li>
+                <li><a data-toggle="tab" href="#enterprises-requests">Invitations</a></li>
               <% end %>
             </ul>
             <div id="all-enterprises" class="tab-pane fade in active">
