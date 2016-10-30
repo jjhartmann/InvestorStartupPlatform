@@ -139,8 +139,6 @@
   </div>
 </div>
 
-
-
 <% if @user.profilable_type == "InvestorProfile" %>
     <div id="popover-schedule"></div>
 
@@ -152,16 +150,8 @@
           'minTime': (parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]
         }).val((parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]);
       }
-
-      $('div.follow').click(function (event) {
-        var innerText = $.trim($(this).text()).toLowerCase();
-        if (innerText == "Follow".toLowerCase()) {
-          $(this).text("Unfollow");
-        } else {
-          $(this).text("Follow");
-        }
-      });
     </script>
+
 
     <script>
       $("div#meeting-schedule").click(function () {
