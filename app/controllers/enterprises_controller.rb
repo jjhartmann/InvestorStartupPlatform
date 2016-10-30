@@ -7,14 +7,15 @@ class EnterprisesController < ApplicationController
     # Heading for title setions
     @title_heading = "Companies"
 
-    @overlay_partial = render_to_string(partial: "enterprises/meeting_schedule_popover", layout: false, locals: {id: "id-99858", name: "name-996854"})
-    @overlay_partial.remove!("\n")
-    @overlay_partial.tr! '"', "'"
-
     @user = current_user
     if @user.profilable_type == "InvestorProfile"
       @enterprises = @user.enterprises_followed.paginate(page: params[:page], per_page: 10)
+
+      @overlay_partial = render_to_string(partial: "enterprises/meeting_schedule_popover", layout: false, locals: {id: "id-99858", name: "name-996854"})
+      @overlay_partial.remove!("\n")
+      @overlay_partial.tr! '"', "'"
     else
+      @enterprise_network = @user.enterprises_followed.paginate(page: params[:page], per_page: 10)
       @enterprises = @user.enterprises.paginate(page: params[:page], per_page: 10)
       @requests = @user.invitations.where(acceptance_status: "requested")
     end

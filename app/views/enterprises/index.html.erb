@@ -15,6 +15,7 @@
             <li class="active"><a data-toggle="tab" href="#all-enterprises">My Companies</a></li>
             <% if @user.profilable_type == "UserProfile" %>
                 <li><a data-toggle="tab" href="#enterprises-requests">Invitations</a></li>
+                <li><a data-toggle="tab" href="#enterprises-follows">Network</a></li>
             <% end %>
           </ul>
           <div id="all-enterprises" class="tab-pane fade in active">
@@ -106,6 +107,29 @@
                     </div>
                 <% end %>
               </div>
+
+              <div id="enterprises-follows" class="tab-pane fade">
+                <% if @enterprise_network.any? %>
+                    <div class="enterprise-deatils box-tab">
+                      <ul class="full-details clearfix">
+                        <% @enterprise_network.each do |enterprise| %>
+                            <li id="user_<%= enterprise.id %>" class="clickable-row" data-href='<%= enterprise_path(enterprise) %>'>
+                              <%= render "global_partials/company_profile_plug", enterprise: enterprise %>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="text-center">
+                      <%= will_paginate @enterprise_network %>
+                    </div>
+                <% else %>
+                    <div class="notes-alert">
+                      <div class="alert alert-warning">
+                        You do not have any <strong>Enterprise Invitations</strong> at the current moment.
+                      </div>
+                    </div>
+                <% end %>
+              </div>
           <% end %>
         </div>
       </div>
@@ -114,6 +138,8 @@
 </div>
 
 
+
+<% if @user.profilable_type == "InvestorProfile" %>
 <div id="popover-schedule"></div>
 
 <script>
@@ -246,3 +272,4 @@
     $('#datepairExample').datepair();
   });
 </script>
+<% end %>
