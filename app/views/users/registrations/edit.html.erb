@@ -18,7 +18,9 @@
                     <div class="circle">
                       <div class="go-top">
                         <%= f.input :photo, as: :file, label: false %>
-                        <a href="#"><i class="fa fa-camera" aria-hidden="true"></i></a>
+                        <a href="#">
+                          <i class="fa fa-camera" aria-hidden="true"></i>
+                        </a>
                       </div>
                       <%= image_tag @user.photo_thumb, id: "image_pic" %>
                     </div>
@@ -34,7 +36,9 @@
                     </h2>
                   </div>
                   <div class="form-group">
-                    <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+                    <p>
+                      <i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">
+                      Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
                     </p>
                   </div>
 
@@ -42,41 +46,55 @@
                       <%= f.fields_for :profilable do |profile_fields| %>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.input :industry, class: "form-control", label: false, placeholder: "Industry" %>
-                              <span class="display-mode-value"></span></div>
+                              <i aria-hidden="true" class="fa fa-industry"></i>
+                              <%= profile_fields.input :industry, class: "form-control", label: false, placeholder: "Industry" %>
+                              <span class="display-mode-value"></span>
+                            </div>
                           </div>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.input :profession, class: "form-control", label: false, placeholder: "Profession" %>
-                              <span class="display-mode-value"></span></div>
+                              <i aria-hidden="true" class="fa fa-briefcase"></i>
+                              <%= profile_fields.input :profession, class: "form-control", label: false, placeholder: "Profession" %>
+                              <span class="display-mode-value"></span>
+                            </div>
                           </div>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.input :skills, class: "form-control", label: false, placeholder: "Skills" %>
-                              <span class="display-mode-value"></span></div>
+                              <i aria-hidden="true" class="fa fa-graduation-cap"></i>
+                              <%= profile_fields.input :skills, class: "form-control", label: false, placeholder: "Skills" %>
+                              <span class="display-mode-value"></span>
+                            </div>
                           </div>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.input :something_cool, class: "form-control", label: false, placeholder: "Something cool about yourself." %>
-                              <span class="display-mode-value"></span></div>
+                              <i aria-hidden="true" class="fa fa-lightbulb-o"></i>
+                              <%= profile_fields.input :something_cool, class: "form-control", label: false, placeholder: "Something cool about yourself." %>
+                              <span class="display-mode-value"></span>
+                            </div>
                           </div>
                       <% end %>
                   <% else %>
                       <%= f.fields_for :profilable do |profile_fields| %>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.input :tagline, class: "form-control", label: false, placeholder: "Tagline" %>
-                              <span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                              <i aria-hidden="true" class="fa fa-tag"></i>
+                              <%= profile_fields.input :tagline, class: "form-control", label: false, placeholder: "Tagline" %>
+                              <span class="display-mode-value"><%= @user.profilable.tagline %></span>
+                            </div>
                           </div>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.input :funds_to_offer, class: "form-control", label: false, placeholder: "Funds to Offer" %>
-                              <span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                              <i aria-hidden="true" class="fa fa-money"></i>
+                              <%= profile_fields.input :funds_to_offer, class: "form-control", label: false, placeholder: "Funds to Offer" %>
+                              <span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span>
+                            </div>
                           </div>
                           <div class="form-group">
                             <div class="user-positon">
-                              <i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.input :description, class: "form-control", label: false, placeholder: "Description" %>
-                              <span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                              <i aria-hidden="true" class="fa fa-file"></i>
+                              <%= profile_fields.input :description, class: "form-control", label: false, placeholder: "Description" %>
+                              <span class="display-mode-value"><%= @user.profilable.description %></span>
+                            </div>
                           </div>
                       <% end %>
                   <% end %>
