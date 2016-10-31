@@ -12,6 +12,7 @@ class UserDashboardsController < ApplicationController
         !current_user.location? ||
         !current_user.introduction?))
       session[:fill_details] = true
+      flash[:update_profile] = "Please update your profile!"
       redirect_to edit_user_registration_path
     end
 
