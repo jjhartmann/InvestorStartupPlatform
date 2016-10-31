@@ -104,6 +104,7 @@ class EnterprisesController < ApplicationController
   end
 
   def public_profile
+    @user = current_user
     @enterprise = Enterprise.find_by(id: params[:enterprise])
     if @enterprise.questionaire != nil && @enterprise.questionaire.questions != nil && @enterprise.questionaire.questions.present?
       if current_user.add_visitor(@enterprise)
