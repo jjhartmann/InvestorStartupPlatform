@@ -100,7 +100,7 @@ class EnterprisesController < ApplicationController
         InvitationMailer.invitation_mail(@invitation).deliver_now
       end
     end
-    redirect_to root_path
+    redirect_to :back
   end
 
   def public_profile
