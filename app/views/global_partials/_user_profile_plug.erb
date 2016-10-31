@@ -1,27 +1,27 @@
-  <div class="pro-tags-in">
-    <%= image_tag user.photo_avatar %>
+<div class="pro-tags-in">
+  <%= image_tag user.photo_avatar %>
+</div>
+<div class="deatails-module">
+  <h3><%= user.name %></h3>
+  <div class="tag-line-des treck">
+    <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+  <div class="tag-line-des">
+    <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool, length: 80, separator: ' ') %>
   </div>
-  <div class="deatails-module">
-    <h3><%= user.name %></h3>
-    <div class="tag-line-des treck">
-      <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
-    <div class="tag-line-des">
-      <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool, length: 80, separator: ' ') %>
-    </div>
-    <% if @user == user %>
+  <% if @user == user %>
       <div class="tag-btn-view">
         <div>
           <%= link_to "Profile", user_profile_path(id: @user.id), style: "color: #fff;" %>
         </div>
       </div>
-    <% else%>
+  <% else %>
       <div class="tag-btn-view">
-          <div id="follow_<%= user.id %>" class="follow" data-id='<%= "#{user.id}" %>' data-type='<%= "#{user.profilable_type}" %>'>
-            <%= current_user.is_following?(user) ? "Unfollow" : "Follow" %>
-          </div>
+        <div id="follow_<%= user.id %>" class="follow" data-id='<%= "#{user.id}" %>' data-type='<%= "#{user.profilable_type}" %>'>
+          <%= current_user.is_following?(user) ? "Unfollow" : "Follow" %>
+        </div>
         <div>
-          <%= link_to "Profile", user_profile_path(id: @user.id,suggested_profile: user.id), style: "color: #fff;" %>
+          <%= link_to "Profile", user_profile_path(id: @user.id, suggested_profile: user.id), style: "color: #fff;" %>
         </div>
       </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
