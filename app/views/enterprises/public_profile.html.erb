@@ -18,15 +18,25 @@
           <h3><%= @enterprise.name %></h3>
           <div class="buttons pro-1">
             <% if @enterprise.all_users.include?(@user) %>
-                <div class="edit"><%= link_to edit_enterprise_path(@enterprise) do %>
+                <div class="edit">
+                  <%= link_to edit_enterprise_path(@enterprise) do %>
                       <i class="fa fa-pencil" aria-hidden="true"></i>
-                  <% end %></div>
-                <div class="edit red"><%= link_to enterprise_path(@enterprise), method: :delete do %>
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %></div>
-                <div class="edit"><%= link_to "#add_member", 'data-toggle': "modal" do %>
+                  <% end %>
+                </div>
+                <% puts "The founder: " + @enterprise.founder.email + "\nThe User: " + @user.email %>
+                <% puts "2232: Test for bool:  " + (@enterprise.founder == @user).to_s %>
+                <% if @enterprise.founder == (@user) %>
+                    <div class="edit red">
+                      <%= link_to enterprise_path(@enterprise), method: :delete do %>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                      <% end %>
+                    </div>
+                <% end %>
+                <div class="edit">
+                  <%= link_to "#add_member", 'data-toggle': "modal" do %>
                       <i class="fa fa-user-plus" aria-hidden="true"></i>
-                  <% end %></div>
+                  <% end %>
+                </div>
             <% end %>
             <% if @user.profilable_type == "InvestorProfile" %>
                 <div class="edit blue"><%= link_to '<i class="fa fa-users" aria-hidden="true"></i>'.html_safe, "#meetingModal1", 'data-toggle': "modal" %></div>
