@@ -5,7 +5,7 @@
 <%= content_for :profile_active_class, "active" %>
 
 
-  <div class="main-body">
+<div class="main-body">
   <div class="container side-deatail" style="transition: none; width: 100%;">
     <div class="col-xs-12">
       <div class="profile-tabs">
@@ -13,69 +13,84 @@
         <div id="home" class="editable-contact-info edit-mode-enabled">
           <div class="main-start">
             <div class="box-tab">
-              <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: { input_html: { class: 'default_class' } } do |f| %>
-              <div class="form-group">
-                 <div class="circle">
-                   <div class="go-top">
-                     <%= f.input :photo, as: :file, label: false %>
-                     <a href="#"><i class="fa fa-camera" aria-hidden="true"></i></a>
-                   </div>
-                   <%= image_tag @user.photo_thumb, id: "image_pic" %>
-                 </div>
-               </div>
-               <div class="form-group error">
-                 <%= f.error :photo, id: 'photo_error', class: "error-p" %>
-               </div>
-                <div class="form-group">
-                  <h2>
-                    <i aria-hidden="true" class="fa fa-user"></i>
-                    <%= f.input :name, class: "form-control", label: false, placeholder: "Your Full Name" %>
-                    <span class="display-mode-value"><%= @user.name %></span>
-                  </h2>
-                </div>
-                <div class="form-group">
-                  <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></p>
-                </div>
+              <%= simple_form_for @user, as: @user, url: registration_path(@user), defaults: {input_html: {class: 'default_class'}} do |f| %>
+                  <div class="form-group">
+                    <div class="circle">
+                      <div class="go-top">
+                        <%= f.input :photo, as: :file, label: false %>
+                        <a href="#"><i class="fa fa-camera" aria-hidden="true"></i></a>
+                      </div>
+                      <%= image_tag @user.photo_thumb, id: "image_pic" %>
+                    </div>
+                  </div>
+                  <div class="form-group error">
+                    <%= f.error :photo, id: 'photo_error', class: "error-p" %>
+                  </div>
+                  <div class="form-group">
+                    <h2>
+                      <i aria-hidden="true" class="fa fa-user"></i>
+                      <%= f.input :name, class: "form-control", label: false, placeholder: "Your Full Name" %>
+                      <span class="display-mode-value"><%= @user.name %></span>
+                    </h2>
+                  </div>
+                  <div class="form-group">
+                    <p><i aria-hidden="true" class="fa fa-bank"></i><span class="display-mode-value">Loerm ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+                    </p>
+                  </div>
 
-              <% if @user.profilable_type == "UserProfile" %>
-                <%= f.fields_for :profilable do |profile_fields| %>
+                  <% if @user.profilable_type == "UserProfile" %>
+                      <%= f.fields_for :profilable do |profile_fields| %>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.input :industry, class: "form-control", label: false, placeholder: "Industry" %>
+                              <span class="display-mode-value"></span></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.input :profession, class: "form-control", label: false, placeholder: "Profession" %>
+                              <span class="display-mode-value"></span></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.input :skills, class: "form-control", label: false, placeholder: "Skills" %>
+                              <span class="display-mode-value"></span></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.input :something_cool, class: "form-control", label: false, placeholder: "Something cool about yourself." %>
+                              <span class="display-mode-value"></span></div>
+                          </div>
+                      <% end %>
+                  <% else %>
+                      <%= f.fields_for :profilable do |profile_fields| %>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.input :tagline, class: "form-control", label: false, placeholder: "Tagline" %>
+                              <span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.input :funds_to_offer, class: "form-control", label: false, placeholder: "Funds to Offer" %>
+                              <span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
+                          </div>
+                          <div class="form-group">
+                            <div class="user-positon">
+                              <i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.input :description, class: "form-control", label: false, placeholder: "Description" %>
+                              <span class="display-mode-value"><%= @user.profilable.description %></span></div>
+                          </div>
+                      <% end %>
+                  <% end %>
                   <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-industry"></i><%= profile_fields.input :industry, class: "form-control", label: false, placeholder: "Industry" %><span class="display-mode-value"></span></div>
+                    <div class="user-positon">
+                      <i aria-hidden="true" class="fa fa-envelope"></i>
+                      <%= f.input :email, class: "form-control", label: false, disabled: true %>
+                      <span class="display-mode-value"><%= @user.email %></span>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-briefcase"></i><%= profile_fields.input :profession, class: "form-control", label: false, placeholder: "Profession" %><span class="display-mode-value"></span></div>
+                  <div class="event-btn">
+                    <%= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
+                    <%= link_to "Cancel", user_profile_path(@user), class: "btn btn-default js-cancel" %>
                   </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-graduation-cap"></i><%= profile_fields.input :skills, class: "form-control", label: false, placeholder: "Skills" %><span class="display-mode-value"></span></div>
-                  </div>
-                  <div class="form-group">
-                    <div class="user-positon"><i aria-hidden="true" class="fa fa-lightbulb-o"></i><%= profile_fields.input :something_cool, class: "form-control", label: false, placeholder: "Something cool about yourself." %><span class="display-mode-value"></span></div>
-                  </div>
-                <% end %>
-              <% else %>
-                <%= f.fields_for :profilable do |profile_fields| %>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-tag"></i><%= profile_fields.input :tagline, class: "form-control", label: false, placeholder: "Tagline" %><span class="display-mode-value"><%= @user.profilable.tagline %></span></div>
-                </div>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-money"></i><%= profile_fields.input :funds_to_offer, class: "form-control", label: false, placeholder: "Funds to Offer" %><span class="display-mode-value"><%= @user.profilable.funds_to_offer %></span></div>
-                </div>
-                <div class="form-group">
-                  <div class="user-positon"><i aria-hidden="true" class="fa fa-file"></i><%= profile_fields.input :description, class: "form-control", label: false, placeholder: "Description" %><span class="display-mode-value"><%= @user.profilable.description %></span></div>
-                </div>
-                <% end %>
-              <% end %>
-              <div class="form-group">
-                <div class="user-positon">
-                  <i aria-hidden="true" class="fa fa-envelope"></i>
-                  <%= f.input :email, class: "form-control", label: false, disabled: true%>
-                  <span class="display-mode-value"><%= @user.email %></span>
-                </div>
-              </div>
-              <div class="event-btn">
-                 <%= f.submit "Save", class: "btn btn-primary", id: "defaultSave" %>
-                 <%= link_to "Cancel", user_profile_path(@user),class: "btn btn-default js-cancel" %>
-              </div>
               <% end %>
             </div>
           </div>
@@ -87,27 +102,27 @@
 </div>
 
 <script>
-function readURL(input) {
-      if (input.files && input.files[0]) {
-        var file = input.files[0];
-        var fileType = file["type"];
-        var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-        if ($.inArray(fileType, ValidImageTypes) <= 0) {
-          $('.form-group.error').append('<span class="error-p">You can only upload images. (.gif, .jpeg, .png)</span>');
-        }
-        else{
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#image_pic').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-        }
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var file = input.files[0];
+      var fileType = file["type"];
+      var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+      if ($.inArray(fileType, ValidImageTypes) <= 0) {
+        $('.form-group.error').append('<span class="error-p">You can only upload images. (.gif, .jpeg, .png)</span>');
       }
+      else {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#image_pic').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
   }
 
-  $("#user_photo").change(function(){
+  $("#user_photo").change(function () {
     $('.form-group.error').find('span').remove();
     readURL(this);
   });
