@@ -101,150 +101,130 @@
 </div>
 
 
-<!-- Invitation Modal -->
-<div id="add_member" class="modal" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Members</h4>
-      </div>
-      <%= form_tag add_member_enterprises_path do |f| %>
-          <div class="modal-body">
-            <%= hidden_field_tag 'enterprise_id', @enterprise.id %>
-            <%= text_field_tag "invitee", "", class: "form-control", placeholder: "Enter email id of Invitee..." %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= submit_tag "Submit" %>
-          </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<% if current_user.profilable_type == "InvestorProfile" %>
-    <%= render "enterprises/meeting_schedule_popover", id: @enterprise.id, name: @enterprise.name %>
+<% if current_user.profilable_type != "InvestorProfile" %>
+    <%= render "enterprises/add_members_popover", id: @enterprise.id %>
 <% else %>
-<% end %>
+    <%= render "enterprises/meeting_schedule_popover", id: @enterprise.id, name: @enterprise.name %>
 
-<script>
-  $(document).ready(function () {
-    '<% if current_user.profilable_type == "InvestorProfile" %>'
-    var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
-    var array = $.map(array1, function (value, index) {
-      return [value];
-    });
-    '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
-    var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
-    array.splice(array.indexOf(parseInt(index)), 1);
-    '<% end %>'
 
-    $("#message_send").click(function (e) {
-      if ($("#meeting_date").val() == "") {
-        e.preventDefault();
-        $("#meeting_date").css("border", "1px solid red");
-        $("#datepairExample").append("<p id='meeting_date_error' style='color:red'>Select the meeting date.</p>")
-      } else {
-        $("#meeting_date").css("border", "1px solid #ccc");
-      }
-      console.log($("#meeting_start_time").length);
-      if ($("#meeting_start_time").length == 1) {
-        if ($("#meeting_start_time").val() == "") {
-          e.preventDefault();
-          $("#meeting_start_time").css("border", "1px solid red");
-          $("#datepairExample").append("<p id='meeting_time_error' style='color:red'>Select the meeting time.</p>")
-        } else {
-          $("#meeting_time_error").remove();
+    <script>
+      $(document).ready(function () {
+        '<% if current_user.profilable_type == "InvestorProfile" %>'
+        var array1 = <%= [*0..(Date::DAYNAMES.length-1)] %>;
+        var array = $.map(array1, function (value, index) {
+          return [value];
+        });
+        '<% current_user.profilable.admin_meeting_schedules.each do |meeting| %>'
+        var index = '<%= Date::DAYNAMES.find_index(meeting.day).to_i %>';
+        array.splice(array.indexOf(parseInt(index)), 1);
+        '<% end %>'
+
+        $("#message_send").click(function (e) {
+          if ($("#meeting_date").val() == "") {
+            e.preventDefault();
+            $("#meeting_date").css("border", "1px solid red");
+            $("#datepairExample").append("<p id='meeting_date_error' style='color:red'>Select the meeting date.</p>")
+          } else {
+            $("#meeting_date").css("border", "1px solid #ccc");
+          }
+          console.log($("#meeting_start_time").length);
+          if ($("#meeting_start_time").length == 1) {
+            if ($("#meeting_start_time").val() == "") {
+              e.preventDefault();
+              $("#meeting_start_time").css("border", "1px solid red");
+              $("#datepairExample").append("<p id='meeting_time_error' style='color:red'>Select the meeting time.</p>")
+            } else {
+              $("#meeting_time_error").remove();
+            }
+          }
+        });
+        $("#meeting_date").change(function () {
+          if ($("#meeting_date_error").length == 1) {
+            $("#meeting_date_error").remove();
+            $("#meeting_date").css("border", "1px solid #ccc");
+          }
+        });
+        var el = $('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>');
+        el.change(function () {
+          if ($("#meeting_time_error").length == 1) {
+            $("#meeting_time_error").remove();
+            $("#meeting_start_time").css("border", "1px solid #ccc");
+          }
+        });
+
+        $('#datepairExample .date').datepicker({
+          'format': 'yyyy-m-d',
+          'autoclose': true,
+          'daysOfWeekDisabled': array,
+          // startDate: "today" To start date from today.
+          startDate: "+1d" // To start date from next available date.
+        }).on('changeDate', function () {
+          $(this).addClass("new-date-start");
+          var a = new Date($("#meeting_date").val());
+          var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+          var day = weekdays[parseInt(a.getDay())];
+          '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
+          if ('<%= day.day %>' == day) {
+            if (array1.indexOf(a.getDay().toString()) > -1) {
+            } else {
+              $(".form-control-wrapper #datepairExample").find(".time.start").remove();
+              $(".form-control-wrapper #datepairExample").find(".time.end").remove();
+              $(".form-control-wrapper #datepairExample").find("div").remove();
+
+              $(".form-control-wrapper #datepairExample").append(el);
+
+              initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
+              // alert("invalid");
+            }
+          }
+          '<% end %>'
+
+        });
+        '<% end %>'
+        function initialize_timepicker(startTime, endTime) {
+          $('#datepairExample .time.start').timepicker({
+            'showDuration': true,
+            'timeFormat': 'G:i',
+            'minTime': startTime,
+            'maxTime': endTime
+          }).on('change', function () {
+            // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
+            reload_time($(this).val());
+          });
         }
-      }
-    });
-    $("#meeting_date").change(function () {
-      if ($("#meeting_date_error").length == 1) {
-        $("#meeting_date_error").remove();
-        $("#meeting_date").css("border", "1px solid #ccc");
-      }
-    });
-    var el = $('<%= text_field_tag "meeting_start_time",'', class: "time start", placeholder: "Starting Time" %>');
-    el.change(function () {
-      if ($("#meeting_time_error").length == 1) {
-        $("#meeting_time_error").remove();
-        $("#meeting_start_time").css("border", "1px solid #ccc");
-      }
-    });
 
-    $('#datepairExample .date').datepicker({
-      'format': 'yyyy-m-d',
-      'autoclose': true,
-      'daysOfWeekDisabled': array,
-      // startDate: "today" To start date from today.
-      startDate: "+1d" // To start date from next available date.
-    }).on('changeDate', function () {
-      $(this).addClass("new-date-start");
-      var a = new Date($("#meeting_date").val());
-      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      var day = weekdays[parseInt(a.getDay())];
-      '<% current_user.profilable.admin_meeting_schedules.each do |day| %>'
-      if ('<%= day.day %>' == day) {
-        if (array1.indexOf(a.getDay().toString()) > -1) {
-        } else {
-          $(".form-control-wrapper #datepairExample").find(".time.start").remove();
-          $(".form-control-wrapper #datepairExample").find(".time.end").remove();
-          $(".form-control-wrapper #datepairExample").find("div").remove();
-
-          $(".form-control-wrapper #datepairExample").append(el);
-
-          initialize_timepicker('<%= day.start_time.strftime("%H:%M")%>', '<%= day.end_time.strftime("%H:%M")%>');
-          // alert("invalid");
-        }
-      }
-      '<% end %>'
-
-    });
-    '<% end %>'
-    function initialize_timepicker(startTime, endTime) {
-      $('#datepairExample .time.start').timepicker({
-        'showDuration': true,
-        'timeFormat': 'G:i',
-        'minTime': startTime,
-        'maxTime': endTime
-      }).on('change', function () {
-        // console.log((parseInt($(this).val().split(":")[0])+1).toString() + ":" + $(this).val().split(":")[1]);
-        reload_time($(this).val());
+        $('#datepairExample .time.start').timepicker().on('change', function () {
+          reload_time($(this).val());
+        });
+        // initialize datepair
+        $('#datepairExample').datepair();
       });
-    }
+    </script>
 
-    $('#datepairExample .time.start').timepicker().on('change', function () {
-      reload_time($(this).val());
-    });
-    // initialize datepair
-    $('#datepairExample').datepair();
-  });
-</script>
+    <script>
+      function reload_time(val1) {
+        $('#datepairExample .time.end').timepicker({
+          'showDuration': true,
+          'timeFormat': 'G:i',
+          'minTime': (parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]
+        }).val((parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]);
+      }
 
-<script>
-  function reload_time(val1) {
-    $('#datepairExample .time.end').timepicker({
-      'showDuration': true,
-      'timeFormat': 'G:i',
-      'minTime': (parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]
-    }).val((parseInt(val1.split(":")[0]) + 1).toString() + ":" + val1.split(":")[1]);
-  }
+      $('div.follow').click(function (event) {
+        var innerText = $.trim($(this).text()).toLowerCase();
+        if (innerText == "Follow".toLowerCase()) {
+          $(this).text("Unfollow");
+        } else {
+          $(this).text("Follow");
+        }
+      });
+    </script>
 
-  $('div.follow').click(function (event) {
-    var innerText = $.trim($(this).text()).toLowerCase();
-    if (innerText == "Follow".toLowerCase()) {
-      $(this).text("Unfollow");
-    } else {
-      $(this).text("Follow");
-    }
-  });
-</script>
+    <script>
+      $('#meetingModal1').on('hidden.bs.modal', function () {
+        $(this).find('input[type=text]').val('');
+      });
+    </script>
 
-<script>
-  $('#meetingModal1').on('hidden.bs.modal', function () {
-    $(this).find('input[type=text]').val('');
-  });
-</script>
+<% end %>
