@@ -13,7 +13,7 @@
           <div class="pro"><%= image_tag @user_profile.photo_thumb %></div>
           <div class="pro-deatils">
             <h3><%= @user_profile.name %></h3>
-            <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>India, Gujrat, Surat</p>
+            <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span><%= @user_profile.location %></p>
             <p><span><i class="fa fa-tag" aria-hidden="true"></i></span><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.profession : @user_profile.profilable.tagline %></p>
             <p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><%= @user_profile.email %></p>
           </div>

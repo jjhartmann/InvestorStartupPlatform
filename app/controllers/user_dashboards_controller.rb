@@ -3,6 +3,19 @@ class UserDashboardsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # If the user profile has not been filled out, redirect to edit
+    if (!session[:fill_details] &&
+        (!current_user.profilable.profession? ||
+        !current_user.profilable.skills? ||
+        !current_user.profilable.industry? ||
+        !current_user.profilable.something_cool? ||
+        !current_user.location? ||
+        !current_user.introduction?))
+      session[:fill_details] = true
+      redirect_to edit_user_registration_path
+    end
+
+
     if current_user.profilable.questionaire.questions.present?
       @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
     else
