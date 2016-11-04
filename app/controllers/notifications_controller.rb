@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-
+    @notifications_paged = @notifications.paginate(page: params[:page], per_page: 2)
   end
 
   # GET /notifications/1
@@ -73,7 +73,7 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = Notification.find(params[:id]).paginate(page: params[:page], per_page: 10)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
