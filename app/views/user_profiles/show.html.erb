@@ -17,6 +17,7 @@
               <p>
                 <span><i class="fa fa-tag" aria-hidden="true"></i></span><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.profession : @user_profile.profilable.tagline %>
               </p>
+              <p><span><i class="fa fa-superpowers" aria-hidden="true"></i></span><%= @user_profile.introduction %></p>
             </div>
           </div>
           <div>
@@ -43,7 +44,11 @@
             </div>
           </div>
           <div class="deatils-tag">
-            <h3>About Me</h3>
+            <h3>Introduction</h3>
+            <p><%= @user_profile.introduction %></p>
+          </div>
+          <div class="deatils-tag">
+            <h3><%= @user_profile.profilable_type == "UserProfile" ? "Something Cool" : "Description" %></h3>
             <p><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.something_cool : @user_profile.profilable.description %></p>
           </div>
         </div>
@@ -72,24 +77,42 @@
                   </ul>
                 </div>
               </div>
-              <div class="tag-new">
-                <h2>Company Afflllations</h2>
-                <div class="view-bar">
-                  <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i><a href="#" class="name">https://www.123.com/</a></span>
-                  <hr>
-                  <span class="tag-view"><i aria-hidden="true" class="fa fa-share"></i>
-                <ul>
-                  <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i aria-hidden="true" class="fa fa-instagram"></i></a></li>
-                </ul>
-              </span>
-                </div>
-              </div>
-          <% else %>
-              No Company yet
           <% end %>
+          <div class="tag-new">
+            <h2>Social Links</h2>
+            <div class="view-bar">
+              <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i><a href="#" class="name">https://www.123.com/</a></span>
+              <hr>
+              <span class="tag-view"><i aria-hidden="true" class="fa fa-share-alt"></i>
+                    <ul>
+                      <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i aria-hidden="true" class="fa fa-instagram"></i></a></li>
+                    </ul>
+                  </span>
+            </div>
+          </div>
+
+          <div class="tag-new">
+            <h2>Information</h2>
+            <div class="view-bar">
+
+              <% if @user_profile.profilable_type == "UserProfile" %>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-industry"></i> <%= @user_profile.profilable.industry %></span>
+                  <hr>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-building"></i> <%= @user_profile.profilable.profession %></span>
+                  <hr>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-cubes"></i> <%= @user_profile.profilable.skills %></span>
+
+              <% else %>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i> <%= @user_profile.profilable.tagline %></span>
+                  <hr>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-money"></i> <%= @user_profile.profilable.funds_to_offer %></span>
+                  <hr>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
