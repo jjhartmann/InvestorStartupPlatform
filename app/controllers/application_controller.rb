@@ -48,5 +48,6 @@ class ApplicationController < ActionController::Base
 
   def get_user
     @user = current_user
+    @user_type = current_user.profilable_type
   end
 end

@@ -3,19 +3,35 @@ class UserDashboardsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # If the user profile has not been filled out, redirect to edit
-    if (!session[:fill_details] &&
-        (!current_user.profilable.profession? ||
-        !current_user.profilable.skills? ||
-        !current_user.profilable.industry? ||
-        !current_user.profilable.something_cool? ||
-        !current_user.location? ||
-        !current_user.introduction?))
-      session[:fill_details] = true
-      flash[:update_profile] = "Please update your profile!"
-      redirect_to edit_user_registration_path
-    end
 
+    if @user_type == "InvestorProfile"
+      @company_matches = Notification.where(is_viewed: false, notificable_id: @user.profilable_id, notification_type: "CompanyMatch").sample(3)
+
+      # If the user profile has not been filled out, redirect to edit
+      if (!session[:fill_details] &&
+          (!current_user.profilable.tagline? ||
+              !current_user.profilable.funds_to_offer? ||
+              !current_user.profilable.description? ||
+              !current_user.location? ||
+              !current_user.introduction?))
+        session[:fill_details] = true
+        flash[:update_profile] = "Please update your profile!"
+        redirect_to edit_user_registration_path
+      end
+    elsif @user_type == "UserProfile"
+      # If the user profile has not been filled out, redirect to edit
+      if (!session[:fill_details] &&
+          (!current_user.profilable.profession? ||
+              !current_user.profilable.skills? ||
+              !current_user.profilable.industry? ||
+              !current_user.profilable.something_cool? ||
+              !current_user.location? ||
+              !current_user.introduction?))
+        session[:fill_details] = true
+        flash[:update_profile] = "Please update your profile!"
+        redirect_to edit_user_registration_path
+      end
+    end
 
     if current_user.profilable.questionaire.questions.present?
       @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
@@ -23,6 +39,7 @@ class UserDashboardsController < ApplicationController
       redirect_to questionaries_path
     end
   end
+
 
   def new
   end
