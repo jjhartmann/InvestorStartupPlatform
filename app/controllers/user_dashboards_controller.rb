@@ -38,6 +38,22 @@ class UserDashboardsController < ApplicationController
     else
       redirect_to questionaries_path
     end
+
+
+    # Once per session, search for matches
+    # get matches for investors
+    if true || !session[:search_match]
+      if @user_type == "InvestorProfile"
+        @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?").answer
+        @enterprises = Enterprise.where(stage_identifier: @answer).sample(3)
+        @enterprises.each do |enterprise|
+          Notification.create_notification(enterprise.id, enterprise.class, "An Investor <a href='#'>#{@user.name}</a> is available for #{enterprise.name}. ", "InvestorMatch")
+          Notification.create_notification(@user.profilable_id, @user.profilable_type, "You might be interested in #{enterprise.name}", "CompanyMatch", {company_id_type: enterprise.id})
+        end
+      end
+
+      session[:search_match] = true
+    end
   end
 
 

@@ -12,26 +12,50 @@
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <ul class="main-dashbord">
-              <% @feeds.each do |feed| %>
-                <li>
-                  <div class="box-tab">
-                    <div class="header-type">
-                      <span class="header-name"><%= feed.title %></span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i><%= feed.created_time %></div></span>
-                    </div>
-                    <div class="box effect2">
-                      <div class="main-img">
-                        <%= image_tag feed.photo %>
-                      </div>
-                    </div>
-                    <div class="main-details">
-                      <p><%= h truncate(feed.description, length: 320) %><%= link_to "See More", "http://#{feed.external_link}", target: "_blank" %></p>
-                      <div class="likers clearfix">
-                        <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
-                        <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
-                      </div>
-                    </div>
+              <% if @user.profilable_type == "InvestorProfile" %>
+                  <div class="notification-box">
+                    <ul>
+                      <% @company_matches.each_with_index do |match, i| %>
+                          <li id="notifications" data-notification-id="<%= match.id %>" class="<%= match.is_accepted(current_user) %>">
+                            <%= link_to public_profile_enterprises_path(enterprise: match.company_id_type) do %>
+                                <div class="profile">
+                                  <div class="circle-pic"><img src="<%= @enterprises[i].logo_full %>"/></div>
+                                </div>
+                                <div class="notes-track">
+                                  <!-- <div class="main-pro-name"><span class="yellow">
+                                <% match.user.name if match.user.present? %></span> added you as a connection</div> -->
+                                  <div class="main-pro-name"><%= raw match.notification_text %></div>
+                                  <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= match.created_time %></span>
+                                </div>
+                                <div class="all-notification-close dismiss-notification">
+                                  <i aria-hidden="true" class="fa fa-times" data-id="<%= match.id %>"></i>
+                                </div>
+                            <% end %>
+                          </li>
+                      <% end %>
+                    </ul>
                   </div>
-                </li>
+              <% end %>
+              <% @feeds.each do |feed| %>
+                  <li>
+                    <div class="box-tab">
+                      <div class="header-type">
+                        <span class="header-name"><%= feed.title %></span><span class="time-date"><div class="timezone"><i aria-hidden="true" class="fa fa-clock-o"></i><%= feed.created_time %></div></span>
+                      </div>
+                      <div class="box effect2">
+                        <div class="main-img">
+                          <%= image_tag feed.photo %>
+                        </div>
+                      </div>
+                      <div class="main-details">
+                        <p><%= h truncate(feed.description, length: 320) %><%= link_to "See More", "http://#{feed.external_link}", target: "_blank" %></p>
+                        <div class="likers clearfix">
+                          <span class="like"><i aria-hidden="true" class="fa fa-thumbs-up"></i></span>
+                          <span class="like unlike"><i aria-hidden="true" class="fa fa-thumbs-down"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
               <% end %>
             </ul>
           </div>

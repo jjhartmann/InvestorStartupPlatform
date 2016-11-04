@@ -50,14 +50,6 @@ class QuestionariesController < ApplicationController
             @question = current_user.profilable.questionaire.questions.create(question: q.question,answer: a)
           end
 
-          if @user.profilable_type == "InvestorProfile"
-            @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?").answer
-            @enterprises = Enterprise.where(stage_identifier: @answer)
-            @enterprises.each do |enterprise|
-              Notification.create_notification(enterprise.id, enterprise.class, "An Investor <a href='#'>#{@user.name}</a> is available for #{enterprise.name}. ", "Other")
-              Notification.create_notification(@user.profilable_id, @user.profilable_type, "You might get interested in #{enterprise.name}", "Other")
-            end
-          end
           format.html {redirect_to user_dashboards_path, notice: "Great! now, please fll up your profile to let us help you more."}
           format.json
         else
