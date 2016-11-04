@@ -8,6 +8,7 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
+    @title_heading = "Notifications"
     @notifications_paged = @notifications.paginate(page: params[:page], per_page: 10)
   end
 
@@ -68,12 +69,23 @@ class NotificationsController < ApplicationController
   #dismiss a notification
   def dismiss
     @notification.update(is_viewed: true)
+
+
+  end
+
+  def dismiss_all
+    puts "VIEWING ALL NOTES"
+    for note in @notifications
+      note.update(is_viewed: true)
+    end
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id]).paginate(page: params[:page], per_page: 10)
+
+      @notification = Notification.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

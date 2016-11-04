@@ -51,4 +51,20 @@ $(document).ready(function(){
     });
   });
   $('.alert.header-alert').delay(2000).fadeOut(500);
+
+  $('#all-notification-close-all').click(function(){
+    var data_id = 0;
+    $.ajax({
+      type: "POST",
+      url: '/notifications/' + data_id + '/dismiss_all',
+      success: function(data){
+      }
+    });
+
+    // Remove all notification ids
+    var allNotes = $('*[id*=notifications]:visible');
+    allNotes.each(function(note){
+      allNotes[note].remove();
+    });
+  });
 });

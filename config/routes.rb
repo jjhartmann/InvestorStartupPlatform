@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :notifications do
     member do
       post 'dismiss'
+      post 'dismiss_all'
     end
   end
   resources :user_dashboards do
