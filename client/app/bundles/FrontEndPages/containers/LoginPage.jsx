@@ -89,7 +89,7 @@ export default class LoginPage extends React.Component {
           {errors}
         </div>
         <div className="log-in-track">
-          <h3>Welcome to Login</h3>
+          <h3>Login</h3>
          <form role='form' acceptCharset="UTF-8" action='/users/sign_in' method='post' onSubmit={this.submitPage.bind(this)}>
             <div className="form-group">
               <label htmlFor="email">Email</label>

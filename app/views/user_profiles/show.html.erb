@@ -8,67 +8,76 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-9">
-      <div class="box-pro">
-        <div class="circle-tag">
-          <div class="pro"><%= image_tag @user_profile.photo_thumb %></div>
-          <div class="pro-deatils">
-            <h3><%= @user_profile.name %></h3>
-            <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span><%= @user_profile.location %></p>
-            <p><span><i class="fa fa-tag" aria-hidden="true"></i></span><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.profession : @user_profile.profilable.tagline %></p>
-            <p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><%= @user_profile.email %></p>
+        <div class="box-pro">
+          <div class="circle-tag">
+            <div class="pro"><%= image_tag @user_profile.photo_thumb %></div>
+            <div class="pro-deatils">
+              <h3><%= @user_profile.name %></h3>
+              <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span><%= @user_profile.location %></p>
+              <p>
+                <span><i class="fa fa-tag" aria-hidden="true"></i></span><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.profession : @user_profile.profilable.tagline %>
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="action-tag">
+              <% if @user == @user_profile %>
+                  <div class="edit"><%= link_to edit_user_registration_path do %>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <% end %></div>
+              <% else %>
+                  <div class="edit"><%= link_to "#", 'data-id': "#{@user_profile.id}", 'data-type': "#{@user_profile.profilable_type}", class: "follow1" do %>
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <% end %></div>
+              <% end %>
+              <% if @user.is_connection?(@user_profile, @user) %>
+                  <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %>
+                        <i class="fa fa-comments-o" aria-hidden="true"></i>
+                    <% end %></div>
+              <% end %>
+              <% if @user_profile.profilable.is_featured? == true %>
+                  <div class="edit"><%= link_to feature_startup_profile_user_profiles_path(id: @user_profile) do %>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    <% end %></div>
+              <% end %>
+            </div>
+          </div>
+          <div class="deatils-tag">
+            <h3>About Me</h3>
+            <p><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.something_cool : @user_profile.profilable.description %></p>
           </div>
         </div>
-        <div>
-          <div class="action-tag">
-            <% if @user == @user_profile %>
-              <div class="edit"><%= link_to edit_user_registration_path do %><i class="fa fa-pencil" aria-hidden="true"></i><% end %></div>
-            <% else %>
-              <div class="edit"><%= link_to "#", 'data-id': "#{@user_profile.id}", 'data-type': "#{@user_profile.profilable_type}", class: "follow1" do %><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><% end %></div>
-            <% end %>
-            <% if @user.is_connection?(@user_profile, @user) %>
-                <div class="edit"><%= link_to "#messageModal1", "data-toggle": "modal" do %><i class="fa fa-comments-o" aria-hidden="true"></i><% end %></div>
-            <% end %>
-            <% if @user_profile.profilable.is_featured? == true %>
-              <div class="edit"><%= link_to feature_startup_profile_user_profiles_path(id: @user_profile) do %><i class="fa fa-star" aria-hidden="true"></i><% end %></div>
-            <% end %>
-          </div>
-        </div>
-        <div class="deatils-tag">
-          <h3>About Me</h3>
-          <p><%= @user_profile.profilable_type == "UserProfile" ? @user_profile.profilable.something_cool : @user_profile.profilable.description %></p>
-        </div>
-      </div>
       </div>
       <div class="col-xs-3">
         <div class="view-side">
-          <% if @user_profile.profilable_type == "UserProfile" &&  @user_profile.enterprises.any? %>
-            <div>
-            <h2>Companies</h2>
-            <div class="view-bar">
-             <ul class="comapny">
-              <% @user_profile.enterprises.each do |enterprise| %>
-                <li>
-                  <%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>
-                    <div class="pro-com">
-                      <%= image_tag enterprise.logo_thumb %>
-                    </div>
-                    <div class="com-det">
-                      <span class="name"><%= enterprise.name %></span>
-                      <span class="date"><i aria-hidden="true" class="fa fa-calendar"></i> <%= enterprise.created_at.strftime("%d-%b-%Y") %></span>
-                      <span><%=h truncate(enterprise.pitch, length: 25) %></span>
-                    </div>
-                  <% end %>
-                </li>
-              <% end %>
-             </ul>
-            </div>
-          </div>
-          <div class="tag-new">
-            <h2>Company Afflllations</h2>
-            <div class="view-bar">
-              <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i><a href="#" class="name">https://www.123.com/</a></span>
-              <hr>
-              <span class="tag-view"><i aria-hidden="true" class="fa fa-share"></i>
+          <% if @user_profile.profilable_type == "UserProfile" && @user_profile.enterprises.any? %>
+              <div>
+                <h2>Companies</h2>
+                <div class="view-bar">
+                  <ul class="comapny">
+                    <% @user_profile.enterprises.each do |enterprise| %>
+                        <li>
+                          <%= link_to public_profile_enterprises_path(enterprise: enterprise) do %>
+                              <div class="pro-com">
+                                <%= image_tag enterprise.logo_thumb %>
+                              </div>
+                              <div class="com-det">
+                                <span class="name"><%= enterprise.name %></span>
+                                <span class="date"><i aria-hidden="true" class="fa fa-calendar"></i> <%= enterprise.created_at.strftime("%d-%b-%Y") %></span>
+                                <span><%= h truncate(enterprise.pitch, length: 25) %></span>
+                              </div>
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="tag-new">
+                <h2>Company Afflllations</h2>
+                <div class="view-bar">
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-globe"></i><a href="#" class="name">https://www.123.com/</a></span>
+                  <hr>
+                  <span class="tag-view"><i aria-hidden="true" class="fa fa-share"></i>
                 <ul>
                   <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
                   <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
@@ -76,10 +85,10 @@
                   <li><a href="#"><i aria-hidden="true" class="fa fa-instagram"></i></a></li>
                 </ul>
               </span>
-            </div>
-          </div>
+                </div>
+              </div>
           <% else %>
-            No Company yet
+              No Company yet
           <% end %>
         </div>
       </div>
@@ -87,7 +96,7 @@
   </div>
   <!--/proside-->
 
-  </div>
+</div>
 </div>
 
 <!-- Modal -->
@@ -98,26 +107,26 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><%= @user_profile.name %></h4>
       </div>
-      <%= form_for @message,url: messages_path do |f|%>
-        <div class="modal-body">
-          <%= f.hidden_field :target_id,value:  @user_profile.id %>
-          <%= f.hidden_field :user_id,value: current_user.id %>
-          <div class="message-tab">
-            <div class="head-tab"><%= @user_profile.name %></div>
-          </div>
-          <div class="form-inputs">
-            <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
-            <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="terminals">
-            <div class="btn-yes-no">
-              <%= f.submit "Send",class: "remodal-confirm btn btn-green", id: "message_send" %>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <%= form_for @message, url: messages_path do |f| %>
+          <div class="modal-body">
+            <%= f.hidden_field :target_id, value: @user_profile.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <div class="message-tab">
+              <div class="head-tab"><%= @user_profile.name %></div>
+            </div>
+            <div class="form-inputs">
+              <%= f.text_area :content, class: "form-control", placeholder: "Write a message" %>
+              <p style="display:none; color: red" id="message_error">Blank message can not be sent!!!</p>
             </div>
           </div>
-        </div>
+          <div class="modal-footer">
+            <div class="terminals">
+              <div class="btn-yes-no">
+                <%= f.submit "Send", class: "remodal-confirm btn btn-green", id: "message_send" %>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
       <% end %>
     </div>
   </div>
@@ -132,19 +141,19 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Meeting Request</h4>
       </div>
-      <%= form_tag meeting_request_meetings_path(requested_client_id: @user_profile.id) do  %>
-        <div class="modal-body">
-          <p class="title-modal">Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
-          <%= text_field_tag "topic",'',class: "form-control" %>
-        </div>
-        <div class="modal-footer">
-          <div class="terminals">
-            <div class="btn-yes-no">
-              <%= submit_tag "Send",  class: "remodal-confirm btn btn-primary" %>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <%= form_tag meeting_request_meetings_path(requested_client_id: @user_profile.id) do %>
+          <div class="modal-body">
+            <p class="title-modal">Hello, <%= @user_profile.name %>. Can we setup a meeting?</p>
+            <%= text_field_tag "topic", '', class: "form-control" %>
+          </div>
+          <div class="modal-footer">
+            <div class="terminals">
+              <div class="btn-yes-no">
+                <%= submit_tag "Send", class: "remodal-confirm btn btn-primary" %>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
-        </div>
       <% end %>
     </div>
   </div>
@@ -152,18 +161,18 @@
 
 
 <script>
-  $("#message_send").click(function(e){
-    if ($("#message_content").val().trim() == ''){
+  $("#message_send").click(function (e) {
+    if ($("#message_content").val().trim() == '') {
       e.preventDefault();
-      $("#message_error").css("display","block");
-      $("#message_content").css("border","red solid 1px");
+      $("#message_error").css("display", "block");
+      $("#message_content").css("border", "red solid 1px");
     }
   });
 
-  $(".load-more-item").click(function(){
-    if ($(".btn-view").text() == "Show More Features"){
+  $(".load-more-item").click(function () {
+    if ($(".btn-view").text() == "Show More Features") {
       $(".btn-view").text("Hide More Features");
-    }else{
+    } else {
       $(".btn-view").text("Show More Features");
     }
     // if ($(this).hasClass(".collapsed")){
