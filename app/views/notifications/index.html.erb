@@ -4,58 +4,68 @@
 <div class="main-body">
   <%= render "/user_dashboards/profile" %>
   <div class="container side-deatail">
-  <div class="col-xs-3">
-    <%= render "/user_dashboards/sidebar" %>
-  </div>
-  <div class="col-xs-9">
-        <div class="profile-tabs">
+    <div class="col-xs-3">
+      <%= render "/user_dashboards/sidebar" %>
+    </div>
+    <div class="col-xs-9">
+      <div class="profile-tabs">
         <div class="tab-content">
           <% if @notifications.present? %>
-            <div class="main-notification">
-              <!-- <div class="all-notification-close">
-                <i aria-hidden="true" class="fa fa-times"></i>
-              </div> -->
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab-1">All</a></li>
-            </ul>
-            <div class="tab-content">
-              <div id="tab-1" class="tab-pane fade in active">
-                <div class="notification-box">
-                  <ul>
-                    <% @notifications.each do |notification| %>
-                    <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) %>">
-                      <div class="profile"><div class="circle-pic"><img src="/assets/img-3.png"/></div></div>
-                      <div class="notes-track">
-                        <!-- <div class="main-pro-name"><span class="yellow"><% notification.user.name if notification.user.present? %></span> added you as a connection</div> -->
-                        <div class="main-pro-name"><%=raw notification.notification_text %></div>
-                        <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
-                      </div>
-                      <div class="all-notification-close dismiss-notification">
-                        <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id%>"></i>
-                      </div>
-                      <% if notification.notification_type == "Meeting" %>
-                          <% if notification.meeting.acceptance_status == "requested" %>
-                            <div class="btn-yes-no">
-                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 1), remote: true do %><div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept</div><% end %>
-                              <%= link_to accept_request_meetings_path(notification_id: notification.id,status: 0), remote: true do %><div class="btn btn-green red"><i aria-hidden="true" class="fa fa-times"></i>Ignore</div><% end %>
-                            </div>
-                          <% end %>
-                      <% end %>
-                  </li>
-                  <% end %>
+              <div class="main-notification">
+                <!-- <div class="all-notification-close">
+                  <i aria-hidden="true" class="fa fa-times"></i>
+                </div> -->
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#tab-1">All</a></li>
                 </ul>
+                <div class="tab-content">
+                  <div id="tab-1" class="tab-pane fade in active">
+                    <div class="notification-box">
+                      <ul>
+                        <% @notifications.each do |notification| %>
+                            <li data-notification-id="<%= notification.id %>" class="<%= notification.is_accepted(current_user) %>">
+                              <div class="profile">
+                                <div class="circle-pic"><img src="/assets/img-3.png"/></div>
+                              </div>
+                              <div class="notes-track">
+                                <!-- <div class="main-pro-name"><span class="yellow">
+                                <% notification.user.name if notification.user.present? %></span> added you as a connection</div> -->
+                                <div class="main-pro-name"><%= raw notification.notification_text %></div>
+                                <span class="time-des"><i aria-hidden="true" class="fa fa-clock-o"></i><%= notification.created_time %></span>
+                              </div>
+                              <div class="all-notification-close dismiss-notification">
+                                <i aria-hidden="true" class="fa fa-times" data-id="<%= notification.id %>"></i>
+                              </div>
+                              <% if notification.notification_type == "Meeting" %>
+                                  <% if notification.meeting.acceptance_status == "requested" %>
+                                      <div class="btn-yes-no">
+                                        <%= link_to accept_request_meetings_path(notification_id: notification.id, status: 1), remote: true do %>
+                                            <div class="btn btn-green"><i aria-hidden="true" class="fa fa-check"></i>Accept
+                                            </div>
+                                        <% end %>
+                                        <%= link_to accept_request_meetings_path(notification_id: notification.id, status: 0), remote: true do %>
+                                            <div class="btn btn-green red">
+                                              <i aria-hidden="true" class="fa fa-times"></i>Ignore
+                                            </div>
+                                        <% end %>
+                                      </div>
+                                  <% end %>
+                              <% end %>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          <% else %>
+              <div class="notes-alert">
+                <div class="alert alert-warning">
+                  You do not have any <strong>Notifications</strong> at the current moment.
+                </div>
+              </div>
+          <% end %>
         </div>
-      <% else %>
-         <div class="notes-alert">
-             <div class="alert alert-warning">
-               You do not have any <strong>Notifications</strong> at the current moment.
-             </div>
-         </div>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
-</div>
