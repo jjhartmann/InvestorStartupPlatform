@@ -70,7 +70,7 @@ gem 'config'
 gem 'simple_form'
 
 # Admin Panel Gems
-gem 'remotipart', '~> 1.2', github: 'pedantix/remotipart', ref: '7f7989db572976816c03508c335bbc1d8230af78'
+gem 'remotipart', '>= 1.2', git: 'https://github.com/jjhartmann/remotipart.git'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'wysiwyg-rails'
 gem 'icheck-rails'
