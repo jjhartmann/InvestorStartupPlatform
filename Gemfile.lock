@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/pedantix/remotipart.git
+  revision: 7f7989db572976816c03508c335bbc1d8230af78
+  ref: 7f7989db572976816c03508c335bbc1d8230af78
+  specs:
+    remotipart (1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -203,6 +210,9 @@ GEM
     rails-i18n (5.0.0)
       i18n (~> 0.7)
       railties (~> 5.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_admin (1.0.0.rc)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -227,6 +237,8 @@ GEM
       sass-rails
     rails_admin_rollincode (1.1)
       rails (>= 4.0, < 6)
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
       activesupport (= 5.0.0.1)
@@ -244,7 +256,6 @@ GEM
       rainbow (~> 2.1)
     redis (3.3.1)
     ref (2.0.0)
-    remotipart (1.2.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     ruby_parser (3.8.2)
@@ -325,7 +336,7 @@ DEPENDENCIES
   carrierwave_encrypter_decrypter
   coffee-rails (~> 4.2)
   config
-  devise
+  devise (>= 4.0.0.rc1)
   factory_girl_rails
   ffaker
   foreman
@@ -338,13 +349,14 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0)
   rails-i18n (~> 5.0.0)
+  rails_12factor
   rails_admin (>= 1.0.0.rc)
   rails_admin_charts
   rails_admin_nestable (~> 0.3.2)
   rails_admin_rollincode (~> 1.0)
   react_on_rails
   redis (~> 3.0)
-  remotipart
+  remotipart (~> 1.2)!
   rufus-scheduler (~> 3.2)
   sass-rails (~> 5.0)
   simple_calendar (~> 2.0)

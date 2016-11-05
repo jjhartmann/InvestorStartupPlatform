@@ -47,8 +47,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# For server deployment
+gem 'rails_12factor'
+
 # Use Devise for authentication
-gem 'devise'
+gem 'devise', '>= 4.0.0.rc1'
 gem 'omniauth'
 gem 'activemodel'
 gem 'cancancan'
@@ -67,7 +70,7 @@ gem 'config'
 gem 'simple_form'
 
 # Admin Panel Gems
-gem 'remotipart'
+gem 'remotipart', '~> 1.2', github: 'pedantix/remotipart', ref: '7f7989db572976816c03508c335bbc1d8230af78'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'wysiwyg-rails'
 gem 'icheck-rails'
