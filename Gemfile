@@ -88,7 +88,6 @@ gem 'rails_admin_charts'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'factory_girl_rails', require: false
   gem 'ffaker'
   gem 'byebug', platform: :mri
   gem 'better_errors'
@@ -107,3 +106,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'therubyracer', platforms: :ruby
 
 gem 'foreman'
+
+# for creating seeds
+gem 'factory_girl_rails'

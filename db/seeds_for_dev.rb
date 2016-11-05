@@ -31,22 +31,23 @@ user = FactoryGirl.create(:User, {
 # more users
 
 40.times { FactoryGirl.create(:User) }
-User.all.each { |u| u.confirm }
+User.all.each do |u|
+  u.confirm
+  if rand(3) == 0
+    u.profilable = FactoryGirl.create(:InvestorProfile)
+  else
+    u.profilable = FactoryGirl.create(:UserProfile)
+  end
+  u.save!
+end
 
 # investors and startups
 p ' > investors and startups ...'
-
-10.times { FactoryGirl.create(:InvestorProfile) }
 20.times { FactoryGirl.create(:Enterprise) }
 
 Enterprise.first.attach_user(user, :member, 'Founder')
 Enterprise.first.confirm_user(user)
-
-InvestorProfile.all.each do |investor_profile|
-  u = User.new_users.first
-  u.profilable = investor_profile
-  u.save!
-end
+Enterprise.first.save!
 
 user.profilable = FactoryGirl.create(:InvestorProfile)
 user.save!
@@ -55,7 +56,7 @@ user.save!
 p ' > startup founders and proposals ...'
 
 Enterprise.all.each do |ent|
-  u = User.new_users.first
+  u = User.all.sample
   ent.attach_user(u, :member, FFaker::Lorem.word)
   ent.confirm_user(u)
 
@@ -74,27 +75,32 @@ p ' > follow/unfollow ...'
 
 User.limit(10).each do |u|
   user.follow(u)
+  user.save!
 end
 
+p '> u.follow(user)'
 User.limit(20).each do |u|
   u.follow(user)
+  u.save!
 end
 
 p ' > Create Enterprise/Business follows'
 
 User.all.each do |u|
   u.follow(Enterprise.all.sample)
+  u.save!
 end
 
 
 # micro posts
 p ' > micro posts ...'
 
-(3 + rand(3)).times do
-  User.order('RAND()').each do |u|
-    u.add_micro_post(FFaker::Lorem.sentence)
-  end
-end
+# (3 + rand(3)).times do
+#   User.order('RAND()').each do |u|
+#     u.add_micro_post(FFaker::Lorem.sentence)
+#     u.save!
+#   end
+# end
 
 # private messages
 p ' > private messages ...'
@@ -112,6 +118,7 @@ User.all.each do |u|
 
   u.sent_messages.order('RAND()').limit(3).each { |msg| msg.mark_as_read! }
   u.sent_messages.order('RAND()').limit(3).each { |msg| msg.mark_as_archived! }
+  u.save!
 end
 
 p ' > Admin Meeting Schedule'

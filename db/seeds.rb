@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = FactoryGirl.create(:User, {
+    :username => 'admin',
+    :name     => 'NetPlus Admin',
+    :email    => 'admin@netplus.com',
+    :password => 'password',
+    :is_admin => true
+})
+
+user.profilable = FactoryGirl.create(:UserProfile)
+user.save!
