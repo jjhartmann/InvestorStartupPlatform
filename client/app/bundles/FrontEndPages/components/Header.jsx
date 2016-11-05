@@ -15,7 +15,7 @@ render()
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand 123" href="#"><img src='../app/assets/images/Handshake-shaking-hands-hand-shake-clip-art-clipart-image-image.jpg'/></a>
+            <a className="navbar-brand 123" href="#"><img src='../app/assets/images/NetPlus_Logo.png'/></a>
           </div>
           <div id="navbar" className="navbar-collapse collapse in" aria-expanded="true">
             <ul className="nav navbar-nav">
