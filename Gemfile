@@ -67,7 +67,7 @@ gem 'config'
 gem 'simple_form'
 
 # Admin Panel Gems
-gem 'remotipart', git: 'https://github.com/mshibuya/remotipart.git'
+gem 'remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'wysiwyg-rails'
 gem 'icheck-rails'
