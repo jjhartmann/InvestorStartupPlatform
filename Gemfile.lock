@@ -245,7 +245,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.2.2)
+    rake (11.3.0)
     react_on_rails (6.1.0)
       addressable
       connection_pool
@@ -353,6 +353,7 @@ DEPENDENCIES
   rails_admin_charts
   rails_admin_nestable (~> 0.3.2)
   rails_admin_rollincode (~> 1.0)
+  rake (>= 11.3)
   react_on_rails
   redis (~> 3.0)
   remotipart (>= 1.2)!

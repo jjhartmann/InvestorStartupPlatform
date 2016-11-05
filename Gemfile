@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 #for ActionCable
 gem 'redis', '~> 3.0'
 
+#for rake
+gem 'rake', '>= 11.3'
+
 # Gem for WYSIWYG plugin
 gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 #Gem for scheduling pieces of code
