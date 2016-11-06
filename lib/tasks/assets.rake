@@ -20,9 +20,6 @@ Otherwise Sprockets cannot find the files that webpack produces.
 This is the secret sauce for how a Heroku deployment knows to create the webpack generated JavaScript files.
     DESC
     task compile_environment: :webpack do
-      puts 'Create npm installation'
-      sh "cd client && npm install && cd ../"
-
       Rake::Task["assets:environment"].invoke
     end
 
@@ -45,10 +42,16 @@ sh "cd client && npm install webpack && npm install && `ReactOnRails.configurati
   end
 end
 
+task :before_assets_percompile_npm_install do
+  puts 'Create npm installation'
+  sh "cd client && npm install && cd ../"
+end
+
 # These tasks run as pre-requisites of assets:precompile.
 # Note, it's not possible to refer to ReactOnRails configuration values at this point.
 Rake::Task["assets:precompile"]
     .clear_prerequisites
+    .enhance(['before_assets_percompile_npm_install'])
     .enhance([:environment, "react_on_rails:assets:compile_environment"])
     .enhance do
   Rake::Task["react_on_rails:assets:symlink_non_digested_assets"].invoke
