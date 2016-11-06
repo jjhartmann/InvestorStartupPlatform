@@ -29,6 +29,11 @@ Uses command defined with ReactOnRails.configuration.npm_build_production_comman
 sh "cd client && `ReactOnRails.configuration.npm_build_production_command`"
     DESC
     task webpack: :environment do
+      # configure the webpack for install
+      if Rails.env.production?
+        sh "npm install webpack -g"
+      end
+
       if ReactOnRails.configuration.npm_build_production_command.present?
         sh "cd client && #{ReactOnRails.configuration.npm_build_production_command}"
       end
