@@ -50,13 +50,12 @@ test:
 #
 production:
   <<: *default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>
   password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+
 #  database: project_octo_startup_time_production
 #  username: netplusadmin
 #  password: ekdnd7348*#E73j #<%= ENV['PROJECT_OCTO_STARTUP_TIME_DATABASE_PASSWORD'] %>
