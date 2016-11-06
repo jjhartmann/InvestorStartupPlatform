@@ -44,7 +44,7 @@ end
 
 task :before_assets_percompile_npm_install do
   puts 'Create npm installation'
-  sh "cd client && npm install && cd ../"
+  # sh "cd client && npm install && cd ../"
 end
 
 # These tasks run as pre-requisites of assets:precompile.
