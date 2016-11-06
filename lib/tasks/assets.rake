@@ -31,7 +31,7 @@ sh "cd client && npm install webpack && npm install && `ReactOnRails.configurati
     task webpack: :environment do
       # configure the webpack for install
       if ReactOnRails.configuration.npm_build_production_command.present?
-        sh "cd client && npm install webpack && npm install && #{ReactOnRails.configuration.npm_build_production_command}"
+        sh "cd client && #{ReactOnRails.configuration.npm_build_production_command}"
       end
     end
 
