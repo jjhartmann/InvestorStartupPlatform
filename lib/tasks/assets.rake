@@ -26,7 +26,7 @@ This is the secret sauce for how a Heroku deployment knows to create the webpack
     desc <<-DESC
 Compile assets with webpack
 Uses command defined with ReactOnRails.configuration.npm_build_production_command
-sh "cd client && `ReactOnRails.configuration.npm_build_production_command`"
+sh "cd client && npm install webpack && npm install && `ReactOnRails.configuration.npm_build_production_command`"
     DESC
     task webpack: :environment do
       # configure the webpack for install
