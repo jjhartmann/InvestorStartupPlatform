@@ -28,10 +28,11 @@ const HomeApp = (props, _railsContext) => {
                   <div className="col-md-6">
                       <span className="fa-stack fa-4x">
                           <i className="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                          <i className="fa fa-cubes fa-stack-1x fa-inverse"></i>
                       </span>
                       <h4 className="service-heading">For Investors</h4>
                       <p className="text-muted">Investment made easy! Sign up with your preferences and get matched to your cup of tea.</p>
+                      <p>Investment made easy! Sign up and view all the startups that match your investment portfolio, as well as getting notified when a matching startup signed up on our site! Our teams will assist you during the investment process as well, such as conducting online meetings with the founding team, providing interpretation assistance, and conducting due diligence.</p>
                       <a href="home_pages/for_investors" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
                   <div className="col-md-6">
@@ -41,6 +42,7 @@ const HomeApp = (props, _railsContext) => {
                       </span>
                       <h4 className="service-heading">For Startups</h4>
                       <p className="text-muted">Build your company profile and let investors find you! Gain access to various resources through the platform and stay connected to what’s going on in your circle.</p>
+                      <p>Gain access to various resources such as up to date industry news in China, getting your project funded by a variety of investors from various industry background globally.</p>
                       <a href="home_pages/for_enterprises" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
               </div>
@@ -218,7 +220,7 @@ const HomeApp = (props, _railsContext) => {
           </div>
       </section>
 
-      <section id="team" className="bg-light-gray">
+      <section id="team" >
           <div className="container">
               <div className="row">
                   <div className="col-lg-12 text-center">

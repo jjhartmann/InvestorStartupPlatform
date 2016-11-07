@@ -19,8 +19,8 @@ class HomePagesController < ApplicationController
       @contact_form_props = {
           companyName: "Uni-Inovation Group",
           location: "Vancouver, BC",
-          phoneNumber: "123.345.5678",
-          email: "example@abc.com",
+          phoneNumber: "6043632767",
+          email: "info@inp.global",
           companyText: "Comany Name",
           locationText: "Address",
           phonetext: "Contact Number",

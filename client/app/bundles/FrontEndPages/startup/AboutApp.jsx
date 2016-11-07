@@ -16,7 +16,7 @@ const About = (props, _railsContext) => {
               <AboutInfo
                 info={["Browse ", <a href='home_pages/for_enterprises' key="4">startups</a>, " and ", <a href='/home_pages/for_investors' key="5">investors.</a>]}/>
               <AboutInfo
-                info={["Questions? Email ", <a href='mailto:contant@inp.global' key="6">us.</a>]}/>
+                info={["Questions? Email ", <a href='mailto:info@inp.global' key="6">us.</a>]}/>
               <AboutInfo
                 info={["For questions about jobs & recruiting, email ", <a href='#' key="7">talent@inp.global</a>]}/>
             </ul>
