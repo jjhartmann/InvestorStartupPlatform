@@ -16,3 +16,18 @@ user = FactoryGirl.create(:User, {
 
 user.profilable = FactoryGirl.create(:UserProfile)
 user.save!
+
+
+
+# Questions to ask
+QuestionsToAskEntrepreneur.create(question: 'Deal with Lowest Budget')
+QuestionsToAskEntrepreneur.create(question: 'Fields of Major deals')
+QuestionsToAskEntrepreneur.create(question: 'Fields of Interest for investment')
+QuestionsToAskInvestor.create(question: 'Fields of Interest for investment')
+QuestionsToAskInvestor.create(question: 'Minimum Budget for investment')
+QuestionsToAskInvestor.create(question: 'Maximum Budget for investment')
+QuestionsToAskInvestor.create(question: 'What startup type are you looking for?', qtype: 'dropdown')
+QuestionsToAskEnterprise.create(question: 'Fields of Interest for investment')
+QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
+QuestionsToAskEnterprise.create(question: 'Maximum Budget for investment')
+

@@ -5,7 +5,7 @@ import Header from '../components/Header'
 const UserHeaderApp = (props, _railsContext) => {
   const reactComponent = (
     <div>
-      <Header />
+      <Header {...props} />
     </div>
   );
   return reactComponent;
