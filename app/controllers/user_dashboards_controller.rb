@@ -31,9 +31,7 @@ class UserDashboardsController < ApplicationController
         flash[:update_profile] = "Please update your profile!"
         redirect_to edit_user_registration_path
       end
-    end
-
-    if current_user.profilable.questionaire.questions.present?
+    elsif current_user.profilable.questionaire.questions.present?
       @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
     else
       redirect_to questionaries_path
