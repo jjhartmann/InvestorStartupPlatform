@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <%= render "/layouts/user_header" %>
-  <% react_component("UserHeaderApp", props: {data: {signed_in: user_signed_in?}}) %>
+  <% react_component("UserHeaderApp", props: {data: {signed_in: user_signed_in?}, photo: image_url("NetPlus_Logo.png")}) %>
 <% else %>
   <% react_component("HeaderApp",
       props: {

@@ -3,6 +3,10 @@ import ReactOnRails from 'react-on-rails'
 
 
 export default class Header extends React.Component {
+constructor(props, context) {
+    super(props, context);
+    this.state = { photo: this.props.photo };
+}
 render()
   {
     return (
