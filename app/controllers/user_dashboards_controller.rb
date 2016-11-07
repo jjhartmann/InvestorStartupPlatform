@@ -17,6 +17,8 @@ class UserDashboardsController < ApplicationController
         session[:fill_details] = true
         flash[:update_profile] = "Please update your profile!"
         redirect_to edit_user_registration_path
+      elsif !current_user.profilable.questionaire.questions.present?
+        redirect_to questionaries_path
       end
     elsif @user_type == "UserProfile"
       # If the user profile has not been filled out, redirect to edit
@@ -30,14 +32,13 @@ class UserDashboardsController < ApplicationController
         session[:fill_details] = true
         flash[:update_profile] = "Please update your profile!"
         redirect_to edit_user_registration_path
+      elsif !current_user.profilable.questionaire.questions.present?
+        redirect_to questionaries_path
       end
-    elsif current_user.profilable.questionaire.questions.present?
-      @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
-    else
-      redirect_to questionaries_path
-    end
+     end
 
-
+    @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
+    
     # Once per session, search for matches
     # get matches for investors
     if true || !session[:search_match]
