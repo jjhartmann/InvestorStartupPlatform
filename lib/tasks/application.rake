@@ -12,3 +12,14 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 end
+
+if Rails.env.development? || Rails.env.test?
+  namespace :prod do
+    namespace :db do
+      desc "Set seeds"
+      task :seed => :environment do
+        require File.dirname(__FILE__) + '/../../db/seeds' unless Rails.env.test?
+      end
+    end
+  end
+end
