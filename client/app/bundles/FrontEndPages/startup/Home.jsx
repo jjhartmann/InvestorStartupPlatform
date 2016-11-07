@@ -9,8 +9,8 @@ const HomeApp = (props, _railsContext) => {
       <header>
           <div className="container">
               <div className="intro-text">
-                  <div className="intro-lead-in">Welcome To Our Studio!</div>
-                  <div className="intro-heading">It's Nice To Meet You</div>
+                  <div className="intro-lead-in">Welcome to INP Global!</div>
+                  <div className="intro-heading">Where investors and startups click.</div>
                   <a href="#services" className="page-scroll btn btn-xl">Tell Me More</a>
               </div>
           </div>
@@ -21,140 +21,134 @@ const HomeApp = (props, _railsContext) => {
               <div className="row">
                   <div className="col-lg-12 text-center">
                       <h2 className="section-heading">Services</h2>
-                      <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                      <h3 className="section-subheading text-muted">We help investors and entrepreneurs create meaningful relationships. </h3>
                   </div>
               </div>
               <div className="row text-center">
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                       <span className="fa-stack fa-4x">
                           <i className="fa fa-circle fa-stack-2x text-primary"></i>
                           <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                       </span>
-                      <h4 className="service-heading">E-Commerce</h4>
-                      <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                      <h4 className="service-heading">For Investors</h4>
+                      <p className="text-muted">Investment made easy! Sign up with your preferences and get matched to your cup of tea.</p>
+                      <a href="home_pages/for_investors" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                       <span className="fa-stack fa-4x">
                           <i className="fa fa-circle fa-stack-2x text-primary"></i>
                           <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
                       </span>
-                      <h4 className="service-heading">Responsive Design</h4>
-                      <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                  </div>
-                  <div className="col-md-4">
-                      <span className="fa-stack fa-4x">
-                          <i className="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i className="fa fa-lock fa-stack-1x fa-inverse"></i>
-                      </span>
-                      <h4 className="service-heading">Web Security</h4>
-                      <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                      <h4 className="service-heading">For Startups</h4>
+                      <p className="text-muted">Build your company profile and let investors find you! Gain access to various resources through the platform and stay connected to what’s going on in your circle.</p>
+                      <a href="home_pages/for_enterprises" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
               </div>
           </div>
       </section>
 
-      <section id="portfolio" className="bg-light-gray">
-          <div className="container">
-              <div className="row">
-                  <div className="col-lg-12 text-center">
-                      <h2 className="section-heading">Portfolio</h2>
-                      <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
-              </div>
-              <div className="row">
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/roundicons.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Round Icons</h4>
-                          <p className="text-muted">Graphic Design</p>
-                      </div>
-                  </div>
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal2" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/startup-framework.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Startup Framework</h4>
-                          <p className="text-muted">Website Design</p>
-                      </div>
-                  </div>
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal3" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/treehouse.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Treehouse</h4>
-                          <p className="text-muted">Website Design</p>
-                      </div>
-                  </div>
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal4" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/golden.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Golden</h4>
-                          <p className="text-muted">Website Design</p>
-                      </div>
-                  </div>
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal5" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/escape.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Escape</h4>
-                          <p className="text-muted">Website Design</p>
-                      </div>
-                  </div>
-                  <div className="col-md-4 col-sm-6 portfolio-item">
-                      <a href="#portfolioModal6" className="portfolio-link" data-toggle="modal">
-                          <div className="portfolio-hover">
-                              <div className="portfolio-hover-content">
-                                  <i className="fa fa-plus fa-3x"></i>
-                              </div>
-                          </div>
-                          <img src="/assets/portfolio/dreams.png" className="img-responsive" alt=""></img>
-                      </a>
-                      <div className="portfolio-caption">
-                          <h4>Dreams</h4>
-                          <p className="text-muted">Website Design</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
+      {/*<section id="portfolio" className="bg-light-gray">*/}
+          {/*<div className="container">*/}
+              {/*<div className="row">*/}
+                  {/*<div className="col-lg-12 text-center">*/}
+                      {/*<h2 className="section-heading">Portfolio</h2>*/}
+                      {/*<h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>*/}
+                  {/*</div>*/}
+              {/*</div>*/}
+              {/*<div className="row">*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/roundicons.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Round Icons</h4>*/}
+                          {/*<p className="text-muted">Graphic Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal2" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/startup-framework.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Startup Framework</h4>*/}
+                          {/*<p className="text-muted">Website Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal3" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/treehouse.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Treehouse</h4>*/}
+                          {/*<p className="text-muted">Website Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal4" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/golden.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Golden</h4>*/}
+                          {/*<p className="text-muted">Website Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal5" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/escape.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Escape</h4>*/}
+                          {/*<p className="text-muted">Website Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+                  {/*<div className="col-md-4 col-sm-6 portfolio-item">*/}
+                      {/*<a href="#portfolioModal6" className="portfolio-link" data-toggle="modal">*/}
+                          {/*<div className="portfolio-hover">*/}
+                              {/*<div className="portfolio-hover-content">*/}
+                                  {/*<i className="fa fa-plus fa-3x"></i>*/}
+                              {/*</div>*/}
+                          {/*</div>*/}
+                          {/*<img src="/assets/portfolio/dreams.png" className="img-responsive" alt=""></img>*/}
+                      {/*</a>*/}
+                      {/*<div className="portfolio-caption">*/}
+                          {/*<h4>Dreams</h4>*/}
+                          {/*<p className="text-muted">Website Design</p>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
+              {/*</div>*/}
+          {/*</div>*/}
+      {/*</section>*/}
 
-      <section id="about">
+      <section id="whatwedo"  className="bg-light-gray">
           <div className="container">
               <div className="row">
                   <div className="col-lg-12 text-center">
-                      <h2 className="section-heading">About</h2>
+                      <h2 className="section-heading">What We Do</h2>
                       <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                   </div>
               </div>
@@ -167,8 +161,7 @@ const HomeApp = (props, _railsContext) => {
                               </div>
                               <div className="timeline-panel">
                                   <div className="timeline-heading">
-                                      <h4>2009-2011</h4>
-                                      <h4 className="subheading">Our Humble Beginnings</h4>
+                                      <h4 className="subheading">Financing</h4>
                                   </div>
                                   <div className="timeline-body">
                                       <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
@@ -181,8 +174,7 @@ const HomeApp = (props, _railsContext) => {
                               </div>
                               <div className="timeline-panel">
                                   <div className="timeline-heading">
-                                      <h4>March 2011</h4>
-                                      <h4 className="subheading">An Agency is Born</h4>
+                                      <h4 className="subheading">BP Review</h4>
                                   </div>
                                   <div className="timeline-body">
                                       <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
@@ -195,8 +187,7 @@ const HomeApp = (props, _railsContext) => {
                               </div>
                               <div className="timeline-panel">
                                   <div className="timeline-heading">
-                                      <h4>December 2012</h4>
-                                      <h4 className="subheading">Transition to Full Service</h4>
+                                      <h4 className="subheading">Mentorship</h4>
                                   </div>
                                   <div className="timeline-body">
                                       <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
@@ -209,8 +200,7 @@ const HomeApp = (props, _railsContext) => {
                               </div>
                               <div className="timeline-panel">
                                   <div className="timeline-heading">
-                                      <h4>July 2014</h4>
-                                      <h4 className="subheading">Phase Two Expansion</h4>
+                                      <h4 className="subheading">Entrepreneurship</h4>
                                   </div>
                                   <div className="timeline-body">
                                       <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
@@ -219,7 +209,7 @@ const HomeApp = (props, _railsContext) => {
                           </li>
                           <li className="timeline-inverted">
                               <div className="timeline-image">
-                                  <h4>Be Part Of Our Story!</h4>
+                                  <h4>Start Here!</h4>
                               </div>
                           </li>
                       </ul>
