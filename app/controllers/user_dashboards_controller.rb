@@ -38,10 +38,10 @@ class UserDashboardsController < ApplicationController
      end
 
     @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
-    
+
     # Once per session, search for matches
     # get matches for investors
-    if true || !session[:search_match]
+    if !session[:search_match]
       if @user_type == "InvestorProfile"
         @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?").answer
         @enterprises = Enterprise.where(stage_identifier: @answer).sample(3)
