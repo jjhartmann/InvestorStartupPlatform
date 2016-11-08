@@ -42,11 +42,11 @@ export default class QuestionaireContainer extends React.Component {
           if (this.props.data.params == ''){
             console.log(removeURLParameter(window.location));
             window.location.pathname = "/home_pages";
-            window.loaction.href = "netpluswebapp.herokuapp.com/home_pages";
+            window.loaction.href = "https://netpluswebapp.herokuapp.com/home_pages";
             window.location.reload();
           }else{
             window.location.pathname = "/enterprises/"+data.enterprise;
-            window.loaction.href = "netpluswebapp.herokuapp.com/enterprises";
+            window.loaction.href = "https://netpluswebapp.herokuapp.com/enterprises";
             window.location.reload();
           }
         }
