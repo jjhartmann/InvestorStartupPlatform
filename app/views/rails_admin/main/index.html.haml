@@ -75,8 +75,7 @@
       %table.table.table-condensed.table-striped.js-horiz-scroll.table-hover{:style => ""}
         %thead
           %tr
-            %th.last.shrink{:style => " position: absolute; left: 15px; width: 140px; background-color: white; border-top: thick solid #5bc0de; "}
-            %th.shrink{:style => " position: absolute; left: 155px; width: 35px; background-color: white;  border-top: thick solid #5bc0de;"}
+            %th.shrink{:style => "text-align: right; position: absolute; left: 15px; width: 174px; height: auto; background-color: white;  border-top: thick solid #5bc0de;"}
               %input.toggle{type: "checkbox"}
             - if other_left
               %th.other.left.shrink= "..."
@@ -92,9 +91,9 @@
         %tbody
           - @objects.each do |object|
             %tr{class: "#{@abstract_model.param_key}_row"}
-              %td.last.links{:style => " position: absolute; left: 15px; width: 140px; background-color: white;"}
+              %td.last.links{:style => "margin: 0px; position: absolute; left: 15px; width: 140px; background-color: white;"}
                 %ul.inline.list-inline= menu_for :member, @abstract_model, object, true
-              %td{:style => " position: absolute; left: 155px; width: 35px; background-color: white;"}
+              %td{:style => "margin: 0px; position: absolute; left: 155px; width: 35px; background-color: white;"}
                 = check_box_tag "bulk_ids[]", object.id, false
               - if @other_left_link ||= other_left && index_path(params.except('set').merge(params[:set].to_i != 1 ? {set: (params[:set].to_i - 1)} : {}))
                 %td.other.left= link_to "...", @other_left_link, class: 'pjax'
