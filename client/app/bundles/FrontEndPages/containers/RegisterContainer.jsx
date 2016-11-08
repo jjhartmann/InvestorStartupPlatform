@@ -82,7 +82,7 @@ export default class Register extends React.Component {
             },
             errors: {}
           });
-          window.location="http://localhost:3000";
+          window.location="netpluswebapp.herokuapp.com";
         },
         error: (data) => {
           this.setState({errors: data.responseJSON.errors})
