@@ -4,9 +4,9 @@
 <div class="deatails-module">
   <h3><%= user.name %></h3>
   <div class="tag-line-des treck">
-    <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable.profession %> </div>
+    <i class="fa fa-briefcase" aria-hidden="true"></i><%= user.profilable_type? ? user.profilable.profession : "NA" %> </div>
   <div class="tag-line-des">
-    <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable.something_cool, length: 80, separator: ' ') %>
+    <i aria-hidden="true" class="fa fa-tags"></i> <%= truncate(user.profilable_type? ? user.profilable.something_cool : "NA", length: 80, separator: ' ') %>
   </div>
   <% if @user == user %>
       <div class="tag-btn-view">

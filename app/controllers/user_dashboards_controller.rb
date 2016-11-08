@@ -35,7 +35,7 @@ class UserDashboardsController < ApplicationController
       elsif !current_user.profilable.questionaire.questions.present?
         redirect_to questionaries_path
       end
-     end
+    end
 
     @feeds = NewsFeed.all.paginate(page: params[:page], per_page: 3)
 
@@ -43,11 +43,13 @@ class UserDashboardsController < ApplicationController
     # get matches for investors
     if !session[:search_match]
       if @user_type == "InvestorProfile"
-        @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?").answer
-        @enterprises = Enterprise.where(stage_identifier: @answer).sample(3)
-        @enterprises.each do |enterprise|
-          Notification.create_notification(enterprise.id, enterprise.class, "An Investor <a href='#'>#{@user.name}</a> is available for #{enterprise.name}. ", "InvestorMatch")
-          Notification.create_notification(@user.profilable_id, @user.profilable_type, "You might be interested in #{enterprise.name}", "CompanyMatch", {company_id_type: enterprise.id})
+        @answer = @user.profilable.questionaire.questions.find_by(question: "What startup type are you looking for?")
+        if @answer
+            @enterprises = Enterprise.where(stage_identifier: @answer).sample(3)
+          @enterprises.each do |enterprise|
+            Notification.create_notification(enterprise.id, enterprise.class, "An Investor <a href='#'>#{@user.name}</a> is available for #{enterprise.name}. ", "InvestorMatch")
+            Notification.create_notification(@user.profilable_id, @user.profilable_type, "You might be interested in #{enterprise.name}", "CompanyMatch", {company_id_type: enterprise.id})
+          end
         end
       end
 
