@@ -112,5 +112,5 @@ gem 'therubyracer', platforms: :ruby
 gem 'foreman'
 
 # for creating seeds
-gem 'factory_girl_rails'
+gem 'factory_girl_rails', :require => false
 gem 'ffaker'

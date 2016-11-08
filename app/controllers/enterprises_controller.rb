@@ -94,10 +94,10 @@ class EnterprisesController < ApplicationController
       @user = User.find_by(email: invitee)
       if @user.present?
         @invitation = Invitation.create(enterprise_id: params[:enterprise_id],user_id: @user.id, email: @user.email)
-        InvitationMailer.invitation_mail(@invitation).deliver_now
+        InvitationMailer.invitation_mail(@invitation).deliver!
       else
         @invitation = Invitation.create(enterprise_id: params[:enterprise_id], email: invitee)
-        InvitationMailer.invitation_mail(@invitation).deliver_now
+        InvitationMailer.invitation_mail(@invitation).deliver!
       end
     end
     redirect_to :back

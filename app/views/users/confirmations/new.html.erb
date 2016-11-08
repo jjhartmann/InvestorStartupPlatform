@@ -1,16 +1,35 @@
-<h2>Resend confirmation instructions</h2>
+<div className="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <div className="row">
+    <div className="col-xs-12">
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+      <div style="text-align: center">
+        <div className="log-in-track">
+          <div className="">
+            <h3>Resend confirmation instructions</h3>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+            <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+                <p>
+                  <%= devise_error_messages! %>
+                </p>
+
+                <div className="form-group">
+                  <label><%= f.label :email %></label>
+                  <br/>
+
+                  <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+                </div>
+                </br>
+                <div class="btn btn-default">
+                  <%= f.submit "Resend confirmation instructions" %>
+                </div>
+            <% end %>
+
+            <div class="notification-box">
+              <%= render "users/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

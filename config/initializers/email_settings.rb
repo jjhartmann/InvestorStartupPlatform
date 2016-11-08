@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
     user_name:            'SMTP_Injection',
-    password:             'd02d0c7692013d22ddc341ebfdbf77fd2843be92',
+    password:             '32dcfa605ada2e4cece6a633e7fedb91077d72bb',
     address:              'smtp.sparkpostmail.com',
     port:                  587,
     enable_starttls_auto:  true,
     format:               :html,
-    from:                 'mailer@yourawesomeapp.com'
+    from:                 'postmaster@inp.global'
 }

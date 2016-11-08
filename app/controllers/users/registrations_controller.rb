@@ -42,8 +42,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.profilable_type = user_profile.class
       resource.save
 
+
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
+
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
@@ -51,6 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
+      flash[:notice] = "Almost Finished! Just need to confirm your email address."
     else
       clean_up_passwords resource
       @validatable = devise_mapping.validatable?
