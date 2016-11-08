@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.integer :notificable_id
       t.string :notificable_type
       t.string :notification_text
-      t.string :is_viewed
+      t.boolean :is_viewed
 
       t.timestamps
     end
