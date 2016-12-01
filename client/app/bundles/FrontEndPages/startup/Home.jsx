@@ -31,8 +31,8 @@ const HomeApp = (props, _railsContext) => {
                           <i className="fa fa-cubes fa-stack-1x fa-inverse"></i>
                       </span>
                       <h4 className="service-heading">For Investors</h4>
-                      <p className="text-muted">Investment made easy! Sign up with your preferences and get matched to your cup of tea.</p>
-                      <p>Investment made easy! Sign up and view all the startups that match your investment portfolio, as well as getting notified when a matching startup signed up on our site! Our teams will assist you during the investment process as well, such as conducting online meetings with the founding team, providing interpretation assistance, and conducting due diligence.</p>
+                      <p className="text-muted">Investing Made Simple! Sign up with your preferences and get matched to your cup of tea.</p>
+                      <p>Investing Made Simple! Sign up and view all the startups that match your investment portfolio, as well as getting notified when a matching startup signed up on our site! Our systems will assist you during the investment process, such as conducting online meetings with the founding team, providing interpretation assistance, and conducting preliminary due diligence.</p>
                       <a href="home_pages/for_investors" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
                   <div className="col-md-6">
@@ -42,7 +42,7 @@ const HomeApp = (props, _railsContext) => {
                       </span>
                       <h4 className="service-heading">For Startups</h4>
                       <p className="text-muted">Build your company profile and let investors find you! Gain access to various resources through the platform and stay connected to what’s going on in your circle.</p>
-                      <p>Gain access to various resources such as up to date industry news in China, getting your project funded by a variety of investors from various industry background globally.</p>
+                      <p>Gain access to various resources such as up to date industry news in China, market entry strategies, business plan consulting, global partnership build-up, getting your project funded by a variety of investors from various industry background globally.</p>
                       <a href="home_pages/for_enterprises" className="page-scroll btn btn-default">Tell Me More</a>
                   </div>
               </div>
@@ -211,7 +211,7 @@ const HomeApp = (props, _railsContext) => {
                           </li>
                           <li className="timeline-inverted">
                               <div className="timeline-image">
-                                  <h4>Start Here!</h4>
+                                  <a href="/users/sign_up"  className="btn btn-primary"><h4>Start Here!</h4></a>
                               </div>
                           </li>
                       </ul>
@@ -220,68 +220,7 @@ const HomeApp = (props, _railsContext) => {
           </div>
       </section>
 
-      <section id="team" >
-          <div className="container">
-              <div className="row">
-                  <div className="col-lg-12 text-center">
-                      <h2 className="section-heading">Our Amazing Team</h2>
-                      <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  </div>
-              </div>
-              <div className="row">
-                  <div className="col-sm-4">
-                      <div className="team-member">
-                          <img src="/assets/team/1.jpg" className="img-responsive img-circle" alt=""></img>
-                          <h4>Kay Garland</h4>
-                          <p className="text-muted">Lead Designer</p>
-                          <ul className="list-inline social-buttons">
-                              <li><a href="#"><i className="fa fa-twitter"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-facebook"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-linkedin"></i></a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div className="col-sm-4">
-                      <div className="team-member">
-                          <img src="/assets/team/2.jpg" className="img-responsive img-circle" alt=""></img>
-                          <h4>Larry Parker</h4>
-                          <p className="text-muted">Lead Marketer</p>
-                          <ul className="list-inline social-buttons">
-                              <li><a href="#"><i className="fa fa-twitter"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-facebook"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-linkedin"></i></a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div className="col-sm-4">
-                      <div className="team-member">
-                          <img src="/assets/team/3.jpg" className="img-responsive img-circle" alt=""></img>
-                          <h4>Diana Pertersen</h4>
-                          <p className="text-muted">Lead Developer</p>
-                          <ul className="list-inline social-buttons">
-                              <li><a href="#"><i className="fa fa-twitter"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-facebook"></i></a>
-                              </li>
-                              <li><a href="#"><i className="fa fa-linkedin"></i></a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div className="row">
-                  <div className="col-lg-8 col-lg-offset-2 text-center">
-                      <p className="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                  </div>
-              </div>
-          </div>
-      </section>
+
 
       <aside className="clients">
           <div className="container">
