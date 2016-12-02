@@ -3,6 +3,8 @@ import ReactOnRails from 'react-on-rails'
 import Contact from '../containers/Contact'
 
 const HomeApp = (props, _railsContext) => {
+
+
   const reactComponent = (
     <div>
 
@@ -210,9 +212,11 @@ const HomeApp = (props, _railsContext) => {
                               </div>
                           </li>
                           <li className="timeline-inverted">
-                              <div className="timeline-image">
-                                  <a href="/users/sign_up"  className="btn btn-primary"><h4>Start Here!</h4></a>
-                              </div>
+                              <a href="/users/sign_up"  className="">
+                                  <div className="timeline-image">
+                                     <h4>Start Here!</h4>
+                                  </div>
+                              </a>
                           </li>
                       </ul>
                   </div>
