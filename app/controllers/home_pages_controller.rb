@@ -59,7 +59,13 @@ class HomePagesController < ApplicationController
   # DELETE /home_pages/1.json
   def destroy
 
-  end
+	end
+
+	def mailcontactform
+
+	end
+
+
 
   def faq
     @faq = [
